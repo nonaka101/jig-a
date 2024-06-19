@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JIG-A</title>
+	<link rel="manifest" href="./manifest.webmanifest">
+	<link rel="icon" type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg version='1.1' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='48' height='48' fill='%23fff' stroke-linejoin='round' stroke-width='2'/%3E%3Cpath d='m3 4.3125v2.625l10.5 2.625v-2.625zm28.875 0-10.5 15.75v2.625h20.125l0.87497 2.625h2.625l-2.625-7.875h-2.625l0.87496 2.625h-16.625l10.5-15.75zm-28.875 10.5v2.625l10.5 2.625v-2.625zm10.5 13.125v10.5s0 2.625-2.625 2.625h-7.875v2.625h7.875s5.25 0 5.25-5.25v-10.5zm7.875 0v15.75h23.625v-15.75zm2.625 2.625h18.375v10.5h-18.375z'/%3E%3C/svg%3E">
+	<link rel="stylesheet" href="./asset/css/normalize.css">
+	<link rel="stylesheet" href="./asset/css/style.css">
+</head>
+<body class="ly_body">
+	<h1 class="bl_siteHeader">
+		<svg class="bl_siteHeader_logo"
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 96 48" width="96" height="48"
+			role="graphics-symbol img" aria-hidden="true"
+		>
+			<g transform="matrix(3.7795 0 0 3.7795 -2.3043 -3.9031)">
+				<path d="m20.401 1.7494c-1.5526 0-1.5526 1.6001-1.5526 1.6001v9.6667h0.51754v-5.1812h5.1754v5.1812h0.51754v-9.6667c0-1.6461-1.5526-1.6001-1.5526-1.6001zm0 0.45226h3.1052c1.0351 0 1.0351 1.1478 1.0351 1.1478v4.0333h-5.1754v-4.0576c0-1.0797 1.0351-1.1235 1.0351-1.1235z"/>
+				<g transform="matrix(.045982 0 0 .045982 .67861 1.2028)">
+					<path d="m139.62 184v61.128s0 12.226-12.226 12.226h-48.902s-12.226 0-12.226-12.226v-12.226h6.1128v12.226s0 6.1128 6.1128 6.1128h48.902s6.1128 0 6.1128-6.1128v-61.128z"/>
+					<path d="m192.56 184v73.353h6.1128v-73.353z"/>
+					<path d="m324.97 208.45v-12.226s0-12.226-12.226-12.226h-48.902s-12.226 0-12.226 12.226v48.902s0 12.226 12.226 12.226h48.902s12.226 0 12.226-12.226v-18.338h-30.564v6.1128h24.451v12.226s0 6.1128-6.1128 6.1128h-48.902s-6.1128 0-6.1128-6.1128v-48.902s0-6.1128 6.1128-6.1128h48.902s6.1128 0 6.1128 6.1128v12.226z"/>
+					<path d="m19.181 11.445v10.471l41.883 10.471v-10.471zm115.18 0-41.883 62.824v10.471h80.275l3.4901 10.471h10.471l-10.471-31.412h-10.471l3.4901 10.471h-66.314l41.883-62.824zm-115.18 41.883v10.471l41.883 10.471v-10.471zm41.883 52.353v41.883s0 10.471-10.471 10.471h-31.412v10.471h31.412s20.941 0 20.941-20.941v-41.883zm31.412 0v62.824h94.236v-62.824zm10.471 10.471h73.295v41.883h-73.295z"/>
+					<path d="m225.47 11.445v104.71h125.65v-104.71zm10.471 10.471h104.71v20.941h-104.71zm0 31.412h104.71v20.941h-104.71zm0 31.412h104.71v20.941h-104.71zm-31.412 41.883v10.471h39.265l-7.853 31.412h10.471l7.853-31.412h68.059l7.853 31.412h10.471l-7.853-31.412h39.265v-10.471h-52.353z"/>
+				</g>
+			</g>
+		</svg>
+		<span class="hp_srOnly">治具-A</span>
+		<span class="bl_siteHeader_text">簡易ツール集</span>
+	</h1><!-- /.el_heading_lv1 -->
+
+
+
+
+
+	<h2 class="el_heading_lv2">このページについて</h2><!-- /.el_heading_lv2 -->
+	<details>
+		<summary>概要</summary>
+		<p>
+			このページは、・・・です。
+		</p>
+		<p><a class="el_link" href="https://github.com/nonaka101/jig-a">GitHub</a></p>
+	</details>
+
+
+
+
+
+	<h2 class="el_heading_lv2">設定</h2><!-- /.el_heading_lv2 -->
+	<details>
+		<summary>設定パネルを開く</summary>
+		<form action="#" class="bl_setting_unit">
+			<div class="bl_setting bl_setting__select">
+				<label for="js_setting_colorMode">
+					カラーモード
+				</label>
+				<select name="colorMode" id="js_setting_colorMode">
+					<option value=0>デフォルト</option>
+					<option value=1>ライト</option>
+					<option value=2>ダーク</option>
+				</select>
+			</div>
+			<!-- /.bl_setting.bl_setting__select -->
+			<div class="bl_setting bl_setting__select">
+				<label for="js_setting_fontSize">
+					フォントサイズ
+				</label>
+				<select name="fontSize" id="js_setting_fontSize">
+					<option value="0">デフォルト</option>
+					<option value="10">10px</option>
+					<option value="16">16px</option>
+					<option value="24">24px</option>
+					<option value="32">32px</option>
+				</select>
+			</div>
+			<!-- /.bl_setting.bl_setting__select -->
+			<div class="bl_setting bl_setting__chk">
+				<input type="checkbox" name="direction" id="js_setting_isLeft">
+				<label for="js_setting_isLeft">左利き</label>
+			</div>
+			<!-- /.bl_setting.bl_setting__chk -->
+			<div class="bl_setting bl_setting__chk">
+				<input type="checkbox" name="sound" id="js_setting_enableSound">
+				<label for="js_setting_enableSound">音</label>
+			</div>
+			<!-- /.bl_setting.bl_setting__chk -->
+			<div class="bl_setting bl_setting__chk">
+				<input type="checkbox" name="vibration" id="js_setting_enableVibration">
+				<label for="js_setting_enableVibration">振動</label>
+			</div>
+			<!-- /.bl_setting.bl_setting__chk -->
+		</form>
+		<!-- /.bl_setting_unit -->
+	</details>
+
+
+
+
+
+	<h2 class="el_heading_lv2">機能一覧</h2><!-- /.el_heading_lv2 -->
+
+
+
+
+
+	<h3 class="el_heading_lv3 el_heading__iconLabel">
+		<svg
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true"
+		>
+			<rect x="6" y="12" width="15" height="3"/>
+			<rect x="12" y="6" width="3" height="15"/>
+			<rect x="27" y="12" width="15" height="3"/>
+			<rect transform="rotate(45)" x="24.849" y="13.335" width="18" height="3"/>
+			<rect transform="rotate(135)" x="5.835" y="-35.349" width="18" height="3"/>
+			<rect x="27" y="33" width="15" height="3"/>
+			<circle cx="34.5" cy="28.5" r="1.5"/>
+			<circle cx="34.5" cy="40.5" r="1.5"/>
+			<rect x="3" y="3" width="42" height="42" ry="3" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
+		</svg>
+		<span>
+			算術
+		</span>
+	</h3><!-- /.el_heading_lv3.el_heading__iconLabel -->
+
+
+
+
+
+	<ul class="bl_funcList">
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnDialog" id="js_btn_calc" aria-controls="js_dialog_calculator">
+				電卓
+			</button><!-- /.js_btnDialog -->
+			<dialog class="ly_dialog" id="js_dialog_calculator">
+				<div class="ly_calc">
+					<section class="ly_calc_header" aria-label="ディスプレイ"><!-- Display -->
+						<span id="js_calc_label"></span>
+						<output id="js_calc_output"></output>
+					</section>
+					<div class="ly_calc_btnArray">
+						<section class="ly_calc_nav" aria-label="機能"><!-- 4 buttons([AC,%,BackSpace,Copy]) -->
+							<button type="button" class="el_calcBtn el_calcBtn__secondary js_btnCloseDialog"
+								aria-controls="js_dialog_calculator"
+								style="font-size: calc(var(--size_btn) * 0.3);"
+								aria-label="閉じる"
+								autofocus
+							>
+								Esc
+							</button>
+							<button type="button" class="el_calcBtn el_calcBtn__secondary" id="js_calcBtn_AllClear" aria-label="オールクリア">AC</button>
+							<button type="button" class="el_calcBtn el_calcBtn__secondary" id="js_calcBtn_BackSpace" aria-label="バックスペース">BS</button>
+							<button type="button" class="el_calcBtn el_calcBtn__secondary" id="js_calcBtn_Copy" aria-label="コピー">CP</button>
+						</section>
+						<section class="ly_calc_main" aria-label="テンキー・実行"><!-- 12 buttons([0 - 9],[.] ,[=]) -->
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_9" data-calc="9">9</button>
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_8" data-calc="8">8</button>
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_7" data-calc="7">7</button>
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_6" data-calc="6">6</button>
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_5" data-calc="5">5</button>
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_4" data-calc="4">4</button>
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_3" data-calc="3">3</button>
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_2" data-calc="2">2</button>
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_1" data-calc="1">1</button>
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_0" data-calc="0">0</button>
+							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_DecimalPoint" data-calc="." aria-label="小数点">.</button>
+							<button type="button" class="el_calcBtn el_calcBtn__primary" id="js_calcBtn_Equal" data-calc="=" aria-label="計算実行">=</button>
+						</section>
+						<section class="ly_calc_aside" aria-label="四則演算"><!-- 4 buttons([+,-,*,/]) -->
+							<button type="button" class="el_calcBtn el_calcBtn__primary" id="js_calcBtn_Add" data-calc="+" aria-label="足す">＋</button>
+							<button type="button" class="el_calcBtn el_calcBtn__primary" id="js_calcBtn_Subtract" data-calc="-" aria-label="引く">−</button>
+							<button type="button" class="el_calcBtn el_calcBtn__primary" id="js_calcBtn_Multiply" data-calc="*" aria-label="掛ける">×</button>
+							<button type="button" class="el_calcBtn el_calcBtn__primary" id="js_calcBtn_Divide" data-calc="/" aria-label="割る">÷</button>
+						</section>
+					</div>
+					<!-- /.ly_calc_btnArray -->
+				</div>
+				<!-- /.ly_calc -->
+			</dialog>
+			<!-- /.ly_dialog -->
+			<link rel="stylesheet" href="./asset/css/b01-calculator.css">
+			<script defer src="./asset/js/b01-calculator.js"></script>
+		</li><!-- /.bl_funcList_item -->
+	</ul>
+
+
+
+
+
+	<h3 class="el_heading_lv3 el_heading__iconLabel">
+		<svg
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true"
+		>
+			<path d="m6 12.674v1.8877h10.382v20.764h1.8877v-20.764h10.382v-1.8877h-12.27z" />
+			<path d="m26.899 20.225v1.8877h5.663v9.4383s0 3.7753 3.7753 3.7753h5.663v-1.8877h-5.663s-1.8877 0-1.8877-1.8877v-9.4383h7.5506v-1.8877h-7.5506v-3.7753h-1.8877v3.7753z"/>
+			<rect x="3" y="3" width="42" height="42" ry="4.5" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
+		</svg>
+		<span>
+			テキスト
+		</span>
+	</h3><!-- /.el_heading_lv3.el_heading__iconLabel -->
+
+
+
+
+
+	<ul class="bl_funcList">
+		<!-- [c01] -->
+		<li class="bl_funcList_item">
+
+			<button type="button" class="js_btnDialog" id="js_btn_textCounter" aria-controls="js_dialog_textCounter">
+				文字列カウンタ
+			</button><!-- /.js_btnDialog -->
+
+			<dialog class="ly_dialog" id="js_dialog_textCounter">
+				<div class="ly_textCounter">
+					<div class="ly_textCounter_header">
+						<div class="bl_menuHeader">
+							<h2 class="bl_menuHeader_title">テキストカウンター</h2>
+							<button type="button"
+								class="bl_menuHeader_btnIcon js_btnCloseDialog"
+								aria-controls="js_dialog_textCounter"
+							>
+								<svg role="graphics-symbol img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24" width="24" height="24">
+									<path stroke-width="1.4286" d="M 22,4.0142857 19.985715,2 12,9.9857149 4.0142857,2 2,4.0142857 9.9857149,12 2,19.985715 4.0142857,22 12,14.014286 19.985715,22 22,19.985715 14.014286,12 Z"/>
+								</svg>
+								閉じる
+							</button>
+						</div><!-- /.bl_menuHeader -->
+					</div><!-- /.ly_textCounter_header -->
+					<form class="bl_textCounter">
+						<button type="button"
+							class="bl_textCounter_btn bl_textCounter_btnSecondary"
+							id="js_textCounter_pasteFromClipboard"
+						>
+							クリップボードからペースト
+						</button>
+						<div class="bl_textCounter_block">
+							<label for="js_textCounter_inputArea" class="bl_textCounter_label">入力テキスト</label>
+							<textarea name="textcounter" class="bl_textCounter_textArea" id="js_textCounter_inputArea"></textarea>
+						</div>
+						<!-- /.bl_textCounter_block -->
+						<button type="button" class="bl_textCounter_btn bl_textCounter_btnPrimary" id="js_textCounter_countBtn">計算</button>
+						<output id="bl_textCounter_output"></output>
+					</form><!-- /.bl_textCounter -->
+				</div><!-- /.ly_textCounter -->
+			</dialog><!-- /.ly_dialog -->
+			<link rel="stylesheet" href="./asset/css/c01-text-counter.css">
+			<script defer src="./asset/js/c01-text-counter.js"></script>
+		</li><!-- /.bl_funcList_item -->
+	</ul>
+
+
+
+
+
+	<h3 class="el_heading_lv3 el_heading__iconLabel">
+		<svg
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true"
+		>
+			<rect x="3" y="3" width="42" height="9" fill="#949497" stroke="currentColor" stroke-width="2"/>
+			<path d="m7.5 16.5v3h33v-3z"/>
+			<path d="m7.5 25.5v3h33v-3z"/>
+			<path d="m7.5 34.5v3h33v-3z"/>
+			<circle cx="31.5" cy="22.5" r="3" fill="#ff4b36"/>
+			<path d="m3 12v33h36l6-6v-27z" fill="none" stroke="currentColor" stroke-width="2"/>
+			<path d="m39 45-1.5-4.5 7.5-1.5z" fill="#949497" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
+		</svg>
+		<span>
+			暦・日付・期間
+		</span>
+	</h3><!-- /.el_heading_lv3.el_heading__iconLabel -->
+
+
+
+
+
+	<ul class="bl_funcList">
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnDialog" id="" aria-controls="">・・・</button><!-- /.js_btnDialog -->
+		</li><!-- /.bl_funcList_item -->
+	</ul>
+
+
+
+
+
+	<script src="./asset/js/main.js"></script>
+</body>
+</html>

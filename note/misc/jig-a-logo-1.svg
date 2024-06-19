@@ -1,0 +1,14 @@
+<svg version="1.1" viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="24" fill="#fff"/>
+  <path d="m37.5 0.75v22.5h1.5v-10.5h6v10.5h1.5v-22.5zm1.5 1.5h6v9h-6z" stroke-dasharray="0.377953, 0.377953" stroke-linejoin="round" stroke-width=".37795"/>
+  <path d="m21 0.75v10.5h12v-10.5zm1.5 1.5h9v1.5h-9zm0 3h9v1.5h-9zm0 3h9v1.5h-9z" stroke-dasharray="0.516382, 0.516382" stroke-linejoin="round" stroke-width=".51638"/>
+  <path d="m19.5 12.75v1.5h3v1.5h1.5v-1.5h6v1.5h1.5v-1.5h3v-1.5z" stroke-dasharray="0.377953, 0.377953" stroke-linejoin="round" stroke-width=".37795"/>
+  <path d="m1.5 0.75h4.5v1.5h-4.5z" stroke-dasharray="0.377953, 0.377953" stroke-linejoin="round" stroke-width=".37795"/>
+  <path d="m1.5 6.75v1.5h4.5v-1.5z" stroke-dasharray="0.377953, 0.377953" stroke-linejoin="round" stroke-width=".37795"/>
+  <path d="m1.5 14.25v1.5h4.5v-4.5h-1.5v3z" stroke-dasharray="0.377953, 0.377953" stroke-linejoin="round" stroke-width=".37795"/>
+  <path d="m7.5 0.75v7.5h7.5v1.5h1.5v-4.5h-1.5v1.5h-6v-6z" stroke-dasharray="0.377953, 0.377953" stroke-linejoin="round" stroke-width=".37795"/>
+  <path d="m7.5 11.25v4.5h9v-4.5zm1.5 1.5h6v1.5h-6z" stroke-dasharray="0.377953, 0.377953" stroke-linejoin="round" stroke-width=".37795"/>
+  <path d="m10.5 17.25v6h-9v-3h1.5v1.5h6v-4.5z" stroke-dasharray="0.377953, 0.377953" stroke-linejoin="round" stroke-width=".37795"/>
+  <path d="m16.5 17.25v1.5h0.75v3h-0.75v1.5h3v-1.5h-0.75v-3h0.75v-1.5z" stroke-dasharray="0.377953, 0.377953" stroke-linejoin="round" stroke-width=".37795"/>
+  <path d="m34.5 17.25h-9v6h9v-3.75h-3.75v1.5h2.25v0.75h-6v-3h7.5z" stroke-dasharray="0.377953, 0.377953" stroke-linejoin="round" stroke-width=".37795"/>
+</svg>

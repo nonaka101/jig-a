@@ -1,0 +1,15 @@
+{
+  "lang": "ja",
+  "dir": "ltr",
+  "name": "JIG-A:簡易ツール集",
+  "short_name": "JIG-A",
+  "icons": [{
+    "src": "data:image/svg+xml,%3Csvg width='150' height='150' version='1.1' viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='150' height='150' fill='%23ffffff'/%3E%3Cpath d='m8 12.187v8.375l33.5 8.375v-8.375zm92.125 0-33.5 50.25v8.375h64.208l2.7916 8.375h8.375l-8.375-25.125h-8.375l2.7916 8.375h-53.042l33.5-50.25zm-92.125 33.5v8.375l33.5 8.375v-8.375zm33.5 41.875v33.5s0 8.375-8.375 8.375h-25.125v8.375h25.125s16.75 0 16.75-16.75v-33.5zm25.125 0v50.25h75.375v-50.25zm8.375 8.375h58.625v33.5h-58.625z' fill='%23000000'/%3E%3C/svg%3E%0A",
+    "sizes": "48x48 72x72 96x96 128x128 150x150 256x256 512x512",
+		"type": "image/svg+xml",
+		"purpose": "any"
+  }],
+  "scope": "/",
+  "start_url": ".",
+	"display": "standalone"
+}

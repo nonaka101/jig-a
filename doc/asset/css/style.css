@@ -1,0 +1,610 @@
+@charset "UTF-8";
+
+/* ≡≡≡ ▀▄ 全体設定 ▀▄ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		全体に適用される処理を施す
+		+ プリミティブ・セマンティックカラー等のカスタムプロパティの定義
+		+ （上記の）ライト↔ダークモード間の設定
+---------------------------------------------------------------------------- */
+
+:root {
+	font-family: "Noto Sans JP", "Segoe UI", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", meiryo, sans-serif;
+	line-height: 1.5;
+
+	/* スペース */
+	--space_0: 0.25rem;
+	--space_1: 0.5rem;
+	--space_2: 1rem;
+	--space_3: 1.5rem;
+	--space_5: 2.5rem;
+	--space_8: 4rem;
+	--space_13:6.5rem;
+
+	/* プリミティブカラー */
+	--white: #ffffff;
+	--sea-1200: #00004F;
+	--sea-1100: #000060;
+	--sea-1000: #000071;
+	--sea-900: #0000be;
+	--sea-800: #0024ce;
+	--sea-700: #0031d8;
+	--sea-600: #003ee5;
+	--sea-500: #0946f1;
+	--sea-400: #4979f5;
+	--sea-300: #7096f8;
+	--sea-200: #9db7f9;
+	--sea-100: #c5d7fb;
+	--sea-50: #e8f1fe;
+	--sumi-1200: #000000;
+	--sumi-1100: #080808;
+	--sumi-1000: #111111;
+	--sumi-900: #1a1a1c;
+	--sumi-800: #414143;
+	--sumi-700: #626264;
+	--sumi-600: #757578;
+	--sumi-500: #949497;
+	--sumi-400: #b4b4b7;
+	--sumi-300: #d8d8db;
+	--sumi-200: #e8e8eb;
+	--sumi-100: #f1f1f4;
+	--sumi-50: #f8f8fb;
+	--forest-1200: #032213;
+	--forest-1100: #08351f;
+	--forest-1000: #0c472a;
+	--forest-900: #115a36;
+	--forest-800: #197a4b;
+	--forest-700: #1a8b56;
+	--forest-600: #259d63;
+	--forest-500: #2cac6e;
+	--forest-400: #51b883;
+	--forest-300: #71c598;
+	--forest-200: #9bd4b5;
+	--forest-100: #c2e5d1;
+	--forest-50: #e6f5ec;
+	--wood-1200: #662e00;
+	--wood-1100: #833b00;
+	--wood-1000: #9c4600;
+	--wood-900: #b65200;
+	--wood-800: #c16800;
+	--wood-700: #c87504;
+	--wood-600: #cd820a;
+	--wood-500: #d18d0f;
+	--wood-400: #d69c2b;
+	--wood-300: #dcac4d;
+	--wood-200: #e5c47f;
+	--wood-100: #efdbb1;
+	--wood-50: #f8f1e0;
+	--sun-1200: #640101;
+	--sun-1100: #890101;
+	--sun-1000: #af0000;
+	--sun-900: #d50000;
+	--sun-800: #ec0000;
+	--sun-700: #fa1606;
+	--sun-600: #ff220d;
+	--sun-500: #ff4b36;
+	--sun-400: #ff5838;
+	--sun-300: #ff7b5c;
+	--sun-200: #ffa28b;
+	--sun-100: #ffc8b8;
+	--sun-50: #ffe7e6;
+
+	/* セマンティックカラー */
+	--sc_txt_body: var(--sumi-900);
+	--sc_txt_body__small: var(--sumi-1200); /* 小さな文字用 */
+	--sc_txt_desc: var(--sumi-700);
+	--sc_txt_placeholder: var(--sumi-600);
+	--sc_txt_onFill: var(--white);
+	--sc_txt_link: var(--sea-800);
+	--sc_txt_link__hover: var(--sea-900);
+	--sc_txt_link__active: var(--sea-900);
+	--sc_txt_link__visited: var(--sea-900);
+	--sc_txt_alert: var(--sun-800);
+	--sc_txt_disabled: var(--sumi-500);
+	--sc_txt_icon: var(--sumi-900);
+	--sc_txt_btn__primary: var(--white);
+	--sc_txt_btn__secondary: var(--sea-800);
+	--sc_txt_btn__tertiary: var(--sea-800);
+	--sc_border_field: 1px solid var(--sumi-900);
+	--sc_border_divider: 1px solid var(--sumi-300);
+	--sc_border_focused: 2px solid var(--wood-600);
+	--sc_border_selected: 2px solid var(--sea-800);
+	--sc_border_disabled: 1px solid var(--sumi-300);
+	--sc_border_alert: 2px solid var(--sun-800);
+	--sc_bg_body__primary: var(--sumi-50);
+	--sc_bg_body__secondary: var(--sumi-200);
+	--sc_bg_body__tertiary: var(--sumi-100);
+	--sc_bg_btn__primary: var(--sea-800);
+	--sc_bg_btn__secondary: var(--sea-50);
+	--sc_bg_disabled: var(--sumi-500);
+	--sc_bg_alert: var(--sun-800);
+	--sc_bg_shadow: var(--sumi-700);
+}
+
+/* セマンティックカラー（ダークモード時） */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--sc_txt_body: var(--white);
+		--sc_txt_body__small: var(--white);
+		--sc_txt_desc: var(--sumi-400);
+		--sc_txt_placeholder: var(--sumi-500);
+		--sc_txt_onFill: var(--white);
+		--sc_txt_link: var(--sea-300);
+		--sc_txt_link__hover: var(--sea-200);
+		--sc_txt_link__active: var(--sea-200);
+		--sc_txt_link__visited: var(--sea-200);
+		--sc_txt_alert: var(--sun-500);
+		--sc_txt_disabled: var(--sumi-600);
+		--sc_txt_icon: var(--white);
+		--sc_txt_btn__primary: var(--white);
+		--sc_txt_btn__secondary: var(--sea-300);
+		--sc_txt_btn__tertiary: var(--sea-300);
+		--sc_border_field: 1px solid var(--white);
+		--sc_border_divider: 1px solid var(--sumi-700);
+		--sc_border_focused: 2px solid var(--wood-600);
+		--sc_border_selected: 2px solid var(--sea-300);
+		--sc_border_disabled: 1px solid var(--sumi-300);
+		--sc_border_alert: 2px solid var(--sun-500);
+		--sc_bg_body__primary: var(--sumi-900);
+		--sc_bg_body__secondary: var(--sumi-700);
+		--sc_bg_body__tertiary: var(--sumi-800);
+		--sc_bg_btn__primary: var(--sea-300);
+		--sc_bg_btn__secondary: var(--sea-1200);
+		--sc_bg_disabled: var(--sumi-600);
+		--sc_bg_alert: var(--sun-500);
+		--sc_bg_shadow: var(--white);
+	}
+}
+
+/* セマンティックカラー（手動：ライトモード時） */
+:root.is_lightMode {
+	--sc_txt_body: var(--sumi-900);
+	--sc_txt_body__small: var(--sumi-1200); /* 小さな文字用 */
+	--sc_txt_desc: var(--sumi-700);
+	--sc_txt_placeholder: var(--sumi-600);
+	--sc_txt_onFill: var(--white);
+	--sc_txt_link: var(--sea-800);
+	--sc_txt_link__hover: var(--sea-900);
+	--sc_txt_link__active: var(--sea-900);
+	--sc_txt_link__visited: var(--sea-900);
+	--sc_txt_alert: var(--sun-800);
+	--sc_txt_disabled: var(--sumi-500);
+	--sc_txt_icon: var(--sumi-900);
+	--sc_txt_btn__primary: var(--white);
+	--sc_txt_btn__secondary: var(--sea-800);
+	--sc_txt_btn__tertiary: var(--sea-800);
+	--sc_border_field: 1px solid var(--sumi-900);
+	--sc_border_divider: 1px solid var(--sumi-300);
+	--sc_border_focused: 2px solid var(--wood-600);
+	--sc_border_selected: 2px solid var(--sea-800);
+	--sc_border_disabled: 1px solid var(--sumi-300);
+	--sc_border_alert: 2px solid var(--sun-800);
+	--sc_bg_body__primary: var(--sumi-50);
+	--sc_bg_body__secondary: var(--sumi-200);
+	--sc_bg_body__tertiary: var(--sumi-100);
+	--sc_bg_btn__primary: var(--sea-800);
+	--sc_bg_btn__secondary: var(--sea-50);
+	--sc_bg_disabled: var(--sumi-500);
+	--sc_bg_alert: var(--sun-800);
+	--sc_bg_shadow: var(--sumi-700);
+}
+
+/* セマンティックカラー（手動：ダークモード時） */
+:root.is_darkMode {
+	--sc_txt_body: var(--white);
+	--sc_txt_body__small: var(--white);
+	--sc_txt_desc: var(--sumi-400);
+	--sc_txt_placeholder: var(--sumi-500);
+	--sc_txt_onFill: var(--white);
+	--sc_txt_link: var(--sea-300);
+	--sc_txt_link__hover: var(--sea-200);
+	--sc_txt_link__active: var(--sea-200);
+	--sc_txt_link__visited: var(--sea-200);
+	--sc_txt_alert: var(--sun-500);
+	--sc_txt_disabled: var(--sumi-600);
+	--sc_txt_icon: var(--white);
+	--sc_txt_btn__primary: var(--white);
+	--sc_txt_btn__secondary: var(--sea-300);
+	--sc_txt_btn__tertiary: var(--sea-300);
+	--sc_border_field: 1px solid var(--white);
+	--sc_border_divider: 1px solid var(--sumi-700);
+	--sc_border_focused: 2px solid var(--wood-600);
+	--sc_border_selected: 2px solid var(--sea-300);
+	--sc_border_disabled: 1px solid var(--sumi-300);
+	--sc_border_alert: 2px solid var(--sun-500);
+	--sc_bg_body__primary: var(--sumi-900);
+	--sc_bg_body__secondary: var(--sumi-700);
+	--sc_bg_body__tertiary: var(--sumi-800);
+	--sc_bg_btn__primary: var(--sea-300);
+	--sc_bg_btn__secondary: var(--sea-1100);
+	--sc_bg_disabled: var(--sumi-600);
+	--sc_bg_alert: var(--sun-500);
+	--sc_bg_shadow: var(--white);
+}
+
+
+
+
+/* ≡≡≡ ▀▄ ベース設定 ▀▄ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		ベースとなる処理を施す
+		+ セマンティックカラーの設定（基本となる要素に施し、最低限の見栄えを確保）
+		+ 不要なデフォルトのスタイルを剥ぐ
+---------------------------------------------------------------------------- */
+
+*,::after,::before {
+	box-sizing: border-box
+}
+
+h1,h2,h3,h4,h5,h6,
+li,
+th,
+td,
+div,
+span,
+code,
+pre,
+figcaption,
+caption,
+time,
+address,
+small,
+button,
+label,
+summary,
+p {
+	color: var(--sc_txt_body);
+}
+
+body {
+	background-color: var(--sc_bg_body__primary);
+}
+
+img {
+	max-width: 100%;
+}
+
+svg {
+	fill: currentcolor;
+}
+
+small {
+	font-size: 0.8em;
+}
+
+
+/* フォーカス時のスタイル */
+*:focus-visible{
+	outline: var(--sc_border_focused);
+	outline-offset: 2px;
+	animation-name: focusEffect;
+	animation-duration: 0.3s;
+}
+
+@keyframes focusEffect {
+	from {
+		outline-width: 1px;
+		outline-offset: 8px;
+	}
+
+	to {
+		outline-width: 2px;
+		outline-offset: 2px;
+	}
+}
+
+
+
+
+
+/* ≡≡≡ ◲ ly_body ◲ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		ページ全体のレイアウト
+---------------------------------------------------------------------------- */
+.ly_body {
+	max-width: 1024px;
+	padding: 0 24px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+@media (min-width: 560px) {
+	.ly_body {padding: 0 40px;}
+}
+
+
+
+
+
+/* ≡≡≡ ◲ ly_dialog ◲ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		各種機能を格納するダイアログ要素
+---------------------------------------------------------------------------- */
+
+/* ダイアログ表示中は、裏側にあるページをスクロールさせない */
+html:has(dialog[open]) {
+	overflow: hidden;
+}
+
+/* `max-*` は、デフォルトのスタイル（例：`dialog:-internal-dialog-in-top-layer`）を上書きするため */
+.ly_dialog {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100dvw;
+	max-width: 100dvw;
+	min-height: 100dvh;
+	max-height: 100dvh;
+	padding: 0;
+	border: none;
+	background-color: var(--sc_bg_body__tertiary);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ly_dialog:not([open]){
+	display: none;
+}
+
+.bl_menuHeader {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 8px;
+	margin-bottom: 16px;
+}
+
+.bl_menuHeader_title {
+	padding: 0;
+	margin: 0;
+	font-size: 1.75rem;
+	line-height: 1.5;
+}
+
+.bl_menuHeader_btnIcon {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 2.625rem; /* bl_header と違い画面占有率を気にしない為 rem */
+	height: 2.625rem;
+	padding: 0;
+	margin: 0;
+	font-size: 0.7rem;
+	color: var(--sc_txt_body);
+	text-decoration: none;
+	cursor: pointer;
+	background: none;
+	border: none;
+}
+
+.bl_menuHeader_btnIcon > svg {
+	width: 1.625rem;
+	height: 1.625rem;
+}
+
+
+
+
+
+
+/* ≡≡≡ ❒ bl_siteHeader ❒ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		ページトップにあるサイトロゴとテキスト部
+---------------------------------------------------------------------------- */
+
+.bl_siteHeader {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	border-bottom: var(--sc_border_field);
+}
+
+.bl_siteHeader_logo {
+	width: auto;
+	height: 3rem;
+}
+
+.bl_siteHeader_text {
+	margin-left: 1rem;
+	font-size: 2rem;
+	font-weight: 500;
+	line-height: 1.5;
+	letter-spacing: 0.04em;
+}
+
+
+
+
+
+
+/* ≡≡≡ ❒ bl_setting ❒ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		設定パネル
+---------------------------------------------------------------------------- */
+
+.bl_setting_unit {
+	padding: 12px;
+	border: var(--sc_border_field);
+}
+
+.bl_setting {
+	display: flex;
+	flex-flow: row wrap;
+	margin: 8px 0;
+	gap: 0.2rem;
+}
+
+.bl_setting.bl_setting__select {
+}
+
+.bl_setting.bl_setting__chk {
+}
+
+
+
+
+
+/* ≡≡≡ ❒ bl_funcList ❒ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		機能ボタンをリスト上に並べるためのもの
+---------------------------------------------------------------------------- */
+
+.bl_funcList {
+	margin: 0;
+	padding: 0 0 0 1.5rem;
+	list-style-type: none;
+}
+
+.bl_funcList_item {
+	margin: 8px 0;
+}
+
+
+
+
+
+/* ≡≡≡ ☐ js_btnDialog ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		ダイアログ展開ボタン
+---------------------------------------------------------------------------- */
+
+.js_btnDialog {
+  appearance: none;
+	padding: 8px;
+	font-size: 1.25rem;
+	width:max-content;
+  background-color: var(--sc_bg_btn__primary);
+  color: var(--sc_txt_btn__primary);
+  border: var(--sc_border_field);
+  border-radius: 4px;
+	max-width: 100%;
+}
+
+
+
+
+
+
+/* ≡≡≡ ☐ el_link ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		リンク要素
+---------------------------------------------------------------------------- */
+
+.el_link {
+	color: var(--sc_txt_link);
+	text-decoration: underline;
+}
+
+.el_link:active {
+	color: var(--sc_txt_link__active);
+}
+
+.el_link:visited {
+	color: var(--sc_txt_link__visited);
+}
+
+.el_link:hover {
+	color: var(--sc_txt_link__hover);
+}
+
+
+
+
+
+/* ≡≡≡ ☐ el_heading_lv* ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		見出し（投稿、固定ページのブロックエディタコンテンツと同じスタイル）
+		これは、他のページと投稿、固定ページとでスタイルを統一させるためのもの
+		※なので投稿、固定ページ以外で使用することを想定
+	■　モディファイア
+		+ el_heading__iconLabel
+---------------------------------------------------------------------------- */
+
+.el_heading_lv1 {
+	margin: 1em 0 0 0;
+	font-size: 2rem;
+	font-weight: 500;
+	line-height: 1.5;
+	letter-spacing: 0.04em;
+}
+
+@media (min-width: 960px) {
+	.el_heading_lv1 {
+		font-size: 2.25rem;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+}
+
+.el_heading_lv2 {
+	margin: 1em 0 0 0;
+	font-size: 1.75rem;
+	font-weight: 500;
+	line-height: 1.5;
+	letter-spacing: 0.04em;
+}
+
+@media (min-width: 960px) {
+	.el_heading_lv2 {
+		font-size: 2rem;
+		font-weight: 400;
+	}
+}
+
+.el_heading_lv3 {
+	margin: 1em 0 0 0;
+	font-size: 1.5rem;
+	font-weight: 500;
+	line-height: 1.5;
+	letter-spacing: 0.04em;
+}
+
+@media (min-width: 960px) {
+	.el_heading_lv3 {
+		font-size: 1.75rem;
+		font-weight: 400;
+	}
+}
+
+.el_heading_lv3.el_heading__iconLabel {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.02rem;
+	align-items: center;
+}
+
+.el_heading_lv3.el_heading__iconLabel > svg {
+	width: 1.125em;
+	height: 1.125em;
+	margin-inline-end: 0.125em;
+	vertical-align: -0.125em;
+}
+
+.el_heading_lv3.el_heading__iconLabel > span {
+}
+
+
+
+
+
+/* ≡≡≡ ⚠ hp_srOnly(ScreenReaderOnly) ⚠ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		スクリーンリーダー専用要素。レンダリング上は隠しながら、読み上げを妨げない。
+---------------------------------------------------------------------------- */
+
+.hp_srOnly {
+	position: absolute !important;
+	clip: rect(0 0 0 0) !important;
+	clip-path: inset(100%) !important;
+	width :1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+
+

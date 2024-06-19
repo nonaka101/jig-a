@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+.ly_textCounter {
+	padding: 8px;
+	width: 100dvw;
+  height: 100dvh;
+}
+
+.bl_textCounter {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
+.bl_textCounter_btn {
+	display: block;
+	width: 100%;
+	padding: 16px;
+	margin: 0;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.5;
+	text-align: center;
+	letter-spacing: 0.04em;
+	cursor: pointer;
+	background: none;
+	border: 2px solid transparent;
+	border-radius: max(
+		min(4px, calc(40px - 100%) * 9999),
+		min(8px, calc(100% - 40px) * 9999, calc(120px - 100%) * 9999),
+		min(12px, calc(100% - 120px) * 9999)
+	);
+	transition: .25s;
+}
+
+.bl_textCounter_btn.bl_textCounter_btnPrimary {
+	color: var(--sc_txt_btn__primary);
+	text-decoration: none;
+	background-color: var(--sc_bg_btn__primary);
+}
+
+.bl_textCounter_btn.bl_textCounter_btnPrimary:hover,
+.bl_textCounter_btn.bl_textCounter_btnPrimary:active {
+	filter: brightness(87%);
+}
+
+.bl_textCounter_btn.bl_textCounter_btnSecondary {
+	color: var(--sc_txt_btn__secondary);
+	text-decoration: none;
+	background-color: transparent;
+	border-color: currentcolor;
+}
+
+.bl_textCounter_btn.bl_textCounter_btnSecondary:hover,
+.bl_textCounter_btn.bl_textCounter_btnSecondary:active {
+	background-color: var(--sc_bg_btn__secondary);
+}
+
+.bl_textCounter_block {
+	display: block;
+	width: 100%;
+	margin: 1rem 0;
+}
+
+.bl_textCounter_label {
+	display: block;
+	align-self: flex-start;
+}
+
+.bl_textCounter_textArea {
+	display: block;
+	width: 100%;
+	height: 10rem;
+}
+
+#bl_textCounter_output {
+	display: block;
+	width: 100%;
+	margin: 1rem 0;
+}
+
+#bl_textCounter_output > table {
+	table-layout: auto;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	border: var(--sc_border_field);
+}
+
+#bl_textCounter_output > table > thead {
+	background-color: var(--sc_bg_body__tertiary);
+	font-size: 1.5rem;
+	font-weight: 700;
+	border-bottom: var(--sc_border_field);
+}
+
+#bl_textCounter_output > table > tbody {
+	background-color: var(--sc_bg_body__primary);
+}
+
+#bl_textCounter_output > table > tbody > tr:nth-child(even) {
+	background-color: var(--sc_bg_body__secondary);
+	border-bottom: var(--sc_border_divider);
+}
+
+#bl_textCounter_output > table > tbody > tr:last-child {
+	border-bottom: var(--sc_border_field);
+}
+
+#bl_textCounter_output > table td {
+	padding: 0.2rem 1rem;
+}
+
+#bl_textCounter_output > table > tbody > tr > td:nth-child(even) {
+	text-align: right;
+}

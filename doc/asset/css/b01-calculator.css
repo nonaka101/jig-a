@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+/* スマホの横画面想定（横5に対して縦6以下）
+ * この場合、ボタン配列は5列4行の構成とする
+ *
+ *
+ *
+ *
+ */
+.ly_calc {
+	--ly_btnArray:
+		"nav main main main aside"
+		"nav main main main aside"
+		"nav main main main aside"
+		"nav main main main aside";
+	--ly_numArray:
+		"b7 b8 b9"
+		"b4 b5 b6"
+		"b1 b2 b3"
+		"b0 bd be";
+	--num_hBox: 4;
+	--num_wBox: 5;
+	--size_btn: min(100dvw / var(--num_wBox), 100dvh / (var(--num_hBox) + 2));
+	--flexFlow_nav: column nowrap;
+	--gap: 0.1rem;
+	/*--width_nav: var(--size_btn);*/
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--sc_bg_body__primary);
+	padding: 8px;
+	width: 100dvw;
+	height: 100dvh;
+	border: var(--sc_border_field);
+}
+
+.is_leftMode .ly_calc {
+	--ly_btnArray:
+		"aside main main main nav"
+		"aside main main main nav"
+		"aside main main main nav"
+		"aside main main main nav";
+	--ly_numArray:
+		"b7 b8 b9"
+		"b4 b5 b6"
+		"b1 b2 b3"
+		"be bd b0";
+}
+
+@media (max-aspect-ratio: 5/6) {
+	/* スマホの縦画面想定（横5に対して縦6以上）
+	   この場合、ボタン配列は4列5行の構成とする */
+  .ly_calc {
+		--ly_btnArray:
+			"nav  nav  nav  nav  "
+			"main main main aside"
+			"main main main aside"
+			"main main main aside"
+			"main main main aside";
+		--num_hBox: 5;
+		--num_wBox: 4;
+		--flexFlow_nav: row nowrap;
+		--width_nav: 100dvw;
+	}
+	.is_leftMode .ly_calc {
+		--ly_btnArray:
+		"nav  nav  nav  nav  "
+		"aside main main main"
+		"aside main main main"
+		"aside main main main"
+		"aside main main main";
+	}
+}
+
+.ly_calc_header {
+	--base_h: calc((100dvh - (var(--size_btn) * var(--num_hBox))) / 2);
+	width: 98dvw;
+	min-height: calc(var(--size_btn) * 2);
+}
+
+#js_calc_label {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: calc(var(--base_h) * 0.5);
+	font-size: clamp(1rem, 5dvw, calc(var(--base_h) * 0.4));
+	text-align: center;
+	border: var(--sc_border_field);
+	border-bottom: dotted;
+}
+
+#js_calc_output {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: var(--base_h);
+	font-size: clamp(1rem, 5dvw, calc(var(--base_h) * 0.8));
+	text-align: center;
+	border: var(--sc_border_field);
+	border-top: none;
+	text-wrap: nowrap;
+}
+
+.ly_calc_btnArray {
+	display: grid;
+	gap: var(--gap);
+	grid-template-areas:var(--ly_btnArray);
+}
+
+.ly_calc_nav {
+	grid-area: nav;
+	display: flex;
+	gap: var(--gap);
+	flex-flow: var(--flexFlow_nav);
+	/*width: var(--width_nav);*/
+}
+
+.ly_calc_main {
+	grid-area: main;
+	display: grid;
+	gap: var(--gap);
+	grid-template-areas: var(--ly_numArray);
+}
+
+#js_calcBtn_1 {grid-area: b1;}
+#js_calcBtn_2 {grid-area: b2;}
+#js_calcBtn_3 {grid-area: b3;}
+#js_calcBtn_4 {grid-area: b4;}
+#js_calcBtn_5 {grid-area: b5;}
+#js_calcBtn_6 {grid-area: b6;}
+#js_calcBtn_7 {grid-area: b7;}
+#js_calcBtn_8 {grid-area: b8;}
+#js_calcBtn_9 {grid-area: b9;}
+#js_calcBtn_0 {grid-area: b0;}
+#js_calcBtn_DecimalPoint {grid-area: bd;}
+#js_calcBtn_Equal {grid-area: be;}
+
+.ly_calc_aside {
+	grid-area: aside;
+	display: flex;
+	gap: var(--gap);
+	flex-flow: column nowrap;
+}
+
+.el_calcBtn {
+	appearance: none;
+	height: calc(var(--size_btn) * 0.9);
+	width: calc(var(--size_btn) * 0.9);
+	margin: 0;
+  padding: 0;
+	font-size: calc(var(--size_btn) * 0.4);
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1;
+	letter-spacing: 0;
+	text-align: center;
+	cursor: pointer;
+	background: none;
+	border-radius: 25%;
+	border: 2px solid transparent;
+}
+
+.el_calcBtn.el_calcBtn__primary {
+	color: var(--sc_txt_btn__primary);
+	background-color: var(--sc_bg_btn__primary);
+}
+
+.el_calcBtn.el_calcBtn__secondary {
+	color: var(--sc_txt_btn__secondary);
+	background-color: var(--sc_bg_btn__secondary);
+	border-color: currentcolor;
+}
+
+.el_calcBtn.el_calcBtn.el_calcBtn__tertiary {
+	color: var(--sc_txt_body);
+	background-color: transparent;
+	border: var(--sc_border_field);
+}
