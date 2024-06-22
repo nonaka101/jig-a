@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JIG-A</title>
+
+	<!-- アイコン・マニフェスト関係 -->
 	<link rel="icon" sizes="32x32" type="image/vnd.microsoft.icon" href="./icon-032x032.ico">
 	<link rel="icon" sizes="any" type="image/svg+xml"
       href="data:image/svg+xml,%3Csvg version='1.1' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='48' height='48' fill='%23fff' stroke-linejoin='round' stroke-width='2'/%3E%3Cpath d='m3 4.3125v2.625l10.5 2.625v-2.625zm28.875 0-10.5 15.75v2.625h20.125l0.87497 2.625h2.625l-2.625-7.875h-2.625l0.87496 2.625h-16.625l10.5-15.75zm-28.875 10.5v2.625l10.5 2.625v-2.625zm10.5 13.125v10.5s0 2.625-2.625 2.625h-7.875v2.625h7.875s5.25 0 5.25-5.25v-10.5zm7.875 0v15.75h23.625v-15.75zm2.625 2.625h18.375v10.5h-18.375z'/%3E%3C/svg%3E">
 	<link rel="apple-touch-icon" href="./icon-180x180.png">
 	<link rel="manifest" href="./manifest.webmanifest">
+
+	<!-- スタイルシート -->
 	<link rel="stylesheet" href="./asset/css/normalize.css">
 	<link rel="stylesheet" href="./asset/css/style.css">
 </head>
+
 <body class="ly_body">
 	<h1 class="bl_siteHeader">
 		<svg class="bl_siteHeader_logo"
@@ -42,9 +48,10 @@
 	<details>
 		<summary>概要</summary>
 		<p>
-			このページは、・・・です。
+			こちらは、電卓や日付計算、テキスト整形といった「ちょっとしたツール」を扱っております。
+			JavaScriptを実行できるブラウザがあれば、環境や状況（例：デバイスやネットワーク接続状況、操作方法等）に左右されずに動作することを目指しています。
+			詳細 及び 注意事項等につきましては、<a class="el_link" href="https://github.com/nonaka101/jig-a">GitHubのリポジトリ</a>を参照ください。
 		</p>
-		<p><a class="el_link" href="https://github.com/nonaka101/jig-a">GitHub</a></p>
 	</details>
 
 
@@ -135,53 +142,72 @@
 
 	<ul class="bl_funcList">
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnDialog" id="js_btn_calc" aria-controls="js_dialog_calculator">
-				電卓
-			</button><!-- /.js_btnDialog -->
-			<dialog class="ly_dialog" id="js_dialog_calculator">
-				<div class="ly_calc">
-					<section class="ly_calc_header" aria-label="ディスプレイ"><!-- Display -->
-						<span id="js_calc_label"></span>
-						<output id="js_calc_output"></output>
+			<button type="button" class="js_btnShowDialog" aria-controls="b01js_dialog_calculator">
+				簡易電卓
+			</button><!-- /.js_btnShowDialog -->
+			<dialog class="ly_dialog" id="b01js_dialog_calculator" aria-labelledby="b01_title" autofocus>
+				<div class="b01ly_calc">
+					<h2 class="hp_srOnly" id="b01_title">簡易電卓</h2>
+					<section class="b01ly_calc_header" aria-label="ディスプレイ"><!-- Display -->
+						<span id="b01js_label"></span>
+						<output id="b01js_output"></output>
 					</section>
-					<div class="ly_calc_btnArray">
-						<section class="ly_calc_nav" aria-label="機能"><!-- 4 buttons([AC,%,BackSpace,Copy]) -->
-							<button type="button" class="el_calcBtn el_calcBtn__secondary js_btnCloseDialog"
-								aria-controls="js_dialog_calculator"
+					<div class="b01ly_calc_btnArray">
+						<section class="b01ly_calc_nav" aria-label="機能"><!-- 4 buttons([AC,%,BackSpace,Copy]) -->
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__secondary js_btnCloseDialog"
+								aria-controls="b01js_dialog_calculator"
 								style="font-size: calc(var(--size_btn) * 0.3);"
-								aria-label="閉じる"
-								autofocus
+								aria-label="閉じる" aria-describedby="b01_title"
 							>
 								Esc
 							</button>
-							<button type="button" class="el_calcBtn el_calcBtn__secondary" id="js_calcBtn_AllClear" aria-label="オールクリア">AC</button>
-							<button type="button" class="el_calcBtn el_calcBtn__secondary" id="js_calcBtn_BackSpace" aria-label="バックスペース">BS</button>
-							<button type="button" class="el_calcBtn el_calcBtn__secondary" id="js_calcBtn_Copy" aria-label="コピー">CP</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__secondary"
+								id="b01js_AllClear" aria-label="オールクリア">AC</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__secondary"
+								id="b01js_BackSpace" aria-label="バックスペース">BS</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__secondary"
+								id="b01js_Copy" aria-label="コピー">CP</button>
 						</section>
-						<section class="ly_calc_main" aria-label="テンキー・実行"><!-- 12 buttons([0 - 9],[.] ,[=]) -->
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_9" data-calc="9">9</button>
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_8" data-calc="8">8</button>
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_7" data-calc="7">7</button>
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_6" data-calc="6">6</button>
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_5" data-calc="5">5</button>
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_4" data-calc="4">4</button>
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_3" data-calc="3">3</button>
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_2" data-calc="2">2</button>
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_1" data-calc="1">1</button>
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_0" data-calc="0">0</button>
-							<button type="button" class="el_calcBtn el_calcBtn__tertiary" id="js_calcBtn_DecimalPoint" data-calc="." aria-label="小数点">.</button>
-							<button type="button" class="el_calcBtn el_calcBtn__primary" id="js_calcBtn_Equal" data-calc="=" aria-label="計算実行">=</button>
+						<section class="b01ly_calc_main" aria-label="テンキー・実行"><!-- 12 buttons([0 - 9],[.] ,[=]) -->
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_9" data-calc="9">9</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_8" data-calc="8">8</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_7" data-calc="7">7</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_6" data-calc="6">6</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_5" data-calc="5">5</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_4" data-calc="4">4</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_3" data-calc="3">3</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_2" data-calc="2">2</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_1" data-calc="1">1</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_0" data-calc="0">0</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_DecimalPoint" data-calc="." aria-label="小数点">.</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary"
+								id="b01js_Equal" data-calc="=" aria-label="計算実行">=</button>
 						</section>
-						<section class="ly_calc_aside" aria-label="四則演算"><!-- 4 buttons([+,-,*,/]) -->
-							<button type="button" class="el_calcBtn el_calcBtn__primary" id="js_calcBtn_Add" data-calc="+" aria-label="足す">＋</button>
-							<button type="button" class="el_calcBtn el_calcBtn__primary" id="js_calcBtn_Subtract" data-calc="-" aria-label="引く">−</button>
-							<button type="button" class="el_calcBtn el_calcBtn__primary" id="js_calcBtn_Multiply" data-calc="*" aria-label="掛ける">×</button>
-							<button type="button" class="el_calcBtn el_calcBtn__primary" id="js_calcBtn_Divide" data-calc="/" aria-label="割る">÷</button>
+						<section class="b01ly_calc_aside" aria-label="四則演算"><!-- 4 buttons([+,-,*,/]) -->
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary"
+								id="b01js_Add" data-calc="+" aria-label="足す">＋</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary"
+								id="b01js_Subtract" data-calc="-" aria-label="引く">−</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary"
+								id="b01js_Multiply" data-calc="*" aria-label="掛ける">×</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary"
+								id="b01js_Divide" data-calc="/" aria-label="割る">÷</button>
 						</section>
 					</div>
-					<!-- /.ly_calc_btnArray -->
+					<!-- /.b01ly_calc_btnArray -->
 				</div>
-				<!-- /.ly_calc -->
+				<!-- /.b01ly_calc -->
 			</dialog>
 			<!-- /.ly_dialog -->
 			<link rel="stylesheet" href="./asset/css/b01-calculator.css">
@@ -216,43 +242,48 @@
 		<!-- [c01] -->
 		<li class="bl_funcList_item">
 
-			<button type="button" class="js_btnDialog" id="js_btn_textCounter" aria-controls="js_dialog_textCounter">
+			<button type="button" class="js_btnShowDialog" aria-controls="c01js_dialog_textCounter">
 				文字列カウンタ
-			</button><!-- /.js_btnDialog -->
+			</button><!-- /.js_btnShowDialog -->
 
-			<dialog class="ly_dialog" id="js_dialog_textCounter">
-				<div class="ly_textCounter">
-					<div class="ly_textCounter_header">
-						<div class="bl_menuHeader">
-							<h2 class="bl_menuHeader_title">テキストカウンター</h2>
-							<button type="button"
-								class="bl_menuHeader_btnIcon js_btnCloseDialog"
-								aria-controls="js_dialog_textCounter"
-							>
-								<svg role="graphics-symbol img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24" width="24" height="24">
-									<path stroke-width="1.4286" d="M 22,4.0142857 19.985715,2 12,9.9857149 4.0142857,2 2,4.0142857 9.9857149,12 2,19.985715 4.0142857,22 12,14.014286 19.985715,22 22,19.985715 14.014286,12 Z"/>
-								</svg>
-								閉じる
-							</button>
-						</div><!-- /.bl_menuHeader -->
-					</div><!-- /.ly_textCounter_header -->
-					<form class="bl_textCounter">
+			<dialog class="ly_dialog" id="c01js_dialog_textCounter" aria-labelledby="c01_title" autofocus>
+				<div class="c01ly_textCounter">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="c01_title">テキストカウンター</h2>
 						<button type="button"
-							class="bl_textCounter_btn bl_textCounter_btnSecondary"
-							id="js_textCounter_pasteFromClipboard"
+							class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="c01js_dialog_textCounter"
+							aria-describedby="c01_title"
+						>
+							<svg role="graphics-symbol img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24" width="24" height="24">
+								<path stroke-width="1.4286" d="M 22,4.0142857 19.985715,2 12,9.9857149 4.0142857,2 2,4.0142857 9.9857149,12 2,19.985715 4.0142857,22 12,14.014286 19.985715,22 22,19.985715 14.014286,12 Z"/>
+							</svg>
+							閉じる
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<form class="c01bl_form">
+						<button type="button"
+							class="c01bl_form_btn c01bl_form_btnSecondary"
+							id="c01js_pasteFromClipboard"
 						>
 							クリップボードからペースト
 						</button>
-						<div class="bl_textCounter_block">
-							<label for="js_textCounter_inputArea" class="bl_textCounter_label">入力テキスト</label>
-							<textarea name="textcounter" class="bl_textCounter_textArea" id="js_textCounter_inputArea"></textarea>
+						<div class="c01bl_form_block">
+							<label for="c01js_inputArea" class="c01bl_form_label">入力テキスト</label>
+							<textarea name="textcounter" class="c01bl_form_textArea" id="c01js_inputArea"></textarea>
 						</div>
-						<!-- /.bl_textCounter_block -->
-						<button type="button" class="bl_textCounter_btn bl_textCounter_btnPrimary" id="js_textCounter_countBtn">計算</button>
-						<output id="bl_textCounter_output"></output>
-					</form><!-- /.bl_textCounter -->
-				</div><!-- /.ly_textCounter -->
+						<!-- /.c01bl_form_block -->
+						<button type="button"
+							class="c01bl_form_btn c01bl_form_btnTertiary"
+							id="c01js_clearTextArea"
+						>
+							クリア
+						</button>
+						<button type="button" class="c01bl_form_btn c01bl_form_btnPrimary" id="c01js_countBtn">計算</button>
+						<output class="c01bl_form_output" id="c01js_output"></output>
+					</form><!-- /.c01bl_form -->
+				</div><!-- /.c01ly_textCounter -->
 			</dialog><!-- /.ly_dialog -->
 			<link rel="stylesheet" href="./asset/css/c01-text-counter.css">
 			<script defer src="./asset/js/c01-text-counter.js"></script>
@@ -288,7 +319,7 @@
 
 	<ul class="bl_funcList">
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnDialog" id="" aria-controls="">・・・</button><!-- /.js_btnDialog -->
+			<button type="button" class="js_btnShowDialog" aria-controls="">・・・</button><!-- /.js_btnShowDialog -->
 		</li><!-- /.bl_funcList_item -->
 	</ul>
 

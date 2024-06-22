@@ -300,6 +300,7 @@ small {
 	■ 概要
 		ページ全体のレイアウト
 ---------------------------------------------------------------------------- */
+
 .ly_body {
 	max-width: 1024px;
 	padding: 0 24px;
@@ -344,44 +345,6 @@ html:has(dialog[open]) {
 
 .ly_dialog:not([open]){
 	display: none;
-}
-
-.bl_menuHeader {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	padding-bottom: 8px;
-	margin-bottom: 16px;
-}
-
-.bl_menuHeader_title {
-	padding: 0;
-	margin: 0;
-	font-size: 1.75rem;
-	line-height: 1.5;
-}
-
-.bl_menuHeader_btnIcon {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-evenly;
-	width: 2.625rem; /* bl_header と違い画面占有率を気にしない為 rem */
-	height: 2.625rem;
-	padding: 0;
-	margin: 0;
-	font-size: 0.7rem;
-	color: var(--sc_txt_body);
-	text-decoration: none;
-	cursor: pointer;
-	background: none;
-	border: none;
-}
-
-.bl_menuHeader_btnIcon > svg {
-	width: 1.625rem;
-	height: 1.625rem;
 }
 
 
@@ -465,13 +428,58 @@ html:has(dialog[open]) {
 
 
 
-
-/* ≡≡≡ ☐ js_btnDialog ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+/* ≡≡≡ ☐ bl_menuHeader ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 	■ 概要
-		ダイアログ展開ボタン
+		ダイアログ内の汎用ヘッダー、タイトルと閉じるボタンの2つで構成
 ---------------------------------------------------------------------------- */
 
-.js_btnDialog {
+.bl_menuHeader {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 8px;
+	margin-bottom: 16px;
+}
+
+.bl_menuHeader_title {
+	padding: 0;
+	margin: 0;
+	font-size: 1.75rem;
+	line-height: 1.5;
+}
+
+.bl_menuHeader_btnIcon {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 2.625rem; /* bl_header と違い画面占有率を気にしない為 rem */
+	height: 2.625rem;
+	padding: 0;
+	margin: 0;
+	font-size: 0.7rem;
+	color: var(--sc_txt_body);
+	text-decoration: none;
+	cursor: pointer;
+	background: none;
+	border: none;
+}
+
+.bl_menuHeader_btnIcon > svg {
+	width: 1.625rem;
+	height: 1.625rem;
+}
+
+
+/* ≡≡≡ ☐ js_btnShowDialog ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		ダイアログ展開ボタン
+		※対となる js_btnCloseDialog はJS操作のみ。
+		　こちらのスタイルは bl_menuHeader_btnIcon で行う。
+---------------------------------------------------------------------------- */
+
+.js_btnShowDialog {
   appearance: none;
 	padding: 8px;
 	font-size: 1.25rem;

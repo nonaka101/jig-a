@@ -297,7 +297,7 @@ if(typeVibrate() === TYPE_VIBRATE.NONE){
  *  1. button 要素には `js_btnDialog` クラスが必要
  *  2. button 要素には、操作先 dialog のID名が入った aria-controls 属性が必要
  */
-const dialogBtns = document.querySelectorAll('.js_btnDialog');
+const dialogBtns = document.querySelectorAll('.js_btnShowDialog');
 for (const btn of dialogBtns) {
 	const dialogId = btn.getAttribute('aria-controls');
 	if(dialogId){

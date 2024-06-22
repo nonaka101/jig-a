@@ -7,7 +7,7 @@
  *
  *
  */
-.ly_calc {
+.b01ly_calc {
 	--ly_btnArray:
 		"nav main main main aside"
 		"nav main main main aside"
@@ -35,7 +35,7 @@
 	border: var(--sc_border_field);
 }
 
-.is_leftMode .ly_calc {
+.is_leftMode .b01ly_calc {
 	--ly_btnArray:
 		"aside main main main nav"
 		"aside main main main nav"
@@ -51,7 +51,7 @@
 @media (max-aspect-ratio: 5/6) {
 	/* スマホの縦画面想定（横5に対して縦6以上）
 	   この場合、ボタン配列は4列5行の構成とする */
-  .ly_calc {
+  .b01ly_calc {
 		--ly_btnArray:
 			"nav  nav  nav  nav  "
 			"main main main aside"
@@ -63,7 +63,7 @@
 		--flexFlow_nav: row nowrap;
 		--width_nav: 100dvw;
 	}
-	.is_leftMode .ly_calc {
+	.is_leftMode .b01ly_calc {
 		--ly_btnArray:
 		"nav  nav  nav  nav  "
 		"aside main main main"
@@ -73,13 +73,13 @@
 	}
 }
 
-.ly_calc_header {
+.b01ly_calc_header {
 	--base_h: calc((100dvh - (var(--size_btn) * var(--num_hBox))) / 2);
 	width: 98dvw;
 	min-height: calc(var(--size_btn) * 2);
 }
 
-#js_calc_label {
+#b01js_label {
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -91,7 +91,7 @@
 	border-bottom: dotted;
 }
 
-#js_calc_output {
+#b01js_output {
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -104,13 +104,13 @@
 	text-wrap: nowrap;
 }
 
-.ly_calc_btnArray {
+.b01ly_calc_btnArray {
 	display: grid;
 	gap: var(--gap);
 	grid-template-areas:var(--ly_btnArray);
 }
 
-.ly_calc_nav {
+.b01ly_calc_nav {
 	grid-area: nav;
 	display: flex;
 	gap: var(--gap);
@@ -118,7 +118,7 @@
 	/*width: var(--width_nav);*/
 }
 
-.ly_calc_main {
+.b01ly_calc_main {
 	grid-area: main;
 	display: grid;
 	gap: var(--gap);
@@ -138,14 +138,14 @@
 #js_calcBtn_DecimalPoint {grid-area: bd;}
 #js_calcBtn_Equal {grid-area: be;}
 
-.ly_calc_aside {
+.b01ly_calc_aside {
 	grid-area: aside;
 	display: flex;
 	gap: var(--gap);
 	flex-flow: column nowrap;
 }
 
-.el_calcBtn {
+.b01el_calcBtn {
 	appearance: none;
 	height: calc(var(--size_btn) * 0.9);
 	width: calc(var(--size_btn) * 0.9);
@@ -163,18 +163,18 @@
 	border: 2px solid transparent;
 }
 
-.el_calcBtn.el_calcBtn__primary {
+.b01el_calcBtn.b01el_calcBtn__primary {
 	color: var(--sc_txt_btn__primary);
 	background-color: var(--sc_bg_btn__primary);
 }
 
-.el_calcBtn.el_calcBtn__secondary {
+.b01el_calcBtn.b01el_calcBtn__secondary {
 	color: var(--sc_txt_btn__secondary);
 	background-color: var(--sc_bg_btn__secondary);
 	border-color: currentcolor;
 }
 
-.el_calcBtn.el_calcBtn.el_calcBtn__tertiary {
+.b01el_calcBtn.b01el_calcBtn__tertiary {
 	color: var(--sc_txt_body);
 	background-color: transparent;
 	border: var(--sc_border_field);

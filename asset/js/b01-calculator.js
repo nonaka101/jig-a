@@ -524,27 +524,27 @@ const calculator = new Calculator();
 
 
 
-const calcLabel = document.querySelector('#js_calc_label');
-const calcOutput = document.querySelector('#js_calc_output');
+const calcLabel = document.querySelector('#b01js_label');
+const calcOutput = document.querySelector('#b01js_output');
 
 
 // 計算ボタン郡（0〜9, 小数点, 四則演算子）
-const calcBtn1 = document.querySelector('#js_calcBtn_1');
-const calcBtn2 = document.querySelector('#js_calcBtn_2');
-const calcBtn3 = document.querySelector('#js_calcBtn_3');
-const calcBtn4 = document.querySelector('#js_calcBtn_4');
-const calcBtn5 = document.querySelector('#js_calcBtn_5');
-const calcBtn6 = document.querySelector('#js_calcBtn_6');
-const calcBtn7 = document.querySelector('#js_calcBtn_7');
-const calcBtn8 = document.querySelector('#js_calcBtn_8');
-const calcBtn9 = document.querySelector('#js_calcBtn_9');
-const calcBtn0 = document.querySelector('#js_calcBtn_0');
-const calcBtnDecimalPoint = document.querySelector('#js_calcBtn_DecimalPoint');
-const calcBtnAdd = document.querySelector('#js_calcBtn_Add');
-const calcBtnSubtract = document.querySelector('#js_calcBtn_Subtract');
-const calcBtnMultiply = document.querySelector('#js_calcBtn_Multiply');
-const calcBtnDevide = document.querySelector('#js_calcBtn_Divide');
-const calcBtnEqual = document.querySelector('#js_calcBtn_Equal');
+const calcBtn1 = document.querySelector('#b01js_1');
+const calcBtn2 = document.querySelector('#b01js_2');
+const calcBtn3 = document.querySelector('#b01js_3');
+const calcBtn4 = document.querySelector('#b01js_4');
+const calcBtn5 = document.querySelector('#b01js_5');
+const calcBtn6 = document.querySelector('#b01js_6');
+const calcBtn7 = document.querySelector('#b01js_7');
+const calcBtn8 = document.querySelector('#b01js_8');
+const calcBtn9 = document.querySelector('#b01js_9');
+const calcBtn0 = document.querySelector('#b01js_0');
+const calcBtnDecimalPoint = document.querySelector('#b01js_DecimalPoint');
+const calcBtnAdd = document.querySelector('#b01js_Add');
+const calcBtnSubtract = document.querySelector('#b01js_Subtract');
+const calcBtnMultiply = document.querySelector('#b01js_Multiply');
+const calcBtnDevide = document.querySelector('#b01js_Divide');
+const calcBtnEqual = document.querySelector('#b01js_Equal');
 
 const execArr = [ calcBtn1, calcBtn2, calcBtn3, calcBtn4, calcBtn5, calcBtn6, calcBtn7,
 									calcBtn8, calcBtn9, calcBtn0, calcBtnDecimalPoint, calcBtnAdd,
@@ -566,7 +566,7 @@ for (const ele of execArr){
 }
 
 // 機能ボタン郡（クリア, バックスペース, コピー, 計算実行）
-const calcBtnAllClear = document.querySelector('#js_calcBtn_AllClear');
+const calcBtnAllClear = document.querySelector('#b01js_AllClear');
 calcBtnAllClear.addEventListener("click", () => {
 	calculator.reset();
 	calcOutput.textContent = calculator.expression;
@@ -574,7 +574,7 @@ calcBtnAllClear.addEventListener("click", () => {
 	beepOK();
 })
 
-const calcBtnBackSpace = document.querySelector('#js_calcBtn_BackSpace');
+const calcBtnBackSpace = document.querySelector('#b01js_BackSpace');
 calcBtnBackSpace.addEventListener("click", () => {
 	calculator.back();
 	calcOutput.textContent = calculator.expression;
@@ -583,7 +583,7 @@ calcBtnBackSpace.addEventListener("click", () => {
 	beepOK();
 });
 
-const calcBtnCopy = document.querySelector('#js_calcBtn_Copy');
+const calcBtnCopy = document.querySelector('#b01js_Copy');
 calcBtnCopy.addEventListener("click", () => {
 	// TODO: コピー後に、ユーザーに伝える処理（ラベル？）
 	calculator.copy();
