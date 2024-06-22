@@ -524,67 +524,69 @@ const calculator = new Calculator();
 
 
 
-const calcLabel = document.querySelector('#b01js_label');
-const calcOutput = document.querySelector('#b01js_output');
+const b01_calcLabel = document.querySelector('#b01js_label');
+const b01_calcOutput = document.querySelector('#b01js_output');
 
 
 // 計算ボタン郡（0〜9, 小数点, 四則演算子）
-const calcBtn1 = document.querySelector('#b01js_1');
-const calcBtn2 = document.querySelector('#b01js_2');
-const calcBtn3 = document.querySelector('#b01js_3');
-const calcBtn4 = document.querySelector('#b01js_4');
-const calcBtn5 = document.querySelector('#b01js_5');
-const calcBtn6 = document.querySelector('#b01js_6');
-const calcBtn7 = document.querySelector('#b01js_7');
-const calcBtn8 = document.querySelector('#b01js_8');
-const calcBtn9 = document.querySelector('#b01js_9');
-const calcBtn0 = document.querySelector('#b01js_0');
-const calcBtnDecimalPoint = document.querySelector('#b01js_DecimalPoint');
-const calcBtnAdd = document.querySelector('#b01js_Add');
-const calcBtnSubtract = document.querySelector('#b01js_Subtract');
-const calcBtnMultiply = document.querySelector('#b01js_Multiply');
-const calcBtnDevide = document.querySelector('#b01js_Divide');
-const calcBtnEqual = document.querySelector('#b01js_Equal');
+const b01_calcBtn1 = document.querySelector('#b01js_1');
+const b01_calcBtn2 = document.querySelector('#b01js_2');
+const b01_calcBtn3 = document.querySelector('#b01js_3');
+const b01_calcBtn4 = document.querySelector('#b01js_4');
+const b01_calcBtn5 = document.querySelector('#b01js_5');
+const b01_calcBtn6 = document.querySelector('#b01js_6');
+const b01_calcBtn7 = document.querySelector('#b01js_7');
+const b01_calcBtn8 = document.querySelector('#b01js_8');
+const b01_calcBtn9 = document.querySelector('#b01js_9');
+const b01_calcBtn0 = document.querySelector('#b01js_0');
+const b01_calcBtnDecimalPoint = document.querySelector('#b01js_DecimalPoint');
+const b01_calcBtnAdd = document.querySelector('#b01js_Add');
+const b01_calcBtnSubtract = document.querySelector('#b01js_Subtract');
+const b01_calcBtnMultiply = document.querySelector('#b01js_Multiply');
+const b01_calcBtnDevide = document.querySelector('#b01js_Divide');
+const b01_calcBtnEqual = document.querySelector('#b01js_Equal');
 
-const execArr = [ calcBtn1, calcBtn2, calcBtn3, calcBtn4, calcBtn5, calcBtn6, calcBtn7,
-									calcBtn8, calcBtn9, calcBtn0, calcBtnDecimalPoint, calcBtnAdd,
-									calcBtnSubtract, calcBtnMultiply, calcBtnDevide, calcBtnEqual,
-								];
+const b01_calcBtns = [
+	b01_calcBtn1, b01_calcBtn2, b01_calcBtn3, b01_calcBtn4, b01_calcBtn5,
+	b01_calcBtn6, b01_calcBtn7, b01_calcBtn8, b01_calcBtn9, b01_calcBtn0,
+	b01_calcBtnDecimalPoint, b01_calcBtnAdd, b01_calcBtnSubtract,
+	b01_calcBtnMultiply, b01_calcBtnDevide, b01_calcBtnEqual,
+];
 
-for (const ele of execArr){
-	ele.addEventListener("click", (e) => {
+for (const btn of b01_calcBtns){
+	btn.addEventListener("click", (e) => {
 		if(calculator.push(e.target.getAttribute('data-calc')) === true) {
-			calcOutput.textContent = calculator.expression;
-			calcLabel.textContent = calculator.label;
+			b01_calcOutput.textContent = calculator.expression;
+			b01_calcLabel.textContent = calculator.label;
 			beepOK();
 		} else {
-			calcOutput.textContent = calculator.expression;
-			calcLabel.textContent = '不正な入力です';
+			b01_calcOutput.textContent = calculator.expression;
+			b01_calcLabel.textContent = '不正な入力です';
 			beepNG();
 		}
 	})
 }
 
 // 機能ボタン郡（クリア, バックスペース, コピー, 計算実行）
-const calcBtnAllClear = document.querySelector('#b01js_AllClear');
-calcBtnAllClear.addEventListener("click", () => {
+const b01_calcBtnAllClear = document.querySelector('#b01js_AllClear');
+b01_calcBtnAllClear.addEventListener("click", () => {
 	calculator.reset();
-	calcOutput.textContent = calculator.expression;
-	calcLabel.textContent = calculator.label;
+	b01_calcOutput.textContent = calculator.expression;
+	b01_calcLabel.textContent = calculator.label;
 	beepOK();
 })
 
-const calcBtnBackSpace = document.querySelector('#b01js_BackSpace');
-calcBtnBackSpace.addEventListener("click", () => {
+const b01_calcBtnBackSpace = document.querySelector('#b01js_BackSpace');
+b01_calcBtnBackSpace.addEventListener("click", () => {
 	calculator.back();
-	calcOutput.textContent = calculator.expression;
-	calcLabel.textContent = calculator.label;
+	b01_calcOutput.textContent = calculator.expression;
+	b01_calcLabel.textContent = calculator.label;
 	// TODO: CALC_STATE.Start や Result 時はバック不可なので、beepNGが正しい
 	beepOK();
 });
 
-const calcBtnCopy = document.querySelector('#b01js_Copy');
-calcBtnCopy.addEventListener("click", () => {
+const b01_calcBtnCopy = document.querySelector('#b01js_Copy');
+b01_calcBtnCopy.addEventListener("click", () => {
 	// TODO: コピー後に、ユーザーに伝える処理（ラベル？）
 	calculator.copy();
 	beepOK();

@@ -454,7 +454,7 @@ html:has(dialog[open]) {
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
-	width: 2.625rem; /* bl_header と違い画面占有率を気にしない為 rem */
+	width: 2.625rem;
 	height: 2.625rem;
 	padding: 0;
 	margin: 0;
@@ -470,6 +470,8 @@ html:has(dialog[open]) {
 	width: 1.625rem;
 	height: 1.625rem;
 }
+
+
 
 
 /* ≡≡≡ ☐ js_btnShowDialog ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
@@ -490,6 +492,79 @@ html:has(dialog[open]) {
   border-radius: 4px;
 	max-width: 100%;
 }
+
+
+
+
+
+
+
+
+/* ≡≡≡ ☐ el_btn ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		ボタン要素
+---------------------------------------------------------------------------- */
+
+.el_btn {
+	display: block;
+	width: 100%;
+	padding: 16px;
+	margin: 0;
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 1.5;
+	text-align: center;
+	letter-spacing: 0.04em;
+	cursor: pointer;
+	background: none;
+	border: 2px solid transparent;
+	border-radius: max(
+		min(4px, calc(40px - 100%) * 9999),
+		min(8px, calc(100% - 40px) * 9999, calc(120px - 100%) * 9999),
+		min(12px, calc(100% - 120px) * 9999)
+	);
+	transition: .25s;
+}
+
+.el_btn.el_btn__primary {
+	color: var(--sc_txt_btn__primary);
+	text-decoration: none;
+	background-color: var(--sc_bg_btn__primary);
+}
+
+.el_btn.el_btn__primary:hover,
+.el_btn.el_btn__primary:active {
+	filter: brightness(87%);
+}
+
+.el_btn.el_btn__secondary {
+	color: var(--sc_txt_btn__secondary);
+	text-decoration: none;
+	background-color: transparent;
+	border-color: currentcolor;
+}
+
+.el_btn.el_btn__secondary:hover,
+.el_btn.el_btn__secondary:active {
+	background-color: var(--sc_bg_btn__secondary);
+}
+
+.el_btn.el_btn__tertiary {
+	color: var(--sc_txt_btn__tertiary);
+	text-decoration: underline;
+	background-color: transparent;
+}
+
+.el_btn.el_btn__tertiary:hover,
+.el_btn.el_btn__tertiary:active {
+	color: var(--sc_txt_link__active);
+}
+
+
+
+
+
 
 
 

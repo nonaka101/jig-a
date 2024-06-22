@@ -27,19 +27,19 @@ function createTable(containerId, dataArray) {
 
 
 // textarea
-const textCounterTextArea = document.querySelector('#c01js_inputArea');
+const c01_textArea = document.querySelector('#c01js_inputArea');
 
 // paste from clipboard
-const btnTextCounterPasteFromClipboard = document.querySelector('#c01js_pasteFromClipboard');
-btnTextCounterPasteFromClipboard.addEventListener('click', () =>{
+const c01_btnPasteFromClipboard = document.querySelector('#c01js_pasteFromClipboard');
+c01_btnPasteFromClipboard.addEventListener('click', () =>{
 	navigator.clipboard
   .readText()
   .then((clipText) => {
 		/* innerText と value の扱いは違う（InnerTextだと、改行コードが <br> に変換された状態に？）
 		console.log(clipText.search(/\n/msu));
 		*/
-		textCounterTextArea.value = '';
-		textCounterTextArea.value = clipText;
+		c01_textArea.value = '';
+		c01_textArea.value = clipText;
 	})
 	.catch(e => {
 		console.error(e);
@@ -47,14 +47,14 @@ btnTextCounterPasteFromClipboard.addEventListener('click', () =>{
 })
 
 // calculate text count
-const textCounterOutput = document.querySelector('#c01js_output');
-const textCounterCountBtn = document.querySelector('#c01js_countBtn');
-textCounterCountBtn.addEventListener('click', ()=>{
+const c01_output = document.querySelector('#c01js_output');
+const c01_btnCalc = document.querySelector('#c01js_countBtn');
+c01_btnCalc.addEventListener('click', ()=>{
 	// 準備（既存のテーブルを消す）
-	textCounterOutput.value = '';
+	c01_output.value = '';
 
 	// 入力値を整形
-	const inputText = textCounterTextArea.value;
+	const inputText = c01_textArea.value;
 	const inputTextArray = inputText.split(/\n/gmsu);
 
 	// 各種計算値を格納するための変数
@@ -90,8 +90,8 @@ textCounterCountBtn.addEventListener('click', ()=>{
 })
 
 // クリアボタン（テキストエリアと計算結果を消す）
-const textCounterClear = document.querySelector('#c01js_clearTextArea');
-textCounterClear.addEventListener('click', ()=>{
-	textCounterTextArea.value = '';
-	textCounterOutput.value = '';
+const c01_btnClear = document.querySelector('#c01js_clearTextArea');
+c01_btnClear.addEventListener('click', ()=>{
+	c01_textArea.value = '';
+	c01_output.value = '';
 })
