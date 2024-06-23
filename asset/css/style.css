@@ -364,6 +364,11 @@ html:has(dialog[open]) {
 	border-bottom: var(--sc_border_field);
 }
 
+/* Safari のデフォルトスタイル（ ▼ マーク）を消去 */
+.bl_accordion_summary::-webkit-details-marker {
+	display: none;
+}
+
 .bl_accordion_summary {
 	padding: 8px 16px;
 	display: flex;
