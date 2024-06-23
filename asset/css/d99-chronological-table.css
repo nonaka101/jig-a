@@ -1,0 +1,7 @@
+.d99ly_chronoTable {
+	padding: 8px;
+	width: 100dvw;
+	height: 100dvh;
+	display: flex;
+	flex-flow: column nowrap;
+}

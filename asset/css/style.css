@@ -337,7 +337,7 @@ html:has(dialog[open]) {
 	max-height: 100dvh;
 	padding: 0;
 	border: none;
-	background-color: var(--sc_bg_body__tertiary);
+	background-color: var(--sc_bg_body__primary);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -349,6 +349,27 @@ html:has(dialog[open]) {
 
 
 
+
+/* ≡≡≡ ❒ bl_descList ❒ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		説明リスト（dl, dt, dd 使用を想定）
+---------------------------------------------------------------------------- */
+
+.bl_descList {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 16px 1rem;
+}
+
+.bl_descList > dt {
+	margin: 0;
+	text-align: end;
+}
+
+.bl_descList > dd {
+	margin: 0;
+	text-align: start;
+}
 
 
 
@@ -493,6 +514,78 @@ html:has(dialog[open]) {
 	max-width: 100%;
 }
 
+
+
+
+/* ≡≡≡ ☐ bl_table ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		テーブル要素
+---------------------------------------------------------------------------- */
+
+.bl_table {
+  border: var(--sc_border_divider);
+}
+
+.bl_table > table {
+  width: 100%;
+  text-align: center;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.bl_table th {
+  padding: 8px;
+  background-color: var(--sc_bg_body__tertiary);
+  border-right: var(--sc_border_divider);
+  border-bottom: var(--sc_border_divider);
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.bl_table td {
+  padding: 8px;
+  border-right: var(--sc_border_divider);
+  border-bottom: var(--sc_border_divider);
+  vertical-align: middle;
+}
+
+.bl_table th:last-child,
+.bl_table td:last-child {
+  border-right-width: 0;
+}
+
+.bl_table tbody tr:last-child th,
+.bl_table tbody tr:last-child td {
+  border-bottom-width: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .bl_table {
+    border-right-width: 0;
+    overflow-x: auto;
+  }
+
+  .bl_table table {
+    width: auto;
+    min-width: 100%;
+  }
+
+  .bl_table th,
+	.bl_table td {
+    white-space: nowrap;
+  }
+
+  .bl_table th:last-child,
+	.bl_table td:last-child {
+    border-right-width: 1px;
+  }
+
+  .bl_table th[scope="row"] {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+  }
+}
 
 
 
