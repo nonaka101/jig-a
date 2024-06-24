@@ -347,6 +347,14 @@ html:has(dialog[open]) {
 	display: none;
 }
 
+.ly_dialog_body {
+	position: absolute;
+	top: 0;
+	padding: 8px;
+	width: 100dvw;
+	display: flex;
+	flex-flow: column nowrap;
+}
 
 
 
@@ -575,9 +583,21 @@ html:has(dialog[open]) {
 
 
 
+
+
 /* ≡≡≡ ☐ bl_table ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 	■ 概要
 		テーブル要素
+		table
+			thead > tr > th
+			tbody > tr > th | td
+	■ 使用方法
+		table 要素をラップする形で div を設け、それに対しクラス付けを行う
+	■ バリエーション
+		bl_table : ベース
+		bl_table__horizontal : 列見出し固定（※ 表の高さは 75dvh までに制限される）
+		bl_table__vertical : 行見出し固定（※ 768px【例：iPad 縦画面】を境に、行方向のスクロールが許可される）
+		bl_table__cross : 行列見出し固定（上記にある両者の特徴を引き継ぐ）
 ---------------------------------------------------------------------------- */
 
 .bl_table {
@@ -607,6 +627,8 @@ html:has(dialog[open]) {
   vertical-align: middle;
 }
 
+/* 右端と下端のセルに対し、それぞれの border を消す
+ * この状況下では、div側が担保 */
 .bl_table th:last-child,
 .bl_table td:last-child {
   border-right-width: 0;
@@ -617,7 +639,35 @@ html:has(dialog[open]) {
   border-bottom-width: 0;
 }
 
+	/* 行が大量で見出し固定が必要なケース
+	 * この場合 Sticky 化するために高さに制限を設け、スクロールを許可する */
+	.bl_table.bl_table.bl_table__vertical,
+	.bl_table.bl_table__cross {
+		max-height: 75dvh;
+		height: max-content;
+		overflow-y: auto;
+	}
+
+  .bl_table.bl_table__vertical thead th,
+	.bl_table.bl_table__cross thead th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+		z-index: 1;
+	}
+
+	/* 表側頭 をテーブル内最上段に置き、スクロールの際の表示を確保 */
+  .bl_table.bl_table__vertical thead th:first-child,
+	.bl_table.bl_table__cross thead th:first-child {
+		z-index: 2;
+	}
+
+/* TODO: 列数が多いと、フォントサイズを大きくしてる場合に潰れてしまうケースが生じる
+ *       対応としては、列多め用のモディファイアと、メディアクエリを新規に設けることが考えられる */
 @media screen and (max-width: 768px) {
+	/* 右端と下端の border を消す
+ 	 * この状況下では、セル側が担保する。
+	 * こうすることで、スクロールしないと border を見えないようしている */
   .bl_table {
     border-right-width: 0;
     overflow-x: auto;
@@ -638,7 +688,8 @@ html:has(dialog[open]) {
     border-right-width: 1px;
   }
 
-  .bl_table th[scope="row"] {
+  .bl_table.bl_table__horizontal th:first-child,
+	.bl_table.bl_table__cross th:first-child {
     position: -webkit-sticky;
     position: sticky;
     left: 0;
