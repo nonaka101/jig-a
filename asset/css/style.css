@@ -595,9 +595,13 @@ html:has(dialog[open]) {
 		table 要素をラップする形で div を設け、それに対しクラス付けを行う
 	■ バリエーション
 		bl_table : ベース
-		bl_table__horizontal : 列見出し固定（※ 表の高さは 75dvh までに制限される）
-		bl_table__vertical : 行見出し固定（※ 768px【例：iPad 縦画面】を境に、行方向のスクロールが許可される）
-		bl_table__cross : 行列見出し固定（上記にある両者の特徴を引き継ぐ）
+		┃
+		┣┳ bl_table__horizontal : 列見出し固定（※ 表の高さは 75dvh までに制限される）
+		┃┣ bl_table__vertical : 行見出し固定（※ 768px【例：iPad 縦画面】を境に、行方向のスクロールが許可される）
+		┃┗ bl_table__cross : 行列見出し固定（上記にある両者の特徴を引き継ぐ）
+		┃
+		┗┳ bl_table__wide : 表幅が大きく画面幅 960px までスクロールが必要な表
+	  　┗ bl_table__exWide : 表幅が非常に大きく画面幅 1200px までスクロールが必要な表
 ---------------------------------------------------------------------------- */
 
 .bl_table {
@@ -662,41 +666,95 @@ html:has(dialog[open]) {
 		z-index: 2;
 	}
 
-/* TODO: 列数が多いと、フォントサイズを大きくしてる場合に潰れてしまうケースが生じる
- *       対応としては、列多め用のモディファイアと、メディアクエリを新規に設けることが考えられる */
 @media screen and (max-width: 768px) {
 	/* 右端と下端の border を消す
  	 * この状況下では、セル側が担保する。
 	 * こうすることで、スクロールしないと border を見えないようしている */
-  .bl_table {
+  .bl_table:not(.bl_table__wide):not(.bl_table__exWide) {
     border-right-width: 0;
     overflow-x: auto;
   }
 
-  .bl_table table {
+  .bl_table:not(.bl_table__wide):not(.bl_table__exWide) table {
     width: auto;
     min-width: 100%;
   }
 
-  .bl_table th,
-	.bl_table td {
+  .bl_table:not(.bl_table__wide):not(.bl_table__exWide) th,
+	.bl_table:not(.bl_table__wide):not(.bl_table__exWide) td {
     white-space: nowrap;
   }
 
-  .bl_table th:last-child,
-	.bl_table td:last-child {
+  .bl_table:not(.bl_table__wide):not(.bl_table__exWide) th:last-child,
+	.bl_table:not(.bl_table__wide):not(.bl_table__exWide) td:last-child {
     border-right-width: 1px;
   }
 
-  .bl_table.bl_table__horizontal th:first-child,
-	.bl_table.bl_table__cross th:first-child {
+  .bl_table.bl_table__horizontal:not(.bl_table__wide):not(.bl_table__exWide) th:first-child,
+	.bl_table.bl_table__cross:not(.bl_table__wide):not(.bl_table__exWide) th:first-child {
     position: -webkit-sticky;
     position: sticky;
     left: 0;
   }
 }
 
+@media screen and (max-width: 960px) {
+  .bl_table.bl_table__wide {
+    border-right-width: 0;
+    overflow-x: auto;
+  }
 
+  .bl_table.bl_table__wide table {
+    width: auto;
+    min-width: 100%;
+  }
+
+  .bl_table.bl_table__wide th,
+	.bl_table.bl_table__wide td {
+    white-space: nowrap;
+  }
+
+  .bl_table.bl_table__wide th:last-child,
+	.bl_table.bl_table__wide td:last-child {
+    border-right-width: 1px;
+  }
+
+  .bl_table.bl_table__horizontal.bl_table__wide th:first-child,
+	.bl_table.bl_table__cross.bl_table__wide th:first-child {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .bl_table.bl_table__exWide {
+    border-right-width: 0;
+    overflow-x: auto;
+  }
+
+  .bl_table.bl_table__exWide table {
+    width: auto;
+    min-width: 100%;
+  }
+
+  .bl_table.bl_table__exWide th,
+	.bl_table.bl_table__exWide td {
+    white-space: nowrap;
+  }
+
+  .bl_table.bl_table__exWide th:last-child,
+	.bl_table.bl_table__exWide td:last-child {
+    border-right-width: 1px;
+  }
+
+  .bl_table.bl_table__horizontal.bl_table__exWide th:first-child,
+	.bl_table.bl_table__cross.bl_table__exWide th:first-child {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+  }
+}
 
 
 
