@@ -545,7 +545,6 @@ html:has(dialog[open]) {
 	height: 2.625rem;
 	padding: 0;
 	margin: 0;
-	font-size: 0.7rem;
 	color: var(--sc_txt_body);
 	text-decoration: none;
 	cursor: pointer;
@@ -556,6 +555,10 @@ html:has(dialog[open]) {
 .bl_menuHeader_btnIcon > svg {
 	width: 1.625rem;
 	height: 1.625rem;
+}
+
+.bl_menuHeader_btnIcon > span {
+	font-size: 0.7rem;
 }
 
 

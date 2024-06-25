@@ -175,3 +175,20 @@
 	background-color: transparent;
 	border: var(--sc_border_field);
 }
+
+.b01el_calcBtn.b01el_calcBtn__iconLabel {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.b01el_calcBtn.b01el_calcBtn__iconLabel > svg {
+	height: calc(var(--size_btn) * 0.5);
+	width: calc(var(--size_btn) * 0.5);
+}
+
+.b01el_calcBtn.b01el_calcBtn__iconLabel > span {
+	font-size: calc(var(--size_btn) * 0.2);
+	color: var(--sc_txt_btn__secondary);
+}

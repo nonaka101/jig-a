@@ -155,12 +155,17 @@
 					</section>
 					<div class="b01ly_calc_btnArray">
 						<section class="b01ly_calc_nav" aria-label="機能"><!-- 4 buttons([AC,%,BackSpace,Copy]) -->
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__secondary js_btnCloseDialog"
-								aria-controls="b01js_dialog_calculator"
-								style="font-size: calc(var(--size_btn) * 0.3);"
-								aria-label="閉じる" aria-describedby="b01_title"
+							<button type="button"
+								class="b01el_calcBtn b01el_calcBtn__secondary b01el_calcBtn__iconLabel js_btnCloseDialog"
+								aria-controls="b01js_dialog_calculator" aria-describedby="b01_title"
 							>
-								Esc
+								<svg role="graphics-symbol img" aria-hidden="true"
+									version="1.1" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24" width="24" height="24"
+								>
+									<path transform="rotate(45)" d="m4.9705-2.0012v4.0023h9.9989v9.9989h4.0023v-9.9989h9.9989v-4.0023h-9.9989v-9.9989h-4.0023v9.9989h-9.9989z"/>
+								</svg>
+								<span>閉じる</span>
 							</button>
 							<button type="button" class="b01el_calcBtn b01el_calcBtn__secondary"
 								id="b01js_AllClear" aria-label="オールクリア">AC</button>
