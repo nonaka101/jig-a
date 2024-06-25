@@ -75,13 +75,12 @@ const TABLE_STYLE = Object.freeze({
 });
 
 /**
- * 2次元配列をテーブルに変換し、要素として出力する
+ * 2次元配列をテーブルに変換し、div.bl_table でラップした要素を返す
  *
- * @param {Element} containerElement - 出力先となる要素
  * @param {[any]} dataArray - 表となる2次元配列
  * @param {number} tableStyle - TABLE_STYLEで規定したスタイル値（初期値 0:none）
  */
-function createTable(containerElement, dataArray, tableStyle=0) {
+function createTable(dataArray, tableStyle=0) {
 	const styleWidth = Math.floor(tableStyle / 4);
 	const styleDirection = tableStyle % 4;
 
@@ -114,14 +113,12 @@ function createTable(containerElement, dataArray, tableStyle=0) {
 	tableWrapper.classList.add(...classes);
 
   const table = document.createElement('table');
+  tableWrapper.appendChild(table);
 
-	// test
-	console.log(dataArray);
-	const arrayHeader = dataArray.shift();
-	console.log(arrayHeader);
 
   // ヘッダー部を作成
   const tableHeaderRow = table.createTHead().insertRow();
+	const arrayHeader = dataArray.shift();
 	let isFirstCell = true;	// クロス表の表側頭で scope をつけないためのもの
 	for(const cell of arrayHeader){
 		const th = document.createElement('th');
@@ -141,7 +138,6 @@ function createTable(containerElement, dataArray, tableStyle=0) {
 		const row = tableBody.insertRow();
 
 		// 初回のみ th 要素
-		console.log(arrayRow);
 		const thCell = arrayRow.shift();
 		const th = document.createElement('th');
 		th.textContent = thCell;
@@ -157,9 +153,8 @@ function createTable(containerElement, dataArray, tableStyle=0) {
 		}
   }
 
-  // テーブルをコンテナ要素に追加
-  tableWrapper.appendChild(table);
-  containerElement.appendChild(tableWrapper);
+  // テーブル要素を格納した div.bl_table 要素を返す
+	return tableWrapper;
 }
 
 

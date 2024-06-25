@@ -58,7 +58,7 @@ c01_btnCalc.addEventListener('click', ()=>{
 	dataArray.push(['空行', counterEmptyRow]);
 
 	// Table 要素として出力
-	createTable(c01_output, dataArray, TABLE_STYLE.horizontal);
+	c01_output.appendChild(createTable(dataArray, TABLE_STYLE.horizontal));
 })
 
 // クリアボタン（テキストエリアと計算結果を消す）
