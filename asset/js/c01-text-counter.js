@@ -1,31 +1,3 @@
-function createTable(containerId, dataArray) {
-  const container = document.getElementById(containerId);
-  const table = document.createElement('table');
-
-  // ヘッダー行を作成
-  const tableHeader = table.createTHead();
-	const tableHeaderRow = tableHeader.insertRow();
-	tableHeaderRow.insertCell().textContent = '項目';
-	tableHeaderRow.insertCell().textContent = '数';
-
-  // データ行を作成
-	const tableBody = table.createTBody();
-  for (const [key, value] of dataArray) {
-    const row = tableBody.insertRow();
-    const cell1 = row.insertCell();
-    const cell2 = row.insertCell();
-    cell1.textContent = key;
-    cell2.textContent = value;
-  }
-
-  // テーブルをコンテナ要素に追加
-  container.appendChild(table);
-}
-
-
-
-
-
 // textarea
 const c01_textArea = document.querySelector('#c01js_inputArea');
 
@@ -77,7 +49,7 @@ c01_btnCalc.addEventListener('click', ()=>{
 	}
 
 	// 計算結果を配列にまとめる
-	let dataArray = [];
+	let dataArray = [['項目', '数']];
 	dataArray.push(['文字', counterAllChars]);
 	dataArray.push(['文字（空白除く）', counterAllChars - counterSpace]);
 	dataArray.push(['空白文字', counterSpace]);
@@ -86,7 +58,7 @@ c01_btnCalc.addEventListener('click', ()=>{
 	dataArray.push(['空行', counterEmptyRow]);
 
 	// Table 要素として出力
-	createTable('c01js_output', dataArray);
+	createTable(c01_output, dataArray, TABLE_STYLE.horizontal);
 })
 
 // クリアボタン（テキストエリアと計算結果を消す）
