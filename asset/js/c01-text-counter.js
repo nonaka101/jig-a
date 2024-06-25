@@ -12,9 +12,11 @@ c01_btnPasteFromClipboard.addEventListener('click', () =>{
 		*/
 		c01_textArea.value = '';
 		c01_textArea.value = clipText;
+		feedbackOK();
 	})
 	.catch(e => {
 		console.error(e);
+		feedbackNG();
 	});
 })
 
@@ -59,6 +61,7 @@ c01_btnCalc.addEventListener('click', ()=>{
 
 	// Table 要素として出力
 	c01_output.appendChild(createTable(dataArray, TABLE_STYLE.horizontal));
+	feedbackOK();
 })
 
 // クリアボタン（テキストエリアと計算結果を消す）
@@ -66,4 +69,5 @@ const c01_btnClear = document.querySelector('#c01js_clearTextArea');
 c01_btnClear.addEventListener('click', ()=>{
 	c01_textArea.value = '';
 	c01_output.value = '';
+	feedbackOK();
 })

@@ -22,6 +22,14 @@ function sanitizeHtml(str) {
 }
 
 
+
+
+
+
+
+
+
+
 // Templateタグが、ブラウザ対応しているか
 const isEnabledTemplate = !!("content" in document.createElement("template"));
 
@@ -44,16 +52,23 @@ function insertTemplate(templateElement, outputElement, isFirst=true) {
 		}
 	} else {
 		// Template タグが非対応
-
+		console.error('template タグが未対応です');
 		/* TODO: Templateが使えない場合の代替処理（急ぎではない）
 		 * 現在の利用は 子要素全てを使うのでなく、SVGなどの単体要素を想定している。
 		 * よって、ラベル要素のような重要なものはテンプレート化からは外している。
 		 * そのため非対応でもラベルがなくなったり、子要素がなくなり操作不能になるといった、
 		 * 致命的な状況にはならないと考えている。
 		 */
-
 	}
 }
+
+
+
+
+
+
+
+
 
 
 /**
@@ -156,6 +171,132 @@ function createTable(dataArray, tableStyle=0) {
   // テーブル要素を格納した div.bl_table 要素を返す
 	return tableWrapper;
 }
+
+
+
+
+
+
+
+
+
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioContext = new AudioContext();
+
+function beepNG(){
+	// 未対応または機能にチェックしてなければ、鳴らさない
+	if ((chkEnableSound.checked === false)||(isEnabledSound === false)) return;
+
+	const oscillator = audioContext.createOscillator();
+	const gain = audioContext.createGain();
+
+	// oscillatorをgainに接続する
+	oscillator.connect(gain);
+
+	// gainをaudioContextの出力に接続する
+	gain.connect(audioContext.destination);
+
+	oscillator.type = 'square';
+	oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+	oscillator.frequency.setValueAtTime(400, audioContext.currentTime + 0.1);
+	gain.gain.setValueAtTime(1, audioContext.currentTime);
+
+	// ビープ音の開始
+	oscillator.start(audioContext.currentTime);
+
+	// ビープ音の停止
+	setTimeout(() => {
+		oscillator.stop(audioContext.currentTime);
+	}, 200);
+}
+
+function beepOK(){
+	// 未対応または機能にチェックしてなければ、鳴らさない
+	if ((chkEnableSound.checked === false)||(isEnabledSound === false)) return;
+
+	const oscillator = audioContext.createOscillator();
+	const gain = audioContext.createGain();
+
+	// oscillatorをgainに接続する
+	oscillator.connect(gain);
+
+	// gainをaudioContextの出力に接続する
+	gain.connect(audioContext.destination);
+
+	oscillator.type = 'square';
+	oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+	gain.gain.setValueAtTime(1, audioContext.currentTime);
+
+	// ビープ音の開始
+	oscillator.start(audioContext.currentTime);
+
+	// ビープ音の停止
+	setTimeout(() => {
+		oscillator.stop(audioContext.currentTime);
+	}, 50);
+}
+
+
+
+
+
+
+
+
+
+function vibrateOK(){
+	// 未対応または機能にチェックしてなければ、鳴らさない
+	if ((chkEnableVibration.checked === false)||(isEnabledVibrate === false)) return;
+
+	if(window.navigator.vibrate){
+		window.navigator.vibrate(50);
+	}else if(window.navigator.mozVibrate){
+		window.navigator.mozVibrate(50);
+	}else if(window.navigator.webkitVibrate){
+		window.navigator.webkitVibrate(50);
+	}else{
+		console.error('エラー：振動機能');
+	}
+}
+
+function vibrateNG(){
+	// 未対応または機能にチェックしてなければ、鳴らさない
+	if ((chkEnableVibration.checked === false)||(isEnabledVibrate === false)) return;
+
+	const pattern = [100, 100, 100];
+	if(window.navigator.vibrate){
+		window.navigator.vibrate(pattern);
+	}else if(window.navigator.mozVibrate){
+		window.navigator.mozVibrate(pattern);
+	}else if(window.navigator.webkitVibrate){
+		window.navigator.webkitVibrate(pattern);
+	}else{
+		console.error('エラー：振動機能');
+	}
+}
+
+
+
+
+/**
+ * 振動・音によるフィードバック
+ */
+function feedbackOK(){
+	beepOK();
+	vibrateOK();
+}
+
+/**
+ * 振動・音によるフィードバック
+ */
+function feedbackNG(){
+	beepNG();
+	vibrateNG();
+}
+
+
+
+
 
 
 
@@ -334,64 +475,15 @@ chkEnableSound.addEventListener("change", (e) => {
 chkEnableSound.checked = settingState.enableSound;
 changeSoundMode(settingState.enableSound);
 
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-if (AudioContext === undefined){
+// 振動機能
+var isEnabledSound = false;
+if((window.AudioContext || window.webkitAudioContext) === undefined) {
+	// AudioContext による ビープ生成 未対応
 	chkEnableSound.parentElement.lastChild.textContent = 'この機器は未対応です'
 	chkEnableSound.disabled = true;
 } else {
-	const audioContext = new AudioContext();
-
-	function beepNG(){
-		if (chkEnableSound.checked === false) return;	// フラグ立ってなければ鳴らさない
-		const oscillator = audioContext.createOscillator();
-		const gain = audioContext.createGain();
-
-		// oscillatorをgainに接続する
-		oscillator.connect(gain);
-
-		// gainをaudioContextの出力に接続する
-		gain.connect(audioContext.destination);
-
-		oscillator.type = 'square';
-		oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-		oscillator.frequency.setValueAtTime(400, audioContext.currentTime + 0.1);
-		gain.gain.setValueAtTime(1, audioContext.currentTime);
-
-		// ビープ音の開始
-		oscillator.start(audioContext.currentTime);
-
-		// ビープ音の停止
-		setTimeout(() => {
-			oscillator.stop(audioContext.currentTime);
-		}, 200);
-	}
-
-	function beepOK(){
-		if (chkEnableSound.checked === false) return;	// フラグ立ってなければ鳴らさない
-		const oscillator = audioContext.createOscillator();
-		const gain = audioContext.createGain();
-
-		// oscillatorをgainに接続する
-		oscillator.connect(gain);
-
-		// gainをaudioContextの出力に接続する
-		gain.connect(audioContext.destination);
-
-		oscillator.type = 'square';
-		oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
-		gain.gain.setValueAtTime(1, audioContext.currentTime);
-
-		// ビープ音の開始
-		oscillator.start(audioContext.currentTime);
-
-		// ビープ音の停止
-		setTimeout(() => {
-			oscillator.stop(audioContext.currentTime);
-		}, 50);
-	}
-
+	isEnabledSound = true;
 }
-
 
 
 
@@ -424,31 +516,16 @@ chkEnableVibration.addEventListener("change", (e) => {
 chkEnableVibration.checked = settingState.enableVibration;
 changeVibrationMode(settingState.enableVibration);
 
-const TYPE_VIBRATE = Object.freeze({
-	NONE: 0,
-	NORMAL: 1,
-	MOZ: 2,
-	WEBKIT: 3,
-});
 
-function typeVibrate(){
-	if(window.navigator.vibrate !== undefined){
-		return TYPE_VIBRATE.NORMAL;
-	} else if(window.navigator.mozVibrate !== undefined){
-		return TYPE_VIBRATE.MOZ;
-	} else if(window.navigator.webkitVibrate !== undefined){
-		return TYPE_VIBRATE.WEBKIT;
-	} else {
-		return TYPE_VIBRATE.NONE;
-	}
-}
-
-if(typeVibrate() === TYPE_VIBRATE.NONE){
+// 振動機能
+var isEnabledVibrate = false;
+if((window.navigator.vibrate || window.navigator.mozVibrate || window.navigator.webkitVibrate) === undefined) {
+	// 振動モード未対応
 	chkEnableVibration.parentElement.lastChild.textContent = 'この機器は振動モード未対応です'
 	chkEnableVibration.disabled = true;
+} else {
+	isEnabledVibrate = true;
 }
-
-
 
 
 

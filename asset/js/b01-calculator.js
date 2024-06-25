@@ -440,7 +440,7 @@ class Calculator {
 				}
 				break;
 			default:
-				console.log(`無効なステートが検出されました ${this._state}`);
+				console.error(`無効なステートが検出されました ${this._state}`);
 		}
     return true;
   }
@@ -505,17 +505,20 @@ class Calculator {
 					this.push(expr[i]);
 				}
 			}
+			return true;
+		} else {
+			return false;
 		}
 	}
 	copy(){
 		navigator.clipboard
 		.writeText(this._expression)
 		.then(
-			// 成功処理（音？）
+			feedbackOK()
 		)
 		.catch(e => {
-			// エラー処理（音）
 			console.error(e);
+			feedbackNG();
 		});
 	}
 }
@@ -558,11 +561,11 @@ for (const btn of b01_calcBtns){
 		if(calculator.push(e.target.getAttribute('data-calc')) === true) {
 			b01_calcOutput.textContent = calculator.expression;
 			b01_calcLabel.textContent = calculator.label;
-			beepOK();
+			feedbackOK();
 		} else {
 			b01_calcOutput.textContent = calculator.expression;
 			b01_calcLabel.textContent = '不正な入力です';
-			beepNG();
+			feedbackNG();
 		}
 	})
 }
@@ -573,21 +576,21 @@ b01_calcBtnAllClear.addEventListener("click", () => {
 	calculator.reset();
 	b01_calcOutput.textContent = calculator.expression;
 	b01_calcLabel.textContent = calculator.label;
-	beepOK();
+	feedbackOK();
 })
 
 const b01_calcBtnBackSpace = document.querySelector('#b01js_BackSpace');
 b01_calcBtnBackSpace.addEventListener("click", () => {
-	calculator.back();
-	b01_calcOutput.textContent = calculator.expression;
-	b01_calcLabel.textContent = calculator.label;
-	// TODO: CALC_STATE.Start や Result 時はバック不可なので、beepNGが正しい
-	beepOK();
+	if(calculator.back() == true){
+		b01_calcOutput.textContent = calculator.expression;
+		b01_calcLabel.textContent = calculator.label;
+		feedbackOK();
+	} else {
+		feedbackNG();
+	}
 });
 
 const b01_calcBtnCopy = document.querySelector('#b01js_Copy');
 b01_calcBtnCopy.addEventListener("click", () => {
-	// TODO: コピー後に、ユーザーに伝える処理（ラベル？）
 	calculator.copy();
-	beepOK();
 });
