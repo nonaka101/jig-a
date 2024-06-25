@@ -1,5 +1,6 @@
-// textarea
 const c01_textArea = document.querySelector('#c01js_inputArea');
+const c01_output = document.querySelector('#c01js_output');
+const c01_btnCalc = document.querySelector('#c01js_countBtn');
 
 // paste from clipboard
 const c01_btnPasteFromClipboard = document.querySelector('#c01js_pasteFromClipboard');
@@ -7,11 +8,11 @@ c01_btnPasteFromClipboard.addEventListener('click', () =>{
 	navigator.clipboard
   .readText()
   .then((clipText) => {
-		/* innerText と value の扱いは違う（InnerTextだと、改行コードが <br> に変換された状態に？）
-		console.log(clipText.search(/\n/msu));
-		*/
+		// innerText と value の扱いは違う（InnerTextだと、改行コードが <br> に変換された状態に？）
 		c01_textArea.value = '';
 		c01_textArea.value = clipText;
+		c01_textArea.rows = clipText.split(/\n/gmsu).length;
+		c01_btnCalc.focus();
 		feedbackOK();
 	})
 	.catch(e => {
@@ -20,9 +21,6 @@ c01_btnPasteFromClipboard.addEventListener('click', () =>{
 	});
 })
 
-// calculate text count
-const c01_output = document.querySelector('#c01js_output');
-const c01_btnCalc = document.querySelector('#c01js_countBtn');
 c01_btnCalc.addEventListener('click', ()=>{
 	// 準備（既存のテーブルを消す）
 	c01_output.value = '';
@@ -67,7 +65,8 @@ c01_btnCalc.addEventListener('click', ()=>{
 // クリアボタン（テキストエリアと計算結果を消す）
 const c01_btnClear = document.querySelector('#c01js_clearTextArea');
 c01_btnClear.addEventListener('click', ()=>{
-	c01_textArea.value = '';
 	c01_output.value = '';
+	c01_textArea.value = '';
+	c01_textArea.rows = null;
 	feedbackOK();
 })
