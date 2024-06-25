@@ -22,6 +22,39 @@ function sanitizeHtml(str) {
 }
 
 
+// Templateタグが、ブラウザ対応しているか
+const isEnabledTemplate = !!("content" in document.createElement("template"));
+
+/**
+ * Template要素を指定した要素に挿入する
+ *
+ * @param {Element} templateElement - Template要素
+ * @param {Element} outputElement - 出力先となる要素
+ * @param {boolean} isFirst - 最初の子要素として挿入（初期値True）
+ */
+function insertTemplate(templateElement, outputElement, isFirst=true) {
+	if (isEnabledTemplate) {
+		const tempContent = templateElement.content.cloneNode(true);
+
+		// isFirstが有効かつ出力先に子要素がある場合に、最前方に挿入を試みる
+		if(isFirst && outputElement.firstChild) {
+			outputElement.insertBefore(tempContent, outputElement.firstChild);
+		} else {
+			outputElement.appendChild(tempContent);
+		}
+	} else {
+		// Template タグが非対応
+
+		/* TODO: Templateが使えない場合の代替処理（急ぎではない）
+		 * 現在の利用は 子要素全てを使うのでなく、SVGなどの単体要素を想定している。
+		 * よって、ラベル要素のような重要なものはテンプレート化からは外している。
+		 * そのため非対応でもラベルがなくなったり、子要素がなくなり操作不能になるといった、
+		 * 致命的な状況にはならないと考えている。
+		 */
+
+	}
+}
+
 
 
 
@@ -345,8 +378,13 @@ for (const btn of dialogBtns) {
  *  1. button 要素には `js_btnCloseDialog` クラスが必要
  *  2. button 要素には、操作先 dialog のID名が入った aria-controls 属性が必要
  */
+const tempSvgCross = document.querySelector('#tempSvg_cross');
 const dialogCloseBtns = document.querySelectorAll('.js_btnCloseDialog');
 for (const btn of dialogCloseBtns) {
+	// SVG「✕」を挿入
+	insertTemplate(tempSvgCross, btn, true);
+
+	// 対象ダイアログと結びつけ、閉じる機能を実装
 	const dialogId = btn.getAttribute('aria-controls');
 	if(dialogId){
 		const targetDialog = document.querySelector(`#${dialogId}`);
@@ -356,4 +394,29 @@ for (const btn of dialogCloseBtns) {
 			})
 		}
 	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ≡≡≡ ▀▄ Template処理 ▀▄ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		テンプレート化した要素（SVGなど多様するもの）を、insertTemplate() を使って処理
+	■ 内容
+		1. bl_accordion_summary : arrowDown を要素後方に
+---------------------------------------------------------------------------- */
+
+const tempSvgArrowDown = document.querySelector('#tempSvg_arrowDown');
+const accordionSummaries = document.querySelectorAll('.bl_accordion_summary');
+for (const summary of accordionSummaries) {
+	insertTemplate(tempSvgArrowDown, summary, false);
 }

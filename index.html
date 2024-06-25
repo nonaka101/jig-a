@@ -16,6 +16,26 @@
 	<!-- スタイルシート -->
 	<link rel="stylesheet" href="./asset/css/normalize.css">
 	<link rel="stylesheet" href="./asset/css/style.css">
+
+	<!-- Templates -->
+	<!-- SVG：✕ -->
+	<template id="tempSvg_cross">
+		<svg role="graphics-symbol img" aria-hidden="true"
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24" width="24" height="24"
+		>
+			<path transform="rotate(45)" d="m4.9705-2.0012v4.0023h9.9989v9.9989h4.0023v-9.9989h9.9989v-4.0023h-9.9989v-9.9989h-4.0023v9.9989h-9.9989z"/>
+		</svg>
+	</template>
+	<!-- SVG：∨ -->
+	<template id="tempSvg_arrowDown">
+		<svg role="graphics-symbol img" aria-hidden="true"
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24" width="24" height="24"
+			>
+			<path d="m4.9297 5.6348-2.8301 2.8301 9.9004 9.9004 9.9004-9.9004-2.8301-2.8301-7.0703 7.0703z"/>
+		</svg>
+	</template>
 </head>
 
 <body class="ly_body">
@@ -159,12 +179,6 @@
 								class="b01el_calcBtn b01el_calcBtn__secondary b01el_calcBtn__iconLabel js_btnCloseDialog"
 								aria-controls="b01js_dialog_calculator" aria-describedby="b01_title"
 							>
-								<svg role="graphics-symbol img" aria-hidden="true"
-									version="1.1" xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24" width="24" height="24"
-								>
-									<path transform="rotate(45)" d="m4.9705-2.0012v4.0023h9.9989v9.9989h4.0023v-9.9989h9.9989v-4.0023h-9.9989v-9.9989h-4.0023v9.9989h-9.9989z"/>
-								</svg>
 								<span>閉じる</span>
 							</button>
 							<button type="button" id="b01js_AllClear"
@@ -284,12 +298,6 @@
 							aria-controls="c01js_dialog_textCounter"
 							aria-describedby="c01_title"
 						>
-							<svg role="graphics-symbol img" aria-hidden="true"
-								version="1.1" xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24" width="24" height="24"
-							>
-								<path transform="rotate(45)" d="m4.9705-2.0012v4.0023h9.9989v9.9989h4.0023v-9.9989h9.9989v-4.0023h-9.9989v-9.9989h-4.0023v9.9989h-9.9989z"/>
-							</svg>
 							<span>閉じる</span>
 						</button>
 					</div><!-- /.bl_menuHeader -->
@@ -361,22 +369,12 @@
 						<h2 class="bl_menuHeader_title" id="d99_title">西暦↔和暦 早見表</h2>
 						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
 							aria-controls="d99js_dialog_chronoTable" aria-describedby="d99_title">
-							<svg role="graphics-symbol img" aria-hidden="true"
-								version="1.1" xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24" width="24" height="24"
-							>
-								<path transform="rotate(45)" d="m4.9705-2.0012v4.0023h9.9989v9.9989h4.0023v-9.9989h9.9989v-4.0023h-9.9989v-9.9989h-4.0023v9.9989h-9.9989z"/>
-							</svg>
 							<span>閉じる</span>
 						</button>
 					</div><!-- /.bl_menuHeader -->
 					<details class="bl_accordion">
 						<summary class="bl_accordion_summary">
 							<span>1868〜1989年</span>
-							<svg role="graphics-symbol img" aria-hidden="true"
-								version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-								<path d="m4.9297 5.6348-2.8301 2.8301 9.9004 9.9004 9.9004-9.9004-2.8301-2.8301-7.0703 7.0703z"/>
-							</svg>
 						</summary><!-- /.bl_accordion_summary -->
 						<div class="bl_table bl_table__horizontal">
 							<table>
@@ -522,10 +520,6 @@
 					<details class="bl_accordion">
 						<summary class="bl_accordion_summary">
 							<span>1900〜1949年</span>
-							<svg role="graphics-symbol img" aria-hidden="true"
-								version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-								<path d="m4.9297 5.6348-2.8301 2.8301 9.9004 9.9004 9.9004-9.9004-2.8301-2.8301-7.0703 7.0703z"/>
-							</svg>
 						</summary><!-- /.bl_accordion_summary -->
 						<div class="bl_table bl_table__horizontal">
 							<table>
@@ -850,10 +844,6 @@
 					<details class="bl_accordion">
 						<summary class="bl_accordion_summary">
 							<span>1950〜1999年</span>
-							<svg role="graphics-symbol img" aria-hidden="true"
-								version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-								<path d="m4.9297 5.6348-2.8301 2.8301 9.9004 9.9004 9.9004-9.9004-2.8301-2.8301-7.0703 7.0703z"/>
-							</svg>
 						</summary><!-- /.bl_accordion_summary -->
 						<div class="bl_table bl_table__horizontal">
 							<table>
@@ -1126,10 +1116,6 @@
 					<details class="bl_accordion">
 						<summary class="bl_accordion_summary">
 							<span>2000〜2050年</span>
-							<svg role="graphics-symbol img" aria-hidden="true"
-								version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-								<path d="m4.9297 5.6348-2.8301 2.8301 9.9004 9.9004 9.9004-9.9004-2.8301-2.8301-7.0703 7.0703z"/>
-							</svg>
 						</summary><!-- /.bl_accordion_summary -->
 						<div class="bl_table bl_table__horizontal">
 							<table>
@@ -1437,12 +1423,6 @@
 						<h2 class="bl_menuHeader_title" id="e98_title">用紙サイズ 早見表</h2>
 						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
 							aria-controls="e98js_dialog_paperSize" aria-describedby="e98_title">
-							<svg role="graphics-symbol img" aria-hidden="true"
-								version="1.1" xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24" width="24" height="24"
-							>
-								<path transform="rotate(45)" d="m4.9705-2.0012v4.0023h9.9989v9.9989h4.0023v-9.9989h9.9989v-4.0023h-9.9989v-9.9989h-4.0023v9.9989h-9.9989z"/>
-							</svg>
 							<span>閉じる</span>
 						</button>
 					</div><!-- /.bl_menuHeader -->
@@ -1561,12 +1541,6 @@
 						<h2 class="bl_menuHeader_title" id="e99_title">用紙間縮尺 早見表</h2>
 						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
 							aria-controls="e99js_dialog_paperRate" aria-describedby="e99_title">
-							<svg role="graphics-symbol img" aria-hidden="true"
-								version="1.1" xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24" width="24" height="24"
-							>
-								<path transform="rotate(45)" d="m4.9705-2.0012v4.0023h9.9989v9.9989h4.0023v-9.9989h9.9989v-4.0023h-9.9989v-9.9989h-4.0023v9.9989h-9.9989z"/>
-							</svg>
 							<span>閉じる</span>
 						</button>
 					</div><!-- /.bl_menuHeader -->
