@@ -119,18 +119,18 @@
 	grid-template-areas: var(--ly_numArray);
 }
 
-#js_calcBtn_1 {grid-area: b1;}
-#js_calcBtn_2 {grid-area: b2;}
-#js_calcBtn_3 {grid-area: b3;}
-#js_calcBtn_4 {grid-area: b4;}
-#js_calcBtn_5 {grid-area: b5;}
-#js_calcBtn_6 {grid-area: b6;}
-#js_calcBtn_7 {grid-area: b7;}
-#js_calcBtn_8 {grid-area: b8;}
-#js_calcBtn_9 {grid-area: b9;}
-#js_calcBtn_0 {grid-area: b0;}
-#js_calcBtn_DecimalPoint {grid-area: bd;}
-#js_calcBtn_Equal {grid-area: be;}
+#b01js_1 {grid-area: b1;}
+#b01js_2 {grid-area: b2;}
+#b01js_3 {grid-area: b3;}
+#b01js_4 {grid-area: b4;}
+#b01js_5 {grid-area: b5;}
+#b01js_6 {grid-area: b6;}
+#b01js_7 {grid-area: b7;}
+#b01js_8 {grid-area: b8;}
+#b01js_9 {grid-area: b9;}
+#b01js_0 {grid-area: b0;}
+#b01js_DecimalPoint {grid-area: bd;}
+#b01js_Equal {grid-area: be;}
 
 .b01ly_calc_aside {
 	grid-area: aside;
