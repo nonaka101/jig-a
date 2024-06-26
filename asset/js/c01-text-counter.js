@@ -27,14 +27,18 @@ c01_btnCalc.addEventListener('click', ()=>{
 
 	// 入力値を整形
 	const inputText = c01_textArea.value;
-	const inputTextArray = inputText.split(/\n/gmsu);
+	const inputTextArray = inputText.split(/[\r|\n|\r\n]+/gmsu);
 
 	// 各種計算値を格納するための変数
 	let counterAllChars = 0;
 	let counterEmptyRow = 0;
 	let counterMaxChars = 0;
 
-	const regex = /\s/gui;
+	const regexWhiteSpace = /\s/gui;
+	let counterWhiteSpace = 0;
+	const regexTab = /\t/gui;
+	let counterTab = 0;
+	const regexSpace = /[ |　]/gui;
 	let counterSpace = 0;
 
 	// 各行毎に、各種計算値を求めていく
@@ -44,15 +48,21 @@ c01_btnCalc.addEventListener('click', ()=>{
 		counterAllChars += chars;
 		if(chars > counterMaxChars) counterMaxChars = chars;
 
-		let matches = t.match(regex);
-		if(matches) counterSpace += matches.length;
+		const matchesWhiteSpace = t.match(regexWhiteSpace);
+		if(matchesWhiteSpace) counterWhiteSpace += matchesWhiteSpace.length;
+		const matchesTab = t.match(regexTab);
+		if(matchesTab) counterTab += matchesTab.length;
+		const matchesSpace = t.match(regexSpace);
+		if(matchesSpace) counterSpace += matchesSpace.length;
 	}
 
 	// 計算結果を配列にまとめる
 	let dataArray = [['項目', '数']];
 	dataArray.push(['文字', counterAllChars]);
-	dataArray.push(['文字（空白除く）', counterAllChars - counterSpace]);
-	dataArray.push(['空白文字', counterSpace]);
+	dataArray.push(['文字（空白除く）', counterAllChars - counterWhiteSpace]);
+	dataArray.push(['空白文字', counterWhiteSpace]);
+	dataArray.push(['Tab文字', counterTab]);
+	dataArray.push(['スペース', counterSpace]);
 	dataArray.push(['最大文字（行単位）', counterMaxChars]);
 	dataArray.push(['行', inputTextArray.length]);
 	dataArray.push(['空行', counterEmptyRow]);
