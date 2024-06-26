@@ -1,0 +1,3845 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JIG-A</title>
+
+	<!-- アイコン・マニフェスト関係 -->
+	<link rel="icon" sizes="any" type="image/svg+xml"
+		href="data:image/svg+xml,%3Csvg version='1.1' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='48' height='48' fill='%23fff' stroke-linejoin='round' stroke-width='2'/%3E%3Cpath d='m3 4.3125v2.625l10.5 2.625v-2.625zm28.875 0-10.5 15.75v2.625h20.125l0.87497 2.625h2.625l-2.625-7.875h-2.625l0.87496 2.625h-16.625l10.5-15.75zm-28.875 10.5v2.625l10.5 2.625v-2.625zm10.5 13.125v10.5s0 2.625-2.625 2.625h-7.875v2.625h7.875s5.25 0 5.25-5.25v-10.5zm7.875 0v15.75h23.625v-15.75zm2.625 2.625h18.375v10.5h-18.375z'/%3E%3C/svg%3E">
+
+	<!-- スタイルシート -->
+	<style>
+		/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+		html {
+			line-height: 1.15;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		body {
+			margin: 0;
+		}
+
+		main {
+			display: block;
+		}
+
+		h1 {
+			font-size: 2em;
+			margin: 0.67em 0;
+		}
+
+		hr {
+			box-sizing: content-box;
+			height: 0;
+			overflow: visible;
+		}
+
+		pre {
+			font-family: monospace, monospace;
+			font-size: 1em;
+		}
+
+		a {
+			background-color: transparent;
+		}
+
+		abbr[title] {
+			border-bottom: none;
+			text-decoration: underline;
+			text-decoration: underline dotted;
+		}
+
+		b,
+		strong {
+			font-weight: bolder;
+		}
+
+		code,
+		kbd,
+		samp {
+			font-family: monospace, monospace;
+			font-size: 1em;
+		}
+
+		small {
+			font-size: 80%;
+		}
+
+		sub,
+		sup {
+			font-size: 75%;
+			line-height: 0;
+			position: relative;
+			vertical-align: baseline;
+		}
+
+		sub {
+			bottom: -0.25em;
+		}
+
+		sup {
+			top: -0.5em;
+		}
+
+		img {
+			border-style: none;
+		}
+
+		button,
+		input,
+		optgroup,
+		select,
+		textarea {
+			font-family: inherit;
+			font-size: 100%;
+			line-height: 1.15;
+			margin: 0;
+		}
+
+		button,
+		input {
+			overflow: visible;
+		}
+
+		button,
+		select {
+			text-transform: none;
+		}
+
+		button,
+		[type="button"],
+		[type="reset"],
+		[type="submit"] {
+			-webkit-appearance: button;
+		}
+
+		button::-moz-focus-inner,
+		[type="button"]::-moz-focus-inner,
+		[type="reset"]::-moz-focus-inner,
+		[type="submit"]::-moz-focus-inner {
+			border-style: none;
+			padding: 0;
+		}
+
+		button:-moz-focusring,
+		[type="button"]:-moz-focusring,
+		[type="reset"]:-moz-focusring,
+		[type="submit"]:-moz-focusring {
+			outline: 1px dotted ButtonText;
+		}
+
+		fieldset {
+			padding: 0.35em 0.75em 0.625em;
+		}
+
+		legend {
+			box-sizing: border-box;
+			color: inherit;
+			display: table;
+			max-width: 100%;
+			padding: 0;
+			white-space: normal;
+		}
+
+		progress {
+			vertical-align: baseline;
+		}
+
+		textarea {
+			overflow: auto;
+		}
+
+		[type="checkbox"],
+		[type="radio"] {
+			box-sizing: border-box;
+			padding: 0;
+		}
+
+		[type="number"]::-webkit-inner-spin-button,
+		[type="number"]::-webkit-outer-spin-button {
+			height: auto;
+		}
+
+		[type="search"] {
+			-webkit-appearance: textfield;
+			outline-offset: -2px;
+		}
+
+		[type="search"]::-webkit-search-decoration {
+			-webkit-appearance: none;
+		}
+
+		::-webkit-file-upload-button {
+			-webkit-appearance: button;
+			font: inherit;
+		}
+
+		details {
+			display: block;
+		}
+
+		summary {
+			display: list-item;
+		}
+
+		template {
+			display: none;
+		}
+
+		[hidden] {
+			display: none;
+		}
+	</style>
+
+	<style>
+		:root {
+			font-family: "Noto Sans JP", "Segoe UI", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", meiryo, sans-serif;
+			line-height: 1.5;
+			--space_0: 0.25rem;
+			--space_1: 0.5rem;
+			--space_2: 1rem;
+			--space_3: 1.5rem;
+			--space_5: 2.5rem;
+			--space_8: 4rem;
+			--space_13: 6.5rem;
+			--white: #ffffff;
+			--sea-1200: #00004F;
+			--sea-1100: #000060;
+			--sea-1000: #000071;
+			--sea-900: #0000be;
+			--sea-800: #0024ce;
+			--sea-700: #0031d8;
+			--sea-600: #003ee5;
+			--sea-500: #0946f1;
+			--sea-400: #4979f5;
+			--sea-300: #7096f8;
+			--sea-200: #9db7f9;
+			--sea-100: #c5d7fb;
+			--sea-50: #e8f1fe;
+			--sumi-1200: #000000;
+			--sumi-1100: #080808;
+			--sumi-1000: #111111;
+			--sumi-900: #1a1a1c;
+			--sumi-800: #414143;
+			--sumi-700: #626264;
+			--sumi-600: #757578;
+			--sumi-500: #949497;
+			--sumi-400: #b4b4b7;
+			--sumi-300: #d8d8db;
+			--sumi-200: #e8e8eb;
+			--sumi-100: #f1f1f4;
+			--sumi-50: #f8f8fb;
+			--forest-1200: #032213;
+			--forest-1100: #08351f;
+			--forest-1000: #0c472a;
+			--forest-900: #115a36;
+			--forest-800: #197a4b;
+			--forest-700: #1a8b56;
+			--forest-600: #259d63;
+			--forest-500: #2cac6e;
+			--forest-400: #51b883;
+			--forest-300: #71c598;
+			--forest-200: #9bd4b5;
+			--forest-100: #c2e5d1;
+			--forest-50: #e6f5ec;
+			--wood-1200: #662e00;
+			--wood-1100: #833b00;
+			--wood-1000: #9c4600;
+			--wood-900: #b65200;
+			--wood-800: #c16800;
+			--wood-700: #c87504;
+			--wood-600: #cd820a;
+			--wood-500: #d18d0f;
+			--wood-400: #d69c2b;
+			--wood-300: #dcac4d;
+			--wood-200: #e5c47f;
+			--wood-100: #efdbb1;
+			--wood-50: #f8f1e0;
+			--sun-1200: #640101;
+			--sun-1100: #890101;
+			--sun-1000: #af0000;
+			--sun-900: #d50000;
+			--sun-800: #ec0000;
+			--sun-700: #fa1606;
+			--sun-600: #ff220d;
+			--sun-500: #ff4b36;
+			--sun-400: #ff5838;
+			--sun-300: #ff7b5c;
+			--sun-200: #ffa28b;
+			--sun-100: #ffc8b8;
+			--sun-50: #ffe7e6;
+			--sc_txt_body: var(--sumi-900);
+			--sc_txt_body__small: var(--sumi-1200);
+			--sc_txt_desc: var(--sumi-700);
+			--sc_txt_placeholder: var(--sumi-600);
+			--sc_txt_onFill: var(--white);
+			--sc_txt_link: var(--sea-800);
+			--sc_txt_link__hover: var(--sea-900);
+			--sc_txt_link__active: var(--sea-900);
+			--sc_txt_link__visited: var(--sea-900);
+			--sc_txt_alert: var(--sun-800);
+			--sc_txt_disabled: var(--sumi-500);
+			--sc_txt_icon: var(--sumi-900);
+			--sc_txt_btn__primary: var(--white);
+			--sc_txt_btn__secondary: var(--sea-800);
+			--sc_txt_btn__tertiary: var(--sea-800);
+			--sc_border_field: 1px solid var(--sumi-900);
+			--sc_border_divider: 1px solid var(--sumi-300);
+			--sc_border_focused: 2px solid var(--wood-600);
+			--sc_border_selected: 2px solid var(--sea-800);
+			--sc_border_disabled: 1px solid var(--sumi-300);
+			--sc_border_alert: 2px solid var(--sun-800);
+			--sc_bg_body__primary: var(--sumi-50);
+			--sc_bg_body__secondary: var(--sumi-200);
+			--sc_bg_body__tertiary: var(--sumi-100);
+			--sc_bg_btn__primary: var(--sea-800);
+			--sc_bg_btn__secondary: var(--sea-50);
+			--sc_bg_disabled: var(--sumi-500);
+			--sc_bg_alert: var(--sun-800);
+			--sc_bg_shadow: var(--sumi-700);
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--sc_txt_body: var(--white);
+				--sc_txt_body__small: var(--white);
+				--sc_txt_desc: var(--sumi-400);
+				--sc_txt_placeholder: var(--sumi-500);
+				--sc_txt_onFill: var(--white);
+				--sc_txt_link: var(--sea-300);
+				--sc_txt_link__hover: var(--sea-200);
+				--sc_txt_link__active: var(--sea-200);
+				--sc_txt_link__visited: var(--sea-200);
+				--sc_txt_alert: var(--sun-500);
+				--sc_txt_disabled: var(--sumi-600);
+				--sc_txt_icon: var(--white);
+				--sc_txt_btn__primary: var(--white);
+				--sc_txt_btn__secondary: var(--sea-300);
+				--sc_txt_btn__tertiary: var(--sea-300);
+				--sc_border_field: 1px solid var(--white);
+				--sc_border_divider: 1px solid var(--sumi-700);
+				--sc_border_focused: 2px solid var(--wood-600);
+				--sc_border_selected: 2px solid var(--sea-300);
+				--sc_border_disabled: 1px solid var(--sumi-300);
+				--sc_border_alert: 2px solid var(--sun-500);
+				--sc_bg_body__primary: var(--sumi-900);
+				--sc_bg_body__secondary: var(--sumi-700);
+				--sc_bg_body__tertiary: var(--sumi-800);
+				--sc_bg_btn__primary: var(--sea-300);
+				--sc_bg_btn__secondary: var(--sea-1200);
+				--sc_bg_disabled: var(--sumi-600);
+				--sc_bg_alert: var(--sun-500);
+				--sc_bg_shadow: var(--white);
+			}
+		}
+
+		:root.is_lightMode {
+			--sc_txt_body: var(--sumi-900);
+			--sc_txt_body__small: var(--sumi-1200);
+			--sc_txt_desc: var(--sumi-700);
+			--sc_txt_placeholder: var(--sumi-600);
+			--sc_txt_onFill: var(--white);
+			--sc_txt_link: var(--sea-800);
+			--sc_txt_link__hover: var(--sea-900);
+			--sc_txt_link__active: var(--sea-900);
+			--sc_txt_link__visited: var(--sea-900);
+			--sc_txt_alert: var(--sun-800);
+			--sc_txt_disabled: var(--sumi-500);
+			--sc_txt_icon: var(--sumi-900);
+			--sc_txt_btn__primary: var(--white);
+			--sc_txt_btn__secondary: var(--sea-800);
+			--sc_txt_btn__tertiary: var(--sea-800);
+			--sc_border_field: 1px solid var(--sumi-900);
+			--sc_border_divider: 1px solid var(--sumi-300);
+			--sc_border_focused: 2px solid var(--wood-600);
+			--sc_border_selected: 2px solid var(--sea-800);
+			--sc_border_disabled: 1px solid var(--sumi-300);
+			--sc_border_alert: 2px solid var(--sun-800);
+			--sc_bg_body__primary: var(--sumi-50);
+			--sc_bg_body__secondary: var(--sumi-200);
+			--sc_bg_body__tertiary: var(--sumi-100);
+			--sc_bg_btn__primary: var(--sea-800);
+			--sc_bg_btn__secondary: var(--sea-50);
+			--sc_bg_disabled: var(--sumi-500);
+			--sc_bg_alert: var(--sun-800);
+			--sc_bg_shadow: var(--sumi-700);
+		}
+
+		:root.is_darkMode {
+			--sc_txt_body: var(--white);
+			--sc_txt_body__small: var(--white);
+			--sc_txt_desc: var(--sumi-400);
+			--sc_txt_placeholder: var(--sumi-500);
+			--sc_txt_onFill: var(--white);
+			--sc_txt_link: var(--sea-300);
+			--sc_txt_link__hover: var(--sea-200);
+			--sc_txt_link__active: var(--sea-200);
+			--sc_txt_link__visited: var(--sea-200);
+			--sc_txt_alert: var(--sun-500);
+			--sc_txt_disabled: var(--sumi-600);
+			--sc_txt_icon: var(--white);
+			--sc_txt_btn__primary: var(--white);
+			--sc_txt_btn__secondary: var(--sea-300);
+			--sc_txt_btn__tertiary: var(--sea-300);
+			--sc_border_field: 1px solid var(--white);
+			--sc_border_divider: 1px solid var(--sumi-700);
+			--sc_border_focused: 2px solid var(--wood-600);
+			--sc_border_selected: 2px solid var(--sea-300);
+			--sc_border_disabled: 1px solid var(--sumi-300);
+			--sc_border_alert: 2px solid var(--sun-500);
+			--sc_bg_body__primary: var(--sumi-900);
+			--sc_bg_body__secondary: var(--sumi-700);
+			--sc_bg_body__tertiary: var(--sumi-800);
+			--sc_bg_btn__primary: var(--sea-300);
+			--sc_bg_btn__secondary: var(--sea-1100);
+			--sc_bg_disabled: var(--sumi-600);
+			--sc_bg_alert: var(--sun-500);
+			--sc_bg_shadow: var(--white);
+		}
+
+		*,
+		::after,
+		::before {
+			box-sizing: border-box
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		li,
+		th,
+		td,
+		div,
+		span,
+		code,
+		pre,
+		figcaption,
+		caption,
+		time,
+		address,
+		small,
+		button,
+		label,
+		summary,
+		p {
+			color: var(--sc_txt_body);
+		}
+
+		body {
+			background-color: var(--sc_bg_body__primary);
+		}
+
+		img {
+			max-width: 100%;
+		}
+
+		svg {
+			fill: currentcolor;
+		}
+
+		small {
+			font-size: 0.8em;
+		}
+
+		*:focus-visible {
+			outline: var(--sc_border_focused);
+			outline-offset: 2px;
+			animation-name: focusEffect;
+			animation-duration: 0.3s;
+		}
+
+		@keyframes focusEffect {
+			from {
+				outline-width: 1px;
+				outline-offset: 8px;
+			}
+
+			to {
+				outline-width: 2px;
+				outline-offset: 2px;
+			}
+		}
+
+		.ly_body {
+			max-width: 1024px;
+			padding: 0 24px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		@media (min-width: 560px) {
+			.ly_body {
+				padding: 0 40px;
+			}
+		}
+
+		html:has(dialog[open]) {
+			overflow: hidden;
+		}
+
+		.ly_dialog {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100dvw;
+			max-width: 100dvw;
+			min-height: 100dvh;
+			max-height: 100dvh;
+			padding: 0;
+			border: none;
+			background-color: var(--sc_bg_body__primary);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.ly_dialog:not([open]) {
+			display: none;
+		}
+
+		.ly_dialog_body {
+			position: absolute;
+			top: 0;
+			padding: 8px;
+			width: 100dvw;
+			display: flex;
+			flex-flow: column nowrap;
+		}
+
+		.bl_accordion {
+			padding: 0;
+			font-size: 1rem;
+			border-bottom: var(--sc_border_field);
+		}
+
+		.bl_accordion_summary::-webkit-details-marker {
+			display: none;
+		}
+
+		.bl_accordion_summary {
+			padding: 8px 16px;
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			justify-content: space-between;
+			color: var(--sc_txt_body);
+			cursor: pointer;
+			font-size: 1.25rem;
+			position: sticky;
+			top: 0;
+			background-color: var(--sc_bg_body__secondary);
+			z-index: 100;
+		}
+
+		.bl_accordion[open]>.bl_accordion_summary {
+			box-shadow: 0 4px 16px -8px var(--sc_bg_shadow);
+		}
+
+		.bl_accordion_summary>span {
+			font-size: 1em;
+		}
+
+		.bl_accordion_summary>svg {
+			height: 1em;
+			width: 1em;
+			transition: all ease-in 0.3s;
+		}
+
+		.bl_accordion[open]>.bl_accordion_summary>svg {
+			transform: rotate(180deg);
+			translate: 0 -12.5%;
+		}
+
+		.bl_descList {
+			display: grid;
+			grid-template-columns: 1fr 2fr;
+			gap: 16px 1rem;
+		}
+
+		.bl_descList>dt {
+			margin: 0;
+			text-align: end;
+		}
+
+		.bl_descList>dd {
+			margin: 0;
+			text-align: start;
+		}
+
+		.bl_siteHeader {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			border-bottom: var(--sc_border_field);
+		}
+
+		.bl_siteHeader_logo {
+			width: auto;
+			height: 3rem;
+		}
+
+		.bl_siteHeader_text {
+			margin-left: 1rem;
+			font-size: 2rem;
+			font-weight: 500;
+			line-height: 1.5;
+			letter-spacing: 0.04em;
+		}
+
+		.bl_setting_unit {
+			padding: 12px;
+			border: var(--sc_border_field);
+		}
+
+		.bl_setting {
+			display: flex;
+			flex-flow: row wrap;
+			margin: 8px 0;
+			gap: 0.2rem;
+		}
+
+		.bl_setting.bl_setting__select {}
+
+		.bl_setting.bl_setting__chk {}
+
+		.bl_funcList {
+			margin: 0;
+			padding: 0 0 0 1.5rem;
+			list-style-type: none;
+		}
+
+		.bl_funcList_item {
+			margin: 8px 0;
+		}
+
+		.bl_menuHeader {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			padding-bottom: 8px;
+			margin-bottom: 16px;
+		}
+
+		.bl_menuHeader_title {
+			padding: 0;
+			margin: 0;
+			font-size: 1.75rem;
+			line-height: 1.5;
+		}
+
+		.bl_menuHeader_btnIcon {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-evenly;
+			width: 2.625rem;
+			height: 2.625rem;
+			padding: 0;
+			margin: 0;
+			color: var(--sc_txt_body);
+			text-decoration: none;
+			cursor: pointer;
+			background: none;
+			border: none;
+		}
+
+		.bl_menuHeader_btnIcon>svg {
+			width: 1.625rem;
+			height: 1.625rem;
+		}
+
+		.bl_menuHeader_btnIcon>span {
+			font-size: 0.7rem;
+		}
+
+		.js_btnShowDialog {
+			appearance: none;
+			padding: 8px;
+			font-size: 1.25rem;
+			width: max-content;
+			background-color: var(--sc_bg_btn__primary);
+			color: var(--sc_txt_btn__primary);
+			border: var(--sc_border_field);
+			border-radius: 4px;
+			max-width: 100%;
+		}
+
+		.bl_table {
+			border: var(--sc_border_divider);
+		}
+
+		.bl_table>table {
+			width: 100%;
+			text-align: center;
+			table-layout: fixed;
+			border-collapse: collapse;
+		}
+
+		.bl_table th {
+			padding: 8px;
+			background-color: var(--sc_bg_body__tertiary);
+			border-right: var(--sc_border_divider);
+			border-bottom: var(--sc_border_divider);
+			font-weight: 700;
+			vertical-align: middle;
+		}
+
+		.bl_table td {
+			padding: 8px;
+			border-right: var(--sc_border_divider);
+			border-bottom: var(--sc_border_divider);
+			vertical-align: middle;
+		}
+
+		.bl_table th:last-child,
+		.bl_table td:last-child {
+			border-right-width: 0;
+		}
+
+		.bl_table tbody tr:last-child th,
+		.bl_table tbody tr:last-child td {
+			border-bottom-width: 0;
+		}
+
+		.bl_table.bl_table.bl_table__vertical,
+		.bl_table.bl_table__cross {
+			max-height: 75dvh;
+			height: max-content;
+			overflow-y: auto;
+		}
+
+		.bl_table.bl_table__vertical thead th,
+		.bl_table.bl_table__cross thead th {
+			position: -webkit-sticky;
+			position: sticky;
+			top: 0;
+			z-index: 1;
+		}
+
+		.bl_table.bl_table__vertical thead th:first-child,
+		.bl_table.bl_table__cross thead th:first-child {
+			z-index: 2;
+		}
+
+		@media screen and (max-width: 768px) {
+			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) {
+				border-right-width: 0;
+				overflow-x: auto;
+			}
+
+			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) table {
+				width: auto;
+				min-width: 100%;
+			}
+
+			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) th,
+			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) td {
+				white-space: nowrap;
+			}
+
+			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) th:last-child,
+			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) td:last-child {
+				border-right-width: 1px;
+			}
+
+			.bl_table.bl_table__horizontal:not(.bl_table__wide):not(.bl_table__exWide) th:first-child,
+			.bl_table.bl_table__cross:not(.bl_table__wide):not(.bl_table__exWide) th:first-child {
+				position: -webkit-sticky;
+				position: sticky;
+				left: 0;
+			}
+		}
+
+		@media screen and (max-width: 960px) {
+			.bl_table.bl_table__wide {
+				border-right-width: 0;
+				overflow-x: auto;
+			}
+
+			.bl_table.bl_table__wide table {
+				width: auto;
+				min-width: 100%;
+			}
+
+			.bl_table.bl_table__wide th,
+			.bl_table.bl_table__wide td {
+				white-space: nowrap;
+			}
+
+			.bl_table.bl_table__wide th:last-child,
+			.bl_table.bl_table__wide td:last-child {
+				border-right-width: 1px;
+			}
+
+			.bl_table.bl_table__horizontal.bl_table__wide th:first-child,
+			.bl_table.bl_table__cross.bl_table__wide th:first-child {
+				position: -webkit-sticky;
+				position: sticky;
+				left: 0;
+			}
+		}
+
+		@media screen and (max-width: 1200px) {
+			.bl_table.bl_table__exWide {
+				border-right-width: 0;
+				overflow-x: auto;
+			}
+
+			.bl_table.bl_table__exWide table {
+				width: auto;
+				min-width: 100%;
+			}
+
+			.bl_table.bl_table__exWide th,
+			.bl_table.bl_table__exWide td {
+				white-space: nowrap;
+			}
+
+			.bl_table.bl_table__exWide th:last-child,
+			.bl_table.bl_table__exWide td:last-child {
+				border-right-width: 1px;
+			}
+
+			.bl_table.bl_table__horizontal.bl_table__exWide th:first-child,
+			.bl_table.bl_table__cross.bl_table__exWide th:first-child {
+				position: -webkit-sticky;
+				position: sticky;
+				left: 0;
+			}
+		}
+
+		.el_btn {
+			display: block;
+			width: 100%;
+			padding: 16px;
+			margin: 0;
+			font-size: 1rem;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 1.5;
+			text-align: center;
+			letter-spacing: 0.04em;
+			cursor: pointer;
+			background: none;
+			border: 2px solid transparent;
+			border-radius: max(min(4px, calc(40px - 100%) * 9999),
+					min(8px, calc(100% - 40px) * 9999, calc(120px - 100%) * 9999),
+					min(12px, calc(100% - 120px) * 9999));
+			transition: .25s;
+		}
+
+		.el_btn.el_btn__primary {
+			color: var(--sc_txt_btn__primary);
+			text-decoration: none;
+			background-color: var(--sc_bg_btn__primary);
+		}
+
+		.el_btn.el_btn__primary:hover,
+		.el_btn.el_btn__primary:active {
+			filter: brightness(87%);
+		}
+
+		.el_btn.el_btn__secondary {
+			color: var(--sc_txt_btn__secondary);
+			text-decoration: none;
+			background-color: transparent;
+			border-color: currentcolor;
+		}
+
+		.el_btn.el_btn__secondary:hover,
+		.el_btn.el_btn__secondary:active {
+			background-color: var(--sc_bg_btn__secondary);
+		}
+
+		.el_btn.el_btn__tertiary {
+			color: var(--sc_txt_btn__tertiary);
+			text-decoration: underline;
+			background-color: transparent;
+		}
+
+		.el_btn.el_btn__tertiary:hover,
+		.el_btn.el_btn__tertiary:active {
+			color: var(--sc_txt_link__active);
+		}
+
+		.el_link {
+			color: var(--sc_txt_link);
+			text-decoration: underline;
+		}
+
+		.el_link:active {
+			color: var(--sc_txt_link__active);
+		}
+
+		.el_link:visited {
+			color: var(--sc_txt_link__visited);
+		}
+
+		.el_link:hover {
+			color: var(--sc_txt_link__hover);
+		}
+
+		.el_heading_lv1 {
+			margin: 1em 0 0 0;
+			font-size: 2rem;
+			font-weight: 500;
+			line-height: 1.5;
+			letter-spacing: 0.04em;
+		}
+
+		@media (min-width: 960px) {
+			.el_heading_lv1 {
+				font-size: 2.25rem;
+				font-weight: 400;
+				line-height: 1.4;
+			}
+		}
+
+		.el_heading_lv2 {
+			margin: 1em 0 0 0;
+			font-size: 1.75rem;
+			font-weight: 500;
+			line-height: 1.5;
+			letter-spacing: 0.04em;
+		}
+
+		@media (min-width: 960px) {
+			.el_heading_lv2 {
+				font-size: 2rem;
+				font-weight: 400;
+			}
+		}
+
+		.el_heading_lv3 {
+			margin: 1em 0 0 0;
+			font-size: 1.5rem;
+			font-weight: 500;
+			line-height: 1.5;
+			letter-spacing: 0.04em;
+		}
+
+		@media (min-width: 960px) {
+			.el_heading_lv3 {
+				font-size: 1.75rem;
+				font-weight: 400;
+			}
+		}
+
+		.el_heading_lv3.el_heading__iconLabel {
+			display: flex;
+			flex-flow: row nowrap;
+			gap: 0.02rem;
+			align-items: center;
+		}
+
+		.el_heading_lv3.el_heading__iconLabel>svg {
+			width: 1.125em;
+			height: 1.125em;
+			margin-inline-end: 0.125em;
+			vertical-align: -0.125em;
+		}
+
+		.el_heading_lv3.el_heading__iconLabel>span {}
+
+		.hp_srOnly {
+			position: absolute !important;
+			clip: rect(0 0 0 0) !important;
+			clip-path: inset(100%) !important;
+			width: 1px !important;
+			height: 1px !important;
+			margin: -1px !important;
+			overflow: hidden !important;
+			padding: 0 !important;
+			border: 0 !important;
+		}
+	</style>
+
+	<!-- Templates -->
+	<!-- SVG：✕ -->
+	<template id="tempSvg_cross">
+		<svg role="graphics-symbol img" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24" width="24" height="24">
+			<path transform="rotate(45)"
+				d="m4.9705-2.0012v4.0023h9.9989v9.9989h4.0023v-9.9989h9.9989v-4.0023h-9.9989v-9.9989h-4.0023v9.9989h-9.9989z" />
+		</svg>
+	</template>
+	<!-- SVG：∨ -->
+	<template id="tempSvg_arrowDown">
+		<svg role="graphics-symbol img" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24" width="24" height="24">
+			<path d="m4.9297 5.6348-2.8301 2.8301 9.9004 9.9004 9.9004-9.9004-2.8301-2.8301-7.0703 7.0703z" />
+		</svg>
+	</template>
+</head>
+
+<body class="ly_body">
+	<h1 class="bl_siteHeader">
+		<svg class="bl_siteHeader_logo" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 48" width="96"
+			height="48" role="graphics-symbol img" aria-hidden="true">
+			<g transform="matrix(3.7795 0 0 3.7795 -2.3043 -3.9031)">
+				<path
+					d="m20.401 1.7494c-1.5526 0-1.5526 1.6001-1.5526 1.6001v9.6667h0.51754v-5.1812h5.1754v5.1812h0.51754v-9.6667c0-1.6461-1.5526-1.6001-1.5526-1.6001zm0 0.45226h3.1052c1.0351 0 1.0351 1.1478 1.0351 1.1478v4.0333h-5.1754v-4.0576c0-1.0797 1.0351-1.1235 1.0351-1.1235z" />
+				<g transform="matrix(.045982 0 0 .045982 .67861 1.2028)">
+					<path
+						d="m139.62 184v61.128s0 12.226-12.226 12.226h-48.902s-12.226 0-12.226-12.226v-12.226h6.1128v12.226s0 6.1128 6.1128 6.1128h48.902s6.1128 0 6.1128-6.1128v-61.128z" />
+					<path d="m192.56 184v73.353h6.1128v-73.353z" />
+					<path
+						d="m324.97 208.45v-12.226s0-12.226-12.226-12.226h-48.902s-12.226 0-12.226 12.226v48.902s0 12.226 12.226 12.226h48.902s12.226 0 12.226-12.226v-18.338h-30.564v6.1128h24.451v12.226s0 6.1128-6.1128 6.1128h-48.902s-6.1128 0-6.1128-6.1128v-48.902s0-6.1128 6.1128-6.1128h48.902s6.1128 0 6.1128 6.1128v12.226z" />
+					<path
+						d="m19.181 11.445v10.471l41.883 10.471v-10.471zm115.18 0-41.883 62.824v10.471h80.275l3.4901 10.471h10.471l-10.471-31.412h-10.471l3.4901 10.471h-66.314l41.883-62.824zm-115.18 41.883v10.471l41.883 10.471v-10.471zm41.883 52.353v41.883s0 10.471-10.471 10.471h-31.412v10.471h31.412s20.941 0 20.941-20.941v-41.883zm31.412 0v62.824h94.236v-62.824zm10.471 10.471h73.295v41.883h-73.295z" />
+					<path
+						d="m225.47 11.445v104.71h125.65v-104.71zm10.471 10.471h104.71v20.941h-104.71zm0 31.412h104.71v20.941h-104.71zm0 31.412h104.71v20.941h-104.71zm-31.412 41.883v10.471h39.265l-7.853 31.412h10.471l7.853-31.412h68.059l7.853 31.412h10.471l-7.853-31.412h39.265v-10.471h-52.353z" />
+				</g>
+			</g>
+		</svg>
+		<span class="hp_srOnly">治具-A</span>
+		<span class="bl_siteHeader_text">簡易ツール集</span>
+	</h1><!-- /.el_heading_lv1 -->
+
+
+
+
+
+	<h2 class="el_heading_lv2">このページについて</h2><!-- /.el_heading_lv2 -->
+	<details>
+		<summary>概要</summary>
+		<p>
+			こちらは、電卓や日付計算、テキスト整形といった「ちょっとしたツール」を扱っております。<br>
+			JavaScriptを実行できるブラウザがあれば、環境や状況（例：デバイスやネットワーク接続状況、操作方法等）に左右されずに動作することを目指しています。
+		</p>
+		<p>
+			詳細 及び 注意事項等につきましては、
+			<a class="el_link" href="https://github.com/nonaka101/jig-a">GitHubのリポジトリ</a>
+			を参照ください。
+		</p>
+	</details>
+
+
+
+
+
+	<h2 class="el_heading_lv2">設定</h2><!-- /.el_heading_lv2 -->
+	<details>
+		<summary>設定パネルを開く</summary>
+		<form action="#" class="bl_setting_unit">
+			<div class="bl_setting bl_setting__select">
+				<label for="js_setting_colorMode">
+					カラーモード
+				</label>
+				<select name="colorMode" id="js_setting_colorMode">
+					<option value=0>デフォルト</option>
+					<option value=1>ライト</option>
+					<option value=2>ダーク</option>
+				</select>
+			</div>
+			<!-- /.bl_setting.bl_setting__select -->
+			<div class="bl_setting bl_setting__select">
+				<label for="js_setting_fontSize">
+					フォントサイズ
+				</label>
+				<select name="fontSize" id="js_setting_fontSize">
+					<option value="0">デフォルト</option>
+					<option value="10">10px</option>
+					<option value="16">16px</option>
+					<option value="24">24px</option>
+					<option value="32">32px</option>
+				</select>
+			</div>
+			<!-- /.bl_setting.bl_setting__select -->
+			<div class="bl_setting bl_setting__chk">
+				<input type="checkbox" name="direction" id="js_setting_isLeft">
+				<label for="js_setting_isLeft">左利き</label>
+			</div>
+			<!-- /.bl_setting.bl_setting__chk -->
+			<div class="bl_setting bl_setting__chk">
+				<input type="checkbox" name="sound" id="js_setting_enableSound">
+				<label for="js_setting_enableSound">音</label>
+			</div>
+			<!-- /.bl_setting.bl_setting__chk -->
+			<div class="bl_setting bl_setting__chk">
+				<input type="checkbox" name="vibration" id="js_setting_enableVibration">
+				<label for="js_setting_enableVibration">振動</label>
+			</div>
+			<!-- /.bl_setting.bl_setting__chk -->
+		</form>
+		<!-- /.bl_setting_unit -->
+	</details>
+
+
+
+
+
+	<h2 class="el_heading_lv2">機能一覧</h2><!-- /.el_heading_lv2 -->
+
+
+
+
+
+	<h3 class="el_heading_lv3 el_heading__iconLabel">
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true">
+			<rect x="6" y="12" width="15" height="3" />
+			<rect x="12" y="6" width="3" height="15" />
+			<rect x="27" y="12" width="15" height="3" />
+			<rect transform="rotate(45)" x="24.849" y="13.335" width="18" height="3" />
+			<rect transform="rotate(135)" x="5.835" y="-35.349" width="18" height="3" />
+			<rect x="27" y="33" width="15" height="3" />
+			<circle cx="34.5" cy="28.5" r="1.5" />
+			<circle cx="34.5" cy="40.5" r="1.5" />
+			<rect x="3" y="3" width="42" height="42" ry="3" fill="none" stroke="currentColor" stroke-linejoin="round"
+				stroke-width="2" />
+		</svg>
+		<span>
+			算術
+		</span>
+	</h3><!-- /.el_heading_lv3.el_heading__iconLabel -->
+
+
+
+
+
+	<ul class="bl_funcList">
+		<!-- [b01] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog" aria-controls="b01js_dialog_calculator">
+				簡易電卓
+			</button><!-- /.js_btnShowDialog -->
+			<dialog class="ly_dialog" id="b01js_dialog_calculator" aria-labelledby="b01_title" autofocus>
+				<div class="b01ly_calc">
+					<h2 class="hp_srOnly" id="b01_title">簡易電卓</h2>
+					<section class="b01ly_calc_header" aria-label="ディスプレイ"><!-- Display -->
+						<span id="b01js_label"></span>
+						<output id="b01js_output"></output>
+					</section>
+					<div class="b01ly_calc_btnArray">
+						<section class="b01ly_calc_nav" aria-label="機能"><!-- 4 buttons([AC,%,BackSpace,Copy]) -->
+							<button type="button"
+								class="b01el_calcBtn b01el_calcBtn__secondary b01el_calcBtn__iconLabel js_btnCloseDialog"
+								aria-controls="b01js_dialog_calculator" aria-describedby="b01_title">
+								<span>閉じる</span>
+							</button>
+							<button type="button" id="b01js_AllClear"
+								class="b01el_calcBtn b01el_calcBtn__secondary b01el_calcBtn__iconLabel">
+								<svg role="graphics-symbol img" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 48 48" width="48" height="48">
+									<path
+										d="m24 5.25a21 21 0 0 0-21 21 21 21 0 0 0 4.7812 13.219l-3.2812 3.2812h9v-9l-3.6016 3.6016a18 18 0 0 1-3.8984-11.102 18 18 0 0 1 18-18 18 18 0 0 1 18 18 18 18 0 0 1-5.3047 12.695l2.1172 2.1172a21 21 0 0 0 6.1875-14.812 21 21 0 0 0-21-21z"
+										stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+								<span>全消去</span>
+							</button>
+							<button type="button" id="b01js_BackSpace"
+								class="b01el_calcBtn b01el_calcBtn__secondary b01el_calcBtn__iconLabel">
+								<svg role="graphics-symbol img" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 48 48" width="48" height="48">
+									<path d="m45.75 22.5v3h-36l12 12-3 3-16.5-16.5 16.5-16.5 3 3-12 12z" />
+								</svg>
+								<span>1字消去</span>
+							</button>
+							<button type="button" id="b01js_Copy"
+								class="b01el_calcBtn b01el_calcBtn__secondary b01el_calcBtn__iconLabel">
+								<svg role="graphics-symbol img" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 48 48" width="48" height="48">
+									<path
+										d="m17.032 8.7h19.336c2.6216 0 4.7322 2.1106 4.7322 4.7322v26.536c0 2.6216-2.1106 4.7322-4.7322 4.7322h-19.336c-2.6216 0-4.7322-2.1106-4.7322-4.7322v-26.536c0-2.6216 2.1106-4.7322 4.7322-4.7322zm-5.4002-5.4c-2.6216 0-4.732 2.1104-4.732 4.732v26.536c0 2.6216 2.1104 4.732 4.732 4.732h0.66797v-25.868c0-2.6216 2.1104-4.732 4.732-4.732h18.668v-0.66797c0-2.6216-2.1104-4.732-4.732-4.732z"
+										fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2.4" />
+								</svg>
+								<span>コピー</span>
+							</button>
+						</section>
+						<section class="b01ly_calc_main" aria-label="テンキー・実行"><!-- 12 buttons([0 - 9],[.] ,[=]) -->
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_9" data-calc="9">9</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_8" data-calc="8">8</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_7" data-calc="7">7</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_6" data-calc="6">6</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_5" data-calc="5">5</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_4" data-calc="4">4</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_3" data-calc="3">3</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_2" data-calc="2">2</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_1" data-calc="1">1</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_0" data-calc="0">0</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_DecimalPoint" data-calc="."
+								aria-label="小数点">.</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary" id="b01js_Equal" data-calc="="
+								aria-label="計算実行">=</button>
+						</section>
+						<section class="b01ly_calc_aside" aria-label="四則演算"><!-- 4 buttons([+,-,*,/]) -->
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary" id="b01js_Add" data-calc="+"
+								aria-label="足す">＋</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary" id="b01js_Subtract" data-calc="-"
+								aria-label="引く">−</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary" id="b01js_Multiply" data-calc="*"
+								aria-label="掛ける">×</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary" id="b01js_Divide" data-calc="/"
+								aria-label="割る">÷</button>
+						</section>
+					</div>
+					<!-- /.b01ly_calc_btnArray -->
+				</div>
+				<!-- /.b01ly_calc -->
+			</dialog>
+			<!-- /.ly_dialog -->
+			<style>
+				.b01ly_calc {
+					--ly_btnArray:
+						"nav main main main aside"
+						"nav main main main aside"
+						"nav main main main aside"
+						"nav main main main aside";
+					--ly_numArray:
+						"b7 b8 b9"
+						"b4 b5 b6"
+						"b1 b2 b3"
+						"b0 bd be";
+					--num_hBox: 4;
+					--num_wBox: 5;
+					--size_btn: min(100dvw / var(--num_wBox), 100dvh / (var(--num_hBox) + 2));
+					--flexFlow_nav: column nowrap;
+					--gap: 0.1rem;
+					display: flex;
+					flex-flow: row wrap;
+					align-items: center;
+					justify-content: center;
+					background-color: var(--sc_bg_body__primary);
+					padding: 8px;
+					width: 100dvw;
+					height: 100dvh;
+					border: var(--sc_border_field);
+				}
+
+				.is_leftMode .b01ly_calc {
+					--ly_btnArray:
+						"aside main main main nav"
+						"aside main main main nav"
+						"aside main main main nav"
+						"aside main main main nav";
+					--ly_numArray:
+						"b7 b8 b9"
+						"b4 b5 b6"
+						"b1 b2 b3"
+						"be bd b0";
+				}
+
+				@media (max-aspect-ratio: 5/6) {
+					.b01ly_calc {
+						--ly_btnArray:
+							"nav  nav  nav  nav  "
+							"main main main aside"
+							"main main main aside"
+							"main main main aside"
+							"main main main aside";
+						--num_hBox: 5;
+						--num_wBox: 4;
+						--flexFlow_nav: row nowrap;
+						--width_nav: 100dvw;
+					}
+
+					.is_leftMode .b01ly_calc {
+						--ly_btnArray:
+							"nav  nav  nav  nav  "
+							"aside main main main"
+							"aside main main main"
+							"aside main main main"
+							"aside main main main";
+					}
+				}
+
+				.b01ly_calc_header {
+					--base_h: calc((100dvh - (var(--size_btn) * var(--num_hBox))) / 2);
+					width: 98dvw;
+					min-height: calc(var(--size_btn) * 2);
+				}
+
+				#b01js_label {
+					width: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					height: calc(var(--base_h) * 0.5);
+					font-size: clamp(1rem, 5dvw, calc(var(--base_h) * 0.4));
+					text-align: center;
+					border: var(--sc_border_field);
+					border-bottom: dotted;
+				}
+
+				#b01js_output {
+					width: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					height: var(--base_h);
+					font-size: clamp(1rem, 5dvw, calc(var(--base_h) * 0.8));
+					text-align: center;
+					border: var(--sc_border_field);
+					border-top: none;
+					text-wrap: nowrap;
+				}
+
+				.b01ly_calc_btnArray {
+					display: grid;
+					gap: var(--gap);
+					grid-template-areas: var(--ly_btnArray);
+				}
+
+				.b01ly_calc_nav {
+					grid-area: nav;
+					display: flex;
+					gap: var(--gap);
+					flex-flow: var(--flexFlow_nav);
+				}
+
+				.b01ly_calc_main {
+					grid-area: main;
+					display: grid;
+					gap: var(--gap);
+					grid-template-areas: var(--ly_numArray);
+				}
+
+				#js_calcBtn_1 {
+					grid-area: b1;
+				}
+
+				#js_calcBtn_2 {
+					grid-area: b2;
+				}
+
+				#js_calcBtn_3 {
+					grid-area: b3;
+				}
+
+				#js_calcBtn_4 {
+					grid-area: b4;
+				}
+
+				#js_calcBtn_5 {
+					grid-area: b5;
+				}
+
+				#js_calcBtn_6 {
+					grid-area: b6;
+				}
+
+				#js_calcBtn_7 {
+					grid-area: b7;
+				}
+
+				#js_calcBtn_8 {
+					grid-area: b8;
+				}
+
+				#js_calcBtn_9 {
+					grid-area: b9;
+				}
+
+				#js_calcBtn_0 {
+					grid-area: b0;
+				}
+
+				#js_calcBtn_DecimalPoint {
+					grid-area: bd;
+				}
+
+				#js_calcBtn_Equal {
+					grid-area: be;
+				}
+
+				.b01ly_calc_aside {
+					grid-area: aside;
+					display: flex;
+					gap: var(--gap);
+					flex-flow: column nowrap;
+				}
+
+				.b01el_calcBtn {
+					appearance: none;
+					height: calc(var(--size_btn) * 0.9);
+					width: calc(var(--size_btn) * 0.9);
+					margin: 0;
+					padding: 0;
+					font-size: calc(var(--size_btn) * 0.4);
+					font-style: normal;
+					font-weight: 700;
+					line-height: 1;
+					letter-spacing: 0;
+					text-align: center;
+					cursor: pointer;
+					background: none;
+					border-radius: 25%;
+					border: 2px solid transparent;
+				}
+
+				.b01el_calcBtn.b01el_calcBtn__primary {
+					color: var(--sc_txt_btn__primary);
+					background-color: var(--sc_bg_btn__primary);
+				}
+
+				.b01el_calcBtn.b01el_calcBtn__secondary {
+					color: var(--sc_txt_btn__secondary);
+					background-color: var(--sc_bg_btn__secondary);
+					border-color: currentcolor;
+				}
+
+				.b01el_calcBtn.b01el_calcBtn__tertiary {
+					color: var(--sc_txt_body);
+					background-color: transparent;
+					border: var(--sc_border_field);
+				}
+
+				.b01el_calcBtn.b01el_calcBtn__iconLabel {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: space-evenly;
+				}
+
+				.b01el_calcBtn.b01el_calcBtn__iconLabel>svg {
+					height: calc(var(--size_btn) * 0.5);
+					width: calc(var(--size_btn) * 0.5);
+				}
+
+				.b01el_calcBtn.b01el_calcBtn__iconLabel>span {
+					font-size: calc(var(--size_btn) * 0.2);
+					color: var(--sc_txt_btn__secondary);
+				}
+			</style>
+			<script>
+				function getDecimalPosition(value) {
+					const strVal = String(value);
+					if (strVal.indexOf('.') !== -1) {
+						return ((strVal.length - 1) - strVal.indexOf('.'));
+					}
+					return 0;
+				}
+				function splitExpression(expression) {
+					let operatorIndex = 1;
+					for (let i = 1; i < expression.length; i++) {
+						if (isOperator(expression[i])) {
+							operatorIndex = i;
+							break;
+						}
+					}
+					const operandLeft = expression.substring(0, operatorIndex);
+					const operator = expression[operatorIndex];
+					const operandRight = expression.substring(operatorIndex + 1);
+					return [operandLeft, operator, operandRight];
+				}
+				function isOperator(char) {
+					return ['+', '-', '*', '/'].includes(char);
+				}
+				const multiplication = (x, y) => {
+					const n = 10 ** (getDecimalPosition(x) + getDecimalPosition(y));
+					x = +(x + '').replace('.', '');
+					y = +(y + '').replace('.', '');
+					return (x * y) / n;
+				};
+				const addition = (x, y) => {
+					const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
+					return (multiplication(x, z) + multiplication(y, z)) / z;
+				};
+				const subtract = (x, y) => {
+					const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
+					return (multiplication(x, z) - multiplication(y, z)) / z;
+				};
+				const division = (x, y) => {
+					const decimalLengthX = getDecimalPosition(x);
+					const decimalLengthY = getDecimalPosition(y);
+					const n = 10 ** (decimalLengthY - decimalLengthX);
+					x = +(x + '').replace('.', '');
+					y = +(y + '').replace('.', '');
+					return (x / y) * n;
+				}
+				const CALC_STATE = Object.freeze({
+					Start: 0,
+					NegativeNum1: 1,
+					OperandZero1: 2,
+					OperandInteger1: 3,
+					OperandDecimal1: 4,
+					Operator: 5,
+					NegativeNum2: 6,
+					OperandZero2: 7,
+					OperandInteger2: 8,
+					OperandDecimal2: 9,
+					Result: 10,
+				});
+				const VALID_INPUTS = [
+					"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+					".", "+", "-", "*", "/", "="
+				];
+				const INVALID_INPUTS_BY_STATE = Object.freeze({
+					0: ["+", "*", "/", "="],
+					1: ["+", "-", "*", "/", "="],
+					2: ["0", "="],
+					3: ["="],
+					4: [".", "="],
+					5: ["+", "*", "/", "="],
+					6: ["+", "-", "*", "/", "="],
+					7: ["0"],
+					8: [],
+					9: ["."],
+					10: ["="],
+				})
+				class Calculator {
+					constructor() {
+						this._expression = '';
+						this._label = '';
+						this._state = CALC_STATE.Start;
+					}
+					get expression() {
+						return this._expression;
+					}
+					get label() {
+						return this._label
+					}
+					push(input) {
+						if ((!VALID_INPUTS.includes(input)) || (INVALID_INPUTS_BY_STATE[this._state].includes(input))) {
+							return false;
+						}
+						switch (this._state) {
+							case CALC_STATE.Start:
+								switch (input) {
+									case "0":
+										this._expression += input;
+										this._state = CALC_STATE.OperandZero1;
+										break;
+									case "-":
+										this._expression += input;
+										this._state = CALC_STATE.NegativeNum1;
+										break;
+									case ".":
+										this._expression += "0";
+										this._expression += input;
+										this._state = CALC_STATE.OperandDecimal1;
+										break;
+									default:
+										this._expression += input;
+										this._state = CALC_STATE.OperandInteger1;
+								}
+								break;
+							case CALC_STATE.NegativeNum1:
+								switch (input) {
+									case "0":
+										this._expression += input;
+										this._state = CALC_STATE.OperandZero1;
+										break;
+									case ".":
+										this._expression += "0";
+										this._expression += input;
+										this._state = CALC_STATE.OperandDecimal1;
+										break;
+									default:
+										this._expression += input;
+										this._state = CALC_STATE.OperandInteger1;
+								}
+								break;
+							case CALC_STATE.OperandZero1:
+								switch (input) {
+									case ".":
+										this._expression += input;
+										this._state = CALC_STATE.OperandDecimal1;
+										break;
+									case "+":
+									case "-":
+									case "*":
+									case "/":
+										this._expression += input;
+										this._state = CALC_STATE.Operator;
+										break;
+									default:
+										this._expression = this._expression.slice(0, -1);
+										this._expression += input;
+										this._state = CALC_STATE.OperandInteger1;
+								}
+								break;
+							case CALC_STATE.OperandInteger1:
+								switch (input) {
+									case ".":
+										this._expression += input;
+										this._state = CALC_STATE.OperandDecimal1;
+										break;
+									case "+":
+									case "-":
+									case "*":
+									case "/":
+										this._expression += input;
+										this._state = CALC_STATE.Operator;
+										break;
+									default:
+										this._expression += input;
+								}
+								break;
+							case CALC_STATE.OperandDecimal1:
+								switch (input) {
+									case "+":
+									case "-":
+									case "*":
+									case "/":
+										this._expression += input;
+										this._state = CALC_STATE.Operator;
+										break;
+									default:
+										this._expression += input;
+								}
+								break;
+							case CALC_STATE.Operator:
+								switch (input) {
+									case "0":
+										this._expression += input;
+										this._state = CALC_STATE.OperandZero2;
+										break;
+									case ".":
+										this._expression += "0";
+										this._expression += input;
+										this._state = CALC_STATE.OperandDecimal2;
+										break;
+									case "-":
+										this._expression += input;
+										this._state = CALC_STATE.NegativeNum2;
+										break;
+									case "+":
+									case "*":
+									case "/":
+										this._expression = this._expression.slice(0, -1);
+										this._expression += input;
+										break;
+									default:
+										this._expression += input;
+										this._state = CALC_STATE.OperandInteger2;
+								}
+								break;
+							case CALC_STATE.NegativeNum2:
+								switch (input) {
+									case "0":
+										this._expression += input;
+										this._state = CALC_STATE.OperandZero2;
+										break;
+									case ".":
+										this._expression += "0";
+										this._expression += input;
+										this._state = CALC_STATE.OperandDecimal2;
+										break;
+									default:
+										this._expression += input;
+										this._state = CALC_STATE.OperandInteger2;
+								}
+								break;
+							case CALC_STATE.OperandZero2:
+								switch (input) {
+									case ".":
+										this._expression += input;
+										this._state = CALC_STATE.OperandDecimal2;
+										break;
+									case "=":
+										this._label = this._expression;
+										this._expression = this.calculate();
+										this._state = CALC_STATE.Result;
+										break;
+									case "+":
+									case "-":
+									case "*":
+									case "/":
+										this._label = this._expression;
+										this._expression = this.calculate();
+										this._expression += input;
+										this._state = CALC_STATE.Operator;
+										break;
+									default:
+										this._expression = this._expression.slice(0, -1);
+										this._expression += input;
+										this._state = CALC_STATE.OperandInteger2;
+								}
+								break;
+							case CALC_STATE.OperandInteger2:
+								switch (input) {
+									case ".":
+										this._expression += input;
+										this._state = CALC_STATE.OperandDecimal2;
+										break;
+									case "=":
+										this._label = this._expression;
+										this._expression = this.calculate();
+										this._state = CALC_STATE.Result;
+										break;
+									case "+":
+									case "-":
+									case "*":
+									case "/":
+										this._label = this._expression;
+										this._expression = this.calculate();
+										this._expression += input;
+										this._state = CALC_STATE.Operator;
+										break;
+									default:
+										this._expression += input;
+								}
+								break;
+							case CALC_STATE.OperandDecimal2:
+								switch (input) {
+									case "=":
+										this._label = this._expression;
+										this._expression = this.calculate();
+										this._state = CALC_STATE.Result;
+										break;
+									case "+":
+									case "-":
+									case "*":
+									case "/":
+										this._label = this._expression;
+										this._expression = this.calculate();
+										this._expression += input;
+										this._state = CALC_STATE.Operator;
+										break;
+									default:
+										this._expression += input;
+								}
+								break;
+							case CALC_STATE.Result:
+								switch (input) {
+									case "+":
+									case "-":
+									case "*":
+									case "/":
+										this._expression += input;
+										this._state = CALC_STATE.Operator;
+										break;
+									case ".":
+										this._label = '';
+										this._expression = "0";
+										this._expression += input;
+										this._state = CALC_STATE.OperandDecimal1;
+										break;
+									case "0":
+										this._label = '';
+										this._expression = input;
+										this._state = CALC_STATE.OperandZero1;
+										break;
+									default:
+										this._label = '';
+										this._expression = input;
+										this._state = CALC_STATE.OperandInteger1;
+								}
+								break;
+							default:
+								console.error(`無効なステートが検出されました ${this._state}`);
+						}
+						return true;
+					}
+					calculate() {
+						let [strOpeLeft, operator, strOpeRight] = splitExpression(this._expression);
+						let calcResult = 0;
+						switch (operator) {
+							case '+':
+								try {
+									calcResult = addition(strOpeLeft, strOpeRight)
+								} catch (error) {
+									this._label = `Error: ${error.message}`;
+									calcResult = NaN;
+								}
+								break;
+							case '-':
+								try {
+									calcResult = subtract(strOpeLeft, strOpeRight);
+								} catch (error) {
+									this._label = `Error: ${error.message}`;
+									calcResult = NaN;
+								}
+								break;
+							case '*':
+								try {
+									calcResult = multiplication(strOpeLeft, strOpeRight);
+								} catch (error) {
+									this._label = `Error: ${error.message}`;
+									calcResult = NaN;
+								}
+								break;
+							case '/':
+								try {
+									calcResult = division(strOpeLeft, strOpeRight);
+								} catch (error) {
+									this._label = `Error: ${error.message}`;
+									calcResult = NaN;
+								}
+								break;
+							default:
+								console.log(`不明な演算子が検出されました。 operator: ${operator}`);
+						}
+						return calcResult;
+					}
+					reset() {
+						this._state = CALC_STATE.Start;
+						this._expression = '';
+						this._label = '';
+					}
+					back() {
+						if ((this._state !== CALC_STATE.Result) && (this._expression.length >= 1)) {
+							const expr = this._expression.slice(0, -1);
+							this._label = '';
+							this._expression = '';
+							this._state = CALC_STATE.Start;
+							if (expr.length >= 1) {
+								for (var i = 0; i < expr.length; i++) {
+									this.push(expr[i]);
+								}
+							}
+							return true;
+						} else {
+							return false;
+						}
+					}
+					copy() {
+						navigator.clipboard
+							.writeText(this._expression)
+							.then(
+								feedbackOK()
+							)
+							.catch(e => {
+								console.error(e);
+								feedbackNG();
+							});
+					}
+				}
+				const calculator = new Calculator();
+				const b01_calcLabel = document.querySelector('#b01js_label');
+				const b01_calcOutput = document.querySelector('#b01js_output');
+				const b01_calcBtn1 = document.querySelector('#b01js_1');
+				const b01_calcBtn2 = document.querySelector('#b01js_2');
+				const b01_calcBtn3 = document.querySelector('#b01js_3');
+				const b01_calcBtn4 = document.querySelector('#b01js_4');
+				const b01_calcBtn5 = document.querySelector('#b01js_5');
+				const b01_calcBtn6 = document.querySelector('#b01js_6');
+				const b01_calcBtn7 = document.querySelector('#b01js_7');
+				const b01_calcBtn8 = document.querySelector('#b01js_8');
+				const b01_calcBtn9 = document.querySelector('#b01js_9');
+				const b01_calcBtn0 = document.querySelector('#b01js_0');
+				const b01_calcBtnDecimalPoint = document.querySelector('#b01js_DecimalPoint');
+				const b01_calcBtnAdd = document.querySelector('#b01js_Add');
+				const b01_calcBtnSubtract = document.querySelector('#b01js_Subtract');
+				const b01_calcBtnMultiply = document.querySelector('#b01js_Multiply');
+				const b01_calcBtnDevide = document.querySelector('#b01js_Divide');
+				const b01_calcBtnEqual = document.querySelector('#b01js_Equal');
+				const b01_calcBtns = [
+					b01_calcBtn1, b01_calcBtn2, b01_calcBtn3, b01_calcBtn4, b01_calcBtn5,
+					b01_calcBtn6, b01_calcBtn7, b01_calcBtn8, b01_calcBtn9, b01_calcBtn0,
+					b01_calcBtnDecimalPoint, b01_calcBtnAdd, b01_calcBtnSubtract,
+					b01_calcBtnMultiply, b01_calcBtnDevide, b01_calcBtnEqual,
+				];
+				for (const btn of b01_calcBtns) {
+					btn.addEventListener("click", (e) => {
+						if (calculator.push(e.target.getAttribute('data-calc')) === true) {
+							b01_calcOutput.textContent = calculator.expression;
+							b01_calcLabel.textContent = calculator.label;
+							feedbackOK();
+						} else {
+							b01_calcOutput.textContent = calculator.expression;
+							b01_calcLabel.textContent = '不正な入力です';
+							feedbackNG();
+						}
+					})
+				}
+				const b01_calcBtnAllClear = document.querySelector('#b01js_AllClear');
+				b01_calcBtnAllClear.addEventListener("click", () => {
+					calculator.reset();
+					b01_calcOutput.textContent = calculator.expression;
+					b01_calcLabel.textContent = calculator.label;
+					feedbackOK();
+				})
+				const b01_calcBtnBackSpace = document.querySelector('#b01js_BackSpace');
+				b01_calcBtnBackSpace.addEventListener("click", () => {
+					if (calculator.back() == true) {
+						b01_calcOutput.textContent = calculator.expression;
+						b01_calcLabel.textContent = calculator.label;
+						feedbackOK();
+					} else {
+						feedbackNG();
+					}
+				});
+				const b01_calcBtnCopy = document.querySelector('#b01js_Copy');
+				b01_calcBtnCopy.addEventListener("click", () => {
+					calculator.copy();
+				});
+			</script>
+		</li><!-- /.bl_funcList_item -->
+	</ul>
+
+
+
+
+
+	<h3 class="el_heading_lv3 el_heading__iconLabel">
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true">
+			<path d="m6 12.674v1.8877h10.382v20.764h1.8877v-20.764h10.382v-1.8877h-12.27z" />
+			<path
+				d="m26.899 20.225v1.8877h5.663v9.4383s0 3.7753 3.7753 3.7753h5.663v-1.8877h-5.663s-1.8877 0-1.8877-1.8877v-9.4383h7.5506v-1.8877h-7.5506v-3.7753h-1.8877v3.7753z" />
+			<rect x="3" y="3" width="42" height="42" ry="4.5" fill="none" stroke="currentColor" stroke-linejoin="round"
+				stroke-width="2" />
+		</svg>
+		<span>
+			テキスト
+		</span>
+	</h3><!-- /.el_heading_lv3.el_heading__iconLabel -->
+
+
+
+
+
+	<ul class="bl_funcList">
+		<!-- [c01] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog" aria-controls="c01js_dialog_textCounter">
+				文字列カウンタ
+			</button><!-- /.js_btnShowDialog -->
+
+			<dialog class="ly_dialog" id="c01js_dialog_textCounter" aria-labelledby="c01_title" autofocus>
+				<div class="c01ly_textCounter">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="c01_title">テキストカウンター</h2>
+						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="c01js_dialog_textCounter" aria-describedby="c01_title">
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<form class="c01bl_form">
+						<button type="button" class="el_btn el_btn__secondary" id="c01js_pasteFromClipboard">
+							クリップボードからペースト
+						</button>
+						<div class="c01bl_form_block">
+							<label for="c01js_inputArea" class="c01bl_form_label">入力テキスト</label>
+							<textarea name="textcounter" class="c01bl_form_textArea" id="c01js_inputArea"></textarea>
+						</div>
+						<!-- /.c01bl_form_block -->
+						<button type="button" class="el_btn el_btn__tertiary" id="c01js_clearTextArea">
+							クリア
+						</button>
+						<button type="button" class="el_btn el_btn__primary" id="c01js_countBtn">計算</button>
+						<output class="c01bl_form_output" id="c01js_output"></output>
+					</form><!-- /.c01bl_form -->
+				</div><!-- /.c01ly_textCounter -->
+			</dialog><!-- /.ly_dialog -->
+			<style>
+				.c01ly_textCounter {
+					padding: 8px;
+					width: 100dvw;
+					height: 100dvh;
+					display: flex;
+					flex-flow: column nowrap;
+				}
+
+				.c01bl_form {
+					display: flex;
+					flex-flow: column nowrap;
+					align-items: center;
+				}
+
+				.c01bl_form_block {
+					display: block;
+					width: 100%;
+					margin: 1rem 0;
+				}
+
+				.c01bl_form_label {
+					display: block;
+					align-self: flex-start;
+				}
+
+				.c01bl_form_textArea {
+					display: block;
+					width: 100%;
+					min-height: 10rem;
+				}
+
+				.c01bl_form_output {
+					display: block;
+					width: 100%;
+					margin: 1rem 0;
+				}
+			</style>
+			<script>
+				const c01_textArea = document.querySelector('#c01js_inputArea');
+				const c01_output = document.querySelector('#c01js_output');
+				const c01_btnCalc = document.querySelector('#c01js_countBtn');
+				const c01_btnPasteFromClipboard = document.querySelector('#c01js_pasteFromClipboard');
+				c01_btnPasteFromClipboard.addEventListener('click', () => {
+					navigator.clipboard
+						.readText()
+						.then((clipText) => {
+							c01_textArea.value = '';
+							c01_textArea.value = clipText;
+							c01_textArea.rows = clipText.split(/\n/gmsu).length;
+							c01_btnCalc.focus();
+							feedbackOK();
+						})
+						.catch(e => {
+							console.error(e);
+							feedbackNG();
+						});
+				})
+				c01_btnCalc.addEventListener('click', () => {
+					c01_output.value = '';
+					const inputText = c01_textArea.value;
+					const inputTextArray = inputText.split(/[\r|\n|\r\n]+/gmsu);
+					let counterAllChars = 0;
+					let counterEmptyRow = 0;
+					let counterMaxChars = 0;
+					const regexWhiteSpace = /\s/gui;
+					let counterWhiteSpace = 0;
+					const regexTab = /\t/gui;
+					let counterTab = 0;
+					const regexSpace = /[ |　]/gui;
+					let counterSpace = 0;
+					for (let t of inputTextArray) {
+						if (t === '') counterEmptyRow += 1;
+						const chars = [...new Intl.Segmenter('ja', { granularity: 'grapheme' }).segment(t)].length;
+						counterAllChars += chars;
+						if (chars > counterMaxChars) counterMaxChars = chars;
+						const matchesWhiteSpace = t.match(regexWhiteSpace);
+						if (matchesWhiteSpace) counterWhiteSpace += matchesWhiteSpace.length;
+						const matchesTab = t.match(regexTab);
+						if (matchesTab) counterTab += matchesTab.length;
+						const matchesSpace = t.match(regexSpace);
+						if (matchesSpace) counterSpace += matchesSpace.length;
+					}
+					let dataArray = [['項目', '数']];
+					dataArray.push(['文字', counterAllChars]);
+					dataArray.push(['文字（空白除く）', counterAllChars - counterWhiteSpace]);
+					dataArray.push(['空白文字', counterWhiteSpace]);
+					dataArray.push(['Tab文字', counterTab]);
+					dataArray.push(['スペース', counterSpace]);
+					dataArray.push(['最大文字（行単位）', counterMaxChars]);
+					dataArray.push(['行', inputTextArray.length]);
+					dataArray.push(['空行', counterEmptyRow]);
+					c01_output.appendChild(createTable(dataArray));
+					feedbackOK();
+				})
+				const c01_btnClear = document.querySelector('#c01js_clearTextArea');
+				c01_btnClear.addEventListener('click', () => {
+					c01_output.value = '';
+					c01_textArea.value = '';
+					c01_textArea.rows = null;
+					feedbackOK();
+				})
+			</script>
+		</li><!-- /.bl_funcList_item -->
+	</ul>
+
+
+
+
+
+	<h3 class="el_heading_lv3 el_heading__iconLabel">
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true">
+			<rect x="3" y="3" width="42" height="9" fill="#949497" stroke="currentColor" stroke-width="2" />
+			<path d="m7.5 16.5v3h33v-3z" />
+			<path d="m7.5 25.5v3h33v-3z" />
+			<path d="m7.5 34.5v3h33v-3z" />
+			<circle cx="31.5" cy="22.5" r="3" fill="#ff4b36" />
+			<path d="m3 12v33h36l6-6v-27z" fill="none" stroke="currentColor" stroke-width="2" />
+			<path d="m39 45-1.5-4.5 7.5-1.5z" fill="#949497" stroke="currentColor" stroke-linejoin="round" stroke-width="2" />
+		</svg>
+		<span>
+			暦・日付・期間
+		</span>
+	</h3><!-- /.el_heading_lv3.el_heading__iconLabel -->
+
+
+
+
+
+	<ul class="bl_funcList">
+		<!-- [d99] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog" aria-controls="d99js_dialog_chronoTable">
+				西暦↔和暦 早見表
+			</button><!-- /.js_btnShowDialog -->
+
+			<dialog class="ly_dialog" id="d99js_dialog_chronoTable" aria-labelledby="d99_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="d99_title">西暦↔和暦 早見表</h2>
+						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="d99js_dialog_chronoTable" aria-describedby="d99_title">
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<details class="bl_accordion">
+						<summary class="bl_accordion_summary">
+							<span>1868〜1989年</span>
+						</summary><!-- /.bl_accordion_summary -->
+						<div class="bl_table bl_table__horizontal">
+							<table>
+								<thead>
+									<tr>
+										<th scope="row">西暦</th>
+										<th>明治</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1868年</th>
+										<td>明治1年</td>
+									</tr>
+									<tr>
+										<th scope="row">1869年</th>
+										<td>明治2年</td>
+									</tr>
+									<tr>
+										<th scope="row">1870年</th>
+										<td>明治3年</td>
+									</tr>
+									<tr>
+										<th scope="row">1871年</th>
+										<td>明治4年</td>
+									</tr>
+									<tr>
+										<th scope="row">1872年</th>
+										<td>明治5年</td>
+									</tr>
+									<tr>
+										<th scope="row">1873年</th>
+										<td>明治6年</td>
+									</tr>
+									<tr>
+										<th scope="row">1874年</th>
+										<td>明治7年</td>
+									</tr>
+									<tr>
+										<th scope="row">1875年</th>
+										<td>明治8年</td>
+									</tr>
+									<tr>
+										<th scope="row">1876年</th>
+										<td>明治9年</td>
+									</tr>
+									<tr>
+										<th scope="row">1877年</th>
+										<td>明治10年</td>
+									</tr>
+									<tr>
+										<th scope="row">1878年</th>
+										<td>明治11年</td>
+									</tr>
+									<tr>
+										<th scope="row">1879年</th>
+										<td>明治12年</td>
+									</tr>
+									<tr>
+										<th scope="row">1880年</th>
+										<td>明治13年</td>
+									</tr>
+									<tr>
+										<th scope="row">1881年</th>
+										<td>明治14年</td>
+									</tr>
+									<tr>
+										<th scope="row">1882年</th>
+										<td>明治15年</td>
+									</tr>
+									<tr>
+										<th scope="row">1883年</th>
+										<td>明治16年</td>
+									</tr>
+									<tr>
+										<th scope="row">1884年</th>
+										<td>明治17年</td>
+									</tr>
+									<tr>
+										<th scope="row">1885年</th>
+										<td>明治18年</td>
+									</tr>
+									<tr>
+										<th scope="row">1886年</th>
+										<td>明治19年</td>
+									</tr>
+									<tr>
+										<th scope="row">1887年</th>
+										<td>明治20年</td>
+									</tr>
+									<tr>
+										<th scope="row">1888年</th>
+										<td>明治21年</td>
+									</tr>
+									<tr>
+										<th scope="row">1889年</th>
+										<td>明治22年</td>
+									</tr>
+									<tr>
+										<th scope="row">1890年</th>
+										<td>明治23年</td>
+									</tr>
+									<tr>
+										<th scope="row">1891年</th>
+										<td>明治24年</td>
+									</tr>
+									<tr>
+										<th scope="row">1892年</th>
+										<td>明治25年</td>
+									</tr>
+									<tr>
+										<th scope="row">1893年</th>
+										<td>明治26年</td>
+									</tr>
+									<tr>
+										<th scope="row">1894年</th>
+										<td>明治27年</td>
+									</tr>
+									<tr>
+										<th scope="row">1895年</th>
+										<td>明治28年</td>
+									</tr>
+									<tr>
+										<th scope="row">1896年</th>
+										<td>明治29年</td>
+									</tr>
+									<tr>
+										<th scope="row">1897年</th>
+										<td>明治30年</td>
+									</tr>
+									<tr>
+										<th scope="row">1898年</th>
+										<td>明治31年</td>
+									</tr>
+									<tr>
+										<th scope="row">1899年</th>
+										<td>明治32年</td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!-- /.bl_table -->
+					</details><!-- /.bl_accordion -->
+					<details class="bl_accordion">
+						<summary class="bl_accordion_summary">
+							<span>1900〜1949年</span>
+						</summary><!-- /.bl_accordion_summary -->
+						<div class="bl_table bl_table__horizontal">
+							<table>
+								<thead>
+									<tr>
+										<th scope="row">西暦</th>
+										<th>明治</th>
+										<th>大正</th>
+										<th>昭和</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1900年</th>
+										<td>明治33年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1901年</th>
+										<td>明治34年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1902年</th>
+										<td>明治35年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1903年</th>
+										<td>明治36年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1904年</th>
+										<td>明治37年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1905年</th>
+										<td>明治38年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1906年</th>
+										<td>明治39年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1907年</th>
+										<td>明治40年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1908年</th>
+										<td>明治41年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1909年</th>
+										<td>明治42年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1910年</th>
+										<td>明治43年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1911年</th>
+										<td>明治44年</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1912年</th>
+										<td>明治45年<a class="el_link" href="#meiji-taisyo">※</a></td>
+										<td>大正1年<a class="el_link" href="#meiji-taisyo">※</a></td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1913年</th>
+										<td></td>
+										<td>大正2年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1914年</th>
+										<td></td>
+										<td>大正3年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1915年</th>
+										<td></td>
+										<td>大正4年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1916年</th>
+										<td></td>
+										<td>大正5年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1917年</th>
+										<td></td>
+										<td>大正6年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1918年</th>
+										<td></td>
+										<td>大正7年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1919年</th>
+										<td></td>
+										<td>大正8年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1920年</th>
+										<td></td>
+										<td>大正9年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1921年</th>
+										<td></td>
+										<td>大正10年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1922年</th>
+										<td></td>
+										<td>大正11年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1923年</th>
+										<td></td>
+										<td>大正12年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1924年</th>
+										<td></td>
+										<td>大正13年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1925年</th>
+										<td></td>
+										<td>大正14年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1926年</th>
+										<td></td>
+										<td>大正15年<a class="el_link" href="#taisyo-syowa">※</a></td>
+										<td>昭和1年<a class="el_link" href="#taisyo-syowa">※</a></td>
+									</tr>
+									<tr>
+										<th scope="row">1927年</th>
+										<td></td>
+										<td></td>
+										<td>昭和2年</td>
+									</tr>
+									<tr>
+										<th scope="row">1928年</th>
+										<td></td>
+										<td></td>
+										<td>昭和3年</td>
+									</tr>
+									<tr>
+										<th scope="row">1929年</th>
+										<td></td>
+										<td></td>
+										<td>昭和4年</td>
+									</tr>
+									<tr>
+										<th scope="row">1930年</th>
+										<td></td>
+										<td></td>
+										<td>昭和5年</td>
+									</tr>
+									<tr>
+										<th scope="row">1931年</th>
+										<td></td>
+										<td></td>
+										<td>昭和6年</td>
+									</tr>
+									<tr>
+										<th scope="row">1932年</th>
+										<td></td>
+										<td></td>
+										<td>昭和7年</td>
+									</tr>
+									<tr>
+										<th scope="row">1933年</th>
+										<td></td>
+										<td></td>
+										<td>昭和8年</td>
+									</tr>
+									<tr>
+										<th scope="row">1934年</th>
+										<td></td>
+										<td></td>
+										<td>昭和9年</td>
+									</tr>
+									<tr>
+										<th scope="row">1935年</th>
+										<td></td>
+										<td></td>
+										<td>昭和10年</td>
+									</tr>
+									<tr>
+										<th scope="row">1936年</th>
+										<td></td>
+										<td></td>
+										<td>昭和11年</td>
+									</tr>
+									<tr>
+										<th scope="row">1937年</th>
+										<td></td>
+										<td></td>
+										<td>昭和12年</td>
+									</tr>
+									<tr>
+										<th scope="row">1938年</th>
+										<td></td>
+										<td></td>
+										<td>昭和13年</td>
+									</tr>
+									<tr>
+										<th scope="row">1939年</th>
+										<td></td>
+										<td></td>
+										<td>昭和14年</td>
+									</tr>
+									<tr>
+										<th scope="row">1940年</th>
+										<td></td>
+										<td></td>
+										<td>昭和15年</td>
+									</tr>
+									<tr>
+										<th scope="row">1941年</th>
+										<td></td>
+										<td></td>
+										<td>昭和16年</td>
+									</tr>
+									<tr>
+										<th scope="row">1942年</th>
+										<td></td>
+										<td></td>
+										<td>昭和17年</td>
+									</tr>
+									<tr>
+										<th scope="row">1943年</th>
+										<td></td>
+										<td></td>
+										<td>昭和18年</td>
+									</tr>
+									<tr>
+										<th scope="row">1944年</th>
+										<td></td>
+										<td></td>
+										<td>昭和19年</td>
+									</tr>
+									<tr>
+										<th scope="row">1945年</th>
+										<td></td>
+										<td></td>
+										<td>昭和20年</td>
+									</tr>
+									<tr>
+										<th scope="row">1946年</th>
+										<td></td>
+										<td></td>
+										<td>昭和21年</td>
+									</tr>
+									<tr>
+										<th scope="row">1947年</th>
+										<td></td>
+										<td></td>
+										<td>昭和22年</td>
+									</tr>
+									<tr>
+										<th scope="row">1948年</th>
+										<td></td>
+										<td></td>
+										<td>昭和23年</td>
+									</tr>
+									<tr>
+										<th scope="row">1949年</th>
+										<td></td>
+										<td></td>
+										<td>昭和24年</td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!-- /.bl_table -->
+						<dl class="bl_descList">
+							<dt id="meiji-taisyo">1912年</dt>
+							<dd>大正元年は、7月30日から開始</dd>
+							<dt id="taisyo-syowa">1926年</dt>
+							<dd>昭和元年は、12月25日から開始</dd>
+						</dl><!-- /.bl_descList -->
+					</details><!-- /.bl_accordion -->
+					<details class="bl_accordion">
+						<summary class="bl_accordion_summary">
+							<span>1950〜1999年</span>
+						</summary><!-- /.bl_accordion_summary -->
+						<div class="bl_table bl_table__horizontal">
+							<table>
+								<thead>
+									<tr>
+										<th scope="row">西暦</th>
+										<th>昭和</th>
+										<th>平成</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1950年</th>
+										<td>昭和25年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1951年</th>
+										<td>昭和26年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1952年</th>
+										<td>昭和27年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1953年</th>
+										<td>昭和28年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1954年</th>
+										<td>昭和29年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1955年</th>
+										<td>昭和30年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1956年</th>
+										<td>昭和31年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1957年</th>
+										<td>昭和32年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1958年</th>
+										<td>昭和33年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1959年</th>
+										<td>昭和34年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1960年</th>
+										<td>昭和35年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1961年</th>
+										<td>昭和36年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1962年</th>
+										<td>昭和37年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1963年</th>
+										<td>昭和38年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1964年</th>
+										<td>昭和39年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1965年</th>
+										<td>昭和40年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1966年</th>
+										<td>昭和41年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1967年</th>
+										<td>昭和42年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1968年</th>
+										<td>昭和43年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1969年</th>
+										<td>昭和44年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1970年</th>
+										<td>昭和45年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1971年</th>
+										<td>昭和46年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1972年</th>
+										<td>昭和47年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1973年</th>
+										<td>昭和48年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1974年</th>
+										<td>昭和49年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1975年</th>
+										<td>昭和50年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1976年</th>
+										<td>昭和51年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1977年</th>
+										<td>昭和52年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1978年</th>
+										<td>昭和53年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1979年</th>
+										<td>昭和54年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1980年</th>
+										<td>昭和55年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1981年</th>
+										<td>昭和56年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1982年</th>
+										<td>昭和57年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1983年</th>
+										<td>昭和58年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1984年</th>
+										<td>昭和59年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1985年</th>
+										<td>昭和60年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1986年</th>
+										<td>昭和61年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1987年</th>
+										<td>昭和62年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1988年</th>
+										<td>昭和63年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">1989年</th>
+										<td>昭和64年<a class="el_link" href="#syowa-heisei">※</a></td>
+										<td>平成1年<a class="el_link" href="#syowa-heisei">※</a></td>
+									</tr>
+									<tr>
+										<th scope="row">1990年</th>
+										<td></td>
+										<td>平成2年</td>
+									</tr>
+									<tr>
+										<th scope="row">1991年</th>
+										<td></td>
+										<td>平成3年</td>
+									</tr>
+									<tr>
+										<th scope="row">1992年</th>
+										<td></td>
+										<td>平成4年</td>
+									</tr>
+									<tr>
+										<th scope="row">1993年</th>
+										<td></td>
+										<td>平成5年</td>
+									</tr>
+									<tr>
+										<th scope="row">1994年</th>
+										<td></td>
+										<td>平成6年</td>
+									</tr>
+									<tr>
+										<th scope="row">1995年</th>
+										<td></td>
+										<td>平成7年</td>
+									</tr>
+									<tr>
+										<th scope="row">1996年</th>
+										<td></td>
+										<td>平成8年</td>
+									</tr>
+									<tr>
+										<th scope="row">1997年</th>
+										<td></td>
+										<td>平成9年</td>
+									</tr>
+									<tr>
+										<th scope="row">1998年</th>
+										<td></td>
+										<td>平成10年</td>
+									</tr>
+									<tr>
+										<th scope="row">1999年</th>
+										<td></td>
+										<td>平成11年</td>
+									</tr>
+									</tfoot>
+							</table>
+						</div><!-- /.bl_table -->
+						<dl class="bl_descList">
+							<dt id="syowa-heisei">1989年</dt>
+							<dd>平成元年は、1月8日から開始</dd>
+						</dl><!-- /.bl_descList -->
+					</details><!-- /.bl_accordion -->
+					<details class="bl_accordion">
+						<summary class="bl_accordion_summary">
+							<span>2000〜2050年</span>
+						</summary><!-- /.bl_accordion_summary -->
+						<div class="bl_table bl_table__horizontal">
+							<table>
+								<thead>
+									<tr>
+										<th scope="row">西暦</th>
+										<th>平成</th>
+										<th>令和</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">2000年</th>
+										<td>平成12年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2001年</th>
+										<td>平成13年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2002年</th>
+										<td>平成14年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2003年</th>
+										<td>平成15年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2004年</th>
+										<td>平成16年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2005年</th>
+										<td>平成17年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2006年</th>
+										<td>平成18年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2007年</th>
+										<td>平成19年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2008年</th>
+										<td>平成20年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2009年</th>
+										<td>平成21年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2010年</th>
+										<td>平成22年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2011年</th>
+										<td>平成23年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2012年</th>
+										<td>平成24年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2013年</th>
+										<td>平成25年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2014年</th>
+										<td>平成26年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2015年</th>
+										<td>平成27年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2016年</th>
+										<td>平成28年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2017年</th>
+										<td>平成29年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2018年</th>
+										<td>平成30年</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">2019年</th>
+										<td>平成31年<a class="el_link" href="#heisei-reiwa">※</a></td>
+										<td>令和1年<a class="el_link" href="#heisei-reiwa">※</a></td>
+									</tr>
+									<tr>
+										<th scope="row">2020年</th>
+										<td>（平成32年）</td>
+										<td>令和2年</td>
+									</tr>
+									<tr>
+										<th scope="row">2021年</th>
+										<td>（平成33年）</td>
+										<td>令和3年</td>
+									</tr>
+									<tr>
+										<th scope="row">2022年</th>
+										<td>（平成34年）</td>
+										<td>令和4年</td>
+									</tr>
+									<tr>
+										<th scope="row">2023年</th>
+										<td>（平成35年）</td>
+										<td>令和5年</td>
+									</tr>
+									<tr>
+										<th scope="row">2024年</th>
+										<td>（平成36年）</td>
+										<td>令和6年</td>
+									</tr>
+									<tr>
+										<th scope="row">2025年</th>
+										<td>（平成37年）</td>
+										<td>令和7年</td>
+									</tr>
+									<tr>
+										<th scope="row">2026年</th>
+										<td>（平成38年）</td>
+										<td>令和8年</td>
+									</tr>
+									<tr>
+										<th scope="row">2027年</th>
+										<td>（平成39年）</td>
+										<td>令和9年</td>
+									</tr>
+									<tr>
+										<th scope="row">2028年</th>
+										<td>（平成40年）</td>
+										<td>令和10年</td>
+									</tr>
+									<tr>
+										<th scope="row">2029年</th>
+										<td></td>
+										<td>令和11年</td>
+									</tr>
+									<tr>
+										<th scope="row">2030年</th>
+										<td></td>
+										<td>令和12年</td>
+									</tr>
+									<tr>
+										<th scope="row">2031年</th>
+										<td></td>
+										<td>令和13年</td>
+									</tr>
+									<tr>
+										<th scope="row">2032年</th>
+										<td></td>
+										<td>令和14年</td>
+									</tr>
+									<tr>
+										<th scope="row">2033年</th>
+										<td></td>
+										<td>令和15年</td>
+									</tr>
+									<tr>
+										<th scope="row">2034年</th>
+										<td></td>
+										<td>令和16年</td>
+									</tr>
+									<tr>
+										<th scope="row">2035年</th>
+										<td></td>
+										<td>令和17年</td>
+									</tr>
+									<tr>
+										<th scope="row">2036年</th>
+										<td></td>
+										<td>令和18年</td>
+									</tr>
+									<tr>
+										<th scope="row">2037年</th>
+										<td></td>
+										<td>令和19年</td>
+									</tr>
+									<tr>
+										<th scope="row">2038年</th>
+										<td></td>
+										<td>令和20年</td>
+									</tr>
+									<tr>
+										<th scope="row">2039年</th>
+										<td></td>
+										<td>令和21年</td>
+									</tr>
+									<tr>
+										<th scope="row">2040年</th>
+										<td></td>
+										<td>令和22年</td>
+									</tr>
+									<tr>
+										<th scope="row">2041年</th>
+										<td></td>
+										<td>令和23年</td>
+									</tr>
+									<tr>
+										<th scope="row">2042年</th>
+										<td></td>
+										<td>令和24年</td>
+									</tr>
+									<tr>
+										<th scope="row">2043年</th>
+										<td></td>
+										<td>令和25年</td>
+									</tr>
+									<tr>
+										<th scope="row">2044年</th>
+										<td></td>
+										<td>令和26年</td>
+									</tr>
+									<tr>
+										<th scope="row">2045年</th>
+										<td></td>
+										<td>令和27年</td>
+									</tr>
+									<tr>
+										<th scope="row">2046年</th>
+										<td></td>
+										<td>令和28年</td>
+									</tr>
+									<tr>
+										<th scope="row">2047年</th>
+										<td></td>
+										<td>令和29年</td>
+									</tr>
+									<tr>
+										<th scope="row">2048年</th>
+										<td></td>
+										<td>令和30年</td>
+									</tr>
+									<tr>
+										<th scope="row">2049年</th>
+										<td></td>
+										<td>令和31年</td>
+									</tr>
+									<tr>
+										<th scope="row">2050年</th>
+										<td></td>
+										<td>令和32年</td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!-- /.bl_table -->
+						<dl class="bl_descList">
+							<dt id="heisei-reiwa">2019年</dt>
+							<dd>令和元年は、5月1日から開始</dd>
+						</dl><!-- /.bl_descList -->
+					</details><!-- /.bl_accordion -->
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+		</li><!-- /.bl_funcList_item -->
+	</ul>
+
+
+	<!-- [e00] -->
+	<h3 class="el_heading_lv3 el_heading__iconLabel">
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true">
+			<path
+				d="m7.2793 2c-5.28 0-5.2793 5.2793-5.2793 5.2793v15.84h1.7598v-8.7988h17.6v8.7988h1.7598v-15.84c0-5.28-5.2793-5.2793-5.2793-5.2793zm19.721 0v1.7598h15.481c1.76 0 1.7598 1.7598 1.7598 1.7598v7.5994h-6.2411l8.0009 8.881v-16.481c0-3.52-3.5195-3.5195-3.5195-3.5195zm-19.721 1.7598h10.561c3.52 0 3.5195 3.5195 3.5195 3.5195v5.2813h-17.6v-5.2813c0-3.52 3.5195-3.5195 3.5195-3.5195zm-5.2793 22.24v16.481c0 3.52 3.5195 3.5195 3.5195 3.5195h15.48v-1.7598h-15.48c-1.76 0-1.7598-1.7598-1.7598-1.7598v-7.5997h6.2403zm22.881-1.1192v21.119h15.84s5.2793 6.98e-4 5.2793-5.2793v-1.7598s-0.0031-3.8245-3.2598-4.9629c0.84596-0.78052 1.5-1.9822 1.5-3.8379 0-5.28-5.2793-5.2793-5.2793-5.2793zm1.7598 1.7598h12.32s3.5195-4.62e-4 3.5195 3.5195-3.5195 3.5195-3.5195 3.5195h-12.32zm0 8.7988h14.08c3.52 0 3.5195 3.5215 3.5195 3.5215v1.7598c0 3.52-3.5195 3.5195-3.5195 3.5195h-14.08z"
+				stroke-linejoin="round" />
+		</svg>
+		<span>
+			単位（換算・変換）
+		</span>
+	</h3><!-- /.el_heading_lv3.el_heading__iconLabel -->
+
+	<ul class="bl_funcList">
+		<!-- [e98] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog" aria-controls="e98js_dialog_paperSize">
+				用紙サイズ 早見表
+			</button><!-- /.js_btnShowDialog -->
+
+			<dialog class="ly_dialog" id="e98js_dialog_paperSize" aria-labelledby="e98_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="e98_title">用紙サイズ 早見表</h2>
+						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog" aria-controls="e98js_dialog_paperSize"
+							aria-describedby="e98_title">
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<h3>A版（単位：mm）</h3>
+					<div class="bl_table bl_table__cross">
+						<table>
+							<thead>
+								<tr>
+									<th>用紙</th>
+									<th>長辺</th>
+									<th>短辺</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">A0</th>
+									<td>1189</td>
+									<td>841</td>
+								</tr>
+								<tr>
+									<th scope="row">A1</th>
+									<td>841</td>
+									<td>594</td>
+								</tr>
+								<tr>
+									<th scope="row">A2</th>
+									<td>594</td>
+									<td>420</td>
+								</tr>
+								<tr>
+									<th scope="row">A3</th>
+									<td>420</td>
+									<td>297</td>
+								</tr>
+								<tr>
+									<th scope="row">A4</th>
+									<td>297</td>
+									<td>210</td>
+								</tr>
+								<tr>
+									<th scope="row">A5</th>
+									<td>210</td>
+									<td>148</td>
+								</tr>
+								<tr>
+									<th scope="row">A6</th>
+									<td>148</td>
+									<td>105</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3>JIS-B版（単位：mm）</h3>
+					<div class="bl_table bl_table__cross">
+						<table>
+							<thead>
+								<tr>
+									<th>用紙</th>
+									<th>長辺</th>
+									<th>短辺</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">B0</th>
+									<td>1456</td>
+									<td>1030</td>
+								</tr>
+								<tr>
+									<th scope="row">B1</th>
+									<td>1030</td>
+									<td>728</td>
+								</tr>
+								<tr>
+									<th scope="row">B2</th>
+									<td>728</td>
+									<td>515</td>
+								</tr>
+								<tr>
+									<th scope="row">B3</th>
+									<td>515</td>
+									<td>364</td>
+								</tr>
+								<tr>
+									<th scope="row">B4</th>
+									<td>364</td>
+									<td>257</td>
+								</tr>
+								<tr>
+									<th scope="row">B5</th>
+									<td>257</td>
+									<td>182</td>
+								</tr>
+								<tr>
+									<th scope="row">B6</th>
+									<td>182</td>
+									<td>128</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+		</li><!-- /.bl_funcList_item -->
+
+		<!-- [e99] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog" aria-controls="e99js_dialog_paperRate">
+				用紙間縮尺 早見表
+			</button><!-- /.js_btnShowDialog -->
+
+			<dialog class="ly_dialog" id="e99js_dialog_paperRate" aria-labelledby="e99_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="e99_title">用紙間縮尺 早見表</h2>
+						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog" aria-controls="e99js_dialog_paperRate"
+							aria-describedby="e99_title">
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<p>
+						表側（左にある列）が入力元となる用紙サイズ、表頭（上にある行）が出力先となる用紙サイズを表します。<br>
+						両者の交点にある表体（セル）の数字が縮尺率を表し、単位は ％ です。
+					</p>
+					<p>例：表側「B0」に対し表頭「A0」の交点となる表体「82」は、「B0 サイズの紙を A0 サイズに印刷する際、その縮尺率は 82%（≒縮小）」</p>
+					<div class="bl_table bl_table__cross bl_table__exWide">
+						<table>
+							<thead>
+								<tr>
+									<th>＼</th>
+									<th>B0</th>
+									<th>A0</th>
+									<th>B1</th>
+									<th>A1</th>
+									<th>B2</th>
+									<th>A2</th>
+									<th>B3</th>
+									<th>A3</th>
+									<th>B4</th>
+									<th>A4</th>
+									<th>B5</th>
+									<th>A5</th>
+									<th>B6</th>
+									<th>A6</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">B0</th>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>82</td>
+									<td>71</td>
+									<td>58</td>
+									<td>50</td>
+									<td>41</td>
+									<td>35</td>
+									<td>29</td>
+									<td>25</td>
+									<td>20</td>
+									<td>18</td>
+									<td>14</td>
+									<td>12</td>
+									<td>10</td>
+								</tr>
+								<tr>
+									<th scope="row">A0</th>
+									<td>122</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>87</td>
+									<td>71</td>
+									<td>61</td>
+									<td>50</td>
+									<td>43</td>
+									<td>35</td>
+									<td>31</td>
+									<td>25</td>
+									<td>22</td>
+									<td>18</td>
+									<td>15</td>
+									<td>12</td>
+								</tr>
+								<tr>
+									<th scope="row">B1</th>
+									<td>141</td>
+									<td>115</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>82</td>
+									<td>71</td>
+									<td>58</td>
+									<td>50</td>
+									<td>41</td>
+									<td>35</td>
+									<td>29</td>
+									<td>25</td>
+									<td>20</td>
+									<td>18</td>
+									<td>14</td>
+								</tr>
+								<tr>
+									<th scope="row">A1</th>
+									<td>173</td>
+									<td>141</td>
+									<td>123</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>87</td>
+									<td>71</td>
+									<td>61</td>
+									<td>50</td>
+									<td>43</td>
+									<td>35</td>
+									<td>31</td>
+									<td>25</td>
+									<td>22</td>
+									<td>18</td>
+								</tr>
+								<tr>
+									<th scope="row">B2</th>
+									<td>200</td>
+									<td>163</td>
+									<td>141</td>
+									<td>115</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>82</td>
+									<td>71</td>
+									<td>58</td>
+									<td>50</td>
+									<td>41</td>
+									<td>35</td>
+									<td>29</td>
+									<td>25</td>
+									<td>20</td>
+								</tr>
+								<tr>
+									<th scope="row">A2</th>
+									<td>245</td>
+									<td>200</td>
+									<td>173</td>
+									<td>142</td>
+									<td>123</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>87</td>
+									<td>71</td>
+									<td>61</td>
+									<td>50</td>
+									<td>43</td>
+									<td>35</td>
+									<td>31</td>
+									<td>25</td>
+								</tr>
+								<tr>
+									<th scope="row">B3</th>
+									<td>283</td>
+									<td>231</td>
+									<td>200</td>
+									<td>163</td>
+									<td>141</td>
+									<td>115</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>82</td>
+									<td>71</td>
+									<td>58</td>
+									<td>50</td>
+									<td>41</td>
+									<td>35</td>
+									<td>29</td>
+								</tr>
+								<tr>
+									<th scope="row">A3</th>
+									<td>347</td>
+									<td>283</td>
+									<td>245</td>
+									<td>200</td>
+									<td>173</td>
+									<td>141</td>
+									<td>123</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>87</td>
+									<td>71</td>
+									<td>61</td>
+									<td>50</td>
+									<td>43</td>
+									<td>35</td>
+								</tr>
+								<tr>
+									<th scope="row">B4</th>
+									<td>400</td>
+									<td>327</td>
+									<td>283</td>
+									<td>231</td>
+									<td>200</td>
+									<td>163</td>
+									<td>142</td>
+									<td>115</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>82</td>
+									<td>71</td>
+									<td>58</td>
+									<td>50</td>
+									<td>41</td>
+								</tr>
+								<tr>
+									<th scope="row">A4</th>
+									<td>490</td>
+									<td>400</td>
+									<td>347</td>
+									<td>283</td>
+									<td>245</td>
+									<td>200</td>
+									<td>173</td>
+									<td>141</td>
+									<td>122</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>87</td>
+									<td>71</td>
+									<td>61</td>
+									<td>50</td>
+								</tr>
+								<tr>
+									<th scope="row">B5</th>
+									<td>566</td>
+									<td>462</td>
+									<td>400</td>
+									<td>327</td>
+									<td>283</td>
+									<td>231</td>
+									<td>200</td>
+									<td>163</td>
+									<td>141</td>
+									<td>115</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>82</td>
+									<td>71</td>
+									<td>58</td>
+								</tr>
+								<tr>
+									<th scope="row">A5</th>
+									<td>695</td>
+									<td>567</td>
+									<td>491</td>
+									<td>401</td>
+									<td>347</td>
+									<td>283</td>
+									<td>246</td>
+									<td>200</td>
+									<td>173</td>
+									<td>142</td>
+									<td>123</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>87</td>
+									<td>71</td>
+								</tr>
+								<tr>
+									<th scope="row">B6</th>
+									<td>802</td>
+									<td>655</td>
+									<td>567</td>
+									<td>463</td>
+									<td>401</td>
+									<td>327</td>
+									<td>284</td>
+									<td>231</td>
+									<td>200</td>
+									<td>164</td>
+									<td>142</td>
+									<td>116</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+									<td>82</td>
+								</tr>
+								<tr>
+									<th scope="row">A6</th>
+									<td>982</td>
+									<td>802</td>
+									<td>695</td>
+									<td>567</td>
+									<td>491</td>
+									<td>401</td>
+									<td>347</td>
+									<td>283</td>
+									<td>245</td>
+									<td>200</td>
+									<td>173</td>
+									<td>141</td>
+									<td>122</td>
+									<td style="background-color: var(--sc_bg_disabled);">＼</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<small>
+						注意：概算値であるため、参考程度にとどめてください。<br>
+						実際には、使用するスキャナやプリンターのメーカー毎の個体差や、余白等を考慮する必要があるため、少し低めになることが想定されます。
+					</small>
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+		</li><!-- /.bl_funcList_item -->
+
+	</ul>
+
+
+
+
+	<script>
+		function sanitizeHtml(str) {
+			if (typeof str === 'string') {
+				const htmlEntities = str
+					.replace(/&/g, "&amp;")
+					.replace(/</g, "&lt;")
+					.replace(/>/g, "&gt;")
+					.replace(/"/g, "&quot;")
+					.replace(/'/g, "&#x27;")
+					.replace(/\//g, "&#x2F;");
+				return htmlEntities;
+			}
+		}
+		const isEnabledTemplate = !!("content" in document.createElement("template"));
+		function insertTemplate(templateElement, outputElement, isFirst = true) {
+			if (isEnabledTemplate) {
+				const tempContent = templateElement.content.cloneNode(true);
+				if (isFirst && outputElement.firstChild) {
+					outputElement.insertBefore(tempContent, outputElement.firstChild);
+				} else {
+					outputElement.appendChild(tempContent);
+				}
+			} else {
+				console.error('template タグが未対応です');
+			}
+		}
+		const TABLE_STYLE = Object.freeze({
+			none: 0,
+			horizontal: 1,
+			vertical: 2,
+			cross: 3,
+			noneWide: 4,
+			horizontalWide: 5,
+			verticalWide: 6,
+			crossWide: 7,
+			noneWideEx: 8,
+			horizontalWideEx: 9,
+			verticalWideEx: 10,
+			crossWideEx: 11,
+		});
+		function createTable(dataArray, tableStyle = 0) {
+			const styleWidth = Math.floor(tableStyle / 4);
+			const styleDirection = tableStyle % 4;
+			const tableWrapper = document.createElement('div');
+			let classes = ['bl_table'];
+			switch (styleDirection) {
+				case 0:
+					break;
+				case 1:
+					classes.push('bl_table__horizontal');
+					break;
+				case 2:
+					classes.push('bl_table__vertical');
+					break;
+				case 3:
+					classes.push('bl_table__cross');
+					break;
+			}
+			switch (styleWidth) {
+				case 0:
+					break;
+				case 1:
+					classes.push('bl_table__wide');
+					break;
+				case 2:
+					classes.push('bl_table__exWide');
+					break;
+			}
+			tableWrapper.classList.add(...classes);
+			const table = document.createElement('table');
+			tableWrapper.appendChild(table);
+			const tableHeaderRow = table.createTHead().insertRow();
+			const arrayHeader = dataArray.shift();
+			let isFirstCell = true;
+			for (const cell of arrayHeader) {
+				const th = document.createElement('th');
+				th.textContent = cell;
+				if ((styleDirection === 2) || (styleDirection === 3 && isFirstCell === false)) {
+					th.scope = 'col';
+				}
+				tableHeaderRow.appendChild(th);
+				isFirstCell = false;
+			}
+			const tableBody = table.createTBody();
+			for (const arrayRow of dataArray) {
+				const row = tableBody.insertRow();
+				const thCell = arrayRow.shift();
+				const th = document.createElement('th');
+				th.textContent = thCell;
+				if (styleDirection === 1 || styleDirection === 3) {
+					th.scope = 'row';
+				}
+				row.appendChild(th);
+				for (const tdCell of arrayRow) {
+					const cell = row.insertCell();
+					cell.textContent = tdCell;
+				}
+			}
+			return tableWrapper;
+		}
+		const AudioContext = window.AudioContext || window.webkitAudioContext;
+		const audioContext = new AudioContext();
+		function beepNG() {
+			if ((chkEnableSound.checked === false) || (isEnabledSound === false)) return;
+			const oscillator = audioContext.createOscillator();
+			const gain = audioContext.createGain();
+			oscillator.connect(gain);
+			gain.connect(audioContext.destination);
+			oscillator.type = 'square';
+			oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+			oscillator.frequency.setValueAtTime(400, audioContext.currentTime + 0.1);
+			gain.gain.setValueAtTime(1, audioContext.currentTime);
+			oscillator.start(audioContext.currentTime);
+			setTimeout(() => {
+				oscillator.stop(audioContext.currentTime);
+			}, 200);
+		}
+		function beepOK() {
+			if ((chkEnableSound.checked === false) || (isEnabledSound === false)) return;
+			const oscillator = audioContext.createOscillator();
+			const gain = audioContext.createGain();
+			oscillator.connect(gain);
+			gain.connect(audioContext.destination);
+			oscillator.type = 'square';
+			oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+			gain.gain.setValueAtTime(1, audioContext.currentTime);
+			oscillator.start(audioContext.currentTime);
+			setTimeout(() => {
+				oscillator.stop(audioContext.currentTime);
+			}, 50);
+		}
+		function vibrateOK() {
+			if ((chkEnableVibration.checked === false) || (isEnabledVibrate === false)) return;
+			if (window.navigator.vibrate) {
+				window.navigator.vibrate(50);
+			} else if (window.navigator.mozVibrate) {
+				window.navigator.mozVibrate(50);
+			} else if (window.navigator.webkitVibrate) {
+				window.navigator.webkitVibrate(50);
+			} else {
+				console.error('エラー：振動機能');
+			}
+		}
+		function vibrateNG() {
+			if ((chkEnableVibration.checked === false) || (isEnabledVibrate === false)) return;
+			const pattern = [100, 100, 100];
+			if (window.navigator.vibrate) {
+				window.navigator.vibrate(pattern);
+			} else if (window.navigator.mozVibrate) {
+				window.navigator.mozVibrate(pattern);
+			} else if (window.navigator.webkitVibrate) {
+				window.navigator.webkitVibrate(pattern);
+			} else {
+				console.error('エラー：振動機能');
+			}
+		}
+		function feedbackOK() {
+			beepOK();
+			vibrateOK();
+		}
+		function feedbackNG() {
+			beepNG();
+			vibrateNG();
+		}
+		let settingState;
+		if (sessionStorage.getItem('settingState')) {
+			settingState = sessionStorage.getItem('settingState');
+			settingState = JSON.parse(settingState);
+		} else {
+			settingState = {
+				colorMode: 0,
+				fontSize: 0,
+				isLeft: false,
+				enableSound: false,
+				enableVibration: false,
+			}
+		}
+		function changeColorMode(colorMode) {
+			switch (parseInt(colorMode)) {
+				case 0:
+					document.documentElement.classList.remove("is_darkMode");
+					document.documentElement.classList.remove("is_lightMode");
+					break;
+				case 1:
+					document.documentElement.classList.remove("is_darkMode");
+					document.documentElement.classList.add("is_lightMode");
+					break;
+				case 2:
+					document.documentElement.classList.remove("is_lightMode");
+					document.documentElement.classList.add("is_darkMode");
+					break;
+				default:
+					console.log(`不明な設定値が検出されました [colorMode : ${colorMode}]`);
+			}
+		}
+		const selColorMode = document.querySelector('#js_setting_colorMode');
+		selColorMode.addEventListener("change", (e) => {
+			const val = e.target.value;
+			changeColorMode(val);
+			settingState.colorMode = val;
+			sessionStorage.setItem('settingState', JSON.stringify(settingState));
+		})
+		selColorMode.value = settingState.colorMode;
+		changeColorMode(settingState.colorMode);
+		function changeFontSize(fontSize) {
+			let size = parseInt(fontSize);
+			if (size === 0) {
+				document.documentElement.style.fontSize = null;
+			} else {
+				if (typeof size === "number") {
+					document.documentElement.style.fontSize = size + 'px';
+				} else {
+					console.log(`不明な設定値が検出されました [fontSize : ${fontSize}]`);
+				}
+			}
+		}
+		const selFontSize = document.querySelector('#js_setting_fontSize');
+		selFontSize.addEventListener("change", (e) => {
+			const val = e.target.value;
+			changeFontSize(val);
+			settingState.fontSize = val;
+			sessionStorage.setItem('settingState', JSON.stringify(settingState));
+		})
+		selFontSize.value = settingState.fontSize;
+		changeFontSize(settingState.fontSize);
+		function changeLeftMode(isLeft) {
+			if (isLeft) {
+				document.documentElement.classList.add("is_leftMode");
+			} else {
+				document.documentElement.classList.remove("is_leftMode");
+			}
+		}
+		const chkIsLeft = document.querySelector('#js_setting_isLeft');
+		chkIsLeft.addEventListener("change", (e) => {
+			const val = e.target.checked;
+			changeLeftMode(val);
+			settingState.isLeft = val;
+			sessionStorage.setItem('settingState', JSON.stringify(settingState));
+		})
+		chkIsLeft.checked = settingState.isLeft;
+		changeLeftMode(settingState.isLeft);
+		function changeSoundMode(enableSound) {
+			if (enableSound) {
+				document.documentElement.classList.add("is_soundMode");
+			} else {
+				document.documentElement.classList.remove("is_soundMode");
+			}
+		}
+		const chkEnableSound = document.querySelector('#js_setting_enableSound');
+		chkEnableSound.addEventListener("change", (e) => {
+			const val = e.target.checked;
+			changeSoundMode(val);
+			settingState.enableSound = val;
+			sessionStorage.setItem('settingState', JSON.stringify(settingState));
+		})
+		chkEnableSound.checked = settingState.enableSound;
+		changeSoundMode(settingState.enableSound);
+		var isEnabledSound = false;
+		if ((window.AudioContext || window.webkitAudioContext) === undefined) {
+			chkEnableSound.parentElement.lastChild.textContent = 'この機器は未対応です'
+			chkEnableSound.disabled = true;
+		} else {
+			isEnabledSound = true;
+		}
+		function changeVibrationMode(enableVibration) {
+			if (enableVibration) {
+				document.documentElement.classList.add("is_vibrationMode");
+			} else {
+				document.documentElement.classList.remove("is_vibrationMode");
+			}
+		}
+		const chkEnableVibration = document.querySelector('#js_setting_enableVibration');
+		chkEnableVibration.addEventListener("change", (e) => {
+			const val = e.target.checked;
+			changeVibrationMode(val);
+			settingState.enableVibration = val;
+			sessionStorage.setItem('settingState', JSON.stringify(settingState));
+		})
+		chkEnableVibration.checked = settingState.enableVibration;
+		changeVibrationMode(settingState.enableVibration);
+		var isEnabledVibrate = false;
+		if ((window.navigator.vibrate || window.navigator.mozVibrate || window.navigator.webkitVibrate) === undefined) {
+			chkEnableVibration.parentElement.lastChild.textContent = 'この機器は振動モード未対応です'
+			chkEnableVibration.disabled = true;
+		} else {
+			isEnabledVibrate = true;
+		}
+		const dialogBtns = document.querySelectorAll('.js_btnShowDialog');
+		for (const btn of dialogBtns) {
+			const dialogId = btn.getAttribute('aria-controls');
+			if (dialogId) {
+				const targetDialog = document.querySelector(`#${dialogId}`);
+				if (targetDialog) {
+					btn.addEventListener('click', () => {
+						targetDialog.showModal();
+					})
+				}
+			}
+		}
+		const tempSvgCross = document.querySelector('#tempSvg_cross');
+		const dialogCloseBtns = document.querySelectorAll('.js_btnCloseDialog');
+		for (const btn of dialogCloseBtns) {
+			insertTemplate(tempSvgCross, btn, true);
+			const dialogId = btn.getAttribute('aria-controls');
+			if (dialogId) {
+				const targetDialog = document.querySelector(`#${dialogId}`);
+				if (targetDialog) {
+					btn.addEventListener('click', () => {
+						targetDialog.close();
+					})
+				}
+			}
+		}
+		const tempSvgArrowDown = document.querySelector('#tempSvg_arrowDown');
+		const accordionSummaries = document.querySelectorAll('.bl_accordion_summary');
+		for (const summary of accordionSummaries) {
+			insertTemplate(tempSvgArrowDown, summary, false);
+		}
+	</script>
+</body>
+
+</html>
