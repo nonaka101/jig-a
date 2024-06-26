@@ -58,7 +58,7 @@ c01_btnCalc.addEventListener('click', ()=>{
 	dataArray.push(['空行', counterEmptyRow]);
 
 	// Table 要素として出力
-	c01_output.appendChild(createTable(dataArray, TABLE_STYLE.horizontal));
+	c01_output.appendChild(createTable(dataArray));
 	feedbackOK();
 })
 
