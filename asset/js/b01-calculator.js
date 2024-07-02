@@ -500,6 +500,7 @@ class Calculator {
 				break;
 			default:
 				console.error(`無効なステートが検出されました ${this._state}`);
+				return false;
 		}
     return true;
   }
@@ -554,21 +555,24 @@ class Calculator {
 	}
 
 	back(){
-		//リザルト状態でない、かつ 1文字以上の入力がある場合
-		if((this._state !== CALC_STATE.Result) && (this._expression.length >= 1)){
-			const expr = this._expression.slice(0, -1);
-			this._label = '';
-			this._expression = '';
-			this._state = CALC_STATE.Start;
-			if(expr.length >= 1){
-				for (var i = 0; i < expr.length; i++) {
-					this.pushExpression(expr[i]);
-				}
-			}
-			return true;
-		} else {
+		//リザルト状態やエラー状態でない、かつ 1文字以上の入力がある場合が処理対象
+		if(
+			(this._state == CALC_STATE.Result) ||
+			(this._state == CALC_STATE.Error) ||
+			(this._expression.length === 0)
+		){
 			return false;
 		}
+		const expr = this._expression.slice(0, -1);
+		this._label = '';
+		this._expression = '';
+		this._state = CALC_STATE.Start;
+		if(expr.length >= 1){
+			for (var i = 0; i < expr.length; i++) {
+				this.pushExpression(expr[i]);
+			}
+		}
+		return true;
 	}
 }
 
