@@ -674,8 +674,9 @@ class b01Calculator extends Calculator{
 
 	back(){
 		const buf = this._label;
-		super.back();
+		const result = super.back();
 		this._label = buf;
+    return result;
 	}
 
   refreshButtons(){
