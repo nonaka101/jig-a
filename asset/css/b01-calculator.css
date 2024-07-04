@@ -1,7 +1,7 @@
 /* スマホの横画面想定（横5に対して縦6以下）
  * この場合、ボタン配列は5列4行の構成とする
  */
-.b01ly_calc {
+ .b01ly_calc {
 	--ly_btnArray:
 		"nav main main main aside"
 		"nav main main main aside"
@@ -162,16 +162,46 @@
 	background-color: var(--sc_bg_btn__primary);
 }
 
+.b01el_calcBtn.b01el_calcBtn__primary:hover,
+.b01el_calcBtn.b01el_calcBtn__primary:active {
+	filter: brightness(87%);
+}
+
+.b01el_calcBtn.b01el_calcBtn__primary:disabled {
+	background-color: var(--sc_bg_disabled);
+	position: relative;
+}
+
 .b01el_calcBtn.b01el_calcBtn__secondary {
 	color: var(--sc_txt_btn__secondary);
 	background-color: var(--sc_bg_btn__secondary);
 	border-color: currentcolor;
 }
 
+.b01el_calcBtn.b01el_calcBtn__secondary:hover,
+.b01el_calcBtn.b01el_calcBtn__secondary:active {
+	background-color: var(--sc_bg_btn__secondary);
+}
+
+.b01el_calcBtn.b01el_calcBtn__secondary:disabled {
+	color: var(--sc_txt_disabled);
+	position: relative;
+}
+
 .b01el_calcBtn.b01el_calcBtn__tertiary {
 	color: var(--sc_txt_body);
 	background-color: transparent;
 	border: var(--sc_border_field);
+}
+
+.b01el_calcBtn.b01el_calcBtn__tertiary:hover,
+.b01el_calcBtn.b01el_calcBtn__tertiary:active {
+	color: var(--sc_txt_link__active);
+}
+
+.b01el_calcBtn.b01el_calcBtn__tertiary:disabled {
+	color: var(--sc_txt_disabled);
+	position: relative;
 }
 
 .b01el_calcBtn.b01el_calcBtn__iconLabel {
@@ -189,4 +219,22 @@
 .b01el_calcBtn.b01el_calcBtn__iconLabel > span {
 	font-size: calc(var(--size_btn) * 0.2);
 	color: var(--sc_txt_btn__secondary);
+}
+
+.b01el_calcBtn:disabled::after {
+	width: 50%;
+	height: 50%;
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: linear-gradient(
+		-45deg,
+		transparent 0%,
+		transparent 49%,
+		currentcolor 49%,
+		currentcolor 51%,
+		transparent 51%,
+		transparent 100%
+	);
 }
