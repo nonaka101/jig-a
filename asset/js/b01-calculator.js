@@ -655,6 +655,7 @@ class b01Calculator extends Calculator{
 				}
 				break;
 			case CALC_STATE.Result:
+			case CALC_STATE.Error:
 				// 計算処理を破棄する場合にラベル除去
 				if((!isOperator(input)) && (input != '=')){
 					this._label = '';
