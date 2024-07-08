@@ -709,7 +709,7 @@ const buttons = {
 }
 
 const calculator = new b01Calculator(buttons);
-calculator.refreshButtons();
+calculator.reset();
 
 
 
