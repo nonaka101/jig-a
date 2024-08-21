@@ -545,7 +545,12 @@ for (const btn of dialogBtns) {
 		if(targetDialog){
 			btn.addEventListener('click', ()=>{
 				targetDialog.showModal();
-			})
+			});
+			targetDialog.addEventListener('click', (e) => {
+				if(e.target === targetDialog){
+					targetDialog.close();
+				}
+			});
 		}
 	}
 }
