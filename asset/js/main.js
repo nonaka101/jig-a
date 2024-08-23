@@ -555,30 +555,29 @@ for (const btn of dialogBtns) {
 	}
 }
 
-/*
- * 「ダイアログを閉じるボタン」に機能を付与
- *  1. button 要素には `js_btnCloseDialog` クラスが必要
- *  2. button 要素には、操作先 dialog のID名が入った aria-controls 属性が必要
+/**
+ * 要素の、直近の親となるダイアログを閉じる
+ *
+ * @param {Element} ele - ダイアログ内にある要素
  */
+function closeDialog(ele) {
+	if(!(ele instanceof Element)) throw new Error('引数に Element が必要です');
+	ele.closest('dialog').close();
+	// Memo : HTML要素に `onclick="closeDialog(this)"` と記述すれば、直接利用が可能
+}
+
+// 「ダイアログを閉じるボタン」に機能を付与（ button 要素に `js_btnCloseDialog` クラスが必要）
 const tempSvgCross = document.querySelector('#tempSvg_cross');
 const dialogCloseBtns = document.querySelectorAll('.js_btnCloseDialog');
 for (const btn of dialogCloseBtns) {
 	// SVG「✕」を挿入
 	insertTemplate(tempSvgCross, btn, true);
 
-	// 対象ダイアログと結びつけ、閉じる機能を実装
-	const dialogId = btn.getAttribute('aria-controls');
-	if(dialogId){
-		const targetDialog = document.querySelector(`#${dialogId}`);
-		if(targetDialog){
-			btn.addEventListener('click', ()=>{
-				targetDialog.close();
-			})
-		}
-	}
+	// 対象ダイアログ（≒ 直近の親 dialog）と結びつけ、閉じる機能を実装
+	btn.addEventListener('click', ()=>{
+		closeDialog(btn);
+	});
 }
-
-
 
 
 

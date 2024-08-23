@@ -1,0 +1,74 @@
+.ly_subDialog {
+	display: block;
+	background-color: var(--sc_bg_body__primary);
+	border: 1px solid var(--sc_bg_shadow);
+}
+
+.ly_subDialog:not([open]){
+	display: none;
+}
+
+.ly_subDialog::backdrop {
+	background-color: var(--sc_bg_body__secondary);
+	filter: opacity(0.7);
+}
+
+.bl_subDialog {
+}
+
+.bl_subDialog_title {
+	padding: 0;
+	margin: 0;
+	font-size: 1.75rem;
+	line-height: 1.5;
+}
+
+.bl_subDialog_label {
+	display: block;
+	margin-bottom: 0.2rem;
+	font-size: 0.7rem;
+	color: var(--sc_txt_desc);
+}
+
+.bl_subDialog_row {
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 0.2em;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 0.5em;
+}
+
+.bl_subDialog_row__center {
+	justify-content: center;
+}
+
+#d01js_wareki_category {
+
+}
+
+#d01js_wareki_num {
+
+}
+
+.d01bl_form {
+	margin-bottom: 1rem;
+}
+
+.d01bl_form_label {
+
+}
+
+.d01bl_form_inputs {
+	display: flex;
+	flex-flow: row nowrap;
+	margin-bottom: 0.5rem;
+}
+
+.d01bl_form_dateInput {
+
+}
+
+.d01bl_form {
+
+}

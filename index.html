@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="nonaka101">
+	<meta name="description" content="環境や状況を問わずブラウザのみで動作する、簡易的なツール集">
+
   <title>JIG-A</title>
 
 	<!-- アイコン・マニフェスト関係 -->
@@ -167,9 +170,9 @@
 	<ul class="bl_funcList">
 		<!-- [b01] -->
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnShowDialog" aria-controls="b01js_dialog_calculator">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="b01js_dialog_calculator">
 				簡易電卓
-			</button><!-- /.js_btnShowDialog -->
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 			<dialog class="ly_dialog" id="b01js_dialog_calculator" aria-labelledby="b01_title" autofocus>
 				<div class="b01ly_calc">
 					<h2 class="hp_srOnly" id="b01_title">簡易電卓</h2>
@@ -289,9 +292,9 @@
 	<ul class="bl_funcList">
 		<!-- [c01] -->
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnShowDialog" aria-controls="c01js_dialog_textCounter">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="c01js_dialog_textCounter">
 				文字列カウンタ
-			</button><!-- /.js_btnShowDialog -->
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 
 			<dialog class="ly_dialog" id="c01js_dialog_textCounter" aria-labelledby="c01_title" autofocus>
 				<div class="c01ly_textCounter">
@@ -355,17 +358,104 @@
 			暦・日付・期間
 		</span>
 	</h3><!-- /.el_heading_lv3.el_heading__iconLabel -->
+	<script defer src="./asset/js/d00.js"></script>
 
 
 
 
 
 	<ul class="bl_funcList">
+		<!-- [d01] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="d01js_dialog_calcAge">
+				年齢計算
+			</button><!-- /.js_btnShowDialog -->
+
+			<dialog class="ly_dialog" id="d01js_dialog_calcAge" aria-labelledby="d01_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="d01_title">年齢計算</h2>
+						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="d01js_dialog_calcAge" aria-describedby="d01_title">
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<form action="#" class="d01bl_form">
+						<label for="d01js_inputBirthday" class="d01bl_form_label">生年月日</label>
+						<div class="d01bl_form_inputs">
+							<input type="date" name="d01js_inputBirthday" id="d01js_inputBirthday" class="d01bl_form_dateInput">
+							<button type="button" class="js_btnShowDialog el_btn el_btn__secondary el_btn__wMaxContent" aria-controls="d01-1js_dialog_sub">
+								和暦入力
+							</button><!-- /.js_btnShowDialog -->
+							<dialog class="ly_subDialog" id="d01-1js_dialog_sub" aria-labelledby="d01-1_title" autofocus>
+								<div class="bl_subDialog">
+									<h3 class="bl_subDialog_title" id="d01-1_title">和暦入力</h3>
+									<label for="d01js_wareki_num" class="bl_subDialog_label">
+										和暦を選択し、6桁の数値を入力してください<br>
+										（例：令和 <strong>1年2月3日</strong> → <strong>010203</strong>）
+									</label>
+									<div class="bl_subDialog_row">
+										<select name="d01js_wareki_name" id="d01js_wareki_name">
+											<option value="4" default>令和</option>
+											<option value="3">平成</option>
+											<option value="2">昭和</option>
+											<option value="1">大正</option>
+											<option value="0">明治</option>
+										</select>
+										<input type="text" name="d01js_wareki_num" id="d01js_wareki_num" size="6" pattern="[0-9]{6}" required>
+									</div><!-- /.bl_subDialog_row -->
+									<div class="bl_subDialog_row">
+										<button type="button" class="el_btn el_btn__tertiary el_btn__w12ch" onclick="closeDialog(this);">キャンセル</button>
+										<button type="button" class="el_btn el_btn__primary el_btn__w12ch" id="d01js_wareki_submit">決定</button>
+									</div><!-- /.bl_subDialog_row -->
+								</div>
+							</dialog>
+						</div><!-- /.d01bl_form_inputs -->
+						<button type="button" class="el_btn el_btn__primary" id="d01js_calcBtn">計算</button>
+					</form>
+					<output id="d01js_output">
+						<div class="bl_table bl_table__horizontal">
+							<table>
+								<thead>
+									<tr>
+										<th scope="row">項目</th>
+										<th>値</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">今日</th>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">満年齢</th>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">日数</th>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!-- /.bl_table -->
+					</output><!-- /#d01js_output -->
+					<small>
+						注意：計算は
+						<a href="https://laws.e-gov.go.jp/law/135AC1000000050" class="el_link">『年齢計算ニ関スル法律 | e-Gov 法令検索』</a>
+						に基づき、時刻を単位とする方式で行っています。<br>
+						日数は、1日に満たない時間は切り捨てたものになっています。
+					</small>
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+			<link rel="stylesheet" href="./asset/css/d01-calculate-age.css">
+			<script defer src="./asset/js/d01-calculate-age.js"></script>
+		</li><!-- /.bl_funcList_item -->
+
 		<!-- [d99] -->
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnShowDialog" aria-controls="d99js_dialog_chronoTable">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="d99js_dialog_chronoTable">
 				西暦↔和暦 早見表
-			</button><!-- /.js_btnShowDialog -->
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 
 			<dialog class="ly_dialog" id="d99js_dialog_chronoTable" aria-labelledby="d99_title" autofocus>
 				<div class="ly_dialog_body">
@@ -1417,9 +1507,9 @@
 	<ul class="bl_funcList">
 		<!-- [e98] -->
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnShowDialog" aria-controls="e98js_dialog_paperSize">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="e98js_dialog_paperSize">
 				用紙サイズ 早見表
-			</button><!-- /.js_btnShowDialog -->
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 
 			<dialog class="ly_dialog" id="e98js_dialog_paperSize" aria-labelledby="e98_title" autofocus>
 				<div class="ly_dialog_body">
@@ -1535,9 +1625,9 @@
 
 		<!-- [e99] -->
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnShowDialog" aria-controls="e99js_dialog_paperRate">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="e99js_dialog_paperRate">
 				用紙間縮尺 早見表
-			</button><!-- /.js_btnShowDialog -->
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 
 			<dialog class="ly_dialog" id="e99js_dialog_paperRate" aria-labelledby="e99_title" autofocus>
 				<div class="ly_dialog_body">
@@ -1630,7 +1720,7 @@
 									<th scope="row">A1</th>
 									<td>173</td>
 									<td>141</td>
-									<td>123</td>
+									<td>122</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
 									<td>87</td>
 									<td>71</td>
@@ -1665,7 +1755,7 @@
 									<td>245</td>
 									<td>200</td>
 									<td>173</td>
-									<td>142</td>
+									<td>141</td>
 									<td>123</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
 									<td>87</td>
@@ -1674,7 +1764,7 @@
 									<td>50</td>
 									<td>43</td>
 									<td>35</td>
-									<td>31</td>
+									<td>30</td>
 									<td>25</td>
 								</tr>
 								<tr>
@@ -1719,7 +1809,7 @@
 									<td>231</td>
 									<td>200</td>
 									<td>163</td>
-									<td>142</td>
+									<td>141</td>
 									<td>115</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
 									<td>82</td>
@@ -1741,7 +1831,7 @@
 									<td>122</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
 									<td>87</td>
-									<td>71</td>
+									<td>70</td>
 									<td>61</td>
 									<td>50</td>
 								</tr>
@@ -1750,7 +1840,7 @@
 									<td>566</td>
 									<td>462</td>
 									<td>400</td>
-									<td>327</td>
+									<td>326</td>
 									<td>283</td>
 									<td>231</td>
 									<td>200</td>
@@ -1758,52 +1848,52 @@
 									<td>141</td>
 									<td>115</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
-									<td>82</td>
-									<td>71</td>
+									<td>81</td>
+									<td>70</td>
 									<td>58</td>
 								</tr>
 								<tr>
 									<th scope="row">A5</th>
-									<td>695</td>
-									<td>567</td>
-									<td>491</td>
-									<td>401</td>
+									<td>693</td>
+									<td>566</td>
+									<td>490</td>
+									<td>400</td>
 									<td>347</td>
 									<td>283</td>
-									<td>246</td>
+									<td>245</td>
 									<td>200</td>
 									<td>173</td>
-									<td>142</td>
-									<td>123</td>
+									<td>141</td>
+									<td>122</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
-									<td>87</td>
-									<td>71</td>
+									<td>86</td>
+									<td>70</td>
 								</tr>
 								<tr>
 									<th scope="row">B6</th>
-									<td>802</td>
-									<td>655</td>
-									<td>567</td>
-									<td>463</td>
-									<td>401</td>
-									<td>327</td>
-									<td>284</td>
+									<td>800</td>
+									<td>653</td>
+									<td>566</td>
+									<td>462</td>
+									<td>400</td>
+									<td>326</td>
+									<td>283</td>
 									<td>231</td>
 									<td>200</td>
-									<td>164</td>
-									<td>142</td>
-									<td>116</td>
+									<td>163</td>
+									<td>141</td>
+									<td>115</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
-									<td>82</td>
+									<td>81</td>
 								</tr>
 								<tr>
 									<th scope="row">A6</th>
-									<td>982</td>
-									<td>802</td>
-									<td>695</td>
-									<td>567</td>
-									<td>491</td>
-									<td>401</td>
+									<td>981</td>
+									<td>801</td>
+									<td>693</td>
+									<td>566</td>
+									<td>490</td>
+									<td>400</td>
 									<td>347</td>
 									<td>283</td>
 									<td>245</td>
@@ -1817,8 +1907,8 @@
 						</table>
 					</div>
 					<small>
-						注意：概算値であるため、参考程度にとどめてください。<br>
-						実際には、使用するスキャナやプリンターのメーカー毎の個体差や、余白等を考慮する必要があるため、少し低めになることが想定されます。
+						注意：概算値であるため、参考程度にとどめてください。数値は 2 用紙間の長辺・短辺の拡縮率において、小さい方を（小数切り捨てで）採用しています。<br>
+						実際には、使用するスキャナやプリンターのメーカー毎の個体差や、余白等を考慮する必要があります。
 					</small>
 				</div><!-- /.ly_dialog_body -->
 			</dialog><!-- /.ly_dialog -->

@@ -352,7 +352,7 @@ html:has(dialog[open]) {
 	top: 0;
 	padding: 8px;
 	width: 100dvw;
-  height: 100dvh;
+  min-height: 100dvh;
 	display: flex;
 	flex-flow: column nowrap;
 }
@@ -565,28 +565,6 @@ html:has(dialog[open]) {
 
 
 
-/* ≡≡≡ ☐ js_btnShowDialog ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-	■ 概要
-		ダイアログ展開ボタン
-		※対となる js_btnCloseDialog はJS操作のみ。
-		　こちらのスタイルは bl_menuHeader_btnIcon で行う。
----------------------------------------------------------------------------- */
-
-.js_btnShowDialog {
-  appearance: none;
-	padding: 8px;
-	font-size: 1.25rem;
-	width:max-content;
-  background-color: var(--sc_bg_btn__primary);
-  color: var(--sc_txt_btn__primary);
-  border: var(--sc_border_field);
-  border-radius: 4px;
-	max-width: 100%;
-}
-
-
-
-
 
 
 /* ≡≡≡ ☐ bl_table ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
@@ -605,7 +583,7 @@ html:has(dialog[open]) {
 		┃┗ bl_table__cross : 行列見出し固定（上記にある両者の特徴を引き継ぐ）
 		┃
 		┗┳ bl_table__wide : 表幅が大きく画面幅 960px までスクロールが必要な表
-	  　┗ bl_table__exWide : 表幅が非常に大きく画面幅 1200px までスクロールが必要な表
+		　┗ bl_table__exWide : 表幅が非常に大きく画面幅 1200px までスクロールが必要な表
 ---------------------------------------------------------------------------- */
 
 .bl_table {
@@ -823,6 +801,16 @@ html:has(dialog[open]) {
 .el_btn.el_btn__tertiary:hover,
 .el_btn.el_btn__tertiary:active {
 	color: var(--sc_txt_link__active);
+}
+
+/* 横サイズ調整用のモディファイア */
+.el_btn.el_btn__wMaxContent {
+	width:max-content;
+	max-width: 100%;
+}
+
+.el_btn.el_btn__w12ch {
+	width: 12ch;
 }
 
 

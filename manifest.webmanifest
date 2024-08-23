@@ -2,6 +2,7 @@
   "lang": "ja",
   "dir": "ltr",
   "name": "JIG-A:簡易ツール集",
+	"description": "環境や状況を問わずブラウザのみで動作する、簡易的なツール集",
   "short_name": "JIG-A",
   "scope": "https://nonaka101.github.io/jig-a/",
   "start_url": "./index.html",
