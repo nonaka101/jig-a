@@ -55,9 +55,12 @@ const wareki = {
  * @returns {int} - 満年齢
  */
 function calcAge(dateBirth, dateBase = new Date()){
+	// 型チェック
+	if(!(dateBirth instanceof Date && dateBase instanceof Date)) throw new Error('引数は Date 型でなければなりません');
 
-	/* 加齢境界線は、生まれた月日の前日24時となる
-	 *（閏日生まれの場合は2/28日24時、3/1生まれの場合は閏年の場合は2/29そうでなければ2/28）*/
+	const age = dateBase.getFullYear() - dateBirth.getFullYear();
+
+	// 加齢タイミング（計算基準年）は、誕生日の前日24時
 	const timeBoundaryForAging = new Date(
 		dateBase.getFullYear(),
 		dateBirth.getMonth(),
@@ -65,12 +68,10 @@ function calcAge(dateBirth, dateBase = new Date()){
 		24
 	);
 
-	const age = dateBase.getFullYear() - dateBirth.getFullYear();
+	// 満年齢は、加齢タイミングを まだ越えていない場合、デクリメントして返す
 	if(timeBoundaryForAging > dateBase){
-		// 加齢タイミングを まだ越えていない場合（年齢を1つデクリメントして返す）
 		return age - 1;
 	} else {
-		// 加齢タイミングを越えている場合（そのまま age を返す）
 		return age;
 	}
 }
@@ -85,8 +86,12 @@ function calcAge(dateBirth, dateBase = new Date()){
  * @returns {int} 期間内の日数（余剰の時間は切り捨て）
  */
 function dateDiff(date1, date2) {
-	const ms = Math.abs(Date.parse(date1) - Date.parse(date2));	// ミリ秒単位での期間
-	return Math.floor(ms / (1000 * 60 * 60 * 24));	// ミリ秒を日数単位にして返す
+	// 型チェック
+	if(!(date1 instanceof Date && date2 instanceof Date)) throw new Error('引数は Date 型でなければなりません');
+
+	// ミリ秒単位での期間を求め、日数単位にして返す
+	const ms = Math.abs(date1.getTime() - date2.getTime());
+	return Math.floor(ms / (1000 * 60 * 60 * 24));
 }
 
 
@@ -98,24 +103,24 @@ function dateDiff(date1, date2) {
  * @returns {boolean} 存在しうる日付かの判定
  */
 function isDateFormat(dateString) {
-  // 正規表現による形式チェック（yyyy-MM-dd）
-  const dateFormatRegexp = /^([0-9]{4})-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])$/;
-  if (!dateString.match(dateFormatRegexp)) return false;
+	// 正規表現による形式チェック（yyyy-MM-dd）
+	const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/
+	if (!dateString.match(dateFormatRegex)) return false;
 
-  // date 型による妥当性チェック（入力値が存在しない日付【例：2/31 】だったり、閏日により実際の日付とズレてないか）
-  const dateParts = dateString.split('-');
-  const year = parseInt(dateParts[0], 10);
-  const month = parseInt(dateParts[1], 10);
-  const day = parseInt(dateParts[2], 10);
+	// 簡易的な月日の妥当性チェック（月の範囲は1〜12か、日の範囲は1〜31か）
+	const [year, month, day] = dateString.split('-').map(Number);
+	if(
+		(month < 1 || month > 12) ||
+		(day < 1 && day > 31)
+	) return false;
 
-  const date = new Date(year, month - 1, day);	// 注：date 型の月は 0 開始となっている
-  if (
-		date.getFullYear() === year &&
-		date.getMonth() + 1 === month &&
-		date.getDate() === day
-	) {
-		return true;
-  } else {
-    return false;
-	}
+	// date 型による妥当性チェック（入力値が `2/31` といった存在しない日付だったり、閏日により実際の日付とズレてないか）
+	const date = new Date(year, month - 1, day);
+	if (
+		date.getFullYear() !== year ||
+		date.getMonth() + 1 !== month ||
+		date.getDate() !== day
+	) return false;
+
+	return true;
 }
