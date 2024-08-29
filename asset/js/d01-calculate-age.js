@@ -21,6 +21,9 @@ d01WarekiBtn.addEventListener('click', ()=> {
 	// 入力ボックスに結果を入れ、ダイアログを閉じる
 	d01DateInput.value = dateString;
 	closeDialog(d01WarekiBtn);
+
+	// スクリーンリーダー用に、結果を格納したボックスにフォーカスして処理は終了
+	d01DateInput.focus();
 });
 
 const d01Output = document.querySelector('#d01js_output');
@@ -52,5 +55,5 @@ d01CalcBtn.addEventListener('click', ()=> {
 	dataArray.push(['満年齢', `${age}歳`]);
 	dataArray.push(['日数', `${days}日`]);
 	d01Output.value = '';
-	d01Output.appendChild(createTable(dataArray));
+	d01Output.appendChild(createTable(dataArray, TABLE_STYLE.cross));
 });

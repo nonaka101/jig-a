@@ -532,6 +532,16 @@ if((window.navigator.vibrate || window.navigator.mozVibrate || window.navigator.
 
 
 
+/* ≡≡≡ ▀▄ 全体の要素に対する処理 ▀▄ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		ページ全体に散りばめられている特定の要素に対し、一括で処理を施している
+	■ 内容
+		- 「ダイアログを開く」ボタンに対し、ダイアログ展開機能を付与
+		- 「ダイアログを閉じる」ボタンに対し、ダイアログ格納機能を付与
+		- bl_accordion_summary に SVG `V` を配置
+		- <form> 要素の挙動制御（エンターでページ遷移せず、submitボタンのイベント発火）
+---------------------------------------------------------------------------- */
+
 /*
  * 「ダイアログを開くボタン」に機能を付与
  *  1. button 要素には `js_btnDialog` クラスが必要
@@ -555,6 +565,8 @@ for (const btn of dialogBtns) {
 	}
 }
 
+
+
 /**
  * 要素の、直近の親となるダイアログを閉じる
  *
@@ -565,6 +577,8 @@ function closeDialog(ele) {
 	ele.closest('dialog').close();
 	// Memo : HTML要素に `onclick="closeDialog(this)"` と記述すれば、直接利用が可能
 }
+
+
 
 // 「ダイアログを閉じるボタン」に機能を付与（ button 要素に `js_btnCloseDialog` クラスが必要）
 const tempSvgCross = document.querySelector('#tempSvg_cross');
@@ -581,23 +595,28 @@ for (const btn of dialogCloseBtns) {
 
 
 
-
-
-
-
-
-
-
-
-/* ≡≡≡ ▀▄ Template処理 ▀▄ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-	■ 概要
-		テンプレート化した要素（SVGなど多様するもの）を、insertTemplate() を使って処理
-	■ 内容
-		1. bl_accordion_summary : arrowDown を要素後方に
----------------------------------------------------------------------------- */
-
+/*
+ * テンプレート化した要素（SVGなど多様するもの）を、insertTemplate() を使って処理
+ *  1. bl_accordion_summary : arrowDown を要素後方に
+ */
 const tempSvgArrowDown = document.querySelector('#tempSvg_arrowDown');
 const accordionSummaries = document.querySelectorAll('.bl_accordion_summary');
 for (const summary of accordionSummaries) {
 	insertTemplate(tempSvgArrowDown, summary, false);
+}
+
+
+/*
+ * 全ての <form> 要素に対し、ページ遷移の挙動を止め、submitボタンのクリックイベント発火
+ */
+const forms = document.querySelectorAll('form');
+for(const form of forms){
+	form.addEventListener('submit', function(event) {
+		// ページ遷移の挙動をキャンセル
+		event.preventDefault();
+
+		// form内のsubmitボタンを取得し、イベント発火
+		const submitButton = form.querySelector('button[type="submit"]');
+		if (submitButton) submitButton.click();
+	});
 }

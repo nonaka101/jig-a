@@ -1,7 +1,7 @@
 /* スマホの横画面想定（横5に対して縦6以下）
  * この場合、ボタン配列は5列4行の構成とする
  */
- .b01ly_calc {
+.b01ly_calc {
 	--ly_btnArray:
 		"nav main main main aside"
 		"nav main main main aside"

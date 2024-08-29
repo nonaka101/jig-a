@@ -297,7 +297,7 @@
 			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 
 			<dialog class="ly_dialog" id="c01js_dialog_textCounter" aria-labelledby="c01_title" autofocus>
-				<div class="c01ly_textCounter">
+				<div class="ly_dialog_body">
 					<div class="bl_menuHeader">
 						<h2 class="bl_menuHeader_title" id="c01_title">テキストカウンター</h2>
 						<button type="button"
@@ -308,31 +308,123 @@
 							<span>閉じる</span>
 						</button>
 					</div><!-- /.bl_menuHeader -->
-					<form class="c01bl_form">
+					<form action="#" class="bl_simpleForm">
 						<button type="button"
 							class="el_btn el_btn__secondary"
 							id="c01js_pasteFromClipboard"
 						>
 							クリップボードからペースト
 						</button>
-						<div class="c01bl_form_block">
-							<label for="c01js_inputArea" class="c01bl_form_label">入力テキスト</label>
-							<textarea name="textcounter" class="c01bl_form_textArea" id="c01js_inputArea"></textarea>
+						<div class="bl_simpleForm_block">
+							<label for="c01js_inputArea" class="bl_simpleForm_label">入力テキスト</label>
+							<textarea name="textcounter" class="bl_simpleForm_textArea" id="c01js_inputArea"></textarea>
 						</div>
-						<!-- /.c01bl_form_block -->
+						<!-- /.bl_simpleForm_block -->
 						<button type="button"
 							class="el_btn el_btn__tertiary"
 							id="c01js_clearTextArea"
 						>
 							クリア
 						</button>
-						<button type="button" class="el_btn el_btn__primary" id="c01js_countBtn">計算</button>
-						<output class="c01bl_form_output" id="c01js_output"></output>
-					</form><!-- /.c01bl_form -->
-				</div><!-- /.c01ly_textCounter -->
+						<button type="submit" class="el_btn el_btn__primary" id="c01js_countBtn">計算</button>
+						<output class="bl_simpleForm_output" id="c01js_output"></output>
+					</form><!-- /.bl_simpleForm -->
+				</div><!-- /.ly_dialog_body -->
 			</dialog><!-- /.ly_dialog -->
 			<link rel="stylesheet" href="./asset/css/c01-text-counter.css">
 			<script defer src="./asset/js/c01-text-counter.js"></script>
+		</li><!-- /.bl_funcList_item -->
+
+
+		<!-- [c02] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="c02js_dialog_excel2md">
+				表形式データ → Markdown
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
+
+			<dialog class="ly_dialog" id="c02js_dialog_excel2md" aria-labelledby="c02_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="c02_title">表形式データをMarkdownに変換</h2>
+						<button type="button"
+							class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="c02js_dialog_excel2md"
+							aria-describedby="c02_title"
+						>
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<form action="#" class="bl_simpleForm">
+						<button type="button"
+							class="el_btn el_btn__secondary"
+							id="c02js_pasteFromClipboard"
+						>
+							クリップボードからペースト
+						</button>
+						<div class="bl_simpleForm_block">
+							<label for="c02js_inputArea" class="bl_simpleForm_label">入力テキスト</label>
+							<textarea name="textcounter" class="bl_simpleForm_textArea" id="c02js_inputArea"></textarea>
+						</div>
+						<!-- /.bl_simpleForm_block -->
+						<button type="button"
+							class="el_btn el_btn__tertiary"
+							id="c02js_clearTextArea"
+						>
+							クリア
+						</button>
+						<button type="submit" class="el_btn el_btn__primary" id="c02js_calcBtn">変換</button>
+						<output class="bl_simpleForm_output" id="c02js_output"></output>
+					</form><!-- /.bl_simpleForm -->
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+			<link rel="stylesheet" href="./asset/css/c02-excel2md.css">
+			<script defer src="./asset/js/c02-excel2md.js"></script>
+		</li><!-- /.bl_funcList_item -->
+
+
+		<!-- [c03] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="c03js_dialog_md2excel">
+				Markdown → 表形式データ
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
+
+			<dialog class="ly_dialog" id="c03js_dialog_md2excel" aria-labelledby="c03_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="c03_title">Markdownを表形式データに変換</h2>
+						<button type="button"
+							class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="c03js_dialog_md2excel"
+							aria-describedby="c03_title"
+						>
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<form class="bl_simpleForm">
+						<button type="button"
+							class="el_btn el_btn__secondary"
+							id="c03js_pasteFromClipboard"
+						>
+							クリップボードからペースト
+						</button>
+						<div class="bl_simpleForm_block">
+							<label for="c03js_inputArea" class="bl_simpleForm_label">入力テキスト</label>
+							<textarea name="textcounter" class="bl_simpleForm_textArea" id="c03js_inputArea"></textarea>
+						</div>
+						<!-- /.bl_simpleForm_block -->
+						<button type="button"
+							class="el_btn el_btn__tertiary"
+							id="c03js_clearTextArea"
+						>
+							クリア
+						</button>
+						<button type="submit" class="el_btn el_btn__primary" id="c03js_calcBtn">変換</button>
+						<output class="bl_simpleForm_output" id="c03js_output"></output>
+					</form><!-- /.bl_simpleForm -->
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+			<link rel="stylesheet" href="./asset/css/c03-md2excel.css">
+			<script defer src="./asset/js/c03-md2excel.js"></script>
 		</li><!-- /.bl_funcList_item -->
 	</ul>
 
@@ -387,34 +479,34 @@
 							<button type="button" class="js_btnShowDialog el_btn el_btn__secondary el_btn__wMaxContent" aria-controls="d01-1js_dialog_sub">
 								和暦入力
 							</button><!-- /.js_btnShowDialog -->
-							<dialog class="ly_subDialog" id="d01-1js_dialog_sub" aria-labelledby="d01-1_title" autofocus>
-								<div class="bl_subDialog">
-									<h3 class="bl_subDialog_title" id="d01-1_title">和暦入力</h3>
-									<label for="d01js_wareki_num" class="bl_subDialog_label">
-										和暦を選択し、6桁の数値を入力してください<br>
-										（例：令和 <strong>1年2月3日</strong> → <strong>010203</strong>）
-									</label>
-									<div class="bl_subDialog_row">
-										<select name="d01js_wareki_name" id="d01js_wareki_name">
-											<option value="4" default>令和</option>
-											<option value="3">平成</option>
-											<option value="2">昭和</option>
-											<option value="1">大正</option>
-											<option value="0">明治</option>
-										</select>
-										<input type="text" inputmode="numeric" name="d01js_wareki_num" id="d01js_wareki_num" size="6" pattern="[0-9]{6}" required>
-									</div><!-- /.bl_subDialog_row -->
-									<div class="bl_subDialog_row">
-										<button type="button" class="el_btn el_btn__tertiary el_btn__w12ch" onclick="closeDialog(this);">キャンセル</button>
-										<button type="button" class="el_btn el_btn__primary el_btn__w12ch" id="d01js_wareki_submit">決定</button>
-									</div><!-- /.bl_subDialog_row -->
-								</div>
-							</dialog>
 						</div><!-- /.d01bl_form_inputs -->
-						<button type="button" class="el_btn el_btn__primary" id="d01js_calcBtn">計算</button>
+						<button type="submit" class="el_btn el_btn__primary" id="d01js_calcBtn">計算</button>
 					</form>
+					<dialog class="ly_subDialog" id="d01-1js_dialog_sub" aria-labelledby="d01-1_title" autofocus>
+						<form action="#" class="bl_subDialog">
+							<h3 class="bl_subDialog_title" id="d01-1_title">和暦入力</h3>
+							<label for="d01js_wareki_num" class="bl_subDialog_label">
+								和暦を選択し、6桁の数値を入力してください<br>
+								（例：令和 <strong>1年2月3日</strong> → <strong>010203</strong>）
+							</label>
+							<div class="bl_subDialog_row">
+								<select name="d01js_wareki_name" id="d01js_wareki_name">
+									<option value="4" default>令和</option>
+									<option value="3">平成</option>
+									<option value="2">昭和</option>
+									<option value="1">大正</option>
+									<option value="0">明治</option>
+								</select>
+								<input type="text" inputmode="numeric" name="d01js_wareki_num" id="d01js_wareki_num" size="6" pattern="[0-9]{6}">
+							</div><!-- /.bl_subDialog_row -->
+							<div class="bl_subDialog_row">
+								<button type="button" class="el_btn el_btn__tertiary el_btn__w12ch" onclick="closeDialog(this);">キャンセル</button>
+								<button type="submit" class="el_btn el_btn__primary el_btn__w12ch" id="d01js_wareki_submit">決定</button>
+							</div><!-- /.bl_subDialog_row -->
+						</form><!-- /.bl_subDialog -->
+					</dialog>
 					<output id="d01js_output">
-						<div class="bl_table bl_table__horizontal">
+						<div class="bl_table bl_table__cross">
 							<table>
 								<thead>
 									<tr>

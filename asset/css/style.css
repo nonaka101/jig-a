@@ -318,7 +318,8 @@ small {
 
 /* ≡≡≡ ◲ ly_dialog ◲ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 	■ 概要
-		各種機能を格納するダイアログ要素
+		各種機能を格納するダイアログ要素。
+		サブダイアログと違い、こちらは画面全体を覆う形で展開する。
 ---------------------------------------------------------------------------- */
 
 /* ダイアログ表示中は、裏側にあるページをスクロールさせない */
@@ -357,6 +358,60 @@ html:has(dialog[open]) {
 	flex-flow: column nowrap;
 }
 
+
+
+
+
+/* ≡≡≡ ◲ ly_subDialog ◲ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		各種機能を格納するダイアログ要素
+		こちらは画面中央に必要分のサイズで表示（≒ 画面外クリックでダイアログ格納）
+---------------------------------------------------------------------------- */
+
+.ly_subDialog {
+	display: block;
+	background-color: var(--sc_bg_body__primary);
+	border: 1px solid var(--sc_bg_shadow);
+}
+
+.ly_subDialog:not([open]){
+	display: none;
+}
+
+.ly_subDialog::backdrop {
+	background-color: var(--sc_bg_body__secondary);
+	filter: opacity(0.7);
+}
+
+.bl_subDialog {
+}
+
+.bl_subDialog_title {
+	padding: 0;
+	margin: 0;
+	font-size: 1.75rem;
+	line-height: 1.5;
+}
+
+.bl_subDialog_label {
+	display: block;
+	margin-bottom: 0.2rem;
+	font-size: 0.7rem;
+	color: var(--sc_txt_desc);
+}
+
+.bl_subDialog_row {
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 0.2em;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 0.5em;
+}
+
+.bl_subDialog_row__center {
+	justify-content: center;
+}
 
 
 
@@ -566,6 +621,51 @@ html:has(dialog[open]) {
 
 
 
+/* ≡≡≡ ☐ bl_simpleForm ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		ダイアログ内の汎用フォーム、基本は縦方向に要素が並ぶ
+	■ 構成
+		bl_simpleForm : ベース
+		┃
+		┣ bl_simpleForm_block : 複数要素で1つの要素となるようなものを格納（例：ラベル＋入力ボックス）
+		┃	┣ bl_simpleForm_label : ラベル
+		┃	┗ bl_simpleForm_textArea : テキストエリア
+		┃
+		┗ bl_simpleForm_output : 出力する output 要素用
+---------------------------------------------------------------------------- */
+
+.bl_simpleForm {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
+.bl_simpleForm_block {
+	display: block;
+	width: 100%;
+	margin: 1rem 0;
+}
+
+.bl_simpleForm_label {
+	display: block;
+	align-self: flex-start;
+}
+
+.bl_simpleForm_textArea {
+	display: block;
+	width: 100%;
+	min-height: 10rem;
+}
+
+.bl_simpleForm_output {
+	display: block;
+	width: 100%;
+	margin: 1rem 0;
+}
+
+
+
+
 
 /* ≡≡≡ ☐ bl_table ☐ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 	■ 概要
@@ -578,8 +678,8 @@ html:has(dialog[open]) {
 	■ バリエーション
 		bl_table : ベース
 		┃
-		┣┳ bl_table__horizontal : 列見出し固定（※ 表の高さは 75dvh までに制限される）
-		┃┣ bl_table__vertical : 行見出し固定（※ 768px【例：iPad 縦画面】を境に、行方向のスクロールが許可される）
+		┣┳ bl_table__horizontal : 行見出し固定（※ 768px【例：iPad 縦画面】を境に、行方向のスクロールが許可される）
+		┃┣ bl_table__vertical : 列見出し固定（※ 表の高さは 75dvh までに制限される）
 		┃┗ bl_table__cross : 行列見出し固定（上記にある両者の特徴を引き継ぐ）
 		┃
 		┗┳ bl_table__wide : 表幅が大きく画面幅 960px までスクロールが必要な表
@@ -599,7 +699,6 @@ html:has(dialog[open]) {
 
 .bl_table th {
   padding: 8px;
-  background-color: var(--sc_bg_body__tertiary);
   border-right: var(--sc_border_divider);
   border-bottom: var(--sc_border_divider);
   font-weight: 700;
@@ -625,28 +724,36 @@ html:has(dialog[open]) {
   border-bottom-width: 0;
 }
 
-	/* 行が大量で見出し固定が必要なケース
-	 * この場合 Sticky 化するために高さに制限を設け、スクロールを許可する */
-	.bl_table.bl_table.bl_table__vertical,
-	.bl_table.bl_table__cross {
-		max-height: 75dvh;
-		height: max-content;
-		overflow-y: auto;
-	}
+/* 見出し部の色指定 */
+.bl_table.bl_table__vertical thead th,
+.bl_table.bl_table__horizontal thead th:first-child,
+.bl_table.bl_table__horizontal tbody th,
+.bl_table.bl_table__cross th{
+  background-color: var(--sc_bg_body__tertiary);
+}
 
-  .bl_table.bl_table__vertical thead th,
-	.bl_table.bl_table__cross thead th {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-		z-index: 1;
-	}
+/* 行が大量で見出し固定が必要なケース
+ * この場合 Sticky 化するために高さに制限を設け、スクロールを許可する */
+.bl_table.bl_table__vertical,
+.bl_table.bl_table__cross {
+	max-height: 75dvh;
+	height: max-content;
+	overflow-y: auto;
+}
 
-	/* 表側頭 をテーブル内最上段に置き、スクロールの際の表示を確保 */
-  .bl_table.bl_table__vertical thead th:first-child,
-	.bl_table.bl_table__cross thead th:first-child {
-		z-index: 2;
-	}
+.bl_table.bl_table__vertical thead th,
+.bl_table.bl_table__cross thead th {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
+/* 表側頭 をテーブル内最上段に置き、スクロールの際の表示を確保 */
+.bl_table.bl_table__vertical thead th:first-child,
+.bl_table.bl_table__cross thead th:first-child {
+	z-index: 2;
+}
 
 @media screen and (max-width: 768px) {
 	/* 右端と下端の border を消す
