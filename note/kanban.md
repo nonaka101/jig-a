@@ -2,6 +2,39 @@
 
 ## TODO
 
+### b01-calculator のキー操作受け付け
+
+`dialog` 要素の `open` 状態を監視（※下記コード参照）する手法を使い、Calculator ダイアログの起動中のみ「数値キー」「演算子」「イコール（エンター？）」キーを受け入れることを考える。  
+起動中のみと限定するのは、使用するキーがスクリーンリーダーのユーザーにとって別のショートカットキーに割り振られている可能性を考慮しての判断。
+
+```javascript
+const dialogEle = document.querySelector("#dialog");
+let intervalId;
+
+// MutationObserverでdialog要素の属性の変化を監視
+const observer = new MutationObserver((mutationsList) => {
+  for (const mutation of mutationsList){
+    if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
+      if (dialogEle.open) {
+        intervalId = setInterval(updateTime, 1000);
+      } else {
+        clearInterval(intervalId);
+      }
+    }
+  }
+});
+
+// open属性の変化を監視
+observer.observe(dialogEle, {
+  attributes: true,
+  attributeFilter: ["open"],
+});
+```
+
+---
+
+## 保留中
+
 ### Self-Contained版での `webmanifest` について
 
 `webmanifest` を使って PWA 化するにはアイコンデータが必要となる。1ファイルで完結させるにはインラインSVGを使うしかなさそうだが、エスケープ処理を施しても動作がかなり不安定になる？
@@ -13,6 +46,10 @@
 ```
 
 上記を html ファイル内に入れてブラウザで開くと、アイコンがない関係で機能しないことが確認できる。
+
+---
+
+## 解決済み
 
 ### `bl_table` でレイアウトが壊れるケースについて（解消済）
 
@@ -49,12 +86,12 @@
 }
 ```
 
-### `feedbackOK` の使用法について
+### `feedbackOK` の使用法について（一部解決済み）
 
 音や振動で操作結果を返すよう、フィードバックする関数を導入しているが、その使い方に改良の余地がある状態。現状、クリップボード操作に使っているが、それがオブジェクト同士の結びつきを変に高めている感じがある。
 
 例えばB01の `Calculator`　クラスは、自身とそのファイル内で作成した専用関数があれば動作するようになっていた。だがクリップボード操作を中に入れており、それが別ファイルにある `feedbackOK` 関数に依存するようになった。コピー機能をクラスから除外するか、何か別の対処が必要？
 
-### b01-calculator の計算操作について
+### b01-calculator の計算操作について（解決済み）
 
 現状は、`Infinity` や `NaN` を弾くようにはしていない（例：`1/0=` で計算すると、`Infinity` となる）。なので、操作によっては不具合が起こり得るかもしれない。
