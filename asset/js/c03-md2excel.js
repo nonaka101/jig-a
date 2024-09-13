@@ -1,4 +1,4 @@
-function markdown2Excel(mdTable) {
+function markdown2excel(mdTable) {
 	// 改行コードを \n に統一
 	const normalizedStr = mdTable.replace(/\r\n/g, '\n');
 
@@ -6,12 +6,12 @@ function markdown2Excel(mdTable) {
 	const rows = normalizedStr.split('\n');
 	rows.splice(1,1);
 
-	// 行処理：文字列を '|' で区切り、端の要素を除去し、空白をトリムし、タブ文字で繋げた文字列に変換
+	// 行処理：文字列を '|' で区切り、最端要素を除去し、空白をトリムし、タブ文字で繋げた文字列に変換
 	const excelRows = rows.map(row => {
 		return row										// '| A | B | | C |'
-			.split('|')									// ["", " A ", " B ", " "," C ",""]
-			.slice(1, -1)								// [" A ", " B ", " "," C "]
-			.map(cell => cell.trim())		// ["A", "B", "","C"]
+			.split('|')								 // ["", " A ", " B ", " "," C ",""]
+			.slice(1, -1)							 // [" A ", " B ", " "," C "]
+			.map(cell => cell.trim())	 // ["A", "B", "","C"]
 			.join('\t');								// 'A\tB\t\tC'
 	});
 
@@ -19,21 +19,54 @@ function markdown2Excel(mdTable) {
 	return excelRows.join('\n');
 }
 
+function markdown2excelWithEscaped(mdTable) {
+	const conversionTable = [
+		{
+			original: '|',
+			evacuation: '@@PIPE@@',
+			escaped: '\\|'
+		},
+	];
+
+	// 退避用文字列に置換
+	conversionTable.forEach(replacement => {
+		mdTable = mdTable.split(replacement.escaped).join(replacement.evacuation);
+	});
+
+	// ベース処理
+	mdTable = markdown2excel(mdTable);
+
+	// 退避させてた文字列をエスケープ処理付きで復元
+	conversionTable.forEach(replacement => {
+		mdTable = mdTable.split(replacement.evacuation).join(replacement.original);
+	});
+
+	return mdTable;
+}
+
 /*
-// 使用例：基本パターン
-const mdTable1 = '| ＼ | 列A | 列B |\n| --- | --- | --- |\n| 行1 | セルA1 | セルB1 |\n| 行2 | セルA2 | セルB2 |';
+const mdTable1 = '| 表 | 列A | 列B |\n| --- | --- | --- |\n| 行1 | セルA1 | セルB1 |\n| 行2 | セルA2 | セルB2 |';
 
 // 揃え方向を指定したパターン
-const mdTable2 = '| ＼ | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セルA1 | セルB1 |\n| 行2 | セルA2 | セルB2 |';
+// const mdTable1 = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セルA1 | セルB1 |\n| 行2 | セルA2 | セルB2 |';
 
 // スペースやハイフンで見栄えを調整したパターン
-const mdTable3 = '|  ＼ | 列A    | 列B   |\n| --- | ----- | ----- |\n| 行1 | セルA1 | セルB1 |\n| 行2 | セルA2 | セルB2 |';
+// const mdTable1 = '|  表 | 列A    | 列B   |\n| --- | ----- | ----- |\n| 行1 | セルA1 | セルB1 |\n| 行2 | セルA2 | セルB2 |';
 
 console.log(markdown2excel(mdTable1));
-console.log(markdown2excel(mdTable2));
-console.log(markdown2excel(mdTable3));
-// これら3パターンで、結果が同じ `＼\t列A\t列B\n行1\tセルA1\tセルB1\n行2\tセルA2\tセルB2` となる
+// ↓ 出力結果
+// 表	列A	列B
+// 行1	セルA1	セルB1
+// 行2	セルA2	セルB2
+
+const mdTable2 = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セル\\|A1 | セル\\|B1 |\n| 行2 | セル\\|A2 | セルB2 |';
+console.log(markdown2excelWithEscaped(mdTable2));
+// ↓ 出力結果
+// 表	列A	列B
+// 行1	セル|A1	セル|B1
+// 行2	セル|A2	セルB2
 */
+
 
 
 
@@ -46,8 +79,8 @@ const c03_btnCalc = document.querySelector('#c03js_calcBtn');
 const c03_btnPasteFromClipboard = document.querySelector('#c03js_pasteFromClipboard');
 c03_btnPasteFromClipboard.addEventListener('click', () =>{
 	navigator.clipboard
-  .readText()
-  .then((clipText) => {
+	.readText()
+	.then((clipText) => {
 		// innerText と value の扱いは違う（InnerTextだと、改行コードが <br> に変換された状態に？）
 		c03_textArea.value = '';
 		c03_textArea.value = clipText;
@@ -65,8 +98,8 @@ c03_btnCalc.addEventListener('click', ()=>{
 	// 準備（既存のデータを消す）
 	c03_output.innerHTML = '';
 
-	// 変換処理したものを要素化
-	const result = markdown2Excel(c03_textArea.value);
+	// 変換処理
+	const result = markdown2excelWithEscaped(c03_textArea.value);
 
 	// コピーボタンの生成
 	const copyBtn = document.createElement('button');
