@@ -59,7 +59,11 @@ console.log(markdown2excel(mdTable1));
 // 行1	セルA1	セルB1
 // 行2	セルA2	セルB2
 
-const mdTable2 = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セル\\|A1 | セル\\|B1 |\n| 行2 | セル\\|A2 | セルB2 |';
+const mdTable2 = String.raw`| 表 | 列A | 列B |
+| :---: | :--- | ---: |
+| 行1 | セル\|A1 | セル\|B1 |
+| 行2 | セル\|A2 | セルB2 |`;
+
 console.log(markdown2excelWithEscaped(mdTable2));
 // ↓ 出力結果
 // 表	列A	列B

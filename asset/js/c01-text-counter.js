@@ -26,8 +26,8 @@ c01_btnCalc.addEventListener('click', ()=>{
 	c01_output.value = '';
 
 	// 入力値を整形
-	const inputText = c01_textArea.value;
-	const inputTextArray = inputText.split(/[\r|\n|\r\n]+/gmsu);
+	const inputTextNormalized = c01_textArea.value.replace(/\r\n/g, '\n');
+	const inputTextArray = inputTextNormalized.split('\n');
 
 	// 各種計算値を格納するための変数
 	let counterAllChars = 0;
