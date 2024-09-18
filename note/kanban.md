@@ -2,35 +2,6 @@
 
 ## TODO
 
-### b01-calculator のキー操作受け付け
-
-`dialog` 要素の `open` 状態を監視（※下記コード参照）する手法を使い、Calculator ダイアログの起動中のみ「数値キー」「演算子」「イコール（エンター？）」キーを受け入れることを考える。  
-起動中のみと限定するのは、使用するキーがスクリーンリーダーのユーザーにとって別のショートカットキーに割り振られている可能性を考慮しての判断。
-
-```javascript
-const dialogEle = document.querySelector("#dialog");
-let intervalId;
-
-// MutationObserverでdialog要素の属性の変化を監視
-const observer = new MutationObserver((mutationsList) => {
-  for (const mutation of mutationsList){
-    if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
-      if (dialogEle.open) {
-        intervalId = setInterval(updateTime, 1000);
-      } else {
-        clearInterval(intervalId);
-      }
-    }
-  }
-});
-
-// open属性の変化を監視
-observer.observe(dialogEle, {
-  attributes: true,
-  attributeFilter: ["open"],
-});
-```
-
 ---
 
 ## 保留中
@@ -95,3 +66,32 @@ observer.observe(dialogEle, {
 ### b01-calculator の計算操作について（解決済み）
 
 現状は、`Infinity` や `NaN` を弾くようにはしていない（例：`1/0=` で計算すると、`Infinity` となる）。なので、操作によっては不具合が起こり得るかもしれない。
+
+### b01-calculator のキー操作受け付け（解決済み）
+
+`dialog` 要素の `open` 状態を監視（※下記コード参照）する手法を使い、Calculator ダイアログの起動中のみ「数値キー」「演算子」「イコール（エンター？）」キーを受け入れることを考える。  
+起動中のみと限定するのは、使用するキーがスクリーンリーダーのユーザーにとって別のショートカットキーに割り振られている可能性を考慮しての判断。
+
+```javascript
+const dialogEle = document.querySelector("#dialog");
+let intervalId;
+
+// MutationObserverでdialog要素の属性の変化を監視
+const observer = new MutationObserver((mutationsList) => {
+  for (const mutation of mutationsList){
+    if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
+      if (dialogEle.open) {
+        intervalId = setInterval(updateTime, 1000);
+      } else {
+        clearInterval(intervalId);
+      }
+    }
+  }
+});
+
+// open属性の変化を監視
+observer.observe(dialogEle, {
+  attributes: true,
+  attributeFilter: ["open"],
+});
+```

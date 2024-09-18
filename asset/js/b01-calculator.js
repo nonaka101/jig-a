@@ -1,6 +1,6 @@
 
 /* ≡≡≡ ▀▄ HTML要素郡 ▀▄ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-  ■ 概要
+	■ 概要
 		各種入力ボタンや、出力先のラベルなどを管理する
 ---------------------------------------------------------------------------- */
 
@@ -8,7 +8,7 @@
 const b01_calcLabel = document.querySelector('#b01js_label');
 const b01_calcOutput = document.querySelector('#b01js_output');
 
-// 計算ボタン郡（0〜9, 小数点, 四則演算子）
+// 計算ボタン郡（0〜9, 小数点, 四則演算子、計算実行）
 const b01_calcBtn1 = document.querySelector('#b01js_1');
 const b01_calcBtn2 = document.querySelector('#b01js_2');
 const b01_calcBtn3 = document.querySelector('#b01js_3');
@@ -26,10 +26,13 @@ const b01_calcBtnMultiply = document.querySelector('#b01js_Multiply');
 const b01_calcBtnDevide = document.querySelector('#b01js_Divide');
 const b01_calcBtnEqual = document.querySelector('#b01js_Equal');
 
-// 機能ボタン郡（クリア, バックスペース, コピー, 計算実行）
+// 機能ボタン郡（クリア, バックスペース, コピー）
 const b01_calcBtnAllClear = document.querySelector('#b01js_AllClear');
 const b01_calcBtnBackSpace = document.querySelector('#b01js_BackSpace');
+const b01_calcBtnCopy = document.querySelector('#b01js_Copy');
 
+// ダイアログ要素
+const b01_dialogEle = document.querySelector("#b01js_dialog_calculator");
 
 
 
@@ -45,7 +48,7 @@ const b01_calcBtnBackSpace = document.querySelector('#b01js_BackSpace');
 
 
 /* ≡≡≡ ▀▄ Functions ▀▄ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-  ■ 概要
+	■ 概要
 		主に、丸め誤差を回避するための四則演算関係のもの。
 ---------------------------------------------------------------------------- */
 
@@ -55,11 +58,11 @@ const b01_calcBtnBackSpace = document.querySelector('#b01js_BackSpace');
  * @returns {int} - 小数位置。例： 2
  */
 function getDecimalPosition(value){
-  const strVal = String(value);
-  if(strVal.indexOf('.') !== -1){
-    return ((strVal.length - 1) - strVal.indexOf('.'));
-  }
-  return 0;
+	const strVal = String(value);
+	if(strVal.indexOf('.') !== -1){
+		return ((strVal.length - 1) - strVal.indexOf('.'));
+	}
+	return 0;
 }
 
 
@@ -69,22 +72,22 @@ function getDecimalPosition(value){
  * @returns {Array} - [OperandLeft, Operator, OperandRight]の配列。
  */
 function splitExpression(expression) {
-  let operatorIndex = 1; // デフォルトでは2文字目からOperatorを探す
+	let operatorIndex = 1; // デフォルトでは2文字目からOperatorを探す
 
-  // Operatorが2文字目以降にあるかチェック
-  // Memo: indexOf() で検索をかける方法は、右辺が負の数であるパターンで複雑になるだけなので不採用
-  for (let i = 1; i < expression.length; i++) {
-      if (isOperator(expression[i])) {
-          operatorIndex = i;
-          break;
-      }
-  }
+	// Operatorが2文字目以降にあるかチェック
+	// Memo: indexOf() で検索をかける方法は、右辺が負の数であるパターンで複雑になるだけなので不採用
+	for (let i = 1; i < expression.length; i++) {
+			if (isOperator(expression[i])) {
+					operatorIndex = i;
+					break;
+			}
+	}
 
-  const operandLeft = expression.substring(0, operatorIndex);
-  const operator = expression[operatorIndex];
-  const operandRight = expression.substring(operatorIndex + 1);
+	const operandLeft = expression.substring(0, operatorIndex);
+	const operator = expression[operatorIndex];
+	const operandRight = expression.substring(operatorIndex + 1);
 
-  return [operandLeft, operator, operandRight];
+	return [operandLeft, operator, operandRight];
 }
 
 /**
@@ -93,31 +96,31 @@ function splitExpression(expression) {
 * @returns {boolean} - 文字が演算子であればtrue、それ以外はfalse。
 */
 function isOperator(char) {
-  return ['+', '-', '*', '/'].includes(char);
+	return ['+', '-', '*', '/'].includes(char);
 }
 
 
 const multiplication = (x, y) => {
-  const z = 10 ** (getDecimalPosition(x) + getDecimalPosition(y));
-  x = (x + '').replace('.', '');
-  y = (y + '').replace('.', '');
-  return (x * y) / z;
+	const z = 10 ** (getDecimalPosition(x) + getDecimalPosition(y));
+	x = (x + '').replace('.', '');
+	y = (y + '').replace('.', '');
+	return (x * y) / z;
 };
 
 
 const addition = (x, y) => {
-  const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
-  return (multiplication(x, z) + multiplication(y, z)) / z;
+	const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
+	return (multiplication(x, z) + multiplication(y, z)) / z;
 };
 
 const subtract = (x, y) => {
-  const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
-  return (multiplication(x, z) - multiplication(y, z)) / z;
+	const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
+	return (multiplication(x, z) - multiplication(y, z)) / z;
 };
 
 const division = (x, y) => {
-  const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
-  return multiplication(x, z) / multiplication(y, z);
+	const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
+	return multiplication(x, z) / multiplication(y, z);
 }
 
 
@@ -131,485 +134,485 @@ const division = (x, y) => {
 
 
 /* ≡≡≡ ▀▄ Calculator ▀▄ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-  ■ 概要
-    電卓としての機能を持たせている。
-    1. 状態遷移による入力管理
-    2. コントロールからある程度独立したコア機能
+	■ 概要
+		電卓としての機能を持たせている。
+		1. 状態遷移による入力管理
+		2. コントロールからある程度独立したコア機能
 ---------------------------------------------------------------------------- */
 
 /**
  * 数値のステージを enum 風に管理
  */
 const CALC_STATE = Object.freeze({
-  Start: 0,            // 初期状態
-  NegativeNum1: 1,     // 左辺：マイナス符号を入力
-  OperandZero1: 2,     // 左辺：ゼロ入力状態
-  OperandInteger1: 3,  // 左辺：整数モード
-  OperandDecimal1: 4,  // 左辺：小数モード
-  Operator: 5,         // 演算子入力
-  NegativeNum2: 6,     // 右辺：マイナス符号を入力
-  OperandZero2: 7,     // 右辺：ゼロ入力状態
-  OperandInteger2: 8,  // 右辺：整数モード
-  OperandDecimal2: 9,  // 右辺：小数モード
-  Result: 10,          // 計算結果
-  Error: 11,           // エラー（Infinity, NaN など）
+	Start: 0,						// 初期状態
+	NegativeNum1: 1,		 // 左辺：マイナス符号を入力
+	OperandZero1: 2,		 // 左辺：ゼロ入力状態
+	OperandInteger1: 3,	// 左辺：整数モード
+	OperandDecimal1: 4,	// 左辺：小数モード
+	Operator: 5,				 // 演算子入力
+	NegativeNum2: 6,		 // 右辺：マイナス符号を入力
+	OperandZero2: 7,		 // 右辺：ゼロ入力状態
+	OperandInteger2: 8,	// 右辺：整数モード
+	OperandDecimal2: 9,	// 右辺：小数モード
+	Result: 10,					// 計算結果
+	Error: 11,					 // エラー（Infinity, NaN など）
 });
 
 /**
  * Calculator が受け取れる文字列一覧
  */
 const VALID_INPUTS = [
-  '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-  '.', '+', '-', '*', '/', '='
+	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+	'.', '+', '-', '*', '/', '='
 ];
 
 /**
  * 各STATEに対応する、無効とされる入力集
  */
 const INVALID_INPUTS_BY_STATE = Object.freeze({
-  0:  ['+', '*', '/', '='],       // 初期状態
-  1:  ['+', '-', '*', '/', '='],  // 左辺：マイナス符号を入力
-  2:  ['0', '='],  // 左辺：ゼロ入力状態
-  3:  ['='],       // 左辺：整数モード
-  4:  ['.', '='],  // 左辺：小数モード
-  5:  ['+', '*', '/', '='],       // 演算子入力
-  6:  ['+', '-', '*', '/', '='],  // 右辺：マイナス符号を入力
-  7:  ['0'],  // 右辺：ゼロ入力状態
-  8:  [],     // 右辺：整数モード
-  9:  ['.'],  // 右辺：小数モード
-  10: ['='],  // 計算結果
-  11: ['+', '*', '/', '=']  // エラー（これ以上の計算処理を遮断）
+	0:	['+', '*', '/', '='],			 // 初期状態
+	1:	['+', '-', '*', '/', '='],	// 左辺：マイナス符号を入力
+	2:	['0', '='],	// 左辺：ゼロ入力状態
+	3:	['='],			 // 左辺：整数モード
+	4:	['.', '='],	// 左辺：小数モード
+	5:	['+', '*', '/', '='],			 // 演算子入力
+	6:	['+', '-', '*', '/', '='],	// 右辺：マイナス符号を入力
+	7:	['0'],	// 右辺：ゼロ入力状態
+	8:	[],		 // 右辺：整数モード
+	9:	['.'],	// 右辺：小数モード
+	10: ['='],	// 計算結果
+	11: ['+', '*', '/', '=']	// エラー（これ以上の計算処理を遮断）
 })
 
 
 /** 簡易的な電卓機能を持つ、ベースとなるクラス */
 class Calculator {
-  constructor() {
-    this._expression = '';
-    this._state = CALC_STATE.Start; // -> 0
-  }
+	constructor() {
+		this._expression = '';
+		this._state = CALC_STATE.Start; // -> 0
+	}
 
-  get expression(){
-    return this._expression;
-  }
+	get expression(){
+		return this._expression;
+	}
 
-  pushExpression(input) {
-    // 許容されているデータのみ処理に進める（入力としてありえるもの、かつ現ステートで無効な値）
-    if ((!VALID_INPUTS.includes(input)) || (INVALID_INPUTS_BY_STATE[this._state].includes(input))) {
-      return false;
-    }
-    switch (this._state){
-      case CALC_STATE.Error:
-        /* [Nan ] : 計算数値外（Infinity や Nan）の状態
-         * ------------------------------------------------
-         *   0    : 初期化後 OperandZero1 に移行
-         *   -    : 初期化後 NegativeNum1 に移行
-         *   .    : 初期化後 '0' を先に追加し、OperandDecimal1 に移行
-         *  1-9   : 初期化後 OperandIntger1 に移行
-         */
-        switch (input){
-          case '0':
-            this._expression = input;
-            this._state = CALC_STATE.OperandZero1;
-            break;
-          case '-':
-            this._expression = input;
-            this._state = CALC_STATE.NegativeNum1;
-            break;
-          case '.':
-            this._expression = '0';
-            this._expression += input;
-            this._state = CALC_STATE.OperandDecimal1;
-            break;
-          default: // -> case [1-9]
-            this._expression = input;
-            this._state = CALC_STATE.OperandInteger1;
-        }
-        break;
-      case CALC_STATE.Start:
-        /* [    ] : 何も入力されていない状態
-         * ------------------------------------------------
-         *   0    : OperandZero1 に移行
-         *   -    : NegativeNum1 に移行
-         *   .    : '0' を先に追加し、OperandDecimal1 に移行
-         *  1-9   : OperandIntger1 に移行
-         */
-        switch (input){
-          case '0':
-            this._expression += input;
-            this._state = CALC_STATE.OperandZero1;
-            break;
-          case '-':
-            this._expression += input;
-            this._state = CALC_STATE.NegativeNum1;
-            break;
-          case '.':
-            this._expression += '0';
-            this._expression += input;
-            this._state = CALC_STATE.OperandDecimal1;
-            break;
-          default: // -> case [1-9]
-            this._expression += input;
-            this._state = CALC_STATE.OperandInteger1;
-        }
-        break;
-      case CALC_STATE.NegativeNum1:
-        /* [-   ] : 第一オペラントにマイナス入力
-         * ------------------------------------------------
-         *   0    : OperandZero1 に移行
-         *   .    : '0' を先に追加し、OperandDecimal1 に移行
-         *  1-9   : OperandIntger1 に移行
-         */
-        switch (input){
-          case '0':
-            this._expression += input;
-            this._state = CALC_STATE.OperandZero1;
-            break;
-          case '.':
-            this._expression += '0';
-            this._expression += input;
-            this._state = CALC_STATE.OperandDecimal1;
-            break;
-          default: // -> case [1-9]
-            this._expression += input;
-            this._state = CALC_STATE.OperandInteger1;
-        }
-        break;
-      case CALC_STATE.OperandZero1:
-        /* [0   ] : ゼロ入力モード
-         * -------------------------------------------------
-         *   .    : OperandDecimal1 に移行
-         * 演算子  : Operator に移行
-         *  1-9   : 式にある '0' を消し、OperandIntger1 に移行
-         */
-        switch (input){
-          case '.':
-            this._expression += input;
-            this._state = CALC_STATE.OperandDecimal1;
-            break;
-          case '+':
-          case '-':
-          case '*':
-          case '/':
-            this._expression += input;
-            this._state = CALC_STATE.Operator;
-            break;
-          default: // -> case [1-9]
-            this._expression = this._expression.slice(0, -1);
-            this._expression += input;
-            this._state = CALC_STATE.OperandInteger1;
-        }
-        break;
-      case CALC_STATE.OperandInteger1:
-        /* [3   ] : 整数入力モード
-         * -------------------------------------------------
-         *   .    : OperandDecimal1 に移行
-         * 演算子  : Operator に移行
-         *  0-9   : 変化なし
-         */
-        switch (input){
-          case '.':
-            this._expression += input;
-            this._state = CALC_STATE.OperandDecimal1;
-            break;
-          case '+':
-          case '-':
-          case '*':
-          case '/':
-            this._expression += input;
-            this._state = CALC_STATE.Operator;
-            break;
-          default: // -> case [0-9]
-            this._expression += input;
-        }
-        break;
-      case CALC_STATE.OperandDecimal1:
-        /* [3.  ] : 小数入力モード
-         * -------------------------------------------------
-         * 演算子  : Operator に移行
-         *  0-9   : 変化なし
-         */
-        switch (input){
-          case '+':
-          case '-':
-          case '*':
-          case '/':
-            this._expression += input;
-            this._state = CALC_STATE.Operator;
-            break;
-          default: // -> case [0-9]
-            this._expression += input;
-        }
-        break;
-      case CALC_STATE.Operator:
-        /* [2+  ] : オペレータが入力された状態
-         * ------------------------------------------------
-         *   0    : OperandZero2 に移行
-         *   .    : '0' を先に追加し、OperandDecimal2 に移行
-         *   -    : NegativeNum2 に移行
-         *  1-9   : OperandIntger2 に移行
-         */
-        switch (input){
-          case '0':
-            this._expression += input;
-            this._state = CALC_STATE.OperandZero2;
-            break;
-          case '.':
-            this._expression += '0';
-            this._expression += input;
-            this._state = CALC_STATE.OperandDecimal2;
-            break;
-          case '-':
-            this._expression += input;
-            this._state = CALC_STATE.NegativeNum2;
-            break;
-          default: // -> case [1-9]
-            this._expression += input;
-            this._state = CALC_STATE.OperandInteger2;
-        }
-        break;
-      case CALC_STATE.NegativeNum2:
-        /* [2*- ] : 第二オペラントにマイナス入力
-         * ------------------------------------------------
-         *   0    : OperandZero2 に移行
-         *   .    : '0' を先に追加し、OperandDecimal2 に移行
-         *  1-9   : OperandIntger2 に移行
-         */
-        switch (input){
-          case '0':
-            this._expression += input;
-            this._state = CALC_STATE.OperandZero2;
-            break;
-          case '.':
-            this._expression += '0';
-            this._expression += input;
-            this._state = CALC_STATE.OperandDecimal2;
-            break;
-          default: // -> case [1-9]
-            this._expression += input;
-            this._state = CALC_STATE.OperandInteger2;
-        }
-        break;
-      case CALC_STATE.OperandZero2:
-        /* [2+0 ] : ゼロ入力モード
-         * -------------------------------------------------
-         *   .    : OperandDecimal2 に移行
-         *   =    : 計算処理し、Result に移行（エラー値の場合は Error に移行）
-         * 演算子  : 計算処理し、演算子を引き継ぎ Operator に移行
-         *           （エラー値の場合は Error に移行）
-         *  1-9   : 式にある '0' を消し、OperandIntger2 に移行
-         */
-        switch (input){
-          case '.':
-            this._expression += input;
-            this._state = CALC_STATE.OperandDecimal2;
-            break;
-          case '=':
-            this._expression = this.calculate();
-            if(isFinite(this._expression)){
-              this._state = CALC_STATE.Result;
-            } else {
-              console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
-              this._state = CALC_STATE.Error;
-            }
-            break;
-          case '+':
-          case '-':
-          case '*':
-          case '/':
-            this._expression = this.calculate();
-            if(isFinite(this._expression)){
-              this._expression += input;
-              this._state = CALC_STATE.Operator;
-            } else {
-              console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
-              this._state = CALC_STATE.Error;
-            }
-            break;
-          default: // -> case [1-9]
-            this._expression = this._expression.slice(0, -1);
-            this._expression += input;
-            this._state = CALC_STATE.OperandInteger2;
-        }
-        break;
-      case CALC_STATE.OperandInteger2:
-        /* [3+2 ] : 整数入力モード
-         * -------------------------------------------------
-         *   .    : OperandDecimal2 に移行
-         *   =    : 計算処理し、Result に移行（エラー値の場合は Error に移行）
-         * 演算子  : 計算処理し、演算子を引き継ぎ Operator に移行
-         *         　（エラー値の場合は Error に移行）
-         *  0-9   : 変化なし
-         */
-        switch (input){
-          case '.':
-            this._expression += input;
-            this._state = CALC_STATE.OperandDecimal2;
-            break;
-          case '=':
-            this._expression = this.calculate();
-            if(isFinite(this._expression)){
-              this._state = CALC_STATE.Result;
-            } else {
-              console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
-              this._state = CALC_STATE.Error;
-            }
-            break;
-          case '+':
-          case '-':
-          case '*':
-          case '/':
-            this._expression = this.calculate();
-            if(isFinite(this._expression)){
-              this._expression += input;
-              this._state = CALC_STATE.Operator;
-            } else {
-              console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
-              this._state = CALC_STATE.Error;
-            }
-            break;
-          default: // -> case [0-9]
-            this._expression += input;
-        }
-        break;
-      case CALC_STATE.OperandDecimal2:
-        /* [3+2.] : 小数入力モード
-         * -------------------------------------------------
-         *   =    : 計算処理し、Result に移行（エラー値の場合は Error に移行）
-         * 演算子  : 計算処理し、演算子を引き継ぎ Operator に移行
-         *         　（エラー値の場合は Error に移行）
-         *  0-9   : 変化なし
-         */
-        switch (input){
-          case '=':
-            this._expression = this.calculate();
-            if(isFinite(this._expression)){
-              this._state = CALC_STATE.Result;
-            } else {
-              console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
-              this._state = CALC_STATE.Error;
-            }
-            break;
-          case '+':
-          case '-':
-          case '*':
-          case '/':
-            this._expression = this.calculate();
-            if(isFinite(this._expression)){
-              this._expression += input;
-              this._state = CALC_STATE.Operator;
-            } else {
-              console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
-              this._state = CALC_STATE.Error;
-            }
-            break;
-          default: // -> case [0-9]
-            this._expression += input;
-        }
-        break;
-      case CALC_STATE.Result:
-        /* [5   ] : 計算結果の表示
-         * -------------------------------------------------
-         * 演算子  : Operator に移行
-         *   .    : 計算結果を消し、'0' を先に追加し、OperandDecimal1 に移行
-         *   0    : 計算結果を消し、OperandZero1 に移行
-         *  1-9   : 計算結果を消し、OperandIntger1 に移行
-         */
-        switch (input){
-          case '+':
-          case '-':
-          case '*':
-          case '/':
-            this._expression += input;
-            this._state = CALC_STATE.Operator;
-            break;
-          case '.':
-            this._expression = '0';
-            this._expression += input;
-            this._state = CALC_STATE.OperandDecimal1;
-            break;
-          case '0':
-            this._expression = input;
-            this._state = CALC_STATE.OperandZero1;
-            break;
-          default: // -> case [1-9]
-            this._expression = input;
-            this._state = CALC_STATE.OperandInteger1;
-        }
-        break;
-      default:
-        console.error(`無効なステートが検出されました ${this._state}`);
-        return false;
-    }
-    return true;
-  }
+	pushExpression(input) {
+		// 許容されているデータのみ処理に進める（入力としてありえるもの、かつ現ステートで無効な値）
+		if ((!VALID_INPUTS.includes(input)) || (INVALID_INPUTS_BY_STATE[this._state].includes(input))) {
+			return false;
+		}
+		switch (this._state){
+			case CALC_STATE.Error:
+				/* [Nan ] : 計算数値外（Infinity や Nan）の状態
+				 * ------------------------------------------------
+				 *   0    : 初期化後 OperandZero1 に移行
+				 *   -    : 初期化後 NegativeNum1 に移行
+				 *   .    : 初期化後 '0' を先に追加し、OperandDecimal1 に移行
+				 *  1-9   : 初期化後 OperandIntger1 に移行
+				 */
+				switch (input){
+					case '0':
+						this._expression = input;
+						this._state = CALC_STATE.OperandZero1;
+						break;
+					case '-':
+						this._expression = input;
+						this._state = CALC_STATE.NegativeNum1;
+						break;
+					case '.':
+						this._expression = '0';
+						this._expression += input;
+						this._state = CALC_STATE.OperandDecimal1;
+						break;
+					default: // -> case [1-9]
+						this._expression = input;
+						this._state = CALC_STATE.OperandInteger1;
+				}
+				break;
+			case CALC_STATE.Start:
+				/* [    ] : 何も入力されていない状態
+				 * ------------------------------------------------
+				 *   0    : OperandZero1 に移行
+				 *   -    : NegativeNum1 に移行
+				 *   .    : '0' を先に追加し、OperandDecimal1 に移行
+				 *  1-9   : OperandIntger1 に移行
+				 */
+				switch (input){
+					case '0':
+						this._expression += input;
+						this._state = CALC_STATE.OperandZero1;
+						break;
+					case '-':
+						this._expression += input;
+						this._state = CALC_STATE.NegativeNum1;
+						break;
+					case '.':
+						this._expression += '0';
+						this._expression += input;
+						this._state = CALC_STATE.OperandDecimal1;
+						break;
+					default: // -> case [1-9]
+						this._expression += input;
+						this._state = CALC_STATE.OperandInteger1;
+				}
+				break;
+			case CALC_STATE.NegativeNum1:
+				/* [-   ] : 第一オペラントにマイナス入力
+				 * ------------------------------------------------
+				 *   0    : OperandZero1 に移行
+				 *   .    : '0' を先に追加し、OperandDecimal1 に移行
+				 *  1-9   : OperandIntger1 に移行
+				 */
+				switch (input){
+					case '0':
+						this._expression += input;
+						this._state = CALC_STATE.OperandZero1;
+						break;
+					case '.':
+						this._expression += '0';
+						this._expression += input;
+						this._state = CALC_STATE.OperandDecimal1;
+						break;
+					default: // -> case [1-9]
+						this._expression += input;
+						this._state = CALC_STATE.OperandInteger1;
+				}
+				break;
+			case CALC_STATE.OperandZero1:
+				/* [0   ] : ゼロ入力モード
+				 * -------------------------------------------------
+				 *   .    : OperandDecimal1 に移行
+				 * 演算子  : Operator に移行
+				 *  1-9   : 式にある '0' を消し、OperandIntger1 に移行
+				 */
+				switch (input){
+					case '.':
+						this._expression += input;
+						this._state = CALC_STATE.OperandDecimal1;
+						break;
+					case '+':
+					case '-':
+					case '*':
+					case '/':
+						this._expression += input;
+						this._state = CALC_STATE.Operator;
+						break;
+					default: // -> case [1-9]
+						this._expression = this._expression.slice(0, -1);
+						this._expression += input;
+						this._state = CALC_STATE.OperandInteger1;
+				}
+				break;
+			case CALC_STATE.OperandInteger1:
+				/* [3   ] : 整数入力モード
+				 * -------------------------------------------------
+				 *   .    : OperandDecimal1 に移行
+				 * 演算子  : Operator に移行
+				 *  0-9   : 変化なし
+				 */
+				switch (input){
+					case '.':
+						this._expression += input;
+						this._state = CALC_STATE.OperandDecimal1;
+						break;
+					case '+':
+					case '-':
+					case '*':
+					case '/':
+						this._expression += input;
+						this._state = CALC_STATE.Operator;
+						break;
+					default: // -> case [0-9]
+						this._expression += input;
+				}
+				break;
+			case CALC_STATE.OperandDecimal1:
+				/* [3.  ] : 小数入力モード
+				 * -------------------------------------------------
+				 * 演算子  : Operator に移行
+				 *  0-9   : 変化なし
+				 */
+				switch (input){
+					case '+':
+					case '-':
+					case '*':
+					case '/':
+						this._expression += input;
+						this._state = CALC_STATE.Operator;
+						break;
+					default: // -> case [0-9]
+						this._expression += input;
+				}
+				break;
+			case CALC_STATE.Operator:
+				/* [2+  ] : オペレータが入力された状態
+				 * ------------------------------------------------
+				 *   0    : OperandZero2 に移行
+				 *   .    : '0' を先に追加し、OperandDecimal2 に移行
+				 *   -    : NegativeNum2 に移行
+				 *  1-9   : OperandIntger2 に移行
+				 */
+				switch (input){
+					case '0':
+						this._expression += input;
+						this._state = CALC_STATE.OperandZero2;
+						break;
+					case '.':
+						this._expression += '0';
+						this._expression += input;
+						this._state = CALC_STATE.OperandDecimal2;
+						break;
+					case '-':
+						this._expression += input;
+						this._state = CALC_STATE.NegativeNum2;
+						break;
+					default: // -> case [1-9]
+						this._expression += input;
+						this._state = CALC_STATE.OperandInteger2;
+				}
+				break;
+			case CALC_STATE.NegativeNum2:
+				/* [2*- ] : 第二オペラントにマイナス入力
+				 * ------------------------------------------------
+				 *   0    : OperandZero2 に移行
+				 *   .    : '0' を先に追加し、OperandDecimal2 に移行
+				 *  1-9   : OperandIntger2 に移行
+				 */
+				switch (input){
+					case '0':
+						this._expression += input;
+						this._state = CALC_STATE.OperandZero2;
+						break;
+					case '.':
+						this._expression += '0';
+						this._expression += input;
+						this._state = CALC_STATE.OperandDecimal2;
+						break;
+					default: // -> case [1-9]
+						this._expression += input;
+						this._state = CALC_STATE.OperandInteger2;
+				}
+				break;
+			case CALC_STATE.OperandZero2:
+				/* [2+0 ] : ゼロ入力モード
+				 * -------------------------------------------------
+				 *   .    : OperandDecimal2 に移行
+				 *   =    : 計算処理し、Result に移行（エラー値の場合は Error に移行）
+				 * 演算子  : 計算処理し、演算子を引き継ぎ Operator に移行
+				 *           （エラー値の場合は Error に移行）
+				 *  1-9   : 式にある '0' を消し、OperandIntger2 に移行
+				 */
+				switch (input){
+					case '.':
+						this._expression += input;
+						this._state = CALC_STATE.OperandDecimal2;
+						break;
+					case '=':
+						this._expression = this.calculate();
+						if(isFinite(this._expression)){
+							this._state = CALC_STATE.Result;
+						} else {
+							console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
+							this._state = CALC_STATE.Error;
+						}
+						break;
+					case '+':
+					case '-':
+					case '*':
+					case '/':
+						this._expression = this.calculate();
+						if(isFinite(this._expression)){
+							this._expression += input;
+							this._state = CALC_STATE.Operator;
+						} else {
+							console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
+							this._state = CALC_STATE.Error;
+						}
+						break;
+					default: // -> case [1-9]
+						this._expression = this._expression.slice(0, -1);
+						this._expression += input;
+						this._state = CALC_STATE.OperandInteger2;
+				}
+				break;
+			case CALC_STATE.OperandInteger2:
+				/* [3+2 ] : 整数入力モード
+				 * -------------------------------------------------
+				 *   .    : OperandDecimal2 に移行
+				 *   =    : 計算処理し、Result に移行（エラー値の場合は Error に移行）
+				 * 演算子  : 計算処理し、演算子を引き継ぎ Operator に移行
+				 *         　（エラー値の場合は Error に移行）
+				 *  0-9   : 変化なし
+				 */
+				switch (input){
+					case '.':
+						this._expression += input;
+						this._state = CALC_STATE.OperandDecimal2;
+						break;
+					case '=':
+						this._expression = this.calculate();
+						if(isFinite(this._expression)){
+							this._state = CALC_STATE.Result;
+						} else {
+							console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
+							this._state = CALC_STATE.Error;
+						}
+						break;
+					case '+':
+					case '-':
+					case '*':
+					case '/':
+						this._expression = this.calculate();
+						if(isFinite(this._expression)){
+							this._expression += input;
+							this._state = CALC_STATE.Operator;
+						} else {
+							console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
+							this._state = CALC_STATE.Error;
+						}
+						break;
+					default: // -> case [0-9]
+						this._expression += input;
+				}
+				break;
+			case CALC_STATE.OperandDecimal2:
+				/* [3+2.] : 小数入力モード
+				 * -------------------------------------------------
+				 *   =    : 計算処理し、Result に移行（エラー値の場合は Error に移行）
+				 * 演算子  : 計算処理し、演算子を引き継ぎ Operator に移行
+				 *         　（エラー値の場合は Error に移行）
+				 *  0-9   : 変化なし
+				 */
+				switch (input){
+					case '=':
+						this._expression = this.calculate();
+						if(isFinite(this._expression)){
+							this._state = CALC_STATE.Result;
+						} else {
+							console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
+							this._state = CALC_STATE.Error;
+						}
+						break;
+					case '+':
+					case '-':
+					case '*':
+					case '/':
+						this._expression = this.calculate();
+						if(isFinite(this._expression)){
+							this._expression += input;
+							this._state = CALC_STATE.Operator;
+						} else {
+							console.warn(`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`);
+							this._state = CALC_STATE.Error;
+						}
+						break;
+					default: // -> case [0-9]
+						this._expression += input;
+				}
+				break;
+			case CALC_STATE.Result:
+				/* [5   ] : 計算結果の表示
+				 * -------------------------------------------------
+				 * 演算子  : Operator に移行
+				 *   .    : 計算結果を消し、'0' を先に追加し、OperandDecimal1 に移行
+				 *   0    : 計算結果を消し、OperandZero1 に移行
+				 *  1-9   : 計算結果を消し、OperandIntger1 に移行
+				 */
+				switch (input){
+					case '+':
+					case '-':
+					case '*':
+					case '/':
+						this._expression += input;
+						this._state = CALC_STATE.Operator;
+						break;
+					case '.':
+						this._expression = '0';
+						this._expression += input;
+						this._state = CALC_STATE.OperandDecimal1;
+						break;
+					case '0':
+						this._expression = input;
+						this._state = CALC_STATE.OperandZero1;
+						break;
+					default: // -> case [1-9]
+						this._expression = input;
+						this._state = CALC_STATE.OperandInteger1;
+				}
+				break;
+			default:
+				console.error(`無効なステートが検出されました ${this._state}`);
+				return false;
+		}
+		return true;
+	}
 
-  calculate() {
-    let [strOpeLeft, operator, strOpeRight] = splitExpression(this._expression);
-    let calcResult = 0;
-    switch(operator){
-      case '+':
-        try {
-          calcResult = addition(strOpeLeft, strOpeRight)
-        } catch (error) {
-          console.error(`Error: ${error.message}`);
-          calcResult = NaN;
-        }
-        break;
-      case '-':
-        try {
-          calcResult = subtract(strOpeLeft, strOpeRight);
-        } catch (error) {
-          console.error(`Error: ${error.message}`);
-          calcResult = NaN;
-        }
-        break;
-      case '*':
-        try {
-          calcResult = multiplication(strOpeLeft, strOpeRight);
-        } catch (error) {
-          console.error(`Error: ${error.message}`);
-          calcResult = NaN;
-        }
-        break;
-      case '/':
-        try {
-          calcResult = division(strOpeLeft, strOpeRight);
-        } catch (error) {
-          console.error(`Error: ${error.message}`);
-          calcResult = NaN;
-        }
-        break;
-      default:
-        console.Error(`不明な演算子が検出されました。 operator: ${operator}`);
-        calcResult = NaN;
-    }
-    return calcResult;
-  }
+	calculate() {
+		let [strOpeLeft, operator, strOpeRight] = splitExpression(this._expression);
+		let calcResult = 0;
+		switch(operator){
+			case '+':
+				try {
+					calcResult = addition(strOpeLeft, strOpeRight)
+				} catch (error) {
+					console.error(`Error: ${error.message}`);
+					calcResult = NaN;
+				}
+				break;
+			case '-':
+				try {
+					calcResult = subtract(strOpeLeft, strOpeRight);
+				} catch (error) {
+					console.error(`Error: ${error.message}`);
+					calcResult = NaN;
+				}
+				break;
+			case '*':
+				try {
+					calcResult = multiplication(strOpeLeft, strOpeRight);
+				} catch (error) {
+					console.error(`Error: ${error.message}`);
+					calcResult = NaN;
+				}
+				break;
+			case '/':
+				try {
+					calcResult = division(strOpeLeft, strOpeRight);
+				} catch (error) {
+					console.error(`Error: ${error.message}`);
+					calcResult = NaN;
+				}
+				break;
+			default:
+				console.Error(`不明な演算子が検出されました。 operator: ${operator}`);
+				calcResult = NaN;
+		}
+		return calcResult;
+	}
 
-  reset(){
-    this._state = CALC_STATE.Start;
-    this._expression = '';
-  }
+	reset(){
+		this._state = CALC_STATE.Start;
+		this._expression = '';
+	}
 
-  back(){
-    //リザルト状態やエラー状態でない、かつ 1文字以上の入力がある場合が処理対象
-    if(
-      (this._state == CALC_STATE.Result) ||
-      (this._state == CALC_STATE.Error) ||
-      (this._expression.length === 0)
-    ){
-      return false;
-    }
-    const expr = this._expression.slice(0, -1);
-    this.reset();
-    if(expr.length >= 1){
-      for (var i = 0; i < expr.length; i++) {
-        this.pushExpression(expr[i]);
-      }
-    }
-    return true;
-  }
+	back(){
+		//リザルト状態やエラー状態でない、かつ 1文字以上の入力がある場合が処理対象
+		if(
+			(this._state == CALC_STATE.Result) ||
+			(this._state == CALC_STATE.Error) ||
+			(this._expression.length === 0)
+		){
+			return false;
+		}
+		const expr = this._expression.slice(0, -1);
+		this.reset();
+		if(expr.length >= 1){
+			for (var i = 0; i < expr.length; i++) {
+				this.pushExpression(expr[i]);
+			}
+		}
+		return true;
+	}
 }
 
 /**
@@ -618,26 +621,26 @@ class Calculator {
 class b01Calculator extends Calculator{
 	constructor(btns){
 		super();
-    this._label = '';
+		this._label = '';
 
 		// 操作用ボタン登録
 		this._btn = {};
-    this._btn['0'] = btns['0'] || null;
-    this._btn['1'] = btns['1'] || null;
-    this._btn['2'] = btns['2'] || null;
-    this._btn['3'] = btns['3'] || null;
-    this._btn['4'] = btns['4'] || null;
-    this._btn['5'] = btns['5'] || null;
-    this._btn['6'] = btns['6'] || null;
-    this._btn['7'] = btns['7'] || null;
-    this._btn['8'] = btns['8'] || null;
-    this._btn['9'] = btns['9'] || null;
-    this._btn['.'] = btns['.'] || null;
-    this._btn['+'] = btns['+'] || null;
-    this._btn['-'] = btns['-'] || null;
-    this._btn['*'] = btns['*'] || null;
-    this._btn['/'] = btns['/'] || null;
-    this._btn['='] = btns['='] || null;
+		this._btn['0'] = btns['0'] || null;
+		this._btn['1'] = btns['1'] || null;
+		this._btn['2'] = btns['2'] || null;
+		this._btn['3'] = btns['3'] || null;
+		this._btn['4'] = btns['4'] || null;
+		this._btn['5'] = btns['5'] || null;
+		this._btn['6'] = btns['6'] || null;
+		this._btn['7'] = btns['7'] || null;
+		this._btn['8'] = btns['8'] || null;
+		this._btn['9'] = btns['9'] || null;
+		this._btn['.'] = btns['.'] || null;
+		this._btn['+'] = btns['+'] || null;
+		this._btn['-'] = btns['-'] || null;
+		this._btn['*'] = btns['*'] || null;
+		this._btn['/'] = btns['/'] || null;
+		this._btn['='] = btns['='] || null;
 	}
 
 	get label(){
@@ -677,16 +680,16 @@ class b01Calculator extends Calculator{
 		const buf = this._label;
 		const result = super.back();
 		this._label = buf;
-    return result;
+		return result;
 	}
 
-  refreshButtons(){
+	refreshButtons(){
 		const invalidNames = INVALID_INPUTS_BY_STATE[this._state];
 		for(const name of VALID_INPUTS){
-      // 現状態で制限されるボタンは disable 付与、それ以外は解除
+			// 現状態で制限されるボタンは disable 付与、それ以外は解除
 			this._btn[name].disabled = invalidNames.includes(name);
 		}
-  }
+	}
 }
 
 const buttons = {
@@ -725,7 +728,7 @@ calculator.reset();
 
 
 /* ≡≡≡ ▀▄ 各種HTML要素への機能割当 ▀▄ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-  ■ 概要
+	■ 概要
 		押下時 calculator を動かすためのイベント関係と処理を登録
 ---------------------------------------------------------------------------- */
 
@@ -751,16 +754,16 @@ for (const btn of b01_calcBtns){
 	})
 }
 
-// 「全消去」
-b01_calcBtnAllClear.addEventListener('click', () => {
+// オールクリア機能（キーアクションと共用）
+function calcActionAllClear(){
 	calculator.reset();
 	b01_calcOutput.textContent = calculator.expression;
 	b01_calcLabel.textContent = calculator.label;
 	feedbackOK();
-})
+}
 
-// 「1字消去」
-b01_calcBtnBackSpace.addEventListener('click', () => {
+// バックスペース機能（キーアクションと共用）
+function calcActionBackspace(){
 	if(calculator.back() == true){
 		b01_calcOutput.textContent = calculator.expression;
 		b01_calcLabel.textContent = calculator.label;
@@ -768,11 +771,9 @@ b01_calcBtnBackSpace.addEventListener('click', () => {
 	} else {
 		feedbackNG();
 	}
-});
-
-// 「コピー」
-const b01_calcBtnCopy = document.querySelector('#b01js_Copy');
-b01_calcBtnCopy.addEventListener('click', () => {
+}
+// コピー機能（キーアクションと共用）
+function calcActionCopy(){
 	navigator.clipboard
 	.writeText(calculator.expression)
 	.then(
@@ -782,4 +783,71 @@ b01_calcBtnCopy.addEventListener('click', () => {
 		console.error(e);
 		feedbackNG();
 	});
+}
+b01_calcBtnAllClear.addEventListener('click',calcActionAllClear);
+b01_calcBtnBackSpace.addEventListener('click', calcActionBackspace);
+b01_calcBtnCopy.addEventListener('click',calcActionCopy);
+
+
+
+
+
+/* ≡≡≡ ▀▄ ダイアログの監視 ▀▄ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+	■ 概要
+		展開時にキー入力と電卓とを関連付け
+---------------------------------------------------------------------------- */
+
+function overrideKeyboard(e) {
+	let key = e.key;
+
+	// テンキーのエンターは '=' と同等に（エンター自体はキー操作を阻害するので除外）
+	if(
+		(e.key == 'Enter' && e.location === 3) ||
+		(e.code == 'NumpadEnter')
+	){
+		e.preventDefault();
+		key = '=';
+	}
+
+	// 各種キーと電卓との連携
+	if(VALID_INPUTS.includes(key)){
+		if(calculator.pushExpression(key) === true) {
+			b01_calcOutput.textContent = calculator.expression;
+			b01_calcLabel.textContent = calculator.label;
+			feedbackOK();
+		} else {
+			b01_calcOutput.textContent = calculator.expression;
+			b01_calcLabel.textContent = '不正な入力です';
+			feedbackNG();
+		}
+	// 各種機能ボタン（キーに付属するイベントはキャンセル）
+	} else if(key == 'Backspace') {
+		e.preventDefault();
+		calcActionBackspace();
+	} else if(key == 'Clear') {
+		e.preventDefault();
+		calcActionAllClear();
+	} else if(key == 'Copy'){
+		e.preventDefault();
+		calcActionCopy();
+	}
+}
+
+// MutationObserverでdialog要素の属性の変化を監視
+const b01_observer = new MutationObserver((mutationsList) => {
+	for (const mutation of mutationsList){
+		if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
+			if (b01_dialogEle.open) {
+				b01_dialogEle.addEventListener('keydown', overrideKeyboard);
+			} else {
+				b01_dialogEle.removeEventListener('keydown', overrideKeyboard);
+			}
+		}
+	}
+});
+
+// open属性の変化を監視
+b01_observer.observe(b01_dialogEle, {
+	attributes: true,
+	attributeFilter: ["open"],
 });

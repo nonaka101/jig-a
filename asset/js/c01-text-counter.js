@@ -6,8 +6,8 @@ const c01_btnCalc = document.querySelector('#c01js_countBtn');
 const c01_btnPasteFromClipboard = document.querySelector('#c01js_pasteFromClipboard');
 c01_btnPasteFromClipboard.addEventListener('click', () =>{
 	navigator.clipboard
-  .readText()
-  .then((clipText) => {
+	.readText()
+	.then((clipText) => {
 		// innerText と value の扱いは違う（InnerTextだと、改行コードが <br> に変換された状態に？）
 		c01_textArea.value = '';
 		c01_textArea.value = clipText;

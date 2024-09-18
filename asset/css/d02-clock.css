@@ -1,0 +1,73 @@
+/* 本機能は画面全体を使うので、bl_menuHeader のレイアウトを変更 */
+#d02js_dialog_clock > .ly_dialog_body > .bl_menuHeader {
+	position: fixed;
+	right: 0;
+}
+
+#d02js_dialog_clock > .ly_dialog_body > .bl_menuHeader > .bl_menuHeader_btnIcon {
+	border: var(--sc_border_divider);
+	background-color: var(--sc_bg_body__primary);
+}
+
+
+
+/* 以降はダイアログ固有の要素へのスタイリング */
+.bl_clock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+	gap: 0;
+  width: 100%;
+  height: calc(100dvh - 16px);
+	padding: 4px;
+	margin: 0;
+	color: var(--sc_txt_btn__secondary);
+	background: none;
+	background-color: transparent;
+	border: 2px solid currentcolor;
+	border-radius: max(
+		min(4px, calc(40px - 100%) * 9999),
+		min(8px, calc(100% - 40px) * 9999, calc(120px - 100%) * 9999),
+		min(12px, calc(100% - 120px) * 9999)
+	);
+	transition: .25s;
+	text-decoration: none;
+}
+
+.bl_clock:hover,
+.bl_clock:active {
+	background-color: var(--sc_bg_btn__secondary);
+}
+
+.bl_clock_date {
+	display: block;
+  font-size: 5dvw;
+	line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+	color: var(--sc_txt_btn__secondary);
+}
+
+.bl_clock_time {
+	display: block;
+  font-size: 18dvw;
+	line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+	justify-items: center;
+	color: var(--sc_txt_btn__secondary);
+}
+
+/* 高さが小さく 2行で表示が難しい場合は時刻のみを表示 */
+@media (max-height: calc(23dvw + 24px)) {
+  .bl_clock_date {
+    display: none;
+  }
+
+	.bl_clock_time {
+		font-size: min(18dvw, calc(80dvh - 20px));
+	}
+}

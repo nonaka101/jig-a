@@ -127,12 +127,12 @@ function createTable(dataArray, tableStyle=0) {
 	}
 	tableWrapper.classList.add(...classes);
 
-  const table = document.createElement('table');
-  tableWrapper.appendChild(table);
+	const table = document.createElement('table');
+	tableWrapper.appendChild(table);
 
 
-  // ヘッダー部を作成
-  const tableHeaderRow = table.createTHead().insertRow();
+	// ヘッダー部を作成
+	const tableHeaderRow = table.createTHead().insertRow();
 	const arrayHeader = dataArray.shift();
 	let isFirstCell = true;	// クロス表の表側頭で scope をつけないためのもの
 	for(const cell of arrayHeader){
@@ -147,9 +147,9 @@ function createTable(dataArray, tableStyle=0) {
 		isFirstCell = false;
 	}
 
-  // ボディ部を作成
+	// ボディ部を作成
 	const tableBody = table.createTBody();
-  for (const arrayRow of dataArray) {
+	for (const arrayRow of dataArray) {
 		const row = tableBody.insertRow();
 
 		// 初回のみ th 要素
@@ -166,9 +166,9 @@ function createTable(dataArray, tableStyle=0) {
 			const cell = row.insertCell();
 			cell.textContent = tdCell;
 		}
-  }
+	}
 
-  // テーブル要素を格納した div.bl_table 要素を返す
+	// テーブル要素を格納した div.bl_table 要素を返す
 	return tableWrapper;
 }
 
@@ -475,7 +475,7 @@ chkEnableSound.addEventListener("change", (e) => {
 chkEnableSound.checked = settingState.enableSound;
 changeSoundMode(settingState.enableSound);
 
-// 振動機能
+// 音声機能
 var isEnabledSound = false;
 if((window.AudioContext || window.webkitAudioContext) === undefined) {
 	// AudioContext による ビープ生成 未対応
@@ -540,6 +540,7 @@ if((window.navigator.vibrate || window.navigator.mozVibrate || window.navigator.
 		- 「ダイアログを閉じる」ボタンに対し、ダイアログ格納機能を付与
 		- bl_accordion_summary に SVG `V` を配置
 		- <form> 要素の挙動制御（エンターでページ遷移せず、submitボタンのイベント発火）
+		- input[type="date"] 未対応の場合の注記挿入
 ---------------------------------------------------------------------------- */
 
 /*
@@ -606,6 +607,7 @@ for (const summary of accordionSummaries) {
 }
 
 
+
 /*
  * 全ての <form> 要素に対し、ページ遷移の挙動を止め、submitボタンのクリックイベント発火
  */
@@ -619,4 +621,43 @@ for(const form of forms){
 		const submitButton = form.querySelector('button[type="submit"]');
 		if (submitButton) submitButton.click();
 	});
+}
+
+
+
+/*
+ * 全ての input[type="date"] 要素に対し、未対応の場合に `yyyy-MM-dd` 形式での入力が必要なことを通知
+ */
+
+// 新規に要素を生成し、対応状況を検証
+const inputDateTest = document.createElement('input');
+try {
+	inputDateTest.type = 'date';
+} catch (e) {
+	console.log(e.message);
+}
+
+if (inputDateTest.type === 'text') {
+	// date 非対応（≒ input[type="text"] ）のためのコード
+	const inputDateElements = document.querySelectorAll('input[type="date"]');
+	for(const ele of inputDateElements){
+		// パターンの指定
+		ele.pattern = String.raw`\d{4}-\d{2}-\d{2}`;
+
+		// label 要素の取得（ない場合は新規生成し直前に挿入）
+		let label = document.querySelector(`label[for="${ele.id}"]`);
+		if(!label){
+			label = document.createElement('label');
+			label.htmlFor = ele.id;
+			ele.parentNode.insertBefore(label, ele);
+		}
+
+		// ラベル文を生成し挿入
+		const paragraph = document.createElement('p');
+		paragraph.style.margin = 0;
+		paragraph.style.padding = 0;
+		paragraph.className = 'hp_warningColor';
+		paragraph.textContent = 'yyyy-MM-dd 形式で入力してください';
+		label.appendChild(paragraph);
+	}
 }

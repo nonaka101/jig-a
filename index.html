@@ -2,17 +2,17 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="nonaka101">
 	<meta name="description" content="環境や状況を問わずブラウザのみで動作する、簡易的なツール集">
 
-  <title>JIG-A</title>
+	<title>JIG-A</title>
 
 	<!-- アイコン・マニフェスト関係 -->
 	<link rel="icon" sizes="32x32" type="image/vnd.microsoft.icon" href="./icon-032x032.ico">
 	<link rel="icon" sizes="any" type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg version='1.1' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='48' height='48' fill='%23fff' stroke-linejoin='round' stroke-width='2'/%3E%3Cpath d='m3 4.3125v2.625l10.5 2.625v-2.625zm28.875 0-10.5 15.75v2.625h20.125l0.87497 2.625h2.625l-2.625-7.875h-2.625l0.87496 2.625h-16.625l10.5-15.75zm-28.875 10.5v2.625l10.5 2.625v-2.625zm10.5 13.125v10.5s0 2.625-2.625 2.625h-7.875v2.625h7.875s5.25 0 5.25-5.25v-10.5zm7.875 0v15.75h23.625v-15.75zm2.625 2.625h18.375v10.5h-18.375z'/%3E%3C/svg%3E">
+		href="data:image/svg+xml,%3Csvg version='1.1' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='48' height='48' fill='%23fff' stroke-linejoin='round' stroke-width='2'/%3E%3Cpath d='m3 4.3125v2.625l10.5 2.625v-2.625zm28.875 0-10.5 15.75v2.625h20.125l0.87497 2.625h2.625l-2.625-7.875h-2.625l0.87496 2.625h-16.625l10.5-15.75zm-28.875 10.5v2.625l10.5 2.625v-2.625zm10.5 13.125v10.5s0 2.625-2.625 2.625h-7.875v2.625h7.875s5.25 0 5.25-5.25v-10.5zm7.875 0v15.75h23.625v-15.75zm2.625 2.625h18.375v10.5h-18.375z'/%3E%3C/svg%3E">
 	<link rel="apple-touch-icon" href="./icon-180x180.png">
 	<link rel="manifest" href="./manifest.webmanifest">
 
@@ -75,8 +75,10 @@
 			JavaScriptを実行できるブラウザがあれば、環境や状況（例：デバイスやネットワーク接続状況、操作方法等）に左右されずに動作することを目指しています。
 		</p>
 		<p>
-			詳細 及び 注意事項等につきましては、
-			<a class="el_link" href="https://github.com/nonaka101/jig-a">GitHubのリポジトリ</a>
+			詳細 及び 注意事項等につきましては
+			<a class="el_link" href="https://github.com/nonaka101/jig-a">GitHubのリポジトリ</a>を、
+			各種機能の使い方については
+			<a class="el_link" href="https://github.com/nonaka101/jig-a/blob/main/note/howto-use.md">リポジトリ上に用意した説明書</a>を
 			を参照ください。
 		</p>
 	</details>
@@ -541,6 +543,36 @@
 			</dialog><!-- /.ly_dialog -->
 			<link rel="stylesheet" href="./asset/css/d01-calculate-age.css">
 			<script defer src="./asset/js/d01-calculate-age.js"></script>
+		</li><!-- /.bl_funcList_item -->
+
+		<!-- [d02] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="d02js_dialog_clock">
+				時計
+			</button><!-- /.js_btnShowDialog -->
+
+			<dialog class="ly_dialog" id="d02js_dialog_clock" aria-labelledby="d02_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title hp_srOnly" id="d02_title">時計</h2>
+						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="d02js_dialog_clock" aria-describedby="d02_title">
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<button type="button" class="bl_clock" id="d02js_speechBtn" aria-label="時刻読み上げ">
+						<span class="bl_clock_date" id="d02js_date" aria-hidden="true">
+							0000 - 00/00(***)
+						</span><!-- /.bl_clock_date -->
+						<span class="bl_clock_time" id="d02js_time" aria-hidden="true">
+							00:00
+						</span><!-- /.bl_clock_time -->
+					</button><!-- /.bl_clock -->
+					<output class="hp_srOnly" id="d02js_output"></output><!-- /.hp_srOnly -->
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+			<link rel="stylesheet" href="./asset/css/d02-clock.css">
+			<script defer src="./asset/js/d02-clock.js"></script>
 		</li><!-- /.bl_funcList_item -->
 
 		<!-- [d99] -->

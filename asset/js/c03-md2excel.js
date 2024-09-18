@@ -44,7 +44,7 @@ function markdown2excelWithEscaped(mdTable) {
 	return mdTable;
 }
 
-/*
+/* テスト文
 const mdTable1 = '| 表 | 列A | 列B |\n| --- | --- | --- |\n| 行1 | セルA1 | セルB1 |\n| 行2 | セルA2 | セルB2 |';
 
 // 揃え方向を指定したパターン
@@ -59,6 +59,7 @@ console.log(markdown2excel(mdTable1));
 // 行1	セルA1	セルB1
 // 行2	セルA2	セルB2
 
+// エスケープシーケンスを生の文字列として使った検証データ
 const mdTable2 = String.raw`| 表 | 列A | 列B |
 | :---: | :--- | ---: |
 | 行1 | セル\|A1 | セル\|B1 |
