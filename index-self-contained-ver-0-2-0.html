@@ -4,6 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="nonaka101">
+	<meta name="description" content="環境や状況を問わずブラウザのみで動作する、簡易的なツール集">
+
 	<title>JIG-A</title>
 
 	<!-- アイコン・マニフェスト関係 -->
@@ -11,63 +14,53 @@
 		href="data:image/svg+xml,%3Csvg version='1.1' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='48' height='48' fill='%23fff' stroke-linejoin='round' stroke-width='2'/%3E%3Cpath d='m3 4.3125v2.625l10.5 2.625v-2.625zm28.875 0-10.5 15.75v2.625h20.125l0.87497 2.625h2.625l-2.625-7.875h-2.625l0.87496 2.625h-16.625l10.5-15.75zm-28.875 10.5v2.625l10.5 2.625v-2.625zm10.5 13.125v10.5s0 2.625-2.625 2.625h-7.875v2.625h7.875s5.25 0 5.25-5.25v-10.5zm7.875 0v15.75h23.625v-15.75zm2.625 2.625h18.375v10.5h-18.375z'/%3E%3C/svg%3E">
 
 	<!-- スタイルシート -->
+	<!-- Normalize.css -->
 	<style>
 		/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 		html {
 			line-height: 1.15;
 			-webkit-text-size-adjust: 100%;
 		}
-
 		body {
 			margin: 0;
 		}
-
 		main {
 			display: block;
 		}
-
 		h1 {
 			font-size: 2em;
 			margin: 0.67em 0;
 		}
-
 		hr {
 			box-sizing: content-box;
 			height: 0;
 			overflow: visible;
 		}
-
 		pre {
 			font-family: monospace, monospace;
 			font-size: 1em;
 		}
-
 		a {
 			background-color: transparent;
 		}
-
 		abbr[title] {
 			border-bottom: none;
 			text-decoration: underline;
 			text-decoration: underline dotted;
 		}
-
 		b,
 		strong {
 			font-weight: bolder;
 		}
-
 		code,
 		kbd,
 		samp {
 			font-family: monospace, monospace;
 			font-size: 1em;
 		}
-
 		small {
 			font-size: 80%;
 		}
-
 		sub,
 		sup {
 			font-size: 75%;
@@ -75,19 +68,15 @@
 			position: relative;
 			vertical-align: baseline;
 		}
-
 		sub {
 			bottom: -0.25em;
 		}
-
 		sup {
 			top: -0.5em;
 		}
-
 		img {
 			border-style: none;
 		}
-
 		button,
 		input,
 		optgroup,
@@ -98,24 +87,20 @@
 			line-height: 1.15;
 			margin: 0;
 		}
-
 		button,
 		input {
 			overflow: visible;
 		}
-
 		button,
 		select {
 			text-transform: none;
 		}
-
 		button,
 		[type="button"],
 		[type="reset"],
 		[type="submit"] {
 			-webkit-appearance: button;
 		}
-
 		button::-moz-focus-inner,
 		[type="button"]::-moz-focus-inner,
 		[type="reset"]::-moz-focus-inner,
@@ -123,18 +108,15 @@
 			border-style: none;
 			padding: 0;
 		}
-
 		button:-moz-focusring,
 		[type="button"]:-moz-focusring,
 		[type="reset"]:-moz-focusring,
 		[type="submit"]:-moz-focusring {
 			outline: 1px dotted ButtonText;
 		}
-
 		fieldset {
 			padding: 0.35em 0.75em 0.625em;
 		}
-
 		legend {
 			box-sizing: border-box;
 			color: inherit;
@@ -143,60 +125,51 @@
 			padding: 0;
 			white-space: normal;
 		}
-
 		progress {
 			vertical-align: baseline;
 		}
-
 		textarea {
 			overflow: auto;
 		}
-
 		[type="checkbox"],
 		[type="radio"] {
 			box-sizing: border-box;
 			padding: 0;
 		}
-
 		[type="number"]::-webkit-inner-spin-button,
 		[type="number"]::-webkit-outer-spin-button {
 			height: auto;
 		}
-
 		[type="search"] {
 			-webkit-appearance: textfield;
 			outline-offset: -2px;
 		}
-
 		[type="search"]::-webkit-search-decoration {
 			-webkit-appearance: none;
 		}
-
 		::-webkit-file-upload-button {
 			-webkit-appearance: button;
 			font: inherit;
 		}
-
 		details {
 			display: block;
 		}
-
 		summary {
 			display: list-item;
 		}
-
 		template {
 			display: none;
 		}
-
 		[hidden] {
 			display: none;
 		}
 	</style>
-
+	<!-- style.css -->
 	<style>
+		@charset "UTF-8";
 		:root {
-			font-family: "Noto Sans JP", "Segoe UI", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", meiryo, sans-serif;
+			font-family: "Noto Sans JP", "Segoe UI", "Hiragino Kaku Gothic ProN",
+				"BIZ UDPGothic", meiryo, sans-serif;
 			line-height: 1.5;
 			--space_0: 0.25rem;
 			--space_1: 0.5rem;
@@ -206,7 +179,7 @@
 			--space_8: 4rem;
 			--space_13: 6.5rem;
 			--white: #ffffff;
-			--sea-1200: #00004F;
+			--sea-1200: #00004f;
 			--sea-1100: #000060;
 			--sea-1000: #000071;
 			--sea-900: #0000be;
@@ -301,7 +274,6 @@
 			--sc_bg_alert: var(--sun-800);
 			--sc_bg_shadow: var(--sumi-700);
 		}
-
 		@media (prefers-color-scheme: dark) {
 			:root {
 				--sc_txt_body: var(--white);
@@ -335,7 +307,6 @@
 				--sc_bg_shadow: var(--white);
 			}
 		}
-
 		:root.is_lightMode {
 			--sc_txt_body: var(--sumi-900);
 			--sc_txt_body__small: var(--sumi-1200);
@@ -367,7 +338,6 @@
 			--sc_bg_alert: var(--sun-800);
 			--sc_bg_shadow: var(--sumi-700);
 		}
-
 		:root.is_darkMode {
 			--sc_txt_body: var(--white);
 			--sc_txt_body__small: var(--white);
@@ -399,13 +369,11 @@
 			--sc_bg_alert: var(--sun-500);
 			--sc_bg_shadow: var(--white);
 		}
-
 		*,
 		::after,
 		::before {
-			box-sizing: border-box
+			box-sizing: border-box;
 		}
-
 		h1,
 		h2,
 		h3,
@@ -430,59 +398,48 @@
 		p {
 			color: var(--sc_txt_body);
 		}
-
 		body {
 			background-color: var(--sc_bg_body__primary);
 		}
-
 		img {
 			max-width: 100%;
 		}
-
 		svg {
 			fill: currentcolor;
 		}
-
 		small {
 			font-size: 0.8em;
 		}
-
 		*:focus-visible {
 			outline: var(--sc_border_focused);
 			outline-offset: 2px;
 			animation-name: focusEffect;
 			animation-duration: 0.3s;
 		}
-
 		@keyframes focusEffect {
 			from {
 				outline-width: 1px;
 				outline-offset: 8px;
 			}
-
 			to {
 				outline-width: 2px;
 				outline-offset: 2px;
 			}
 		}
-
 		.ly_body {
 			max-width: 1024px;
 			padding: 0 24px;
 			margin-right: auto;
 			margin-left: auto;
 		}
-
 		@media (min-width: 560px) {
 			.ly_body {
 				padding: 0 40px;
 			}
 		}
-
 		html:has(dialog[open]) {
 			overflow: hidden;
 		}
-
 		.ly_dialog {
 			position: fixed;
 			top: 0;
@@ -498,30 +455,63 @@
 			align-items: center;
 			justify-content: center;
 		}
-
 		.ly_dialog:not([open]) {
 			display: none;
 		}
-
 		.ly_dialog_body {
 			position: absolute;
 			top: 0;
 			padding: 8px;
 			width: 100dvw;
+			min-height: 100dvh;
 			display: flex;
 			flex-flow: column nowrap;
 		}
-
+		.ly_subDialog {
+			display: block;
+			background-color: var(--sc_bg_body__primary);
+			border: 1px solid var(--sc_bg_shadow);
+		}
+		.ly_subDialog:not([open]) {
+			display: none;
+		}
+		.ly_subDialog::backdrop {
+			background-color: var(--sc_bg_body__secondary);
+			filter: opacity(0.7);
+		}
+		.bl_subDialog {
+		}
+		.bl_subDialog_title {
+			padding: 0;
+			margin: 0;
+			font-size: 1.75rem;
+			line-height: 1.5;
+		}
+		.bl_subDialog_label {
+			display: block;
+			margin-bottom: 0.2rem;
+			font-size: 0.7rem;
+			color: var(--sc_txt_desc);
+		}
+		.bl_subDialog_row {
+			display: flex;
+			flex-flow: row nowrap;
+			gap: 0.2em;
+			align-items: center;
+			width: 100%;
+			margin-bottom: 0.5em;
+		}
+		.bl_subDialog_row__center {
+			justify-content: center;
+		}
 		.bl_accordion {
 			padding: 0;
 			font-size: 1rem;
 			border-bottom: var(--sc_border_field);
 		}
-
 		.bl_accordion_summary::-webkit-details-marker {
 			display: none;
 		}
-
 		.bl_accordion_summary {
 			padding: 8px 16px;
 			display: flex;
@@ -536,42 +526,34 @@
 			background-color: var(--sc_bg_body__secondary);
 			z-index: 100;
 		}
-
-		.bl_accordion[open]>.bl_accordion_summary {
+		.bl_accordion[open] > .bl_accordion_summary {
 			box-shadow: 0 4px 16px -8px var(--sc_bg_shadow);
 		}
-
-		.bl_accordion_summary>span {
+		.bl_accordion_summary > span {
 			font-size: 1em;
 		}
-
-		.bl_accordion_summary>svg {
+		.bl_accordion_summary > svg {
 			height: 1em;
 			width: 1em;
 			transition: all ease-in 0.3s;
 		}
-
-		.bl_accordion[open]>.bl_accordion_summary>svg {
+		.bl_accordion[open] > .bl_accordion_summary > svg {
 			transform: rotate(180deg);
 			translate: 0 -12.5%;
 		}
-
 		.bl_descList {
 			display: grid;
 			grid-template-columns: 1fr 2fr;
 			gap: 16px 1rem;
 		}
-
-		.bl_descList>dt {
+		.bl_descList > dt {
 			margin: 0;
 			text-align: end;
 		}
-
-		.bl_descList>dd {
+		.bl_descList > dd {
 			margin: 0;
 			text-align: start;
 		}
-
 		.bl_siteHeader {
 			display: flex;
 			flex-flow: row wrap;
@@ -579,12 +561,10 @@
 			justify-content: center;
 			border-bottom: var(--sc_border_field);
 		}
-
 		.bl_siteHeader_logo {
 			width: auto;
 			height: 3rem;
 		}
-
 		.bl_siteHeader_text {
 			margin-left: 1rem;
 			font-size: 2rem;
@@ -592,33 +572,28 @@
 			line-height: 1.5;
 			letter-spacing: 0.04em;
 		}
-
 		.bl_setting_unit {
 			padding: 12px;
 			border: var(--sc_border_field);
 		}
-
 		.bl_setting {
 			display: flex;
 			flex-flow: row wrap;
 			margin: 8px 0;
 			gap: 0.2rem;
 		}
-
-		.bl_setting.bl_setting__select {}
-
-		.bl_setting.bl_setting__chk {}
-
+		.bl_setting.bl_setting__select {
+		}
+		.bl_setting.bl_setting__chk {
+		}
 		.bl_funcList {
 			margin: 0;
 			padding: 0 0 0 1.5rem;
 			list-style-type: none;
 		}
-
 		.bl_funcList_item {
 			margin: 8px 0;
 		}
-
 		.bl_menuHeader {
 			display: flex;
 			flex-direction: row;
@@ -627,14 +602,12 @@
 			padding-bottom: 8px;
 			margin-bottom: 16px;
 		}
-
 		.bl_menuHeader_title {
 			padding: 0;
 			margin: 0;
 			font-size: 1.75rem;
 			line-height: 1.5;
 		}
-
 		.bl_menuHeader_btnIcon {
 			display: flex;
 			flex-direction: column;
@@ -650,72 +623,83 @@
 			background: none;
 			border: none;
 		}
-
-		.bl_menuHeader_btnIcon>svg {
+		.bl_menuHeader_btnIcon > svg {
 			width: 1.625rem;
 			height: 1.625rem;
 		}
-
-		.bl_menuHeader_btnIcon>span {
+		.bl_menuHeader_btnIcon > span {
 			font-size: 0.7rem;
 		}
-
-		.js_btnShowDialog {
-			appearance: none;
-			padding: 8px;
-			font-size: 1.25rem;
-			width: max-content;
-			background-color: var(--sc_bg_btn__primary);
-			color: var(--sc_txt_btn__primary);
-			border: var(--sc_border_field);
-			border-radius: 4px;
-			max-width: 100%;
+		.bl_simpleForm {
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: center;
 		}
-
+		.bl_simpleForm_block {
+			display: block;
+			width: 100%;
+			margin: 1rem 0;
+		}
+		.bl_simpleForm_label {
+			display: block;
+			align-self: flex-start;
+		}
+		.bl_simpleForm_textArea {
+			display: block;
+			width: 100%;
+			min-height: 10rem;
+		}
+		.bl_simpleForm_output {
+			display: block;
+			width: 100%;
+			margin: 1rem 0;
+		}
 		.bl_table {
 			border: var(--sc_border_divider);
 		}
-
-		.bl_table>table {
+		.bl_table > table {
 			width: 100%;
 			text-align: center;
 			table-layout: fixed;
 			border-collapse: collapse;
 		}
-
 		.bl_table th {
 			padding: 8px;
-			background-color: var(--sc_bg_body__tertiary);
 			border-right: var(--sc_border_divider);
 			border-bottom: var(--sc_border_divider);
-			font-weight: 700;
 			vertical-align: middle;
 		}
-
+		.bl_table.bl_table__vertical thead th,
+		.bl_table.bl_table__horizontal tr > th:first-child,
+		.bl_table.bl_table__cross th {
+			font-weight: 800;
+		}
 		.bl_table td {
 			padding: 8px;
 			border-right: var(--sc_border_divider);
 			border-bottom: var(--sc_border_divider);
 			vertical-align: middle;
 		}
-
 		.bl_table th:last-child,
 		.bl_table td:last-child {
 			border-right-width: 0;
 		}
-
 		.bl_table tbody tr:last-child th,
 		.bl_table tbody tr:last-child td {
 			border-bottom-width: 0;
 		}
-
-		.bl_table.bl_table.bl_table__vertical,
+		.bl_table.bl_table__vertical thead th,
+		.bl_table.bl_table__horizontal thead th:first-child,
+		.bl_table.bl_table__horizontal tbody th,
+		.bl_table.bl_table__cross th {
+			background-color: var(--sc_bg_body__tertiary);
+		}
+		.bl_table.bl_table__vertical,
 		.bl_table.bl_table__cross {
 			max-height: 75dvh;
 			height: max-content;
 			overflow-y: auto;
 		}
-
 		.bl_table.bl_table__vertical thead th,
 		.bl_table.bl_table__cross thead th {
 			position: -webkit-sticky;
@@ -723,62 +707,53 @@
 			top: 0;
 			z-index: 1;
 		}
-
 		.bl_table.bl_table__vertical thead th:first-child,
 		.bl_table.bl_table__cross thead th:first-child {
 			z-index: 2;
 		}
-
 		@media screen and (max-width: 768px) {
 			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) {
 				border-right-width: 0;
 				overflow-x: auto;
 			}
-
 			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) table {
 				width: auto;
 				min-width: 100%;
 			}
-
 			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) th,
 			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) td {
 				white-space: nowrap;
 			}
-
 			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) th:last-child,
 			.bl_table:not(.bl_table__wide):not(.bl_table__exWide) td:last-child {
 				border-right-width: 1px;
 			}
-
-			.bl_table.bl_table__horizontal:not(.bl_table__wide):not(.bl_table__exWide) th:first-child,
-			.bl_table.bl_table__cross:not(.bl_table__wide):not(.bl_table__exWide) th:first-child {
+			.bl_table.bl_table__horizontal:not(.bl_table__wide):not(.bl_table__exWide)
+				th:first-child,
+			.bl_table.bl_table__cross:not(.bl_table__wide):not(.bl_table__exWide)
+				th:first-child {
 				position: -webkit-sticky;
 				position: sticky;
 				left: 0;
 			}
 		}
-
 		@media screen and (max-width: 960px) {
 			.bl_table.bl_table__wide {
 				border-right-width: 0;
 				overflow-x: auto;
 			}
-
 			.bl_table.bl_table__wide table {
 				width: auto;
 				min-width: 100%;
 			}
-
 			.bl_table.bl_table__wide th,
 			.bl_table.bl_table__wide td {
 				white-space: nowrap;
 			}
-
 			.bl_table.bl_table__wide th:last-child,
 			.bl_table.bl_table__wide td:last-child {
 				border-right-width: 1px;
 			}
-
 			.bl_table.bl_table__horizontal.bl_table__wide th:first-child,
 			.bl_table.bl_table__cross.bl_table__wide th:first-child {
 				position: -webkit-sticky;
@@ -786,28 +761,23 @@
 				left: 0;
 			}
 		}
-
 		@media screen and (max-width: 1200px) {
 			.bl_table.bl_table__exWide {
 				border-right-width: 0;
 				overflow-x: auto;
 			}
-
 			.bl_table.bl_table__exWide table {
 				width: auto;
 				min-width: 100%;
 			}
-
 			.bl_table.bl_table__exWide th,
 			.bl_table.bl_table__exWide td {
 				white-space: nowrap;
 			}
-
 			.bl_table.bl_table__exWide th:last-child,
 			.bl_table.bl_table__exWide td:last-child {
 				border-right-width: 1px;
 			}
-
 			.bl_table.bl_table__horizontal.bl_table__exWide th:first-child,
 			.bl_table.bl_table__cross.bl_table__exWide th:first-child {
 				position: -webkit-sticky;
@@ -815,7 +785,6 @@
 				left: 0;
 			}
 		}
-
 		.el_btn {
 			display: block;
 			width: 100%;
@@ -830,63 +799,73 @@
 			cursor: pointer;
 			background: none;
 			border: 2px solid transparent;
-			border-radius: max(min(4px, calc(40px - 100%) * 9999),
-					min(8px, calc(100% - 40px) * 9999, calc(120px - 100%) * 9999),
-					min(12px, calc(100% - 120px) * 9999));
-			transition: .25s;
+			border-radius: max(
+				min(4px, calc(40px - 100%) * 9999),
+				min(8px, calc(100% - 40px) * 9999, calc(120px - 100%) * 9999),
+				min(12px, calc(100% - 120px) * 9999)
+			);
+			transition: 0.25s;
 		}
-
+		.el_btn:disabled {
+			pointer-events: none;
+		}
 		.el_btn.el_btn__primary {
 			color: var(--sc_txt_btn__primary);
 			text-decoration: none;
 			background-color: var(--sc_bg_btn__primary);
 		}
-
 		.el_btn.el_btn__primary:hover,
 		.el_btn.el_btn__primary:active {
 			filter: brightness(87%);
 		}
-
+		.el_btn.el_btn__primary:disabled {
+			background-color: var(--sc_bg_disabled);
+		}
 		.el_btn.el_btn__secondary {
 			color: var(--sc_txt_btn__secondary);
 			text-decoration: none;
 			background-color: transparent;
 			border-color: currentcolor;
 		}
-
 		.el_btn.el_btn__secondary:hover,
 		.el_btn.el_btn__secondary:active {
 			background-color: var(--sc_bg_btn__secondary);
 		}
-
+		.el_btn.el_btn__secondary:disabled {
+			color: var(--sc_txt_disabled);
+		}
 		.el_btn.el_btn__tertiary {
 			color: var(--sc_txt_btn__tertiary);
 			text-decoration: underline;
 			background-color: transparent;
 		}
-
 		.el_btn.el_btn__tertiary:hover,
 		.el_btn.el_btn__tertiary:active {
 			color: var(--sc_txt_link__active);
 		}
-
+		.el_btn.el_btn__tertiary:disabled {
+			color: var(--sc_txt_disabled);
+		}
+		.el_btn.el_btn__wMaxContent {
+			width: max-content;
+			max-width: 100%;
+		}
+		.el_btn.el_btn__w12ch {
+			width: 12ch;
+		}
 		.el_link {
 			color: var(--sc_txt_link);
 			text-decoration: underline;
 		}
-
 		.el_link:active {
 			color: var(--sc_txt_link__active);
 		}
-
 		.el_link:visited {
 			color: var(--sc_txt_link__visited);
 		}
-
 		.el_link:hover {
 			color: var(--sc_txt_link__hover);
 		}
-
 		.el_heading_lv1 {
 			margin: 1em 0 0 0;
 			font-size: 2rem;
@@ -894,7 +873,6 @@
 			line-height: 1.5;
 			letter-spacing: 0.04em;
 		}
-
 		@media (min-width: 960px) {
 			.el_heading_lv1 {
 				font-size: 2.25rem;
@@ -902,7 +880,6 @@
 				line-height: 1.4;
 			}
 		}
-
 		.el_heading_lv2 {
 			margin: 1em 0 0 0;
 			font-size: 1.75rem;
@@ -910,14 +887,12 @@
 			line-height: 1.5;
 			letter-spacing: 0.04em;
 		}
-
 		@media (min-width: 960px) {
 			.el_heading_lv2 {
 				font-size: 2rem;
 				font-weight: 400;
 			}
 		}
-
 		.el_heading_lv3 {
 			margin: 1em 0 0 0;
 			font-size: 1.5rem;
@@ -925,30 +900,26 @@
 			line-height: 1.5;
 			letter-spacing: 0.04em;
 		}
-
 		@media (min-width: 960px) {
 			.el_heading_lv3 {
 				font-size: 1.75rem;
 				font-weight: 400;
 			}
 		}
-
 		.el_heading_lv3.el_heading__iconLabel {
 			display: flex;
 			flex-flow: row nowrap;
 			gap: 0.02rem;
 			align-items: center;
 		}
-
-		.el_heading_lv3.el_heading__iconLabel>svg {
+		.el_heading_lv3.el_heading__iconLabel > svg {
 			width: 1.125em;
 			height: 1.125em;
 			margin-inline-end: 0.125em;
 			vertical-align: -0.125em;
 		}
-
-		.el_heading_lv3.el_heading__iconLabel>span {}
-
+		.el_heading_lv3.el_heading__iconLabel > span {
+		}
 		.hp_srOnly {
 			position: absolute !important;
 			clip: rect(0 0 0 0) !important;
@@ -960,43 +931,350 @@
 			padding: 0 !important;
 			border: 0 !important;
 		}
+		.hp_warningColor {
+			color: var(--sc_txt_alert) !important;
+		}
+	</style>
+	<!-- b01 -->
+	<style>
+		.b01ly_calc {
+			--ly_btnArray: "nav main main main aside" "nav main main main aside"
+				"nav main main main aside" "nav main main main aside";
+			--ly_numArray: "b7 b8 b9" "b4 b5 b6" "b1 b2 b3" "b0 bd be";
+			--num_hBox: 4;
+			--num_wBox: 5;
+			--size_btn: min(100dvw / var(--num_wBox), 100dvh / (var(--num_hBox) + 2));
+			--flexFlow_nav: column nowrap;
+			--gap: 0.1rem;
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			background-color: var(--sc_bg_body__primary);
+			padding: 8px;
+			width: 100dvw;
+			height: 100dvh;
+			border: var(--sc_border_field);
+		}
+		.is_leftMode .b01ly_calc {
+			--ly_btnArray: "aside main main main nav" "aside main main main nav"
+				"aside main main main nav" "aside main main main nav";
+			--ly_numArray: "b7 b8 b9" "b4 b5 b6" "b1 b2 b3" "be bd b0";
+		}
+		@media (max-aspect-ratio: 5/6) {
+			.b01ly_calc {
+				--ly_btnArray: "nav  nav  nav  nav  " "main main main aside"
+					"main main main aside" "main main main aside" "main main main aside";
+				--num_hBox: 5;
+				--num_wBox: 4;
+				--flexFlow_nav: row nowrap;
+				--width_nav: 100dvw;
+			}
+			.is_leftMode .b01ly_calc {
+				--ly_btnArray: "nav  nav  nav  nav  " "aside main main main"
+					"aside main main main" "aside main main main" "aside main main main";
+			}
+		}
+		.b01ly_calc_header {
+			--base_h: calc((100dvh - (var(--size_btn) * var(--num_hBox))) / 2);
+			width: 98dvw;
+			min-height: calc(var(--size_btn) * 2);
+		}
+		#b01js_label {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: calc(var(--base_h) * 0.5);
+			font-size: clamp(1rem, 5dvw, calc(var(--base_h) * 0.4));
+			text-align: center;
+			border: var(--sc_border_field);
+			border-bottom: dotted;
+		}
+		#b01js_output {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: var(--base_h);
+			font-size: clamp(1rem, 5dvw, calc(var(--base_h) * 0.8));
+			text-align: center;
+			border: var(--sc_border_field);
+			border-top: none;
+			text-wrap: nowrap;
+		}
+		.b01ly_calc_btnArray {
+			display: grid;
+			gap: var(--gap);
+			grid-template-areas: var(--ly_btnArray);
+		}
+		.b01ly_calc_nav {
+			grid-area: nav;
+			display: flex;
+			gap: var(--gap);
+			flex-flow: var(--flexFlow_nav);
+		}
+		.b01ly_calc_main {
+			grid-area: main;
+			display: grid;
+			gap: var(--gap);
+			grid-template-areas: var(--ly_numArray);
+		}
+		#b01js_1 {
+			grid-area: b1;
+		}
+		#b01js_2 {
+			grid-area: b2;
+		}
+		#b01js_3 {
+			grid-area: b3;
+		}
+		#b01js_4 {
+			grid-area: b4;
+		}
+		#b01js_5 {
+			grid-area: b5;
+		}
+		#b01js_6 {
+			grid-area: b6;
+		}
+		#b01js_7 {
+			grid-area: b7;
+		}
+		#b01js_8 {
+			grid-area: b8;
+		}
+		#b01js_9 {
+			grid-area: b9;
+		}
+		#b01js_0 {
+			grid-area: b0;
+		}
+		#b01js_DecimalPoint {
+			grid-area: bd;
+		}
+		#b01js_Equal {
+			grid-area: be;
+		}
+		.b01ly_calc_aside {
+			grid-area: aside;
+			display: flex;
+			gap: var(--gap);
+			flex-flow: column nowrap;
+		}
+		.b01el_calcBtn {
+			appearance: none;
+			height: calc(var(--size_btn) * 0.9);
+			width: calc(var(--size_btn) * 0.9);
+			margin: 0;
+			padding: 0;
+			font-size: calc(var(--size_btn) * 0.4);
+			font-style: normal;
+			font-weight: 700;
+			line-height: 1;
+			letter-spacing: 0;
+			text-align: center;
+			cursor: pointer;
+			background: none;
+			border-radius: 25%;
+			border: 2px solid transparent;
+		}
+		.b01el_calcBtn.b01el_calcBtn__primary {
+			color: var(--sc_txt_btn__primary);
+			background-color: var(--sc_bg_btn__primary);
+		}
+		.b01el_calcBtn.b01el_calcBtn__primary:hover,
+		.b01el_calcBtn.b01el_calcBtn__primary:active {
+			filter: brightness(87%);
+		}
+		.b01el_calcBtn.b01el_calcBtn__primary:disabled {
+			background-color: var(--sc_bg_disabled);
+			position: relative;
+		}
+		.b01el_calcBtn.b01el_calcBtn__secondary {
+			color: var(--sc_txt_btn__secondary);
+			background-color: var(--sc_bg_btn__secondary);
+			border-color: currentcolor;
+		}
+		.b01el_calcBtn.b01el_calcBtn__secondary:hover,
+		.b01el_calcBtn.b01el_calcBtn__secondary:active {
+			background-color: var(--sc_bg_btn__secondary);
+		}
+		.b01el_calcBtn.b01el_calcBtn__secondary:disabled {
+			color: var(--sc_txt_disabled);
+			position: relative;
+		}
+		.b01el_calcBtn.b01el_calcBtn__tertiary {
+			color: var(--sc_txt_body);
+			background-color: transparent;
+			border: var(--sc_border_field);
+		}
+		.b01el_calcBtn.b01el_calcBtn__tertiary:hover,
+		.b01el_calcBtn.b01el_calcBtn__tertiary:active {
+			color: var(--sc_txt_link__active);
+		}
+		.b01el_calcBtn.b01el_calcBtn__tertiary:disabled {
+			color: var(--sc_txt_disabled);
+			position: relative;
+		}
+		.b01el_calcBtn.b01el_calcBtn__iconLabel {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-evenly;
+		}
+		.b01el_calcBtn.b01el_calcBtn__iconLabel > svg {
+			height: calc(var(--size_btn) * 0.5);
+			width: calc(var(--size_btn) * 0.5);
+		}
+		.b01el_calcBtn.b01el_calcBtn__iconLabel > span {
+			font-size: calc(var(--size_btn) * 0.2);
+			color: var(--sc_txt_btn__secondary);
+		}
+		.b01el_calcBtn:disabled::after {
+			width: 50%;
+			height: 50%;
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			background: linear-gradient(
+				-45deg,
+				transparent 0%,
+				transparent 49%,
+				currentcolor 49%,
+				currentcolor 51%,
+				transparent 51%,
+				transparent 100%
+			);
+		}
+	</style>
+	<!-- Note: c01, c02, c03 は汎用スタイルのみ -->
+	<!-- d01 -->
+	<style>
+		#d01js_wareki_category {
+		}
+		#d01js_wareki_num {
+		}
+		.d01bl_form {
+			margin-bottom: 1rem;
+		}
+		.d01bl_form_label {
+		}
+		.d01bl_form_inputs {
+			display: flex;
+			flex-flow: row nowrap;
+			margin-bottom: 0.5rem;
+		}
+		.d01bl_form_dateInput {
+		}
+		.d01bl_form {
+		}
+	</style>
+	<!-- d02 -->
+	<style>
+		#d02js_dialog_clock > .ly_dialog_body > .bl_menuHeader {
+			position: fixed;
+			right: 0;
+		}
+		#d02js_dialog_clock
+			> .ly_dialog_body
+			> .bl_menuHeader
+			> .bl_menuHeader_btnIcon {
+			border: var(--sc_border_divider);
+			background-color: var(--sc_bg_body__primary);
+		}
+		.bl_clock {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 0;
+			width: 100%;
+			height: calc(100dvh - 16px);
+			padding: 4px;
+			margin: 0;
+			color: var(--sc_txt_btn__secondary);
+			background: none;
+			background-color: transparent;
+			border: 2px solid currentcolor;
+			border-radius: max(
+				min(4px, calc(40px - 100%) * 9999),
+				min(8px, calc(100% - 40px) * 9999, calc(120px - 100%) * 9999),
+				min(12px, calc(100% - 120px) * 9999)
+			);
+			transition: 0.25s;
+			text-decoration: none;
+		}
+		.bl_clock:hover,
+		.bl_clock:active {
+			background-color: var(--sc_bg_btn__secondary);
+		}
+		.bl_clock_date {
+			display: block;
+			font-size: 5dvw;
+			line-height: 1;
+			text-align: center;
+			white-space: nowrap;
+			overflow: hidden;
+			color: var(--sc_txt_btn__secondary);
+		}
+		.bl_clock_time {
+			display: block;
+			font-size: 18dvw;
+			line-height: 1;
+			text-align: center;
+			white-space: nowrap;
+			overflow: hidden;
+			justify-items: center;
+			color: var(--sc_txt_btn__secondary);
+		}
+		@media (max-height: calc(23dvw + 24px)) {
+			.bl_clock_date {
+				display: none;
+			}
+			.bl_clock_time {
+				font-size: min(18dvw, calc(80dvh - 20px));
+			}
+		}
 	</style>
 
 	<!-- Templates -->
 	<!-- SVG：✕ -->
 	<template id="tempSvg_cross">
-		<svg role="graphics-symbol img" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 24 24" width="24" height="24">
-			<path transform="rotate(45)"
-				d="m4.9705-2.0012v4.0023h9.9989v9.9989h4.0023v-9.9989h9.9989v-4.0023h-9.9989v-9.9989h-4.0023v9.9989h-9.9989z" />
+		<svg role="graphics-symbol img" aria-hidden="true"
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24" width="24" height="24"
+		>
+			<path transform="rotate(45)" d="m4.9705-2.0012v4.0023h9.9989v9.9989h4.0023v-9.9989h9.9989v-4.0023h-9.9989v-9.9989h-4.0023v9.9989h-9.9989z"/>
 		</svg>
 	</template>
 	<!-- SVG：∨ -->
 	<template id="tempSvg_arrowDown">
-		<svg role="graphics-symbol img" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 24 24" width="24" height="24">
-			<path d="m4.9297 5.6348-2.8301 2.8301 9.9004 9.9004 9.9004-9.9004-2.8301-2.8301-7.0703 7.0703z" />
+		<svg role="graphics-symbol img" aria-hidden="true"
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24" width="24" height="24"
+			>
+			<path d="m4.9297 5.6348-2.8301 2.8301 9.9004 9.9004 9.9004-9.9004-2.8301-2.8301-7.0703 7.0703z"/>
 		</svg>
 	</template>
 </head>
 
 <body class="ly_body">
 	<h1 class="bl_siteHeader">
-		<svg class="bl_siteHeader_logo" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 48" width="96"
-			height="48" role="graphics-symbol img" aria-hidden="true">
+		<svg class="bl_siteHeader_logo"
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 96 48" width="96" height="48"
+			role="graphics-symbol img" aria-hidden="true"
+		>
 			<g transform="matrix(3.7795 0 0 3.7795 -2.3043 -3.9031)">
-				<path
-					d="m20.401 1.7494c-1.5526 0-1.5526 1.6001-1.5526 1.6001v9.6667h0.51754v-5.1812h5.1754v5.1812h0.51754v-9.6667c0-1.6461-1.5526-1.6001-1.5526-1.6001zm0 0.45226h3.1052c1.0351 0 1.0351 1.1478 1.0351 1.1478v4.0333h-5.1754v-4.0576c0-1.0797 1.0351-1.1235 1.0351-1.1235z" />
+				<path d="m20.401 1.7494c-1.5526 0-1.5526 1.6001-1.5526 1.6001v9.6667h0.51754v-5.1812h5.1754v5.1812h0.51754v-9.6667c0-1.6461-1.5526-1.6001-1.5526-1.6001zm0 0.45226h3.1052c1.0351 0 1.0351 1.1478 1.0351 1.1478v4.0333h-5.1754v-4.0576c0-1.0797 1.0351-1.1235 1.0351-1.1235z"/>
 				<g transform="matrix(.045982 0 0 .045982 .67861 1.2028)">
-					<path
-						d="m139.62 184v61.128s0 12.226-12.226 12.226h-48.902s-12.226 0-12.226-12.226v-12.226h6.1128v12.226s0 6.1128 6.1128 6.1128h48.902s6.1128 0 6.1128-6.1128v-61.128z" />
-					<path d="m192.56 184v73.353h6.1128v-73.353z" />
-					<path
-						d="m324.97 208.45v-12.226s0-12.226-12.226-12.226h-48.902s-12.226 0-12.226 12.226v48.902s0 12.226 12.226 12.226h48.902s12.226 0 12.226-12.226v-18.338h-30.564v6.1128h24.451v12.226s0 6.1128-6.1128 6.1128h-48.902s-6.1128 0-6.1128-6.1128v-48.902s0-6.1128 6.1128-6.1128h48.902s6.1128 0 6.1128 6.1128v12.226z" />
-					<path
-						d="m19.181 11.445v10.471l41.883 10.471v-10.471zm115.18 0-41.883 62.824v10.471h80.275l3.4901 10.471h10.471l-10.471-31.412h-10.471l3.4901 10.471h-66.314l41.883-62.824zm-115.18 41.883v10.471l41.883 10.471v-10.471zm41.883 52.353v41.883s0 10.471-10.471 10.471h-31.412v10.471h31.412s20.941 0 20.941-20.941v-41.883zm31.412 0v62.824h94.236v-62.824zm10.471 10.471h73.295v41.883h-73.295z" />
-					<path
-						d="m225.47 11.445v104.71h125.65v-104.71zm10.471 10.471h104.71v20.941h-104.71zm0 31.412h104.71v20.941h-104.71zm0 31.412h104.71v20.941h-104.71zm-31.412 41.883v10.471h39.265l-7.853 31.412h10.471l7.853-31.412h68.059l7.853 31.412h10.471l-7.853-31.412h39.265v-10.471h-52.353z" />
+					<path d="m139.62 184v61.128s0 12.226-12.226 12.226h-48.902s-12.226 0-12.226-12.226v-12.226h6.1128v12.226s0 6.1128 6.1128 6.1128h48.902s6.1128 0 6.1128-6.1128v-61.128z"/>
+					<path d="m192.56 184v73.353h6.1128v-73.353z"/>
+					<path d="m324.97 208.45v-12.226s0-12.226-12.226-12.226h-48.902s-12.226 0-12.226 12.226v48.902s0 12.226 12.226 12.226h48.902s12.226 0 12.226-12.226v-18.338h-30.564v6.1128h24.451v12.226s0 6.1128-6.1128 6.1128h-48.902s-6.1128 0-6.1128-6.1128v-48.902s0-6.1128 6.1128-6.1128h48.902s6.1128 0 6.1128 6.1128v12.226z"/>
+					<path d="m19.181 11.445v10.471l41.883 10.471v-10.471zm115.18 0-41.883 62.824v10.471h80.275l3.4901 10.471h10.471l-10.471-31.412h-10.471l3.4901 10.471h-66.314l41.883-62.824zm-115.18 41.883v10.471l41.883 10.471v-10.471zm41.883 52.353v41.883s0 10.471-10.471 10.471h-31.412v10.471h31.412s20.941 0 20.941-20.941v-41.883zm31.412 0v62.824h94.236v-62.824zm10.471 10.471h73.295v41.883h-73.295z"/>
+					<path d="m225.47 11.445v104.71h125.65v-104.71zm10.471 10.471h104.71v20.941h-104.71zm0 31.412h104.71v20.941h-104.71zm0 31.412h104.71v20.941h-104.71zm-31.412 41.883v10.471h39.265l-7.853 31.412h10.471l7.853-31.412h68.059l7.853 31.412h10.471l-7.853-31.412h39.265v-10.471h-52.353z"/>
 				</g>
 			</g>
 		</svg>
@@ -1016,8 +1294,10 @@
 			JavaScriptを実行できるブラウザがあれば、環境や状況（例：デバイスやネットワーク接続状況、操作方法等）に左右されずに動作することを目指しています。
 		</p>
 		<p>
-			詳細 及び 注意事項等につきましては、
-			<a class="el_link" href="https://github.com/nonaka101/jig-a">GitHubのリポジトリ</a>
+			詳細 及び 注意事項等につきましては
+			<a class="el_link" href="https://github.com/nonaka101/jig-a">GitHubのリポジトリ</a>を、
+			各種機能の使い方については
+			<a class="el_link" href="https://github.com/nonaka101/jig-a/blob/main/note/howto-use.md">リポジトリ上に用意した説明書</a>を
 			を参照ください。
 		</p>
 	</details>
@@ -1084,18 +1364,20 @@
 
 
 	<h3 class="el_heading_lv3 el_heading__iconLabel">
-		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
-			role="graphics-symbol img" aria-hidden="true">
-			<rect x="6" y="12" width="15" height="3" />
-			<rect x="12" y="6" width="3" height="15" />
-			<rect x="27" y="12" width="15" height="3" />
-			<rect transform="rotate(45)" x="24.849" y="13.335" width="18" height="3" />
-			<rect transform="rotate(135)" x="5.835" y="-35.349" width="18" height="3" />
-			<rect x="27" y="33" width="15" height="3" />
-			<circle cx="34.5" cy="28.5" r="1.5" />
-			<circle cx="34.5" cy="40.5" r="1.5" />
-			<rect x="3" y="3" width="42" height="42" ry="3" fill="none" stroke="currentColor" stroke-linejoin="round"
-				stroke-width="2" />
+		<svg
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true"
+		>
+			<rect x="6" y="12" width="15" height="3"/>
+			<rect x="12" y="6" width="3" height="15"/>
+			<rect x="27" y="12" width="15" height="3"/>
+			<rect transform="rotate(45)" x="24.849" y="13.335" width="18" height="3"/>
+			<rect transform="rotate(135)" x="5.835" y="-35.349" width="18" height="3"/>
+			<rect x="27" y="33" width="15" height="3"/>
+			<circle cx="34.5" cy="28.5" r="1.5"/>
+			<circle cx="34.5" cy="40.5" r="1.5"/>
+			<rect x="3" y="3" width="42" height="42" ry="3" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
 		</svg>
 		<span>
 			算術
@@ -1109,9 +1391,9 @@
 	<ul class="bl_funcList">
 		<!-- [b01] -->
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnShowDialog" aria-controls="b01js_dialog_calculator">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="b01js_dialog_calculator">
 				簡易電卓
-			</button><!-- /.js_btnShowDialog -->
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 			<dialog class="ly_dialog" id="b01js_dialog_calculator" aria-labelledby="b01_title" autofocus>
 				<div class="b01ly_calc">
 					<h2 class="hp_srOnly" id="b01_title">簡易電卓</h2>
@@ -1123,63 +1405,76 @@
 						<section class="b01ly_calc_nav" aria-label="機能"><!-- 4 buttons([AC,%,BackSpace,Copy]) -->
 							<button type="button"
 								class="b01el_calcBtn b01el_calcBtn__secondary b01el_calcBtn__iconLabel js_btnCloseDialog"
-								aria-controls="b01js_dialog_calculator" aria-describedby="b01_title">
+								aria-controls="b01js_dialog_calculator" aria-describedby="b01_title"
+							>
 								<span>閉じる</span>
 							</button>
 							<button type="button" id="b01js_AllClear"
 								class="b01el_calcBtn b01el_calcBtn__secondary b01el_calcBtn__iconLabel">
-								<svg role="graphics-symbol img" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 48 48" width="48" height="48">
-									<path
-										d="m24 5.25a21 21 0 0 0-21 21 21 21 0 0 0 4.7812 13.219l-3.2812 3.2812h9v-9l-3.6016 3.6016a18 18 0 0 1-3.8984-11.102 18 18 0 0 1 18-18 18 18 0 0 1 18 18 18 18 0 0 1-5.3047 12.695l2.1172 2.1172a21 21 0 0 0 6.1875-14.812 21 21 0 0 0-21-21z"
-										stroke-linecap="round" stroke-linejoin="round" />
+								<svg role="graphics-symbol img" aria-hidden="true"
+									version="1.1" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 48 48" width="48" height="48"
+								>
+									<path d="m24 5.25a21 21 0 0 0-21 21 21 21 0 0 0 4.7812 13.219l-3.2812 3.2812h9v-9l-3.6016 3.6016a18 18 0 0 1-3.8984-11.102 18 18 0 0 1 18-18 18 18 0 0 1 18 18 18 18 0 0 1-5.3047 12.695l2.1172 2.1172a21 21 0 0 0 6.1875-14.812 21 21 0 0 0-21-21z" stroke-linecap="round" stroke-linejoin="round"/>
 								</svg>
 								<span>全消去</span>
 							</button>
 							<button type="button" id="b01js_BackSpace"
 								class="b01el_calcBtn b01el_calcBtn__secondary b01el_calcBtn__iconLabel">
-								<svg role="graphics-symbol img" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 48 48" width="48" height="48">
-									<path d="m45.75 22.5v3h-36l12 12-3 3-16.5-16.5 16.5-16.5 3 3-12 12z" />
+								<svg role="graphics-symbol img" aria-hidden="true"
+									version="1.1" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 48 48" width="48" height="48"
+								>
+									<path d="m45.75 22.5v3h-36l12 12-3 3-16.5-16.5 16.5-16.5 3 3-12 12z"/>
 								</svg>
 								<span>1字消去</span>
 							</button>
 							<button type="button" id="b01js_Copy"
 								class="b01el_calcBtn b01el_calcBtn__secondary b01el_calcBtn__iconLabel">
-								<svg role="graphics-symbol img" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 48 48" width="48" height="48">
-									<path
-										d="m17.032 8.7h19.336c2.6216 0 4.7322 2.1106 4.7322 4.7322v26.536c0 2.6216-2.1106 4.7322-4.7322 4.7322h-19.336c-2.6216 0-4.7322-2.1106-4.7322-4.7322v-26.536c0-2.6216 2.1106-4.7322 4.7322-4.7322zm-5.4002-5.4c-2.6216 0-4.732 2.1104-4.732 4.732v26.536c0 2.6216 2.1104 4.732 4.732 4.732h0.66797v-25.868c0-2.6216 2.1104-4.732 4.732-4.732h18.668v-0.66797c0-2.6216-2.1104-4.732-4.732-4.732z"
-										fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2.4" />
+								<svg role="graphics-symbol img" aria-hidden="true"
+									version="1.1" xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 48 48" width="48" height="48"
+								>
+									<path d="m17.032 8.7h19.336c2.6216 0 4.7322 2.1106 4.7322 4.7322v26.536c0 2.6216-2.1106 4.7322-4.7322 4.7322h-19.336c-2.6216 0-4.7322-2.1106-4.7322-4.7322v-26.536c0-2.6216 2.1106-4.7322 4.7322-4.7322zm-5.4002-5.4c-2.6216 0-4.732 2.1104-4.732 4.732v26.536c0 2.6216 2.1104 4.732 4.732 4.732h0.66797v-25.868c0-2.6216 2.1104-4.732 4.732-4.732h18.668v-0.66797c0-2.6216-2.1104-4.732-4.732-4.732z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2.4"/>
 								</svg>
 								<span>コピー</span>
 							</button>
 						</section>
 						<section class="b01ly_calc_main" aria-label="テンキー・実行"><!-- 12 buttons([0 - 9],[.] ,[=]) -->
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_9" data-calc="9">9</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_8" data-calc="8">8</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_7" data-calc="7">7</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_6" data-calc="6">6</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_5" data-calc="5">5</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_4" data-calc="4">4</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_3" data-calc="3">3</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_2" data-calc="2">2</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_1" data-calc="1">1</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_0" data-calc="0">0</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary" id="b01js_DecimalPoint" data-calc="."
-								aria-label="小数点">.</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary" id="b01js_Equal" data-calc="="
-								aria-label="計算実行">=</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_9" data-calc="9">9</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_8" data-calc="8">8</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_7" data-calc="7">7</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_6" data-calc="6">6</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_5" data-calc="5">5</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_4" data-calc="4">4</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_3" data-calc="3">3</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_2" data-calc="2">2</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_1" data-calc="1">1</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_0" data-calc="0">0</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__tertiary"
+								id="b01js_DecimalPoint" data-calc="." aria-label="小数点">.</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary"
+								id="b01js_Equal" data-calc="=" aria-label="計算実行">=</button>
 						</section>
 						<section class="b01ly_calc_aside" aria-label="四則演算"><!-- 4 buttons([+,-,*,/]) -->
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary" id="b01js_Add" data-calc="+"
-								aria-label="足す">＋</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary" id="b01js_Subtract" data-calc="-"
-								aria-label="引く">−</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary" id="b01js_Multiply" data-calc="*"
-								aria-label="掛ける">×</button>
-							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary" id="b01js_Divide" data-calc="/"
-								aria-label="割る">÷</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary"
+								id="b01js_Add" data-calc="+" aria-label="足す">＋</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary"
+								id="b01js_Subtract" data-calc="-" aria-label="引く">−</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary"
+								id="b01js_Multiply" data-calc="*" aria-label="掛ける">×</button>
+							<button type="button" class="b01el_calcBtn b01el_calcBtn__primary"
+								id="b01js_Divide" data-calc="/" aria-label="割る">÷</button>
 						</section>
 					</div>
 					<!-- /.b01ly_calc_btnArray -->
@@ -1187,204 +1482,39 @@
 				<!-- /.b01ly_calc -->
 			</dialog>
 			<!-- /.ly_dialog -->
-			<style>
-				.b01ly_calc {
-					--ly_btnArray:
-						"nav main main main aside"
-						"nav main main main aside"
-						"nav main main main aside"
-						"nav main main main aside";
-					--ly_numArray:
-						"b7 b8 b9"
-						"b4 b5 b6"
-						"b1 b2 b3"
-						"b0 bd be";
-					--num_hBox: 4;
-					--num_wBox: 5;
-					--size_btn: min(100dvw / var(--num_wBox), 100dvh / (var(--num_hBox) + 2));
-					--flexFlow_nav: column nowrap;
-					--gap: 0.1rem;
-					display: flex;
-					flex-flow: row wrap;
-					align-items: center;
-					justify-content: center;
-					background-color: var(--sc_bg_body__primary);
-					padding: 8px;
-					width: 100dvw;
-					height: 100dvh;
-					border: var(--sc_border_field);
-				}
-
-				.is_leftMode .b01ly_calc {
-					--ly_btnArray:
-						"aside main main main nav"
-						"aside main main main nav"
-						"aside main main main nav"
-						"aside main main main nav";
-					--ly_numArray:
-						"b7 b8 b9"
-						"b4 b5 b6"
-						"b1 b2 b3"
-						"be bd b0";
-				}
-
-				@media (max-aspect-ratio: 5/6) {
-					.b01ly_calc {
-						--ly_btnArray:
-							"nav  nav  nav  nav  "
-							"main main main aside"
-							"main main main aside"
-							"main main main aside"
-							"main main main aside";
-						--num_hBox: 5;
-						--num_wBox: 4;
-						--flexFlow_nav: row nowrap;
-						--width_nav: 100dvw;
-					}
-
-					.is_leftMode .b01ly_calc {
-						--ly_btnArray:
-							"nav  nav  nav  nav  "
-							"aside main main main"
-							"aside main main main"
-							"aside main main main"
-							"aside main main main";
-					}
-				}
-
-				.b01ly_calc_header {
-					--base_h: calc((100dvh - (var(--size_btn) * var(--num_hBox))) / 2);
-					width: 98dvw;
-					min-height: calc(var(--size_btn) * 2);
-				}
-
-				#b01js_label {
-					width: 100%;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					height: calc(var(--base_h) * 0.5);
-					font-size: clamp(1rem, 5dvw, calc(var(--base_h) * 0.4));
-					text-align: center;
-					border: var(--sc_border_field);
-					border-bottom: dotted;
-				}
-
-				#b01js_output {
-					width: 100%;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					height: var(--base_h);
-					font-size: clamp(1rem, 5dvw, calc(var(--base_h) * 0.8));
-					text-align: center;
-					border: var(--sc_border_field);
-					border-top: none;
-					text-wrap: nowrap;
-				}
-
-				.b01ly_calc_btnArray {
-					display: grid;
-					gap: var(--gap);
-					grid-template-areas: var(--ly_btnArray);
-				}
-
-				.b01ly_calc_nav {
-					grid-area: nav;
-					display: flex;
-					gap: var(--gap);
-					flex-flow: var(--flexFlow_nav);
-				}
-
-				.b01ly_calc_main {
-					grid-area: main;
-					display: grid;
-					gap: var(--gap);
-					grid-template-areas: var(--ly_numArray);
-				}
-
-				#b01js_1 {grid-area: b1;}
-				#b01js_2 {grid-area: b2;}
-				#b01js_3 {grid-area: b3;}
-				#b01js_4 {grid-area: b4;}
-				#b01js_5 {grid-area: b5;}
-				#b01js_6 {grid-area: b6;}
-				#b01js_7 {grid-area: b7;}
-				#b01js_8 {grid-area: b8;}
-				#b01js_9 {grid-area: b9;}
-				#b01js_0 {grid-area: b0;}
-				#b01js_DecimalPoint {grid-area: bd;}
-				#b01js_Equal {grid-area: be;}
-
-				.b01ly_calc_aside {
-					grid-area: aside;
-					display: flex;
-					gap: var(--gap);
-					flex-flow: column nowrap;
-				}
-
-				.b01el_calcBtn {
-					appearance: none;
-					height: calc(var(--size_btn) * 0.9);
-					width: calc(var(--size_btn) * 0.9);
-					margin: 0;
-					padding: 0;
-					font-size: calc(var(--size_btn) * 0.4);
-					font-style: normal;
-					font-weight: 700;
-					line-height: 1;
-					letter-spacing: 0;
-					text-align: center;
-					cursor: pointer;
-					background: none;
-					border-radius: 25%;
-					border: 2px solid transparent;
-				}
-
-				.b01el_calcBtn.b01el_calcBtn__primary {
-					color: var(--sc_txt_btn__primary);
-					background-color: var(--sc_bg_btn__primary);
-				}
-
-				.b01el_calcBtn.b01el_calcBtn__secondary {
-					color: var(--sc_txt_btn__secondary);
-					background-color: var(--sc_bg_btn__secondary);
-					border-color: currentcolor;
-				}
-
-				.b01el_calcBtn.b01el_calcBtn__tertiary {
-					color: var(--sc_txt_body);
-					background-color: transparent;
-					border: var(--sc_border_field);
-				}
-
-				.b01el_calcBtn.b01el_calcBtn__iconLabel {
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: space-evenly;
-				}
-
-				.b01el_calcBtn.b01el_calcBtn__iconLabel>svg {
-					height: calc(var(--size_btn) * 0.5);
-					width: calc(var(--size_btn) * 0.5);
-				}
-
-				.b01el_calcBtn.b01el_calcBtn__iconLabel>span {
-					font-size: calc(var(--size_btn) * 0.2);
-					color: var(--sc_txt_btn__secondary);
-				}
-			</style>
 			<script>
+				const b01_calcLabel = document.querySelector("#b01js_label");
+				const b01_calcOutput = document.querySelector("#b01js_output");
+				const b01_calcBtn1 = document.querySelector("#b01js_1");
+				const b01_calcBtn2 = document.querySelector("#b01js_2");
+				const b01_calcBtn3 = document.querySelector("#b01js_3");
+				const b01_calcBtn4 = document.querySelector("#b01js_4");
+				const b01_calcBtn5 = document.querySelector("#b01js_5");
+				const b01_calcBtn6 = document.querySelector("#b01js_6");
+				const b01_calcBtn7 = document.querySelector("#b01js_7");
+				const b01_calcBtn8 = document.querySelector("#b01js_8");
+				const b01_calcBtn9 = document.querySelector("#b01js_9");
+				const b01_calcBtn0 = document.querySelector("#b01js_0");
+				const b01_calcBtnDecimalPoint = document.querySelector("#b01js_DecimalPoint");
+				const b01_calcBtnAdd = document.querySelector("#b01js_Add");
+				const b01_calcBtnSubtract = document.querySelector("#b01js_Subtract");
+				const b01_calcBtnMultiply = document.querySelector("#b01js_Multiply");
+				const b01_calcBtnDevide = document.querySelector("#b01js_Divide");
+				const b01_calcBtnEqual = document.querySelector("#b01js_Equal");
+				const b01_calcBtnAllClear = document.querySelector("#b01js_AllClear");
+				const b01_calcBtnBackSpace = document.querySelector("#b01js_BackSpace");
+				const b01_calcBtnCopy = document.querySelector("#b01js_Copy");
+				const b01_dialogEle = document.querySelector("#b01js_dialog_calculator");
 				function getDecimalPosition(value) {
 					const strVal = String(value);
-					if (strVal.indexOf('.') !== -1) {
-						return ((strVal.length - 1) - strVal.indexOf('.'));
+					if (strVal.indexOf(".") !== -1) {
+						return strVal.length - 1 - strVal.indexOf(".");
 					}
 					return 0;
 				}
 				function splitExpression(expression) {
 					let operatorIndex = 1;
+
 					for (let i = 1; i < expression.length; i++) {
 						if (isOperator(expression[i])) {
 							operatorIndex = i;
@@ -1397,13 +1527,13 @@
 					return [operandLeft, operator, operandRight];
 				}
 				function isOperator(char) {
-					return ['+', '-', '*', '/'].includes(char);
+					return ["+", "-", "*", "/"].includes(char);
 				}
 				const multiplication = (x, y) => {
-					const n = 10 ** (getDecimalPosition(x) + getDecimalPosition(y));
-					x = +(x + '').replace('.', '');
-					y = +(y + '').replace('.', '');
-					return (x * y) / n;
+					const z = 10 ** (getDecimalPosition(x) + getDecimalPosition(y));
+					x = (x + "").replace(".", "");
+					y = (y + "").replace(".", "");
+					return (x * y) / z;
 				};
 				const addition = (x, y) => {
 					const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
@@ -1414,13 +1544,9 @@
 					return (multiplication(x, z) - multiplication(y, z)) / z;
 				};
 				const division = (x, y) => {
-					const decimalLengthX = getDecimalPosition(x);
-					const decimalLengthY = getDecimalPosition(y);
-					const n = 10 ** (decimalLengthY - decimalLengthX);
-					x = +(x + '').replace('.', '');
-					y = +(y + '').replace('.', '');
-					return (x / y) * n;
-				}
+					const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
+					return multiplication(x, z) / multiplication(y, z);
+				};
 				const CALC_STATE = Object.freeze({
 					Start: 0,
 					NegativeNum1: 1,
@@ -1433,10 +1559,25 @@
 					OperandInteger2: 8,
 					OperandDecimal2: 9,
 					Result: 10,
+					Error: 11,
 				});
 				const VALID_INPUTS = [
-					"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-					".", "+", "-", "*", "/", "="
+					"0",
+					"1",
+					"2",
+					"3",
+					"4",
+					"5",
+					"6",
+					"7",
+					"8",
+					"9",
+					".",
+					"+",
+					"-",
+					"*",
+					"/",
+					"=",
 				];
 				const INVALID_INPUTS_BY_STATE = Object.freeze({
 					0: ["+", "*", "/", "="],
@@ -1450,24 +1591,44 @@
 					8: [],
 					9: ["."],
 					10: ["="],
-				})
+					11: ["+", "*", "/", "="],
+				});
 				class Calculator {
 					constructor() {
-						this._expression = '';
-						this._label = '';
+						this._expression = "";
 						this._state = CALC_STATE.Start;
 					}
 					get expression() {
 						return this._expression;
 					}
-					get label() {
-						return this._label
-					}
-					push(input) {
-						if ((!VALID_INPUTS.includes(input)) || (INVALID_INPUTS_BY_STATE[this._state].includes(input))) {
+					pushExpression(input) {
+						if (
+							!VALID_INPUTS.includes(input) ||
+							INVALID_INPUTS_BY_STATE[this._state].includes(input)
+						) {
 							return false;
 						}
 						switch (this._state) {
+							case CALC_STATE.Error:
+								switch (input) {
+									case "0":
+										this._expression = input;
+										this._state = CALC_STATE.OperandZero1;
+										break;
+									case "-":
+										this._expression = input;
+										this._state = CALC_STATE.NegativeNum1;
+										break;
+									case ".":
+										this._expression = "0";
+										this._expression += input;
+										this._state = CALC_STATE.OperandDecimal1;
+										break;
+									default:
+										this._expression = input;
+										this._state = CALC_STATE.OperandInteger1;
+								}
+								break;
 							case CALC_STATE.Start:
 								switch (input) {
 									case "0":
@@ -1568,12 +1729,6 @@
 										this._expression += input;
 										this._state = CALC_STATE.NegativeNum2;
 										break;
-									case "+":
-									case "*":
-									case "/":
-										this._expression = this._expression.slice(0, -1);
-										this._expression += input;
-										break;
 									default:
 										this._expression += input;
 										this._state = CALC_STATE.OperandInteger2;
@@ -1602,18 +1757,30 @@
 										this._state = CALC_STATE.OperandDecimal2;
 										break;
 									case "=":
-										this._label = this._expression;
 										this._expression = this.calculate();
-										this._state = CALC_STATE.Result;
+										if (isFinite(this._expression)) {
+											this._state = CALC_STATE.Result;
+										} else {
+											console.warn(
+												`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`
+											);
+											this._state = CALC_STATE.Error;
+										}
 										break;
 									case "+":
 									case "-":
 									case "*":
 									case "/":
-										this._label = this._expression;
 										this._expression = this.calculate();
-										this._expression += input;
-										this._state = CALC_STATE.Operator;
+										if (isFinite(this._expression)) {
+											this._expression += input;
+											this._state = CALC_STATE.Operator;
+										} else {
+											console.warn(
+												`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`
+											);
+											this._state = CALC_STATE.Error;
+										}
 										break;
 									default:
 										this._expression = this._expression.slice(0, -1);
@@ -1628,18 +1795,30 @@
 										this._state = CALC_STATE.OperandDecimal2;
 										break;
 									case "=":
-										this._label = this._expression;
 										this._expression = this.calculate();
-										this._state = CALC_STATE.Result;
+										if (isFinite(this._expression)) {
+											this._state = CALC_STATE.Result;
+										} else {
+											console.warn(
+												`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`
+											);
+											this._state = CALC_STATE.Error;
+										}
 										break;
 									case "+":
 									case "-":
 									case "*":
 									case "/":
-										this._label = this._expression;
 										this._expression = this.calculate();
-										this._expression += input;
-										this._state = CALC_STATE.Operator;
+										if (isFinite(this._expression)) {
+											this._expression += input;
+											this._state = CALC_STATE.Operator;
+										} else {
+											console.warn(
+												`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`
+											);
+											this._state = CALC_STATE.Error;
+										}
 										break;
 									default:
 										this._expression += input;
@@ -1648,18 +1827,30 @@
 							case CALC_STATE.OperandDecimal2:
 								switch (input) {
 									case "=":
-										this._label = this._expression;
 										this._expression = this.calculate();
-										this._state = CALC_STATE.Result;
+										if (isFinite(this._expression)) {
+											this._state = CALC_STATE.Result;
+										} else {
+											console.warn(
+												`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`
+											);
+											this._state = CALC_STATE.Error;
+										}
 										break;
 									case "+":
 									case "-":
 									case "*":
 									case "/":
-										this._label = this._expression;
 										this._expression = this.calculate();
-										this._expression += input;
-										this._state = CALC_STATE.Operator;
+										if (isFinite(this._expression)) {
+											this._expression += input;
+											this._state = CALC_STATE.Operator;
+										} else {
+											console.warn(
+												`計算不能値 ${this._expression} のため、Calculator はエラー状態に移行しました`
+											);
+											this._state = CALC_STATE.Error;
+										}
 										break;
 									default:
 										this._expression += input;
@@ -1675,148 +1866,214 @@
 										this._state = CALC_STATE.Operator;
 										break;
 									case ".":
-										this._label = '';
 										this._expression = "0";
 										this._expression += input;
 										this._state = CALC_STATE.OperandDecimal1;
 										break;
 									case "0":
-										this._label = '';
 										this._expression = input;
 										this._state = CALC_STATE.OperandZero1;
 										break;
 									default:
-										this._label = '';
 										this._expression = input;
 										this._state = CALC_STATE.OperandInteger1;
 								}
 								break;
 							default:
 								console.error(`無効なステートが検出されました ${this._state}`);
+								return false;
 						}
 						return true;
 					}
 					calculate() {
-						let [strOpeLeft, operator, strOpeRight] = splitExpression(this._expression);
+						let [strOpeLeft, operator, strOpeRight] = splitExpression(
+							this._expression
+						);
 						let calcResult = 0;
 						switch (operator) {
-							case '+':
+							case "+":
 								try {
-									calcResult = addition(strOpeLeft, strOpeRight)
+									calcResult = addition(strOpeLeft, strOpeRight);
 								} catch (error) {
-									this._label = `Error: ${error.message}`;
+									console.error(`Error: ${error.message}`);
 									calcResult = NaN;
 								}
 								break;
-							case '-':
+							case "-":
 								try {
 									calcResult = subtract(strOpeLeft, strOpeRight);
 								} catch (error) {
-									this._label = `Error: ${error.message}`;
+									console.error(`Error: ${error.message}`);
 									calcResult = NaN;
 								}
 								break;
-							case '*':
+							case "*":
 								try {
 									calcResult = multiplication(strOpeLeft, strOpeRight);
 								} catch (error) {
-									this._label = `Error: ${error.message}`;
+									console.error(`Error: ${error.message}`);
 									calcResult = NaN;
 								}
 								break;
-							case '/':
+							case "/":
 								try {
 									calcResult = division(strOpeLeft, strOpeRight);
 								} catch (error) {
-									this._label = `Error: ${error.message}`;
+									console.error(`Error: ${error.message}`);
 									calcResult = NaN;
 								}
 								break;
 							default:
-								console.log(`不明な演算子が検出されました。 operator: ${operator}`);
+								console.Error(`不明な演算子が検出されました。 operator: ${operator}`);
+								calcResult = NaN;
 						}
 						return calcResult;
 					}
 					reset() {
 						this._state = CALC_STATE.Start;
-						this._expression = '';
-						this._label = '';
+						this._expression = "";
 					}
 					back() {
-						if ((this._state !== CALC_STATE.Result) && (this._expression.length >= 1)) {
-							const expr = this._expression.slice(0, -1);
-							this._label = '';
-							this._expression = '';
-							this._state = CALC_STATE.Start;
-							if (expr.length >= 1) {
-								for (var i = 0; i < expr.length; i++) {
-									this.push(expr[i]);
-								}
-							}
-							return true;
-						} else {
+						if (
+							this._state == CALC_STATE.Result ||
+							this._state == CALC_STATE.Error ||
+							this._expression.length === 0
+						) {
 							return false;
 						}
-					}
-					copy() {
-						navigator.clipboard
-							.writeText(this._expression)
-							.then(
-								feedbackOK()
-							)
-							.catch(e => {
-								console.error(e);
-								feedbackNG();
-							});
+						const expr = this._expression.slice(0, -1);
+						this.reset();
+						if (expr.length >= 1) {
+							for (var i = 0; i < expr.length; i++) {
+								this.pushExpression(expr[i]);
+							}
+						}
+						return true;
 					}
 				}
-				const calculator = new Calculator();
-				const b01_calcLabel = document.querySelector('#b01js_label');
-				const b01_calcOutput = document.querySelector('#b01js_output');
-				const b01_calcBtn1 = document.querySelector('#b01js_1');
-				const b01_calcBtn2 = document.querySelector('#b01js_2');
-				const b01_calcBtn3 = document.querySelector('#b01js_3');
-				const b01_calcBtn4 = document.querySelector('#b01js_4');
-				const b01_calcBtn5 = document.querySelector('#b01js_5');
-				const b01_calcBtn6 = document.querySelector('#b01js_6');
-				const b01_calcBtn7 = document.querySelector('#b01js_7');
-				const b01_calcBtn8 = document.querySelector('#b01js_8');
-				const b01_calcBtn9 = document.querySelector('#b01js_9');
-				const b01_calcBtn0 = document.querySelector('#b01js_0');
-				const b01_calcBtnDecimalPoint = document.querySelector('#b01js_DecimalPoint');
-				const b01_calcBtnAdd = document.querySelector('#b01js_Add');
-				const b01_calcBtnSubtract = document.querySelector('#b01js_Subtract');
-				const b01_calcBtnMultiply = document.querySelector('#b01js_Multiply');
-				const b01_calcBtnDevide = document.querySelector('#b01js_Divide');
-				const b01_calcBtnEqual = document.querySelector('#b01js_Equal');
+				class b01Calculator extends Calculator {
+					constructor(btns) {
+						super();
+						this._label = "";
+						this._btn = {};
+						this._btn["0"] = btns["0"] || null;
+						this._btn["1"] = btns["1"] || null;
+						this._btn["2"] = btns["2"] || null;
+						this._btn["3"] = btns["3"] || null;
+						this._btn["4"] = btns["4"] || null;
+						this._btn["5"] = btns["5"] || null;
+						this._btn["6"] = btns["6"] || null;
+						this._btn["7"] = btns["7"] || null;
+						this._btn["8"] = btns["8"] || null;
+						this._btn["9"] = btns["9"] || null;
+						this._btn["."] = btns["."] || null;
+						this._btn["+"] = btns["+"] || null;
+						this._btn["-"] = btns["-"] || null;
+						this._btn["*"] = btns["*"] || null;
+						this._btn["/"] = btns["/"] || null;
+						this._btn["="] = btns["="] || null;
+					}
+					get label() {
+						return this._label;
+					}
+					pushExpression(input) {
+						switch (this._state) {
+							case CALC_STATE.OperandZero2:
+							case CALC_STATE.OperandInteger2:
+							case CALC_STATE.OperandDecimal2:
+								if (isOperator(input) || input == "=") {
+									this._label = this.expression;
+								}
+								break;
+							case CALC_STATE.Result:
+							case CALC_STATE.Error:
+								if (!isOperator(input) && input != "=") {
+									this._label = "";
+								}
+								break;
+						}
+						const result = super.pushExpression(input);
+						this.refreshButtons();
+						return result;
+					}
+					reset() {
+						this._label = "";
+						super.reset();
+						this.refreshButtons();
+					}
+					back() {
+						const buf = this._label;
+						const result = super.back();
+						this._label = buf;
+						return result;
+					}
+					refreshButtons() {
+						const invalidNames = INVALID_INPUTS_BY_STATE[this._state];
+						for (const name of VALID_INPUTS) {
+							this._btn[name].disabled = invalidNames.includes(name);
+						}
+					}
+				}
+				const buttons = {
+					0: b01_calcBtn0,
+					1: b01_calcBtn1,
+					2: b01_calcBtn2,
+					3: b01_calcBtn3,
+					4: b01_calcBtn4,
+					5: b01_calcBtn5,
+					6: b01_calcBtn6,
+					7: b01_calcBtn7,
+					8: b01_calcBtn8,
+					9: b01_calcBtn9,
+					".": b01_calcBtnDecimalPoint,
+					"+": b01_calcBtnAdd,
+					"-": b01_calcBtnSubtract,
+					"*": b01_calcBtnMultiply,
+					"/": b01_calcBtnDevide,
+					"=": b01_calcBtnEqual,
+				};
+				const calculator = new b01Calculator(buttons);
+				calculator.reset();
 				const b01_calcBtns = [
-					b01_calcBtn1, b01_calcBtn2, b01_calcBtn3, b01_calcBtn4, b01_calcBtn5,
-					b01_calcBtn6, b01_calcBtn7, b01_calcBtn8, b01_calcBtn9, b01_calcBtn0,
-					b01_calcBtnDecimalPoint, b01_calcBtnAdd, b01_calcBtnSubtract,
-					b01_calcBtnMultiply, b01_calcBtnDevide, b01_calcBtnEqual,
+					b01_calcBtn1,
+					b01_calcBtn2,
+					b01_calcBtn3,
+					b01_calcBtn4,
+					b01_calcBtn5,
+					b01_calcBtn6,
+					b01_calcBtn7,
+					b01_calcBtn8,
+					b01_calcBtn9,
+					b01_calcBtn0,
+					b01_calcBtnDecimalPoint,
+					b01_calcBtnAdd,
+					b01_calcBtnSubtract,
+					b01_calcBtnMultiply,
+					b01_calcBtnDevide,
+					b01_calcBtnEqual,
 				];
 				for (const btn of b01_calcBtns) {
 					btn.addEventListener("click", (e) => {
-						if (calculator.push(e.target.getAttribute('data-calc')) === true) {
+						if (
+							calculator.pushExpression(e.target.getAttribute("data-calc")) === true
+						) {
 							b01_calcOutput.textContent = calculator.expression;
 							b01_calcLabel.textContent = calculator.label;
 							feedbackOK();
 						} else {
 							b01_calcOutput.textContent = calculator.expression;
-							b01_calcLabel.textContent = '不正な入力です';
+							b01_calcLabel.textContent = "不正な入力です";
 							feedbackNG();
 						}
-					})
+					});
 				}
-				const b01_calcBtnAllClear = document.querySelector('#b01js_AllClear');
-				b01_calcBtnAllClear.addEventListener("click", () => {
+				function calcActionAllClear() {
 					calculator.reset();
 					b01_calcOutput.textContent = calculator.expression;
 					b01_calcLabel.textContent = calculator.label;
 					feedbackOK();
-				})
-				const b01_calcBtnBackSpace = document.querySelector('#b01js_BackSpace');
-				b01_calcBtnBackSpace.addEventListener("click", () => {
+				}
+				function calcActionBackspace() {
 					if (calculator.back() == true) {
 						b01_calcOutput.textContent = calculator.expression;
 						b01_calcLabel.textContent = calculator.label;
@@ -1824,10 +2081,60 @@
 					} else {
 						feedbackNG();
 					}
+				}
+				function calcActionCopy() {
+					navigator.clipboard
+						.writeText(calculator.expression)
+						.then(feedbackOK())
+						.catch((e) => {
+							console.error(e);
+							feedbackNG();
+						});
+				}
+				b01_calcBtnAllClear.addEventListener("click", calcActionAllClear);
+				b01_calcBtnBackSpace.addEventListener("click", calcActionBackspace);
+				b01_calcBtnCopy.addEventListener("click", calcActionCopy);
+				function overrideKeyboard(e) {
+					let key = e.key;
+					if ((e.key == "Enter" && e.location === 3) || e.code == "NumpadEnter") {
+						e.preventDefault();
+						key = "=";
+					}
+					if (VALID_INPUTS.includes(key)) {
+						if (calculator.pushExpression(key) === true) {
+							b01_calcOutput.textContent = calculator.expression;
+							b01_calcLabel.textContent = calculator.label;
+							feedbackOK();
+						} else {
+							b01_calcOutput.textContent = calculator.expression;
+							b01_calcLabel.textContent = "不正な入力です";
+							feedbackNG();
+						}
+					} else if (key == "Backspace") {
+						e.preventDefault();
+						calcActionBackspace();
+					} else if (key == "Clear") {
+						e.preventDefault();
+						calcActionAllClear();
+					} else if (key == "Copy") {
+						e.preventDefault();
+						calcActionCopy();
+					}
+				}
+				const b01_observer = new MutationObserver((mutationsList) => {
+					for (const mutation of mutationsList) {
+						if (mutation.type === "attributes" && mutation.attributeName === "open") {
+							if (b01_dialogEle.open) {
+								b01_dialogEle.addEventListener("keydown", overrideKeyboard);
+							} else {
+								b01_dialogEle.removeEventListener("keydown", overrideKeyboard);
+							}
+						}
+					}
 				});
-				const b01_calcBtnCopy = document.querySelector('#b01js_Copy');
-				b01_calcBtnCopy.addEventListener("click", () => {
-					calculator.copy();
+				b01_observer.observe(b01_dialogEle, {
+					attributes: true,
+					attributeFilter: ["open"],
 				});
 			</script>
 		</li><!-- /.bl_funcList_item -->
@@ -1838,13 +2145,14 @@
 
 
 	<h3 class="el_heading_lv3 el_heading__iconLabel">
-		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
-			role="graphics-symbol img" aria-hidden="true">
+		<svg
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true"
+		>
 			<path d="m6 12.674v1.8877h10.382v20.764h1.8877v-20.764h10.382v-1.8877h-12.27z" />
-			<path
-				d="m26.899 20.225v1.8877h5.663v9.4383s0 3.7753 3.7753 3.7753h5.663v-1.8877h-5.663s-1.8877 0-1.8877-1.8877v-9.4383h7.5506v-1.8877h-7.5506v-3.7753h-1.8877v3.7753z" />
-			<rect x="3" y="3" width="42" height="42" ry="4.5" fill="none" stroke="currentColor" stroke-linejoin="round"
-				stroke-width="2" />
+			<path d="m26.899 20.225v1.8877h5.663v9.4383s0 3.7753 3.7753 3.7753h5.663v-1.8877h-5.663s-1.8877 0-1.8877-1.8877v-9.4383h7.5506v-1.8877h-7.5506v-3.7753h-1.8877v3.7753z"/>
+			<rect x="3" y="3" width="42" height="42" ry="4.5" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
 		</svg>
 		<span>
 			テキスト
@@ -1858,110 +2166,85 @@
 	<ul class="bl_funcList">
 		<!-- [c01] -->
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnShowDialog" aria-controls="c01js_dialog_textCounter">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="c01js_dialog_textCounter">
 				文字列カウンタ
-			</button><!-- /.js_btnShowDialog -->
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 
 			<dialog class="ly_dialog" id="c01js_dialog_textCounter" aria-labelledby="c01_title" autofocus>
-				<div class="c01ly_textCounter">
+				<div class="ly_dialog_body">
 					<div class="bl_menuHeader">
 						<h2 class="bl_menuHeader_title" id="c01_title">テキストカウンター</h2>
-						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
-							aria-controls="c01js_dialog_textCounter" aria-describedby="c01_title">
+						<button type="button"
+							class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="c01js_dialog_textCounter"
+							aria-describedby="c01_title"
+						>
 							<span>閉じる</span>
 						</button>
 					</div><!-- /.bl_menuHeader -->
-					<form class="c01bl_form">
-						<button type="button" class="el_btn el_btn__secondary" id="c01js_pasteFromClipboard">
+					<form action="#" class="bl_simpleForm">
+						<button type="button"
+							class="el_btn el_btn__secondary"
+							id="c01js_pasteFromClipboard"
+						>
 							クリップボードからペースト
 						</button>
-						<div class="c01bl_form_block">
-							<label for="c01js_inputArea" class="c01bl_form_label">入力テキスト</label>
-							<textarea name="textcounter" class="c01bl_form_textArea" id="c01js_inputArea"></textarea>
+						<div class="bl_simpleForm_block">
+							<label for="c01js_inputArea" class="bl_simpleForm_label">入力テキスト</label>
+							<textarea name="textcounter" class="bl_simpleForm_textArea" id="c01js_inputArea"></textarea>
 						</div>
-						<!-- /.c01bl_form_block -->
-						<button type="button" class="el_btn el_btn__tertiary" id="c01js_clearTextArea">
+						<!-- /.bl_simpleForm_block -->
+						<button type="button"
+							class="el_btn el_btn__tertiary"
+							id="c01js_clearTextArea"
+						>
 							クリア
 						</button>
-						<button type="button" class="el_btn el_btn__primary" id="c01js_countBtn">計算</button>
-						<output class="c01bl_form_output" id="c01js_output"></output>
-					</form><!-- /.c01bl_form -->
-				</div><!-- /.c01ly_textCounter -->
+						<button type="submit" class="el_btn el_btn__primary" id="c01js_countBtn">計算</button>
+						<output class="bl_simpleForm_output" id="c01js_output"></output>
+					</form><!-- /.bl_simpleForm -->
+				</div><!-- /.ly_dialog_body -->
 			</dialog><!-- /.ly_dialog -->
-			<style>
-				.c01ly_textCounter {
-					padding: 8px;
-					width: 100dvw;
-					height: 100dvh;
-					display: flex;
-					flex-flow: column nowrap;
-				}
-
-				.c01bl_form {
-					display: flex;
-					flex-flow: column nowrap;
-					align-items: center;
-				}
-
-				.c01bl_form_block {
-					display: block;
-					width: 100%;
-					margin: 1rem 0;
-				}
-
-				.c01bl_form_label {
-					display: block;
-					align-self: flex-start;
-				}
-
-				.c01bl_form_textArea {
-					display: block;
-					width: 100%;
-					min-height: 10rem;
-				}
-
-				.c01bl_form_output {
-					display: block;
-					width: 100%;
-					margin: 1rem 0;
-				}
-			</style>
 			<script>
-				const c01_textArea = document.querySelector('#c01js_inputArea');
-				const c01_output = document.querySelector('#c01js_output');
-				const c01_btnCalc = document.querySelector('#c01js_countBtn');
-				const c01_btnPasteFromClipboard = document.querySelector('#c01js_pasteFromClipboard');
-				c01_btnPasteFromClipboard.addEventListener('click', () => {
+				const c01_textArea = document.querySelector("#c01js_inputArea");
+				const c01_output = document.querySelector("#c01js_output");
+				const c01_btnCalc = document.querySelector("#c01js_countBtn");
+				const c01_btnPasteFromClipboard = document.querySelector(
+					"#c01js_pasteFromClipboard"
+				);
+				c01_btnPasteFromClipboard.addEventListener("click", () => {
 					navigator.clipboard
 						.readText()
 						.then((clipText) => {
-							c01_textArea.value = '';
+							c01_textArea.value = "";
 							c01_textArea.value = clipText;
 							c01_textArea.rows = clipText.split(/\n/gmsu).length;
 							c01_btnCalc.focus();
 							feedbackOK();
 						})
-						.catch(e => {
+						.catch((e) => {
 							console.error(e);
 							feedbackNG();
 						});
-				})
-				c01_btnCalc.addEventListener('click', () => {
-					c01_output.value = '';
-					const inputText = c01_textArea.value;
-					const inputTextArray = inputText.split(/[\r|\n|\r\n]+/gmsu);
+				});
+				c01_btnCalc.addEventListener("click", () => {
+					c01_output.value = "";
+					const inputTextNormalized = c01_textArea.value.replace(/\r\n/g, "\n");
+					const inputTextArray = inputTextNormalized.split("\n");
 					let counterAllChars = 0;
 					let counterEmptyRow = 0;
 					let counterMaxChars = 0;
-					const regexWhiteSpace = /\s/gui;
+					const regexWhiteSpace = /\s/giu;
 					let counterWhiteSpace = 0;
-					const regexTab = /\t/gui;
+					const regexTab = /\t/giu;
 					let counterTab = 0;
-					const regexSpace = /[ |　]/gui;
+					const regexSpace = /[ |　]/giu;
 					let counterSpace = 0;
 					for (let t of inputTextArray) {
-						if (t === '') counterEmptyRow += 1;
-						const chars = [...new Intl.Segmenter('ja', { granularity: 'grapheme' }).segment(t)].length;
+						if (t === "") counterEmptyRow += 1;
+						const chars = [
+							...new Intl.Segmenter("ja", { granularity: "grapheme" }).segment(t),
+						].length;
 						counterAllChars += chars;
 						if (chars > counterMaxChars) counterMaxChars = chars;
 						const matchesWhiteSpace = t.match(regexWhiteSpace);
@@ -1971,25 +2254,289 @@
 						const matchesSpace = t.match(regexSpace);
 						if (matchesSpace) counterSpace += matchesSpace.length;
 					}
-					let dataArray = [['項目', '数']];
-					dataArray.push(['文字', counterAllChars]);
-					dataArray.push(['文字（空白除く）', counterAllChars - counterWhiteSpace]);
-					dataArray.push(['空白文字', counterWhiteSpace]);
-					dataArray.push(['Tab文字', counterTab]);
-					dataArray.push(['スペース', counterSpace]);
-					dataArray.push(['最大文字（行単位）', counterMaxChars]);
-					dataArray.push(['行', inputTextArray.length]);
-					dataArray.push(['空行', counterEmptyRow]);
-					c01_output.appendChild(createTable(dataArray));
+					let dataArray = [["項目", "数"]];
+					dataArray.push(["文字", counterAllChars]);
+					dataArray.push(["文字（空白除く）", counterAllChars - counterWhiteSpace]);
+					dataArray.push(["空白文字", counterWhiteSpace]);
+					dataArray.push(["Tab文字", counterTab]);
+					dataArray.push(["スペース", counterSpace]);
+					dataArray.push(["最大文字（行単位）", counterMaxChars]);
+					dataArray.push(["行", inputTextArray.length]);
+					dataArray.push(["空行", counterEmptyRow]);
+					c01_output.appendChild(createTable(dataArray, TABLE_STYLE.vertical));
 					feedbackOK();
-				})
-				const c01_btnClear = document.querySelector('#c01js_clearTextArea');
-				c01_btnClear.addEventListener('click', () => {
-					c01_output.value = '';
-					c01_textArea.value = '';
+				});
+				const c01_btnClear = document.querySelector("#c01js_clearTextArea");
+				c01_btnClear.addEventListener("click", () => {
+					c01_output.value = "";
+					c01_textArea.value = "";
 					c01_textArea.rows = null;
 					feedbackOK();
-				})
+				});
+			</script>
+		</li><!-- /.bl_funcList_item -->
+
+
+		<!-- [c02] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="c02js_dialog_excel2md">
+				表形式データ → Markdown
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
+
+			<dialog class="ly_dialog" id="c02js_dialog_excel2md" aria-labelledby="c02_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="c02_title">表形式データをMarkdownに変換</h2>
+						<button type="button"
+							class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="c02js_dialog_excel2md"
+							aria-describedby="c02_title"
+						>
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<form action="#" class="bl_simpleForm">
+						<button type="button"
+							class="el_btn el_btn__secondary"
+							id="c02js_pasteFromClipboard"
+						>
+							クリップボードからペースト
+						</button>
+						<div class="bl_simpleForm_block">
+							<label for="c02js_inputArea" class="bl_simpleForm_label">入力テキスト</label>
+							<textarea name="textcounter" class="bl_simpleForm_textArea" id="c02js_inputArea"></textarea>
+						</div>
+						<!-- /.bl_simpleForm_block -->
+						<button type="button"
+							class="el_btn el_btn__tertiary"
+							id="c02js_clearTextArea"
+						>
+							クリア
+						</button>
+						<button type="submit" class="el_btn el_btn__primary" id="c02js_calcBtn">変換</button>
+						<output class="bl_simpleForm_output" id="c02js_output"></output>
+					</form><!-- /.bl_simpleForm -->
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+			<script>
+				function excel2markdown(excelStr) {
+					const normalizedStr = excelStr.replace(/\r\n/g, "\n");
+					const rows = normalizedStr.trim().split("\n");
+					let table = rows.map((row) => row.split("\t"));
+					const numColumns = table[0].length;
+					const separateStr = `| ${Array(numColumns).fill("---").join(" | ")} |`;
+					let result;
+					result = table.map((row) => `| ${row.join(" | ")} |`);
+					result.splice(1, 0, separateStr);
+					return result.join("\n");
+				}
+				function excel2markdownWithEscaped(excelStr) {
+					const conversionTable = [
+						{
+							original: "|",
+							evacuation: "@@PIPE@@",
+							escaped: "\\|",
+						},
+					];
+					conversionTable.forEach((replacement) => {
+						excelStr = excelStr
+							.split(replacement.original)
+							.join(replacement.evacuation);
+					});
+					excelStr = excel2markdown(excelStr);
+					conversionTable.forEach((replacement) => {
+						excelStr = excelStr
+							.split(replacement.evacuation)
+							.join(replacement.escaped);
+					});
+					return excelStr;
+				}
+				const c02_textArea = document.querySelector("#c02js_inputArea");
+				const c02_output = document.querySelector("#c02js_output");
+				const c02_btnCalc = document.querySelector("#c02js_calcBtn");
+				const c02_btnPasteFromClipboard = document.querySelector(
+					"#c02js_pasteFromClipboard"
+				);
+				c02_btnPasteFromClipboard.addEventListener("click", () => {
+					navigator.clipboard
+						.readText()
+						.then((clipText) => {
+							c02_textArea.value = "";
+							c02_textArea.value = clipText;
+							c02_textArea.rows = clipText.split(/\n/gmsu).length;
+							c02_btnCalc.focus();
+							feedbackOK();
+						})
+						.catch((e) => {
+							console.error(e);
+							feedbackNG();
+						});
+				});
+				c02_btnCalc.addEventListener("click", () => {
+					c02_output.innerHTML = "";
+					const result = excel2markdownWithEscaped(c02_textArea.value);
+					const copyBtn = document.createElement("button");
+					copyBtn.type = "button";
+					copyBtn.className = "el_btn el_btn__secondary";
+					copyBtn.style = "margin-top: 0.5em";
+					copyBtn.textContent = "コピー";
+					copyBtn.addEventListener("click", () => {
+						navigator.clipboard
+							.writeText(result)
+							.then(feedbackOK())
+							.catch((e) => {
+								console.error(e);
+								feedbackNG();
+							});
+					});
+					c02_output.appendChild(copyBtn);
+					const textarea = document.createElement("textarea");
+					textarea.classList.add("bl_simpleForm_textArea");
+					textarea.rows = result.split(/\n/gmsu).length;
+					textarea.value = result;
+					c02_output.appendChild(textarea);
+					feedbackOK();
+				});
+				const c02_btnClear = document.querySelector("#c02js_clearTextArea");
+				c02_btnClear.addEventListener("click", () => {
+					c02_output.innerHTML = "";
+					c02_textArea.value = "";
+					c02_textArea.rows = null;
+					feedbackOK();
+				});
+			</script>
+		</li><!-- /.bl_funcList_item -->
+
+
+		<!-- [c03] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="c03js_dialog_md2excel">
+				Markdown → 表形式データ
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
+
+			<dialog class="ly_dialog" id="c03js_dialog_md2excel" aria-labelledby="c03_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="c03_title">Markdownを表形式データに変換</h2>
+						<button type="button"
+							class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="c03js_dialog_md2excel"
+							aria-describedby="c03_title"
+						>
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<form class="bl_simpleForm">
+						<button type="button"
+							class="el_btn el_btn__secondary"
+							id="c03js_pasteFromClipboard"
+						>
+							クリップボードからペースト
+						</button>
+						<div class="bl_simpleForm_block">
+							<label for="c03js_inputArea" class="bl_simpleForm_label">入力テキスト</label>
+							<textarea name="textcounter" class="bl_simpleForm_textArea" id="c03js_inputArea"></textarea>
+						</div>
+						<!-- /.bl_simpleForm_block -->
+						<button type="button"
+							class="el_btn el_btn__tertiary"
+							id="c03js_clearTextArea"
+						>
+							クリア
+						</button>
+						<button type="submit" class="el_btn el_btn__primary" id="c03js_calcBtn">変換</button>
+						<output class="bl_simpleForm_output" id="c03js_output"></output>
+					</form><!-- /.bl_simpleForm -->
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+			<script>
+				function markdown2excel(mdTable) {
+					const normalizedStr = mdTable.replace(/\r\n/g, "\n");
+					const rows = normalizedStr.split("\n");
+					rows.splice(1, 1);
+					const excelRows = rows.map((row) => {
+						return row
+							.split("|")
+							.slice(1, -1)
+							.map((cell) => cell.trim())
+							.join("\t");
+					});
+					return excelRows.join("\n");
+				}
+				function markdown2excelWithEscaped(mdTable) {
+					const conversionTable = [
+						{
+							original: "|",
+							evacuation: "@@PIPE@@",
+							escaped: "\\|",
+						},
+					];
+					conversionTable.forEach((replacement) => {
+						mdTable = mdTable.split(replacement.escaped).join(replacement.evacuation);
+					});
+					mdTable = markdown2excel(mdTable);
+					conversionTable.forEach((replacement) => {
+						mdTable = mdTable
+							.split(replacement.evacuation)
+							.join(replacement.original);
+					});
+					return mdTable;
+				}
+				const c03_textArea = document.querySelector("#c03js_inputArea");
+				const c03_output = document.querySelector("#c03js_output");
+				const c03_btnCalc = document.querySelector("#c03js_calcBtn");
+				const c03_btnPasteFromClipboard = document.querySelector(
+					"#c03js_pasteFromClipboard"
+				);
+				c03_btnPasteFromClipboard.addEventListener("click", () => {
+					navigator.clipboard
+						.readText()
+						.then((clipText) => {
+							c03_textArea.value = "";
+							c03_textArea.value = clipText;
+							c03_textArea.rows = clipText.split(/\n/gmsu).length;
+							c03_btnCalc.focus();
+							feedbackOK();
+						})
+						.catch((e) => {
+							console.error(e);
+							feedbackNG();
+						});
+				});
+				c03_btnCalc.addEventListener("click", () => {
+					c03_output.innerHTML = "";
+					const result = markdown2excelWithEscaped(c03_textArea.value);
+					const copyBtn = document.createElement("button");
+					copyBtn.type = "button";
+					copyBtn.className = "el_btn el_btn__secondary";
+					copyBtn.style = "margin-top: 0.5em";
+					copyBtn.textContent = "コピー";
+					copyBtn.addEventListener("click", () => {
+						navigator.clipboard
+							.writeText(result)
+							.then(feedbackOK())
+							.catch((e) => {
+								console.error(e);
+								feedbackNG();
+							});
+					});
+					c03_output.appendChild(copyBtn);
+					const tableArray = result.split("\n").map((row) => row.split("\t"));
+					c03_output.appendChild(createTable(tableArray));
+					const textarea = document.createElement("textarea");
+					textarea.classList.add("bl_simpleForm_textArea");
+					textarea.rows = result.split(/\n/gmsu).length;
+					textarea.value = result;
+					c03_output.appendChild(textarea);
+					feedbackOK();
+				});
+				const c03_btnClear = document.querySelector("#c03js_clearTextArea");
+				c03_btnClear.addEventListener("click", () => {
+					c03_output.innerHTML = "";
+					c03_textArea.value = "";
+					c03_textArea.rows = null;
+					feedbackOK();
+				});
 			</script>
 		</li><!-- /.bl_funcList_item -->
 	</ul>
@@ -1999,31 +2546,347 @@
 
 
 	<h3 class="el_heading_lv3 el_heading__iconLabel">
-		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
-			role="graphics-symbol img" aria-hidden="true">
-			<rect x="3" y="3" width="42" height="9" fill="#949497" stroke="currentColor" stroke-width="2" />
-			<path d="m7.5 16.5v3h33v-3z" />
-			<path d="m7.5 25.5v3h33v-3z" />
-			<path d="m7.5 34.5v3h33v-3z" />
-			<circle cx="31.5" cy="22.5" r="3" fill="#ff4b36" />
-			<path d="m3 12v33h36l6-6v-27z" fill="none" stroke="currentColor" stroke-width="2" />
-			<path d="m39 45-1.5-4.5 7.5-1.5z" fill="#949497" stroke="currentColor" stroke-linejoin="round" stroke-width="2" />
+		<svg
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true"
+		>
+			<rect x="3" y="3" width="42" height="9" fill="#949497" stroke="currentColor" stroke-width="2"/>
+			<path d="m7.5 16.5v3h33v-3z"/>
+			<path d="m7.5 25.5v3h33v-3z"/>
+			<path d="m7.5 34.5v3h33v-3z"/>
+			<circle cx="31.5" cy="22.5" r="3" fill="#ff4b36"/>
+			<path d="m3 12v33h36l6-6v-27z" fill="none" stroke="currentColor" stroke-width="2"/>
+			<path d="m39 45-1.5-4.5 7.5-1.5z" fill="#949497" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
 		</svg>
 		<span>
 			暦・日付・期間
 		</span>
 	</h3><!-- /.el_heading_lv3.el_heading__iconLabel -->
+	<script>
+		const wareki = {
+			eras: [
+				{ id: 0, name: "明治", startDate: new Date("1868-01-25") },
+				{ id: 1, name: "大正", startDate: new Date("1912-07-30") },
+				{ id: 2, name: "昭和", startDate: new Date("1926-12-25") },
+				{ id: 3, name: "平成", startDate: new Date("1989-01-08") },
+				{ id: 4, name: "令和", startDate: new Date("2019-05-01") },
+			],
+			getEraIdByDate: function (date) {
+				if (!(date instanceof Date))
+					throw new Error("引数は Date 型である必要があります");
+				for (let i = this.eras.length - 1; i >= 0; i--) {
+					if (date >= this.eras[i].startDate) return this.eras[i].id;
+				}
+				throw new Error("明治以前の日付データです");
+			},
+			getYearByEra: function (id, eraYear) {
+				const era = this.eras.find((e) => e.id === id);
+				if (!era) throw new Error("無効なIDです");
+				return era.startDate.getFullYear() + eraYear - 1;
+			},
+		};
+		function calcAge(dateBirth, dateBase = new Date()) {
+			if (!(dateBirth instanceof Date && dateBase instanceof Date))
+				throw new Error("引数は Date 型でなければなりません");
+			const age = dateBase.getFullYear() - dateBirth.getFullYear();
+			const timeBoundaryForAging = new Date(
+				dateBase.getFullYear(),
+				dateBirth.getMonth(),
+				dateBirth.getDate() - 1,
+				24
+			);
+			if (timeBoundaryForAging > dateBase) {
+				return age - 1;
+			} else {
+				return age;
+			}
+		}
+		function dateDiff(date1, date2) {
+			if (!(date1 instanceof Date && date2 instanceof Date))
+				throw new Error("引数は Date 型でなければなりません");
+			const ms = Math.abs(date1.getTime() - date2.getTime());
+			return Math.floor(ms / (1000 * 60 * 60 * 24));
+		}
+		function isDateFormat(dateString) {
+			const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
+			if (!dateString.match(dateFormatRegex)) return false;
+			const [year, month, day] = dateString.split("-").map(Number);
+			if (!(month >= 1 && month <= 12) || !(day >= 1 && day <= 31)) return false;
+			const date = new Date(year, month - 1, day);
+			if (
+				date.getFullYear() !== year ||
+				date.getMonth() + 1 !== month ||
+				date.getDate() !== day
+			)
+				return false;
+			return true;
+		}
+	</script>
 
 
 
 
 
 	<ul class="bl_funcList">
+		<!-- [d01] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="d01js_dialog_calcAge">
+				年齢計算
+			</button><!-- /.js_btnShowDialog -->
+
+			<dialog class="ly_dialog" id="d01js_dialog_calcAge" aria-labelledby="d01_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title" id="d01_title">年齢計算</h2>
+						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="d01js_dialog_calcAge" aria-describedby="d01_title">
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<form action="#" class="d01bl_form">
+						<label for="d01js_inputBirthday" class="d01bl_form_label">生年月日</label>
+						<div class="d01bl_form_inputs">
+							<input type="date" name="d01js_inputBirthday" id="d01js_inputBirthday" class="d01bl_form_dateInput">
+							<button type="button" class="js_btnShowDialog el_btn el_btn__secondary el_btn__wMaxContent" aria-controls="d01-1js_dialog_sub">
+								和暦入力
+							</button><!-- /.js_btnShowDialog -->
+						</div><!-- /.d01bl_form_inputs -->
+						<button type="submit" class="el_btn el_btn__primary" id="d01js_calcBtn">計算</button>
+					</form>
+					<dialog class="ly_subDialog" id="d01-1js_dialog_sub" aria-labelledby="d01-1_title" autofocus>
+						<form action="#" class="bl_subDialog">
+							<h3 class="bl_subDialog_title" id="d01-1_title">和暦入力</h3>
+							<label for="d01js_wareki_num" class="bl_subDialog_label">
+								和暦を選択し、6桁の数値を入力してください<br>
+								（例：令和 <strong>1年2月3日</strong> → <strong>010203</strong>）
+							</label>
+							<div class="bl_subDialog_row">
+								<select name="d01js_wareki_name" id="d01js_wareki_name">
+									<option value="4" default>令和</option>
+									<option value="3">平成</option>
+									<option value="2">昭和</option>
+									<option value="1">大正</option>
+									<option value="0">明治</option>
+								</select>
+								<input type="text" inputmode="numeric" name="d01js_wareki_num" id="d01js_wareki_num" size="6" pattern="[0-9]{6}">
+							</div><!-- /.bl_subDialog_row -->
+							<div class="bl_subDialog_row">
+								<button type="button" class="el_btn el_btn__tertiary el_btn__w12ch" onclick="closeDialog(this);">キャンセル</button>
+								<button type="submit" class="el_btn el_btn__primary el_btn__w12ch" id="d01js_wareki_submit">決定</button>
+							</div><!-- /.bl_subDialog_row -->
+						</form><!-- /.bl_subDialog -->
+					</dialog>
+					<output id="d01js_output">
+						<div class="bl_table bl_table__cross">
+							<table>
+								<thead>
+									<tr>
+										<th scope="row">項目</th>
+										<th>値</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">今日</th>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">満年齢</th>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">日数</th>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!-- /.bl_table -->
+					</output><!-- /#d01js_output -->
+					<small>
+						注意：計算は
+						<a href="https://laws.e-gov.go.jp/law/135AC1000000050" class="el_link">『年齢計算ニ関スル法律 | e-Gov 法令検索』</a>
+						に基づき、時刻を単位とする方式で行っています。<br>
+						日数は、1日に満たない時間は切り捨てたものになっています。
+					</small>
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+			<script>
+				const d01DateInput = document.querySelector("#d01js_inputBirthday");
+				const d01Output = document.querySelector("#d01js_output");
+				const d01CalcBtn = document.querySelector("#d01js_calcBtn");
+				const d01WarekiName = document.querySelector("#d01js_wareki_name");
+				const d01WarekiNum = document.querySelector("#d01js_wareki_num");
+				const d01WarekiBtn = document.querySelector("#d01js_wareki_submit");
+				function d01EnableCalcBtn() {
+					if (isDateFormat(d01DateInput.value)) {
+						d01CalcBtn.disabled = false;
+					} else {
+						d01CalcBtn.disabled = true;
+					}
+				}
+				d01EnableCalcBtn();
+				d01DateInput.addEventListener("input", d01EnableCalcBtn);
+				d01WarekiBtn.addEventListener("click", () => {
+					const label = document.querySelector(`label[for="${d01WarekiNum.id}"]`);
+					const paragraph =
+						label.querySelector("p") ||
+						label.appendChild(document.createElement("p"));
+					paragraph.tabIndex = -1;
+					paragraph.innerHTML = null;
+					const warekiID = parseInt(d01WarekiName.value);
+					const warekiString = d01WarekiNum.value;
+					if (warekiString.match(/^([0-9]{2})(0[1-9]|1[0-2])([0-2][0-9]|3[01])$/)) {
+						const warekiYear = parseInt(warekiString.substring(0, 2));
+						const year = wareki.getYearByEra(warekiID, warekiYear);
+						const dateString = `${year}-${warekiString.substring(
+							2,
+							4
+						)}-${warekiString.substring(4)}`;
+						if (isDateFormat(dateString) === false)
+							throw new Error("和暦→西暦日付への変換に失敗しました");
+						d01DateInput.value = dateString;
+						closeDialog(d01WarekiBtn);
+						d01DateInput.focus();
+						d01EnableCalcBtn();
+					} else {
+						const spanEmoji = document.createElement("span");
+						spanEmoji.textContent = "⚠";
+						spanEmoji.ariaHidden = true;
+						spanEmoji.className = "hp_warningColor";
+						paragraph.appendChild(spanEmoji);
+						const spanText = document.createElement("span");
+						spanText.textContent = "入力値は6桁の年月日文字列でなければなりません";
+						spanText.className = "hp_warningColor";
+						paragraph.appendChild(spanText);
+						paragraph.focus();
+					}
+				});
+				d01CalcBtn.addEventListener("click", () => {
+					const dateString = d01DateInput.value;
+					if (isDateFormat(dateString) === false)
+						throw new Error("入力値が適正でありません");
+					const dateParts = dateString.split("-");
+					const date = new Date(
+						parseInt(dateParts[0]),
+						parseInt(dateParts[1]) - 1,
+						parseInt(dateParts[2])
+					);
+					const age = calcAge(date);
+					const timeAgingInThisYear = new Date(
+						date.getFullYear() + age,
+						date.getMonth(),
+						date.getDate() - 1,
+						24
+					);
+					const days = dateDiff(timeAgingInThisYear, new Date());
+					let dataArray = [["項目", "値"]];
+					const today = new Date();
+					dataArray.push([
+						"今日",
+						`${today.getFullYear()}年 ${today.getMonth() + 1}月 ${today.getDate()}日`,
+					]);
+					dataArray.push(["満年齢", `${age}歳`]);
+					dataArray.push(["日数", `${days}日`]);
+					d01Output.value = "";
+					d01Output.appendChild(createTable(dataArray, TABLE_STYLE.cross));
+				});
+			</script>
+		</li><!-- /.bl_funcList_item -->
+
+		<!-- [d02] -->
+		<li class="bl_funcList_item">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="d02js_dialog_clock">
+				時計
+			</button><!-- /.js_btnShowDialog -->
+
+			<dialog class="ly_dialog" id="d02js_dialog_clock" aria-labelledby="d02_title" autofocus>
+				<div class="ly_dialog_body">
+					<div class="bl_menuHeader">
+						<h2 class="bl_menuHeader_title hp_srOnly" id="d02_title">時計</h2>
+						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="d02js_dialog_clock" aria-describedby="d02_title">
+							<span>閉じる</span>
+						</button>
+					</div><!-- /.bl_menuHeader -->
+					<button type="button" class="bl_clock" id="d02js_speechBtn" aria-label="時刻読み上げ">
+						<span class="bl_clock_date" id="d02js_date" aria-hidden="true">
+							0000 - 00/00(***)
+						</span><!-- /.bl_clock_date -->
+						<span class="bl_clock_time" id="d02js_time" aria-hidden="true">
+							00:00
+						</span><!-- /.bl_clock_time -->
+					</button><!-- /.bl_clock -->
+					<output class="hp_srOnly" id="d02js_output"></output><!-- /.hp_srOnly -->
+				</div><!-- /.ly_dialog_body -->
+			</dialog><!-- /.ly_dialog -->
+			<script>
+				function getTimeString(now = new Date()) {
+					const hours = String(now.getHours()).padStart(2, "0");
+					const minutes = String(now.getMinutes()).padStart(2, "0");
+					return `${hours}:${minutes}`;
+				}
+				function getDateString(now = new Date()) {
+					const year = String(now.getFullYear()).padStart(4, "0");
+					const month = String(now.getMonth() + 1).padStart(2, "0");
+					const day = String(now.getDate()).padStart(2, "0");
+					const weekArray = ["日", "月", "火", "水", "木", "金", "土"];
+					const weekday = weekArray[now.getDay()];
+					return `${year}年 ${month}月${day}日（${weekday}）`;
+				}
+				const d02_dateDisplay = document.querySelector("#d02js_date");
+				const d02_timeDisplay = document.querySelector("#d02js_time");
+				function refreshDateTime() {
+					d02_dateDisplay.textContent = getDateString();
+					d02_timeDisplay.textContent = getTimeString();
+				}
+				const d02_dialogEle = document.querySelector("#d02js_dialog_clock");
+				let d02_intervalId;
+				const d02_observer = new MutationObserver((mutationsList) => {
+					for (const mutation of mutationsList) {
+						if (mutation.type === "attributes" && mutation.attributeName === "open") {
+							if (d02_dialogEle.open) {
+								refreshDateTime();
+								d02_intervalId = setInterval(refreshDateTime, 10000);
+							} else {
+								clearInterval(d02_intervalId);
+							}
+						}
+					}
+				});
+				d02_observer.observe(d02_dialogEle, {
+					attributes: true,
+					attributeFilter: ["open"],
+				});
+				const d02_output = document.querySelector("#d02js_output");
+				if (!"speechSynthesis" in window)
+					alert("WebSpeechAPI is not supported by this browser.");
+				const speechBtn = document.querySelector("#d02js_speechBtn");
+				speechBtn.addEventListener("click", () => {
+					const txt = `${getDateString()} ${getTimeString()}`;
+					if (chkEnableSound.checked === false || isEnabledSound === false) {
+						const noticeSpan = document.createElement("span");
+						noticeSpan.textContent = txt;
+						d02_output.appendChild(noticeSpan);
+						setTimeout(() => {
+							d02_output.removeChild(noticeSpan);
+						}, 1000);
+					} else {
+						const synth = window.speechSynthesis;
+						if (synth) {
+							const utterThis = new SpeechSynthesisUtterance(txt);
+							synth.speak(utterThis);
+						}
+					}
+				});
+			</script>
+		</li><!-- /.bl_funcList_item -->
+
 		<!-- [d99] -->
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnShowDialog" aria-controls="d99js_dialog_chronoTable">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="d99js_dialog_chronoTable">
 				西暦↔和暦 早見表
-			</button><!-- /.js_btnShowDialog -->
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 
 			<dialog class="ly_dialog" id="d99js_dialog_chronoTable" aria-labelledby="d99_title" autofocus>
 				<div class="ly_dialog_body">
@@ -3060,12 +3923,13 @@
 
 	<!-- [e00] -->
 	<h3 class="el_heading_lv3 el_heading__iconLabel">
-		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
-			role="graphics-symbol img" aria-hidden="true">
-			<path
-				d="m7.2793 2c-5.28 0-5.2793 5.2793-5.2793 5.2793v15.84h1.7598v-8.7988h17.6v8.7988h1.7598v-15.84c0-5.28-5.2793-5.2793-5.2793-5.2793zm19.721 0v1.7598h15.481c1.76 0 1.7598 1.7598 1.7598 1.7598v7.5994h-6.2411l8.0009 8.881v-16.481c0-3.52-3.5195-3.5195-3.5195-3.5195zm-19.721 1.7598h10.561c3.52 0 3.5195 3.5195 3.5195 3.5195v5.2813h-17.6v-5.2813c0-3.52 3.5195-3.5195 3.5195-3.5195zm-5.2793 22.24v16.481c0 3.52 3.5195 3.5195 3.5195 3.5195h15.48v-1.7598h-15.48c-1.76 0-1.7598-1.7598-1.7598-1.7598v-7.5997h6.2403zm22.881-1.1192v21.119h15.84s5.2793 6.98e-4 5.2793-5.2793v-1.7598s-0.0031-3.8245-3.2598-4.9629c0.84596-0.78052 1.5-1.9822 1.5-3.8379 0-5.28-5.2793-5.2793-5.2793-5.2793zm1.7598 1.7598h12.32s3.5195-4.62e-4 3.5195 3.5195-3.5195 3.5195-3.5195 3.5195h-12.32zm0 8.7988h14.08c3.52 0 3.5195 3.5215 3.5195 3.5215v1.7598c0 3.52-3.5195 3.5195-3.5195 3.5195h-14.08z"
-				stroke-linejoin="round" />
-		</svg>
+		<svg
+			version="1.1" xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 48 48" width="48" height="48"
+			role="graphics-symbol img" aria-hidden="true"
+		>
+		<path d="m7.2793 2c-5.28 0-5.2793 5.2793-5.2793 5.2793v15.84h1.7598v-8.7988h17.6v8.7988h1.7598v-15.84c0-5.28-5.2793-5.2793-5.2793-5.2793zm19.721 0v1.7598h15.481c1.76 0 1.7598 1.7598 1.7598 1.7598v7.5994h-6.2411l8.0009 8.881v-16.481c0-3.52-3.5195-3.5195-3.5195-3.5195zm-19.721 1.7598h10.561c3.52 0 3.5195 3.5195 3.5195 3.5195v5.2813h-17.6v-5.2813c0-3.52 3.5195-3.5195 3.5195-3.5195zm-5.2793 22.24v16.481c0 3.52 3.5195 3.5195 3.5195 3.5195h15.48v-1.7598h-15.48c-1.76 0-1.7598-1.7598-1.7598-1.7598v-7.5997h6.2403zm22.881-1.1192v21.119h15.84s5.2793 6.98e-4 5.2793-5.2793v-1.7598s-0.0031-3.8245-3.2598-4.9629c0.84596-0.78052 1.5-1.9822 1.5-3.8379 0-5.28-5.2793-5.2793-5.2793-5.2793zm1.7598 1.7598h12.32s3.5195-4.62e-4 3.5195 3.5195-3.5195 3.5195-3.5195 3.5195h-12.32zm0 8.7988h14.08c3.52 0 3.5195 3.5215 3.5195 3.5215v1.7598c0 3.52-3.5195 3.5195-3.5195 3.5195h-14.08z" stroke-linejoin="round" />
+	</svg>
 		<span>
 			単位（換算・変換）
 		</span>
@@ -3074,16 +3938,16 @@
 	<ul class="bl_funcList">
 		<!-- [e98] -->
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnShowDialog" aria-controls="e98js_dialog_paperSize">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="e98js_dialog_paperSize">
 				用紙サイズ 早見表
-			</button><!-- /.js_btnShowDialog -->
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 
 			<dialog class="ly_dialog" id="e98js_dialog_paperSize" aria-labelledby="e98_title" autofocus>
 				<div class="ly_dialog_body">
 					<div class="bl_menuHeader">
 						<h2 class="bl_menuHeader_title" id="e98_title">用紙サイズ 早見表</h2>
-						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog" aria-controls="e98js_dialog_paperSize"
-							aria-describedby="e98_title">
+						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="e98js_dialog_paperSize" aria-describedby="e98_title">
 							<span>閉じる</span>
 						</button>
 					</div><!-- /.bl_menuHeader -->
@@ -3192,16 +4056,16 @@
 
 		<!-- [e99] -->
 		<li class="bl_funcList_item">
-			<button type="button" class="js_btnShowDialog" aria-controls="e99js_dialog_paperRate">
+			<button type="button" class="js_btnShowDialog el_btn el_btn__primary el_btn__wMaxContent" aria-controls="e99js_dialog_paperRate">
 				用紙間縮尺 早見表
-			</button><!-- /.js_btnShowDialog -->
+			</button><!-- /.js_btnShowDialog.el_btn.el_btn__primary.el_btn__wMaxContent -->
 
 			<dialog class="ly_dialog" id="e99js_dialog_paperRate" aria-labelledby="e99_title" autofocus>
 				<div class="ly_dialog_body">
 					<div class="bl_menuHeader">
 						<h2 class="bl_menuHeader_title" id="e99_title">用紙間縮尺 早見表</h2>
-						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog" aria-controls="e99js_dialog_paperRate"
-							aria-describedby="e99_title">
+						<button type="button" class="bl_menuHeader_btnIcon js_btnCloseDialog"
+							aria-controls="e99js_dialog_paperRate" aria-describedby="e99_title">
 							<span>閉じる</span>
 						</button>
 					</div><!-- /.bl_menuHeader -->
@@ -3287,7 +4151,7 @@
 									<th scope="row">A1</th>
 									<td>173</td>
 									<td>141</td>
-									<td>123</td>
+									<td>122</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
 									<td>87</td>
 									<td>71</td>
@@ -3322,7 +4186,7 @@
 									<td>245</td>
 									<td>200</td>
 									<td>173</td>
-									<td>142</td>
+									<td>141</td>
 									<td>123</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
 									<td>87</td>
@@ -3331,7 +4195,7 @@
 									<td>50</td>
 									<td>43</td>
 									<td>35</td>
-									<td>31</td>
+									<td>30</td>
 									<td>25</td>
 								</tr>
 								<tr>
@@ -3376,7 +4240,7 @@
 									<td>231</td>
 									<td>200</td>
 									<td>163</td>
-									<td>142</td>
+									<td>141</td>
 									<td>115</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
 									<td>82</td>
@@ -3398,7 +4262,7 @@
 									<td>122</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
 									<td>87</td>
-									<td>71</td>
+									<td>70</td>
 									<td>61</td>
 									<td>50</td>
 								</tr>
@@ -3407,7 +4271,7 @@
 									<td>566</td>
 									<td>462</td>
 									<td>400</td>
-									<td>327</td>
+									<td>326</td>
 									<td>283</td>
 									<td>231</td>
 									<td>200</td>
@@ -3415,52 +4279,52 @@
 									<td>141</td>
 									<td>115</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
-									<td>82</td>
-									<td>71</td>
+									<td>81</td>
+									<td>70</td>
 									<td>58</td>
 								</tr>
 								<tr>
 									<th scope="row">A5</th>
-									<td>695</td>
-									<td>567</td>
-									<td>491</td>
-									<td>401</td>
+									<td>693</td>
+									<td>566</td>
+									<td>490</td>
+									<td>400</td>
 									<td>347</td>
 									<td>283</td>
-									<td>246</td>
+									<td>245</td>
 									<td>200</td>
 									<td>173</td>
-									<td>142</td>
-									<td>123</td>
+									<td>141</td>
+									<td>122</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
-									<td>87</td>
-									<td>71</td>
+									<td>86</td>
+									<td>70</td>
 								</tr>
 								<tr>
 									<th scope="row">B6</th>
-									<td>802</td>
-									<td>655</td>
-									<td>567</td>
-									<td>463</td>
-									<td>401</td>
-									<td>327</td>
-									<td>284</td>
+									<td>800</td>
+									<td>653</td>
+									<td>566</td>
+									<td>462</td>
+									<td>400</td>
+									<td>326</td>
+									<td>283</td>
 									<td>231</td>
 									<td>200</td>
-									<td>164</td>
-									<td>142</td>
-									<td>116</td>
+									<td>163</td>
+									<td>141</td>
+									<td>115</td>
 									<td style="background-color: var(--sc_bg_disabled);">＼</td>
-									<td>82</td>
+									<td>81</td>
 								</tr>
 								<tr>
 									<th scope="row">A6</th>
-									<td>982</td>
-									<td>802</td>
-									<td>695</td>
-									<td>567</td>
-									<td>491</td>
-									<td>401</td>
+									<td>981</td>
+									<td>801</td>
+									<td>693</td>
+									<td>566</td>
+									<td>490</td>
+									<td>400</td>
 									<td>347</td>
 									<td>283</td>
 									<td>245</td>
@@ -3474,8 +4338,8 @@
 						</table>
 					</div>
 					<small>
-						注意：概算値であるため、参考程度にとどめてください。<br>
-						実際には、使用するスキャナやプリンターのメーカー毎の個体差や、余白等を考慮する必要があるため、少し低めになることが想定されます。
+						注意：概算値であるため、参考程度にとどめてください。数値は 2 用紙間の長辺・短辺の拡縮率において、小さい方を（小数切り捨てで）採用しています。<br>
+						実際には、使用するスキャナやプリンターのメーカー毎の個体差や、余白等を考慮する必要があります。
 					</small>
 				</div><!-- /.ly_dialog_body -->
 			</dialog><!-- /.ly_dialog -->
@@ -3488,7 +4352,7 @@
 
 	<script>
 		function sanitizeHtml(str) {
-			if (typeof str === 'string') {
+			if (typeof str === "string") {
 				const htmlEntities = str
 					.replace(/&/g, "&amp;")
 					.replace(/</g, "&lt;")
@@ -3509,7 +4373,7 @@
 					outputElement.appendChild(tempContent);
 				}
 			} else {
-				console.error('template タグが未対応です');
+				console.error("template タグが未対応です");
 			}
 		}
 		const TABLE_STYLE = Object.freeze({
@@ -3529,42 +4393,45 @@
 		function createTable(dataArray, tableStyle = 0) {
 			const styleWidth = Math.floor(tableStyle / 4);
 			const styleDirection = tableStyle % 4;
-			const tableWrapper = document.createElement('div');
-			let classes = ['bl_table'];
+			const tableWrapper = document.createElement("div");
+			let classes = ["bl_table"];
 			switch (styleDirection) {
 				case 0:
 					break;
 				case 1:
-					classes.push('bl_table__horizontal');
+					classes.push("bl_table__horizontal");
 					break;
 				case 2:
-					classes.push('bl_table__vertical');
+					classes.push("bl_table__vertical");
 					break;
 				case 3:
-					classes.push('bl_table__cross');
+					classes.push("bl_table__cross");
 					break;
 			}
 			switch (styleWidth) {
 				case 0:
 					break;
 				case 1:
-					classes.push('bl_table__wide');
+					classes.push("bl_table__wide");
 					break;
 				case 2:
-					classes.push('bl_table__exWide');
+					classes.push("bl_table__exWide");
 					break;
 			}
 			tableWrapper.classList.add(...classes);
-			const table = document.createElement('table');
+			const table = document.createElement("table");
 			tableWrapper.appendChild(table);
 			const tableHeaderRow = table.createTHead().insertRow();
 			const arrayHeader = dataArray.shift();
 			let isFirstCell = true;
 			for (const cell of arrayHeader) {
-				const th = document.createElement('th');
+				const th = document.createElement("th");
 				th.textContent = cell;
-				if ((styleDirection === 2) || (styleDirection === 3 && isFirstCell === false)) {
-					th.scope = 'col';
+				if (
+					styleDirection === 2 ||
+					(styleDirection === 3 && isFirstCell === false)
+				) {
+					th.scope = "col";
 				}
 				tableHeaderRow.appendChild(th);
 				isFirstCell = false;
@@ -3573,10 +4440,10 @@
 			for (const arrayRow of dataArray) {
 				const row = tableBody.insertRow();
 				const thCell = arrayRow.shift();
-				const th = document.createElement('th');
+				const th = document.createElement("th");
 				th.textContent = thCell;
 				if (styleDirection === 1 || styleDirection === 3) {
-					th.scope = 'row';
+					th.scope = "row";
 				}
 				row.appendChild(th);
 				for (const tdCell of arrayRow) {
@@ -3589,12 +4456,12 @@
 		const AudioContext = window.AudioContext || window.webkitAudioContext;
 		const audioContext = new AudioContext();
 		function beepNG() {
-			if ((chkEnableSound.checked === false) || (isEnabledSound === false)) return;
+			if (chkEnableSound.checked === false || isEnabledSound === false) return;
 			const oscillator = audioContext.createOscillator();
 			const gain = audioContext.createGain();
 			oscillator.connect(gain);
 			gain.connect(audioContext.destination);
-			oscillator.type = 'square';
+			oscillator.type = "square";
 			oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
 			oscillator.frequency.setValueAtTime(400, audioContext.currentTime + 0.1);
 			gain.gain.setValueAtTime(1, audioContext.currentTime);
@@ -3604,12 +4471,12 @@
 			}, 200);
 		}
 		function beepOK() {
-			if ((chkEnableSound.checked === false) || (isEnabledSound === false)) return;
+			if (chkEnableSound.checked === false || isEnabledSound === false) return;
 			const oscillator = audioContext.createOscillator();
 			const gain = audioContext.createGain();
 			oscillator.connect(gain);
 			gain.connect(audioContext.destination);
-			oscillator.type = 'square';
+			oscillator.type = "square";
 			oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
 			gain.gain.setValueAtTime(1, audioContext.currentTime);
 			oscillator.start(audioContext.currentTime);
@@ -3618,7 +4485,8 @@
 			}, 50);
 		}
 		function vibrateOK() {
-			if ((chkEnableVibration.checked === false) || (isEnabledVibrate === false)) return;
+			if (chkEnableVibration.checked === false || isEnabledVibrate === false)
+				return;
 			if (window.navigator.vibrate) {
 				window.navigator.vibrate(50);
 			} else if (window.navigator.mozVibrate) {
@@ -3626,11 +4494,12 @@
 			} else if (window.navigator.webkitVibrate) {
 				window.navigator.webkitVibrate(50);
 			} else {
-				console.error('エラー：振動機能');
+				console.error("エラー：振動機能");
 			}
 		}
 		function vibrateNG() {
-			if ((chkEnableVibration.checked === false) || (isEnabledVibrate === false)) return;
+			if (chkEnableVibration.checked === false || isEnabledVibrate === false)
+				return;
 			const pattern = [100, 100, 100];
 			if (window.navigator.vibrate) {
 				window.navigator.vibrate(pattern);
@@ -3639,7 +4508,7 @@
 			} else if (window.navigator.webkitVibrate) {
 				window.navigator.webkitVibrate(pattern);
 			} else {
-				console.error('エラー：振動機能');
+				console.error("エラー：振動機能");
 			}
 		}
 		function feedbackOK() {
@@ -3651,8 +4520,8 @@
 			vibrateNG();
 		}
 		let settingState;
-		if (sessionStorage.getItem('settingState')) {
-			settingState = sessionStorage.getItem('settingState');
+		if (sessionStorage.getItem("settingState")) {
+			settingState = sessionStorage.getItem("settingState");
 			settingState = JSON.parse(settingState);
 		} else {
 			settingState = {
@@ -3661,7 +4530,7 @@
 				isLeft: false,
 				enableSound: false,
 				enableVibration: false,
-			}
+			};
 		}
 		function changeColorMode(colorMode) {
 			switch (parseInt(colorMode)) {
@@ -3681,13 +4550,13 @@
 					console.log(`不明な設定値が検出されました [colorMode : ${colorMode}]`);
 			}
 		}
-		const selColorMode = document.querySelector('#js_setting_colorMode');
+		const selColorMode = document.querySelector("#js_setting_colorMode");
 		selColorMode.addEventListener("change", (e) => {
 			const val = e.target.value;
 			changeColorMode(val);
 			settingState.colorMode = val;
-			sessionStorage.setItem('settingState', JSON.stringify(settingState));
-		})
+			sessionStorage.setItem("settingState", JSON.stringify(settingState));
+		});
 		selColorMode.value = settingState.colorMode;
 		changeColorMode(settingState.colorMode);
 		function changeFontSize(fontSize) {
@@ -3696,19 +4565,19 @@
 				document.documentElement.style.fontSize = null;
 			} else {
 				if (typeof size === "number") {
-					document.documentElement.style.fontSize = size + 'px';
+					document.documentElement.style.fontSize = size + "px";
 				} else {
 					console.log(`不明な設定値が検出されました [fontSize : ${fontSize}]`);
 				}
 			}
 		}
-		const selFontSize = document.querySelector('#js_setting_fontSize');
+		const selFontSize = document.querySelector("#js_setting_fontSize");
 		selFontSize.addEventListener("change", (e) => {
 			const val = e.target.value;
 			changeFontSize(val);
 			settingState.fontSize = val;
-			sessionStorage.setItem('settingState', JSON.stringify(settingState));
-		})
+			sessionStorage.setItem("settingState", JSON.stringify(settingState));
+		});
 		selFontSize.value = settingState.fontSize;
 		changeFontSize(settingState.fontSize);
 		function changeLeftMode(isLeft) {
@@ -3718,13 +4587,13 @@
 				document.documentElement.classList.remove("is_leftMode");
 			}
 		}
-		const chkIsLeft = document.querySelector('#js_setting_isLeft');
+		const chkIsLeft = document.querySelector("#js_setting_isLeft");
 		chkIsLeft.addEventListener("change", (e) => {
 			const val = e.target.checked;
 			changeLeftMode(val);
 			settingState.isLeft = val;
-			sessionStorage.setItem('settingState', JSON.stringify(settingState));
-		})
+			sessionStorage.setItem("settingState", JSON.stringify(settingState));
+		});
 		chkIsLeft.checked = settingState.isLeft;
 		changeLeftMode(settingState.isLeft);
 		function changeSoundMode(enableSound) {
@@ -3734,18 +4603,18 @@
 				document.documentElement.classList.remove("is_soundMode");
 			}
 		}
-		const chkEnableSound = document.querySelector('#js_setting_enableSound');
+		const chkEnableSound = document.querySelector("#js_setting_enableSound");
 		chkEnableSound.addEventListener("change", (e) => {
 			const val = e.target.checked;
 			changeSoundMode(val);
 			settingState.enableSound = val;
-			sessionStorage.setItem('settingState', JSON.stringify(settingState));
-		})
+			sessionStorage.setItem("settingState", JSON.stringify(settingState));
+		});
 		chkEnableSound.checked = settingState.enableSound;
 		changeSoundMode(settingState.enableSound);
 		var isEnabledSound = false;
 		if ((window.AudioContext || window.webkitAudioContext) === undefined) {
-			chkEnableSound.parentElement.lastChild.textContent = 'この機器は未対応です'
+			chkEnableSound.parentElement.lastChild.textContent = "この機器は未対応です";
 			chkEnableSound.disabled = true;
 		} else {
 			isEnabledSound = true;
@@ -3757,54 +4626,95 @@
 				document.documentElement.classList.remove("is_vibrationMode");
 			}
 		}
-		const chkEnableVibration = document.querySelector('#js_setting_enableVibration');
+		const chkEnableVibration = document.querySelector(
+			"#js_setting_enableVibration"
+		);
 		chkEnableVibration.addEventListener("change", (e) => {
 			const val = e.target.checked;
 			changeVibrationMode(val);
 			settingState.enableVibration = val;
-			sessionStorage.setItem('settingState', JSON.stringify(settingState));
-		})
+			sessionStorage.setItem("settingState", JSON.stringify(settingState));
+		});
 		chkEnableVibration.checked = settingState.enableVibration;
 		changeVibrationMode(settingState.enableVibration);
 		var isEnabledVibrate = false;
-		if ((window.navigator.vibrate || window.navigator.mozVibrate || window.navigator.webkitVibrate) === undefined) {
-			chkEnableVibration.parentElement.lastChild.textContent = 'この機器は振動モード未対応です'
+		if (
+			(window.navigator.vibrate ||
+				window.navigator.mozVibrate ||
+				window.navigator.webkitVibrate) === undefined
+		) {
+			chkEnableVibration.parentElement.lastChild.textContent =
+				"この機器は振動モード未対応です";
 			chkEnableVibration.disabled = true;
 		} else {
 			isEnabledVibrate = true;
 		}
-		const dialogBtns = document.querySelectorAll('.js_btnShowDialog');
+		const dialogBtns = document.querySelectorAll(".js_btnShowDialog");
 		for (const btn of dialogBtns) {
-			const dialogId = btn.getAttribute('aria-controls');
+			const dialogId = btn.getAttribute("aria-controls");
 			if (dialogId) {
 				const targetDialog = document.querySelector(`#${dialogId}`);
 				if (targetDialog) {
-					btn.addEventListener('click', () => {
+					btn.addEventListener("click", () => {
 						targetDialog.showModal();
-					})
+					});
+					targetDialog.addEventListener("click", (e) => {
+						if (e.target === targetDialog) {
+							targetDialog.close();
+						}
+					});
 				}
 			}
 		}
-		const tempSvgCross = document.querySelector('#tempSvg_cross');
-		const dialogCloseBtns = document.querySelectorAll('.js_btnCloseDialog');
+		function closeDialog(ele) {
+			if (!(ele instanceof Element)) throw new Error("引数に Element が必要です");
+			ele.closest("dialog").close();
+		}
+		const tempSvgCross = document.querySelector("#tempSvg_cross");
+		const dialogCloseBtns = document.querySelectorAll(".js_btnCloseDialog");
 		for (const btn of dialogCloseBtns) {
 			insertTemplate(tempSvgCross, btn, true);
-			const dialogId = btn.getAttribute('aria-controls');
-			if (dialogId) {
-				const targetDialog = document.querySelector(`#${dialogId}`);
-				if (targetDialog) {
-					btn.addEventListener('click', () => {
-						targetDialog.close();
-					})
-				}
-			}
+			btn.addEventListener("click", () => {
+				closeDialog(btn);
+			});
 		}
-		const tempSvgArrowDown = document.querySelector('#tempSvg_arrowDown');
-		const accordionSummaries = document.querySelectorAll('.bl_accordion_summary');
+		const tempSvgArrowDown = document.querySelector("#tempSvg_arrowDown");
+		const accordionSummaries = document.querySelectorAll(".bl_accordion_summary");
 		for (const summary of accordionSummaries) {
 			insertTemplate(tempSvgArrowDown, summary, false);
 		}
+		const forms = document.querySelectorAll("form");
+		for (const form of forms) {
+			form.addEventListener("submit", function (event) {
+				event.preventDefault();
+				const submitButton = form.querySelector('button[type="submit"]');
+				if (submitButton) submitButton.click();
+			});
+		}
+		const inputDateTest = document.createElement("input");
+		try {
+			inputDateTest.type = "date";
+		} catch (e) {
+			console.log(e.message);
+		}
+		if (inputDateTest.type === "text") {
+			const inputDateElements = document.querySelectorAll('input[type="date"]');
+			for (const ele of inputDateElements) {
+				ele.pattern = String.raw`\d{4}-\d{2}-\d{2}`;
+				let label = document.querySelector(`label[for="${ele.id}"]`);
+				if (!label) {
+					label = document.createElement("label");
+					label.htmlFor = ele.id;
+					ele.parentNode.insertBefore(label, ele);
+				}
+				const paragraph = document.createElement("p");
+				paragraph.style.margin = 0;
+				paragraph.style.padding = 0;
+				paragraph.className = "hp_warningColor";
+				paragraph.textContent = "yyyy-MM-dd 形式で入力してください";
+				label.appendChild(paragraph);
+			}
+		}
 	</script>
 </body>
-
 </html>
